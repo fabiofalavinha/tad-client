@@ -15,11 +15,9 @@ namespace TadManagementTool
                 var loginDialogResult = loginForm.ShowDialog();
                 if (loginDialogResult == DialogResult.OK)
                 {
-                    // TODO: get authentication result
-                    // set 'signIn' variable
+                    Application.Run(new MainForm());
                 }
             }
-            Application.Run(new MainForm());
         }
     }
 }

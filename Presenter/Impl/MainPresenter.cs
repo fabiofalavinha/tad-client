@@ -1,8 +1,9 @@
-﻿using TadManagementTool.View.Impl;
+﻿using TadManagementTool.View;
+using TadManagementTool.View.Impl;
 
 namespace TadManagementTool.Presenter.Impl
 {
-    public class MainPresenter : AbstractPresenter<IMainView>, IMainPresenter
+    public class MainPresenter : AbstractDialogPresenter<IMainView>, IMainPresenter
     {
         public MainPresenter(IMainView mainView)
             : base(mainView)
@@ -11,6 +12,11 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+        }
+
+        public void OnMenuItemSelect(IMenuActionView menuActionView)
+        {
+            menuActionView.Open(View);
         }
     }
 }

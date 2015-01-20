@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Colaboradores");
             this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.menuTreeView = new System.Windows.Forms.TreeView();
+            this.postListUserControl = new TadManagementTool.PostListUserControl();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.postListUserControl = new TadManagementTool.PostListUserControl();
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -76,8 +79,23 @@
             this.menuTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuTreeView.Location = new System.Drawing.Point(0, 0);
             this.menuTreeView.Name = "menuTreeView";
+            treeNode1.Name = "collaboratorTreeItem";
+            treeNode1.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode1.Tag = "TadManagementTool.View.Impl.OpenCollaboratorMenuViewAction";
+            treeNode1.Text = "Colaboradores";
+            this.menuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             this.menuTreeView.Size = new System.Drawing.Size(220, 422);
             this.menuTreeView.TabIndex = 0;
+            this.menuTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.menuTreeView_AfterSelect);
+            // 
+            // postListUserControl
+            // 
+            this.postListUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postListUserControl.Location = new System.Drawing.Point(0, 0);
+            this.postListUserControl.Name = "postListUserControl";
+            this.postListUserControl.Size = new System.Drawing.Size(546, 422);
+            this.postListUserControl.TabIndex = 0;
             // 
             // statusStrip
             // 
@@ -94,13 +112,10 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // postListUserControl
+            // modalWaitingPanel
             // 
-            this.postListUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.postListUserControl.Location = new System.Drawing.Point(0, 0);
-            this.postListUserControl.Name = "postListUserControl";
-            this.postListUserControl.Size = new System.Drawing.Size(546, 422);
-            this.postListUserControl.TabIndex = 0;
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = this.splitContainer.Panel2;
             // 
             // MainForm
             // 
@@ -132,6 +147,7 @@
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.TreeView menuTreeView;
         private PostListUserControl postListUserControl;
+        private ModalWaitingPanel modalWaitingPanel;
     }
 }
 

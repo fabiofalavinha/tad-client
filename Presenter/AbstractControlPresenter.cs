@@ -2,11 +2,11 @@
 
 namespace TadManagementTool.Presenter
 {
-    public abstract class AbstractPresenter<T> where T : IView
+    public abstract class AbstractControlPresenter<T> where T : IControlView
     {
         public T View { get; private set; }
 
-        public AbstractPresenter(T view)
+        public AbstractControlPresenter(T view)
         {
             View = view;
         }

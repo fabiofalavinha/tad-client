@@ -1,7 +1,8 @@
 ﻿
 namespace TadManagementTool.View.Impl
 {
-    public interface IMainView : IView
+    public interface IMainView : IDialogView
     {
+        void OpenCollaboratorView();
     }
 }
