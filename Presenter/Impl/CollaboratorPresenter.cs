@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using TadManagementTool.Model;
+using TadManagementTool.Service;
+using TadManagementTool.Validator;
 using TadManagementTool.View.Impl;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool.Presenter.Impl
 {
@@ -16,16 +21,145 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+            View.SetPhoneTypeList(DoGetPhoneTypeList());
         }
 
         public void InitViewWith(Collaborator collaborator)
         {
-            throw new NotImplementedException();
+            InitView();
+        }
+
+        private IList<PhoneTypeViewItem> DoGetPhoneTypeList()
+        {
+            var list = new List<PhoneTypeViewItem>();
+            list.Add(new PhoneTypeViewItem(PhoneType.Home));
+            list.Add(new PhoneTypeViewItem(PhoneType.Work));
+            list.Add(new PhoneTypeViewItem(PhoneType.Mobile));
+            return list;
         }
 
         public void OnBackToListCollaboratorView()
         {
             View.OpenListCollaboratorView();
+        }
+
+        public void OnEnableReleaseDateOption()
+        {
+            View.SetReleaseDateEnabled(View.IsReleaseDateOptionChecked());
+        }
+
+        public void OnAddTelephone()
+        {
+            var phoneTypeViewItem = View.GetPhoneTypeSelected();
+            if (phoneTypeViewItem == null)
+            {
+                View.ShowWarningMessage("Selecione o tipo de telefone");
+                return;
+            }
+            var phoneAreaCodeString = View.GetPhoneAreaCode();
+            var phoneAreaCodeValidator = new PhoneAreaCodeValidator();
+            if (!phoneAreaCodeValidator.Validate(phoneAreaCodeString))
+            {
+                View.ShowWarningMessage("Código de área inválido");
+                return;
+            }
+            var phoneAreaCode = int.Parse(phoneAreaCodeString);
+            var phoneNumberString = View.GetPhoneNumber();
+            var phoneNumberValidator = new PhoneNumberValidator(phoneAreaCode, phoneTypeViewItem.Wrapper);
+            if (!phoneNumberValidator.Validate(phoneNumberString))
+            {
+                View.ShowWarningMessage("Número de telefone é inválido. Verifique o código de área informado para acrescentar o número 9.");
+                return;
+            }
+            var phoneNumber = int.Parse(phoneNumberString);
+            View.AddTelephone(new Telephone()
+            {
+                PhoneType = phoneTypeViewItem.Wrapper,
+                AreaCode = phoneAreaCode,
+                Number = phoneNumber
+            });
+            View.ClearPhoneFields();
+        }
+
+        public void OnRemoveTelephone()
+        {
+            var telephone = View.GetTelephoneSelected();
+            if (telephone != null)
+            {
+                if (View.ShowBinaryQuestion("Deseja excluir este telefone?"))
+                {
+                    View.RemoveTelephone(telephone);
+                }
+            }
+            else
+            {
+                if (View.GetTelephoneList().Any())
+                {
+                    View.ShowWarningMessage("Selecione um telefone a ser excluído");
+                }
+            }
+        }
+
+        public void OnSave()
+        {
+            var task = new Task(() =>
+            {
+                var name = View.GetName();
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    View.ShowWarningMessage("É obrigatório informar um nome");
+                    return;
+                }
+                var id = View.GetId();
+                var email = View.GetEmail();
+                var emailValidator = new EmailValidator();
+                if (!emailValidator.Validate(email))
+                {
+                    View.ShowWarningMessage("Email inválido");
+                    return;
+                }
+                var birthDate = View.GetBirthDate();
+                var genderType = View.GetGenderType();
+                if (!genderType.HasValue)
+                {
+                    View.ShowWarningMessage("Selecione o sexo do colaborador");
+                    return;
+                }
+                var startDate = View.GetStartDate();
+                var telephones = View.GetTelephoneList();
+                if (!telephones.Any())
+                {
+                    View.ShowWarningMessage("Informe pelo menos um telefone");
+                    return;
+                }
+                var collaborator = new Collaborator()
+                {
+                    Id = id,
+                    Name = name,
+                    Email = email,
+                    Gender = genderType.Value,
+                    StartDate = startDate,
+                    Telephones = telephones.ToArray()
+                };
+                if (View.IsReleaseDateOptionChecked())
+                {
+                    collaborator.ReleaseDate = View.GetReleaseDate();
+                }
+                var collaboratorService = new CollaboratorService();
+                collaboratorService.SaveCollaborator(collaborator);
+            });
+            task.ContinueWith(t =>
+            {
+                View.OpenListCollaboratorView();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao salvar as informações do colaborador: {0}", innerException.Message));
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
         }
     }
 }

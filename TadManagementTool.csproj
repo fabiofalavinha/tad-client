@@ -115,6 +115,8 @@
       <DependentUpon>ModalWaitingPanelUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Collaborator.cs" />
+    <Compile Include="Model\GenderType.cs" />
+    <Compile Include="Model\PhoneType.cs" />
     <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserContext.cs" />
@@ -147,6 +149,9 @@
     <Compile Include="Service\CollaboratorService.cs" />
     <Compile Include="Service\UserCredentialsService.cs" />
     <Compile Include="Service\VOs\AuthenticationRequest.cs" />
+    <Compile Include="Validator\EmailValidator.cs" />
+    <Compile Include="Validator\PhoneAreaCodeValidator.cs" />
+    <Compile Include="Validator\PhoneNumberValidator.cs" />
     <Compile Include="View\IControlView.cs" />
     <Compile Include="View\IDialogView.cs" />
     <Compile Include="View\Impl\ICollaboratorView.cs" />
@@ -154,6 +159,7 @@
     <Compile Include="View\IMenuActionView.cs" />
     <Compile Include="View\Impl\ILoginView.cs" />
     <Compile Include="View\Impl\IMainView.cs" />
+    <Compile Include="View\Items\PhoneTypeViewItem.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="View\Impl\OpenCollaboratorMenuViewAction.cs" />
     <EmbeddedResource Include="CalendarUserControl.resx">

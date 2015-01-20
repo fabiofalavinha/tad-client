@@ -17,5 +17,10 @@ namespace TadManagementTool.Service
         {
             restTemplate.Delete("/collaborator/{id}", collaborator.Id);
         }
+
+        public void SaveCollaborator(Collaborator collaborator)
+        {
+            restTemplate.PostForMessage("/collaborator", collaborator);
+        }
     }
 }

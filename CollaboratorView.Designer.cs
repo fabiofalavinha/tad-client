@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.birthDateLabel = new System.Windows.Forms.Label();
-            this.birthDateTextBox = new System.Windows.Forms.TextBox();
             this.genderLabel = new System.Windows.Forms.Label();
             this.maleRadioButton = new System.Windows.Forms.RadioButton();
             this.femaleRadioButton = new System.Windows.Forms.RadioButton();
             this.emailLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.startDateLabel = new System.Windows.Forms.Label();
             this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.releaseDateLabel = new System.Windows.Forms.Label();
@@ -51,6 +51,9 @@
             this.removeTelephoneButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.backToListCollaboratorButton = new System.Windows.Forms.Button();
+            this.birthDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.idLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -59,7 +62,7 @@
             this.nameLabel.Location = new System.Drawing.Point(90, 26);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(38, 13);
-            this.nameLabel.TabIndex = 0;
+            this.nameLabel.TabIndex = 1;
             this.nameLabel.Text = "Nome:";
             // 
             // nameTextBox
@@ -69,8 +72,8 @@
             this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameTextBox.Location = new System.Drawing.Point(134, 21);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(295, 22);
-            this.nameTextBox.TabIndex = 1;
+            this.nameTextBox.Size = new System.Drawing.Size(330, 22);
+            this.nameTextBox.TabIndex = 2;
             // 
             // birthDateLabel
             // 
@@ -78,18 +81,8 @@
             this.birthDateLabel.Location = new System.Drawing.Point(22, 82);
             this.birthDateLabel.Name = "birthDateLabel";
             this.birthDateLabel.Size = new System.Drawing.Size(107, 13);
-            this.birthDateLabel.TabIndex = 0;
+            this.birthDateLabel.TabIndex = 5;
             this.birthDateLabel.Text = "Data de Nascimento:";
-            // 
-            // birthDateTextBox
-            // 
-            this.birthDateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.birthDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.birthDateTextBox.Location = new System.Drawing.Point(135, 77);
-            this.birthDateTextBox.Name = "birthDateTextBox";
-            this.birthDateTextBox.Size = new System.Drawing.Size(294, 22);
-            this.birthDateTextBox.TabIndex = 1;
             // 
             // genderLabel
             // 
@@ -97,7 +90,7 @@
             this.genderLabel.Location = new System.Drawing.Point(95, 107);
             this.genderLabel.Name = "genderLabel";
             this.genderLabel.Size = new System.Drawing.Size(34, 13);
-            this.genderLabel.TabIndex = 0;
+            this.genderLabel.TabIndex = 7;
             this.genderLabel.Text = "Sexo:";
             // 
             // maleRadioButton
@@ -106,7 +99,7 @@
             this.maleRadioButton.Location = new System.Drawing.Point(135, 105);
             this.maleRadioButton.Name = "maleRadioButton";
             this.maleRadioButton.Size = new System.Drawing.Size(73, 17);
-            this.maleRadioButton.TabIndex = 2;
+            this.maleRadioButton.TabIndex = 8;
             this.maleRadioButton.TabStop = true;
             this.maleRadioButton.Text = "Masculino";
             this.maleRadioButton.UseVisualStyleBackColor = true;
@@ -117,7 +110,7 @@
             this.femaleRadioButton.Location = new System.Drawing.Point(214, 105);
             this.femaleRadioButton.Name = "femaleRadioButton";
             this.femaleRadioButton.Size = new System.Drawing.Size(67, 17);
-            this.femaleRadioButton.TabIndex = 2;
+            this.femaleRadioButton.TabIndex = 9;
             this.femaleRadioButton.TabStop = true;
             this.femaleRadioButton.Text = "Feminino";
             this.femaleRadioButton.UseVisualStyleBackColor = true;
@@ -128,18 +121,18 @@
             this.emailLabel.Location = new System.Drawing.Point(90, 54);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(38, 13);
-            this.emailLabel.TabIndex = 0;
+            this.emailLabel.TabIndex = 3;
             this.emailLabel.Text = "e-Mail:";
             // 
-            // textBox1
+            // emailTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.emailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(135, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(294, 22);
-            this.textBox1.TabIndex = 1;
+            this.emailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailTextBox.Location = new System.Drawing.Point(135, 49);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(329, 22);
+            this.emailTextBox.TabIndex = 4;
             // 
             // startDateLabel
             // 
@@ -147,7 +140,7 @@
             this.startDateLabel.Location = new System.Drawing.Point(51, 130);
             this.startDateLabel.Name = "startDateLabel";
             this.startDateLabel.Size = new System.Drawing.Size(78, 13);
-            this.startDateLabel.TabIndex = 0;
+            this.startDateLabel.TabIndex = 10;
             this.startDateLabel.Text = "Data de Início:";
             // 
             // startDateTimePicker
@@ -155,7 +148,7 @@
             this.startDateTimePicker.Location = new System.Drawing.Point(135, 128);
             this.startDateTimePicker.Name = "startDateTimePicker";
             this.startDateTimePicker.Size = new System.Drawing.Size(255, 20);
-            this.startDateTimePicker.TabIndex = 3;
+            this.startDateTimePicker.TabIndex = 11;
             // 
             // releaseDateLabel
             // 
@@ -163,7 +156,7 @@
             this.releaseDateLabel.Location = new System.Drawing.Point(50, 156);
             this.releaseDateLabel.Name = "releaseDateLabel";
             this.releaseDateLabel.Size = new System.Drawing.Size(80, 13);
-            this.releaseDateLabel.TabIndex = 0;
+            this.releaseDateLabel.TabIndex = 12;
             this.releaseDateLabel.Text = "Data da Saída:";
             // 
             // releaseDateTimePicker
@@ -172,7 +165,7 @@
             this.releaseDateTimePicker.Location = new System.Drawing.Point(156, 154);
             this.releaseDateTimePicker.Name = "releaseDateTimePicker";
             this.releaseDateTimePicker.Size = new System.Drawing.Size(234, 20);
-            this.releaseDateTimePicker.TabIndex = 3;
+            this.releaseDateTimePicker.TabIndex = 14;
             // 
             // releaseDateCheckBox
             // 
@@ -180,7 +173,7 @@
             this.releaseDateCheckBox.Location = new System.Drawing.Point(135, 157);
             this.releaseDateCheckBox.Name = "releaseDateCheckBox";
             this.releaseDateCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.releaseDateCheckBox.TabIndex = 4;
+            this.releaseDateCheckBox.TabIndex = 13;
             this.releaseDateCheckBox.UseVisualStyleBackColor = true;
             this.releaseDateCheckBox.CheckedChanged += new System.EventHandler(this.releaseDateCheckBox_CheckedChanged);
             // 
@@ -190,7 +183,7 @@
             this.telephoneLabel.Location = new System.Drawing.Point(73, 180);
             this.telephoneLabel.Name = "telephoneLabel";
             this.telephoneLabel.Size = new System.Drawing.Size(57, 13);
-            this.telephoneLabel.TabIndex = 0;
+            this.telephoneLabel.TabIndex = 15;
             this.telephoneLabel.Text = "Telefones:";
             // 
             // telephoneListBox
@@ -199,23 +192,24 @@
             this.telephoneListBox.Location = new System.Drawing.Point(134, 207);
             this.telephoneListBox.Name = "telephoneListBox";
             this.telephoneListBox.Size = new System.Drawing.Size(177, 147);
-            this.telephoneListBox.TabIndex = 5;
+            this.telephoneListBox.TabIndex = 20;
             // 
             // phoneTypeComboBox
             // 
             this.phoneTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.phoneTypeComboBox.FormattingEnabled = true;
+            this.phoneTypeComboBox.ItemHeight = 13;
             this.phoneTypeComboBox.Location = new System.Drawing.Point(134, 180);
             this.phoneTypeComboBox.Name = "phoneTypeComboBox";
             this.phoneTypeComboBox.Size = new System.Drawing.Size(90, 21);
-            this.phoneTypeComboBox.TabIndex = 7;
+            this.phoneTypeComboBox.TabIndex = 16;
             // 
             // phoneAreaCodeTextBox
             // 
             this.phoneAreaCodeTextBox.Location = new System.Drawing.Point(231, 181);
             this.phoneAreaCodeTextBox.Name = "phoneAreaCodeTextBox";
             this.phoneAreaCodeTextBox.Size = new System.Drawing.Size(50, 20);
-            this.phoneAreaCodeTextBox.TabIndex = 8;
+            this.phoneAreaCodeTextBox.TabIndex = 17;
             this.phoneAreaCodeTextBox.Text = "11";
             this.phoneAreaCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -224,7 +218,7 @@
             this.phoneNumberTextBox.Location = new System.Drawing.Point(287, 181);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(103, 20);
-            this.phoneNumberTextBox.TabIndex = 8;
+            this.phoneNumberTextBox.TabIndex = 18;
             this.phoneNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // addTelephoneButton
@@ -233,8 +227,9 @@
             this.addTelephoneButton.Location = new System.Drawing.Point(396, 177);
             this.addTelephoneButton.Name = "addTelephoneButton";
             this.addTelephoneButton.Size = new System.Drawing.Size(32, 28);
-            this.addTelephoneButton.TabIndex = 6;
+            this.addTelephoneButton.TabIndex = 19;
             this.addTelephoneButton.UseVisualStyleBackColor = true;
+            this.addTelephoneButton.Click += new System.EventHandler(this.addTelephoneButton_Click);
             // 
             // removeTelephoneButton
             // 
@@ -242,8 +237,9 @@
             this.removeTelephoneButton.Location = new System.Drawing.Point(317, 207);
             this.removeTelephoneButton.Name = "removeTelephoneButton";
             this.removeTelephoneButton.Size = new System.Drawing.Size(32, 28);
-            this.removeTelephoneButton.TabIndex = 6;
+            this.removeTelephoneButton.TabIndex = 21;
             this.removeTelephoneButton.UseVisualStyleBackColor = true;
+            this.removeTelephoneButton.Click += new System.EventHandler(this.removeTelephoneButton_Click);
             // 
             // saveButton
             // 
@@ -251,9 +247,10 @@
             this.saveButton.Location = new System.Drawing.Point(468, 403);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 30);
-            this.saveButton.TabIndex = 9;
+            this.saveButton.TabIndex = 22;
             this.saveButton.Text = "Salvar";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // backToListCollaboratorButton
             // 
@@ -261,16 +258,39 @@
             this.backToListCollaboratorButton.Location = new System.Drawing.Point(3, 403);
             this.backToListCollaboratorButton.Name = "backToListCollaboratorButton";
             this.backToListCollaboratorButton.Size = new System.Drawing.Size(92, 30);
-            this.backToListCollaboratorButton.TabIndex = 10;
+            this.backToListCollaboratorButton.TabIndex = 23;
             this.backToListCollaboratorButton.Text = "Voltar p/ Lista";
             this.backToListCollaboratorButton.UseVisualStyleBackColor = true;
             this.backToListCollaboratorButton.Click += new System.EventHandler(this.backToListCollaboratorButton_Click);
+            // 
+            // birthDateTimePicker
+            // 
+            this.birthDateTimePicker.Location = new System.Drawing.Point(135, 79);
+            this.birthDateTimePicker.Name = "birthDateTimePicker";
+            this.birthDateTimePicker.Size = new System.Drawing.Size(255, 20);
+            this.birthDateTimePicker.TabIndex = 6;
+            // 
+            // modalWaitingPanel
+            // 
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = this;
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(12, 11);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(27, 13);
+            this.idLabel.TabIndex = 24;
+            this.idLabel.Text = "<id>";
+            this.idLabel.Visible = false;
             // 
             // CollaboratorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Controls.Add(this.idLabel);
             this.Controls.Add(this.backToListCollaboratorButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.phoneNumberTextBox);
@@ -281,19 +301,20 @@
             this.Controls.Add(this.telephoneListBox);
             this.Controls.Add(this.releaseDateCheckBox);
             this.Controls.Add(this.releaseDateTimePicker);
+            this.Controls.Add(this.birthDateTimePicker);
             this.Controls.Add(this.startDateTimePicker);
             this.Controls.Add(this.femaleRadioButton);
             this.Controls.Add(this.maleRadioButton);
             this.Controls.Add(this.genderLabel);
-            this.Controls.Add(this.birthDateTextBox);
             this.Controls.Add(this.birthDateLabel);
             this.Controls.Add(this.telephoneLabel);
             this.Controls.Add(this.releaseDateLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.startDateLabel);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.nameLabel);
+            this.DoubleBuffered = true;
             this.Name = "CollaboratorView";
             this.Size = new System.Drawing.Size(546, 436);
             this.Load += new System.EventHandler(this.CollaboratorView_Load);
@@ -307,12 +328,11 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label birthDateLabel;
-        private System.Windows.Forms.TextBox birthDateTextBox;
         private System.Windows.Forms.Label genderLabel;
         private System.Windows.Forms.RadioButton maleRadioButton;
         private System.Windows.Forms.RadioButton femaleRadioButton;
         private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label startDateLabel;
         private System.Windows.Forms.DateTimePicker startDateTimePicker;
         private System.Windows.Forms.Label releaseDateLabel;
@@ -327,5 +347,8 @@
         private System.Windows.Forms.Button addTelephoneButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button backToListCollaboratorButton;
+        private System.Windows.Forms.DateTimePicker birthDateTimePicker;
+        private ModalWaitingPanel modalWaitingPanel;
+        private System.Windows.Forms.Label idLabel;
     }
 }

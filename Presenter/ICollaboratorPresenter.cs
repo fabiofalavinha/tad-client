@@ -10,5 +10,12 @@ namespace TadManagementTool.Presenter
     {
         void InitViewWith(Collaborator collaborator);
         void OnBackToListCollaboratorView();
+        void OnEnableReleaseDateOption();
+
+        void OnAddTelephone();
+
+        void OnRemoveTelephone();
+
+        void OnSave();
     }
 }
