@@ -10,7 +10,12 @@ namespace TadManagementTool.Service
     {
         public IList<Collaborator> FindAll()
         {
-            return restTemplate.GetForObject<IList<Collaborator>>("/collaborator/all");
+            return restTemplate.GetForObject<IList<Collaborator>>("/collaborators");
+        }
+
+        public void RemoveCollaborator(Collaborator collaborator)
+        {
+            restTemplate.Delete("/collaborator/{id}", collaborator.Id);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace TadManagementTool.Service
     {
         public User Authenticate(string userName, string password)
         {
-            return  restTemplate.PostForObject<User>("/security/authenticate", new AuthenticationRequest() { UserName = userName, Password = password });
+            return  restTemplate.PostForObject<User>("/authenticate", new AuthenticationRequest() { UserName = userName, Password = password });
         }
     }
 }

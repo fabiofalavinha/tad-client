@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CollaboratorNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollaboratorEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollaboratorStartDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollaboratorGenderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollaboratorTelephoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollaboratorActiveColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.collaboratorDetailButton = new System.Windows.Forms.Button();
             this.removeCollaboratorButton = new System.Windows.Forms.Button();
             this.newCollaboratorButton = new System.Windows.Forms.Button();
@@ -147,6 +147,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.Controls.Add(this.removeCollaboratorButton);
             this.Controls.Add(this.newCollaboratorButton);
             this.Controls.Add(this.collaboratorDetailButton);

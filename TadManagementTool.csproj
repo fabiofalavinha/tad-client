@@ -11,6 +11,21 @@
     <AssemblyName>TadManagementTool</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,6 +78,12 @@
     <Compile Include="CalendarUserControl.Designer.cs">
       <DependentUpon>CalendarUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CollaboratorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollaboratorView.Designer.cs">
+      <DependentUpon>CollaboratorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListCollaboratorUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +114,8 @@
     <Compile Include="ModalWaitingPanelUserControl.designer.cs">
       <DependentUpon>ModalWaitingPanelUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Collaborator.cs" />
+    <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserContext.cs" />
     <Compile Include="PostListUserControl.cs">
@@ -109,9 +132,11 @@
     </Compile>
     <Compile Include="Presenter\AbstractControlPresenter.cs" />
     <Compile Include="Presenter\AbstractDialogPresenter.cs" />
+    <Compile Include="Presenter\ICollaboratorPresenter.cs" />
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
     <Compile Include="Presenter\ILoginPresenter.cs" />
     <Compile Include="Presenter\IMainPresenter.cs" />
+    <Compile Include="Presenter\Impl\CollaboratorPresenter.cs" />
     <Compile Include="Presenter\Impl\ListCollaboratorPresenter.cs" />
     <Compile Include="Presenter\Impl\LoginPresenter.cs" />
     <Compile Include="Presenter\Impl\MainPresenter.cs" />
@@ -124,6 +149,7 @@
     <Compile Include="Service\VOs\AuthenticationRequest.cs" />
     <Compile Include="View\IControlView.cs" />
     <Compile Include="View\IDialogView.cs" />
+    <Compile Include="View\Impl\ICollaboratorView.cs" />
     <Compile Include="View\Impl\IListCollaboratorView.cs" />
     <Compile Include="View\IMenuActionView.cs" />
     <Compile Include="View\Impl\ILoginView.cs" />
@@ -132,6 +158,9 @@
     <Compile Include="View\Impl\OpenCollaboratorMenuViewAction.cs" />
     <EmbeddedResource Include="CalendarUserControl.resx">
       <DependentUpon>CalendarUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollaboratorView.resx">
+      <DependentUpon>CollaboratorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListCollaboratorUserControl.resx">
       <DependentUpon>ListCollaboratorUserControl.cs</DependentUpon>
@@ -196,6 +225,30 @@
     <Content Include="App_Readme\Spring.Rest.txt" />
     <Content Include="Resources\colaboradores.png" />
     <Content Include="Resources\logo-tad.jpg" />
+    <None Include="Resources\phone-delete.png" />
+    <None Include="Resources\phone-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

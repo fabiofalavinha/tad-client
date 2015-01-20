@@ -112,9 +112,20 @@ namespace TadManagementTool
                 return;
             }
             splitContainer.Panel2.Controls.Clear();
-            var userControl = new ListCollaboratorUserControl();
+            var userControl = new ListCollaboratorUserControl(this);
             userControl.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(userControl);
+        }
+
+        public void ShowControlView(IControlView controlView)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IControlView>(ShowControlView), controlView);
+                return;
+            }
+            splitContainer.Panel2.Controls.Clear();
+            splitContainer.Panel2.Controls.Add((UserControl)controlView);
         }
     }
 }
