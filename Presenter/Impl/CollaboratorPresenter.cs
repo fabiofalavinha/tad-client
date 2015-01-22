@@ -21,12 +21,22 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+            View.SetUserRoleList(DoGetUserRoleList());
             View.SetPhoneTypeList(DoGetPhoneTypeList());
         }
 
         public void InitViewWith(Collaborator collaborator)
         {
             InitView();
+        }
+
+        private IList<UserRoleViewItem> DoGetUserRoleList()
+        {
+            var list = new List<UserRoleViewItem>();
+            list.Add(new UserRoleViewItem(UserRole.Administrator));
+            list.Add(new UserRoleViewItem(UserRole.Collaborator));
+            list.Add(new UserRoleViewItem(UserRole.Financial));
+            return list;
         }
 
         private IList<PhoneTypeViewItem> DoGetPhoneTypeList()
@@ -104,6 +114,11 @@ namespace TadManagementTool.Presenter.Impl
         {
             var task = new Task(() =>
             {
+                var userRoleViewItem = View.GetUserRoleSelected();
+                if (userRoleViewItem == null) {
+                    View.ShowWarningMessage("Selecione um tipo de usuário");
+                    return;
+                }
                 var name = View.GetName();
                 if (string.IsNullOrWhiteSpace(name))
                 {
@@ -138,8 +153,10 @@ namespace TadManagementTool.Presenter.Impl
                     Name = name,
                     Email = email,
                     Gender = genderType.Value,
+                    BirthDate = birthDate,
                     StartDate = startDate,
-                    Telephones = telephones.ToArray()
+                    Telephones = telephones.ToArray(),
+                    UserRole = userRoleViewItem.Wrapper
                 };
                 if (View.IsReleaseDateOptionChecked())
                 {
@@ -147,11 +164,8 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 var collaboratorService = new CollaboratorService();
                 collaboratorService.SaveCollaborator(collaborator);
-            });
-            task.ContinueWith(t =>
-            {
                 View.OpenListCollaboratorView();
-            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            });
             task.ContinueWith(t =>
             {
                 foreach (var innerException in t.Exception.InnerExceptions)

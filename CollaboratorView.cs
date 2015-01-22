@@ -287,12 +287,40 @@ namespace TadManagementTool
 
         public DateTime GetStartDate()
         {
-            throw new NotImplementedException();
+            if (InvokeRequired)
+            {
+                return (DateTime)Invoke(new Func<DateTime>(GetStartDate));
+            }
+            return startDateTimePicker.Value;
         }
 
         public DateTime GetReleaseDate()
         {
-            throw new NotImplementedException();
+            if (InvokeRequired)
+            {
+                return (DateTime)Invoke(new Func<DateTime>(GetReleaseDate));
+            }
+            return releaseDateTimePicker.Value;
+        }
+
+        public void SetUserRoleList(IList<UserRoleViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<UserRoleViewItem>>(SetUserRoleList), list);
+                return;
+            }
+            userRoleComboBox.Items.Clear();
+            userRoleComboBox.Items.AddRange(list.ToArray());
+        }
+
+        public UserRoleViewItem GetUserRoleSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (UserRoleViewItem)Invoke(new Func<UserRoleViewItem>(GetUserRoleSelected));
+            }
+            return (UserRoleViewItem)userRoleComboBox.SelectedItem;
         }
     }
 }

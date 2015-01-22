@@ -11,16 +11,10 @@ namespace TadManagementTool.View.Impl
     {
         Telephone GetTelephoneSelected();
         PhoneTypeViewItem GetPhoneTypeSelected();
+        UserRoleViewItem GetUserRoleSelected();
         IList<Telephone> GetTelephoneList();
         string GetPhoneAreaCode();
         string GetPhoneNumber();
-        bool ShowBinaryQuestion(string message);
-        void OpenListCollaboratorView();
-        void SetPhoneTypeList(IList<PhoneTypeViewItem> list);
-        void SetReleaseDateEnabled(bool enabled);
-        void AddTelephone(Telephone telephone);
-        void RemoveTelephone(Telephone telephone);
-        void ClearPhoneFields();
         string GetName();
         string GetEmail();
         string GetId();
@@ -29,5 +23,13 @@ namespace TadManagementTool.View.Impl
         GenderType? GetGenderType();
         DateTime GetStartDate();
         DateTime GetReleaseDate();
+        bool ShowBinaryQuestion(string message);
+        void OpenListCollaboratorView();
+        void SetPhoneTypeList(IList<PhoneTypeViewItem> list);
+        void SetUserRoleList(IList<UserRoleViewItem> list);
+        void SetReleaseDateEnabled(bool enabled);
+        void AddTelephone(Telephone telephone);
+        void RemoveTelephone(Telephone telephone);
+        void ClearPhoneFields();
     }
 }
