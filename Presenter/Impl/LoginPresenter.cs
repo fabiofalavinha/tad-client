@@ -43,13 +43,13 @@ namespace TadManagementTool.Presenter.Impl
                 if (result != null)
                 {
                     UserContext.GetInstance().LoggedUser = result;
+                    View.SetDialogResult(DialogResult.OK);
                 }
                 else
                 {
                     View.ShowWarningMessage("Usuário e/ou senha inválidos!");
                 }
                 View.HideWaitingPanel();
-                View.SetDialogResult(DialogResult.OK);
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
             {
