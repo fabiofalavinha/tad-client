@@ -52,10 +52,10 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.backToListCollaboratorButton = new System.Windows.Forms.Button();
             this.birthDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.idLabel = new System.Windows.Forms.Label();
             this.userRoleLabel = new System.Windows.Forms.Label();
             this.userRoleComboBox = new System.Windows.Forms.ComboBox();
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.SuspendLayout();
             // 
             // nameLabel
@@ -272,19 +272,13 @@
             this.birthDateTimePicker.Size = new System.Drawing.Size(255, 20);
             this.birthDateTimePicker.TabIndex = 9;
             // 
-            // modalWaitingPanel
-            // 
-            this.modalWaitingPanel.DisplayText = null;
-            this.modalWaitingPanel.RelatedControl = this;
-            // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
             this.idLabel.Location = new System.Drawing.Point(12, 11);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(27, 13);
+            this.idLabel.Size = new System.Drawing.Size(0, 13);
             this.idLabel.TabIndex = 1;
-            this.idLabel.Text = "<id>";
             this.idLabel.Visible = false;
             // 
             // userRoleLabel
@@ -305,6 +299,11 @@
             this.userRoleComboBox.Name = "userRoleComboBox";
             this.userRoleComboBox.Size = new System.Drawing.Size(147, 21);
             this.userRoleComboBox.TabIndex = 3;
+            // 
+            // modalWaitingPanel
+            // 
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = this;
             // 
             // CollaboratorView
             // 
