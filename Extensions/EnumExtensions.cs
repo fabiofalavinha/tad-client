@@ -8,7 +8,7 @@ namespace TadManagementTool.Extensions
 {
     public static class EnumExtensions
     {
-        public string TransalateGenderType(this GenderType genderType)
+        public static string TransalateGenderType(this GenderType genderType)
         {
             switch (genderType)
             {

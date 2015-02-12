@@ -84,6 +84,7 @@
     <Compile Include="CollaboratorView.Designer.cs">
       <DependentUpon>CollaboratorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="ListCollaboratorUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
