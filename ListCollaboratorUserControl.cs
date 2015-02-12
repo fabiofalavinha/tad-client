@@ -11,6 +11,7 @@ using TadManagementTool.View.Impl;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Model;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool
 {
@@ -91,11 +92,11 @@ namespace TadManagementTool
             presenter.OnViewCollaboratorDetails();
         }
 
-        public void SetCollaboratorList(IList<Collaborator> list)
+        public void SetCollaboratorList(IList<CollaboratorViewItem> list)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<Collaborator>>(SetCollaboratorList), list);
+                BeginInvoke(new Action<IList<CollaboratorViewItem>>(SetCollaboratorList), list);
                 return;
             }
             bindingSource.DataSource = list;

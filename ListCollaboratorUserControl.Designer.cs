@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.CollaboratorNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CollaboratorEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CollaboratorStartDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CollaboratorGenderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CollaboratorTelephoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CollaboratorActiveColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.collaboratorDetailButton = new System.Windows.Forms.Button();
             this.removeCollaboratorButton = new System.Windows.Forms.Button();
             this.newCollaboratorButton = new System.Windows.Forms.Button();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.CollaboratorNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CollaboratorEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CollaboratorStartDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CollaboratorGenderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CollaboratorTelephoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CollaboratorActiveColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
@@ -65,44 +65,6 @@
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(648, 337);
             this.dataGridView.TabIndex = 0;
-            // 
-            // CollaboratorNameColumn
-            // 
-            this.CollaboratorNameColumn.HeaderText = "Nome";
-            this.CollaboratorNameColumn.Name = "CollaboratorNameColumn";
-            this.CollaboratorNameColumn.ReadOnly = true;
-            // 
-            // CollaboratorEmailColumn
-            // 
-            this.CollaboratorEmailColumn.HeaderText = "e-Mail";
-            this.CollaboratorEmailColumn.Name = "CollaboratorEmailColumn";
-            this.CollaboratorEmailColumn.ReadOnly = true;
-            // 
-            // CollaboratorStartDateColumn
-            // 
-            this.CollaboratorStartDateColumn.HeaderText = "Data de Início";
-            this.CollaboratorStartDateColumn.Name = "CollaboratorStartDateColumn";
-            this.CollaboratorStartDateColumn.ReadOnly = true;
-            // 
-            // CollaboratorGenderColumn
-            // 
-            this.CollaboratorGenderColumn.HeaderText = "Sexo";
-            this.CollaboratorGenderColumn.Name = "CollaboratorGenderColumn";
-            this.CollaboratorGenderColumn.ReadOnly = true;
-            // 
-            // CollaboratorTelephoneColumn
-            // 
-            this.CollaboratorTelephoneColumn.HeaderText = "Telefone(s)";
-            this.CollaboratorTelephoneColumn.Name = "CollaboratorTelephoneColumn";
-            this.CollaboratorTelephoneColumn.ReadOnly = true;
-            // 
-            // CollaboratorActiveColumn
-            // 
-            this.CollaboratorActiveColumn.HeaderText = "Ativo?";
-            this.CollaboratorActiveColumn.Name = "CollaboratorActiveColumn";
-            this.CollaboratorActiveColumn.ReadOnly = true;
-            this.CollaboratorActiveColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CollaboratorActiveColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // collaboratorDetailButton
             // 
@@ -142,6 +104,49 @@
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
             // 
+            // CollaboratorNameColumn
+            // 
+            this.CollaboratorNameColumn.DataPropertyName = "Name";
+            this.CollaboratorNameColumn.HeaderText = "Nome";
+            this.CollaboratorNameColumn.Name = "CollaboratorNameColumn";
+            this.CollaboratorNameColumn.ReadOnly = true;
+            // 
+            // CollaboratorEmailColumn
+            // 
+            this.CollaboratorEmailColumn.DataPropertyName = "Email";
+            this.CollaboratorEmailColumn.HeaderText = "e-Mail";
+            this.CollaboratorEmailColumn.Name = "CollaboratorEmailColumn";
+            this.CollaboratorEmailColumn.ReadOnly = true;
+            // 
+            // CollaboratorStartDateColumn
+            // 
+            this.CollaboratorStartDateColumn.DataPropertyName = "StartDate";
+            this.CollaboratorStartDateColumn.HeaderText = "Data de Início";
+            this.CollaboratorStartDateColumn.Name = "CollaboratorStartDateColumn";
+            this.CollaboratorStartDateColumn.ReadOnly = true;
+            // 
+            // CollaboratorGenderColumn
+            // 
+            this.CollaboratorGenderColumn.DataPropertyName = "GenderType";
+            this.CollaboratorGenderColumn.HeaderText = "Sexo";
+            this.CollaboratorGenderColumn.Name = "CollaboratorGenderColumn";
+            this.CollaboratorGenderColumn.ReadOnly = true;
+            // 
+            // CollaboratorTelephoneColumn
+            // 
+            this.CollaboratorTelephoneColumn.DataPropertyName = "Telephones";
+            this.CollaboratorTelephoneColumn.HeaderText = "Telefone(s)";
+            this.CollaboratorTelephoneColumn.Name = "CollaboratorTelephoneColumn";
+            this.CollaboratorTelephoneColumn.ReadOnly = true;
+            // 
+            // CollaboratorActiveColumn
+            // 
+            this.CollaboratorActiveColumn.DataPropertyName = "Active";
+            this.CollaboratorActiveColumn.HeaderText = "Ativo?";
+            this.CollaboratorActiveColumn.Name = "CollaboratorActiveColumn";
+            this.CollaboratorActiveColumn.ReadOnly = true;
+            this.CollaboratorActiveColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // ListCollaboratorUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,15 +171,15 @@
 
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button collaboratorDetailButton;
+        private System.Windows.Forms.Button removeCollaboratorButton;
+        private System.Windows.Forms.Button newCollaboratorButton;
+        private ModalWaitingPanel modalWaitingPanel;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorEmailColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorStartDateColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorGenderColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorTelephoneColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn CollaboratorActiveColumn;
-        private System.Windows.Forms.Button collaboratorDetailButton;
-        private System.Windows.Forms.Button removeCollaboratorButton;
-        private System.Windows.Forms.Button newCollaboratorButton;
-        private ModalWaitingPanel modalWaitingPanel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorActiveColumn;
     }
 }

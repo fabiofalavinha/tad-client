@@ -7,6 +7,7 @@ using TadManagementTool.Model;
 using TadManagementTool.Service;
 using TadManagementTool.View;
 using TadManagementTool.View.Impl;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool.Presenter.Impl
 {
@@ -15,6 +16,11 @@ namespace TadManagementTool.Presenter.Impl
         public ListCollaboratorPresenter(IListCollaboratorView view)
             : base(view)
         {
+        }
+
+        private void DoSetCollaboratorList(IList<Collaborator> list)
+        {
+            View.SetCollaboratorList(list.Select(c => new CollaboratorViewItem(c)).ToArray());
         }
 
         public void InitView()
@@ -27,7 +33,7 @@ namespace TadManagementTool.Presenter.Impl
             });
             task.ContinueWith(t =>
             {
-                View.SetCollaboratorList(t.Result);
+                DoSetCollaboratorList(t.Result);
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
@@ -68,7 +74,7 @@ namespace TadManagementTool.Presenter.Impl
                 {
                     try
                     {
-                        View.SetCollaboratorList(collaboratorService.FindAll());
+                        DoSetCollaboratorList(collaboratorService.FindAll());
                     }
                     catch (Exception)
                     {
