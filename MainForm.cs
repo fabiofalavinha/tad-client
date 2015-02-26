@@ -15,8 +15,6 @@ namespace TadManagementTool
         public MainForm()
         {
             InitializeComponent();
-            menuTreeView.ImageList = new ImageList();
-            menuTreeView.ImageList.Images.Add("colaboradores", Resources.colaboradores);
             menuTreeView.SelectedNode = menuTreeView.Nodes[0];
             presenter = new MainPresenter(this);
         }
@@ -126,6 +124,19 @@ namespace TadManagementTool
             }
             splitContainer.Panel2.Controls.Clear();
             splitContainer.Panel2.Controls.Add((UserControl)controlView);
+        }
+
+        public void OpenCalendarView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenCalendarView));
+                return;
+            }
+            splitContainer.Panel2.Controls.Clear();
+            var userControl = new CalendarUserControl(this);
+            userControl.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(userControl);
         }
     }
 }

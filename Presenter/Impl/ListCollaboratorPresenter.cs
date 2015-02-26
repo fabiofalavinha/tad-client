@@ -27,7 +27,7 @@ namespace TadManagementTool.Presenter.Impl
         {
             var task = new Task<IList<Collaborator>>(() =>
             {
-                View.ShowWaitingPanel("Carregando...");
+                View.ShowWaitingPanel("Carregando colaboradores...");
                 var collaboratorService = new CollaboratorService();
                 return collaboratorService.FindAll();
             });
@@ -38,11 +38,11 @@ namespace TadManagementTool.Presenter.Impl
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
             {
+                View.HideWaitingPanel();
                 foreach (var innerException in t.Exception.InnerExceptions)
                 {
                     View.ShowErrorMessage(string.Format("Ocorreu um erro ao carregar a lista de colaboradores: {0}", innerException.Message));
                 }
-                View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
         }

@@ -16,7 +16,12 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
-            View.SetUserName(View.GetLastUserStored());
+            var userName = View.GetLastUserStored();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                View.SetUserName(userName);
+                View.SetPasswordFocus();
+            }
         }
 
         public void OnCancel()

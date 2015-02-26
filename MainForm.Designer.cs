@@ -30,12 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Colaboradores");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Calendário");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.menuTreeView = new System.Windows.Forms.TreeView();
-            this.postListUserControl = new TadManagementTool.PostListUserControl();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mainMenuImageList = new System.Windows.Forms.ImageList(this.components);
+            this.postListUserControl = new TadManagementTool.PostListUserControl();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -77,25 +80,29 @@
             // 
             this.menuTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuTreeView.ImageIndex = 0;
+            this.menuTreeView.ImageList = this.mainMenuImageList;
             this.menuTreeView.Location = new System.Drawing.Point(0, 0);
             this.menuTreeView.Name = "menuTreeView";
+            treeNode1.ImageKey = "colaboradores.png";
             treeNode1.Name = "collaboratorTreeItem";
             treeNode1.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode1.SelectedImageKey = "colaboradores.png";
             treeNode1.Tag = "TadManagementTool.View.Impl.OpenCollaboratorMenuViewAction";
             treeNode1.Text = "Colaboradores";
+            treeNode2.ImageKey = "calendar.png";
+            treeNode2.Name = "calendarTreeItem";
+            treeNode2.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            treeNode2.SelectedImageKey = "calendar.png";
+            treeNode2.Tag = "TadManagementTool.View.Impl.OpenCalendarMenuViewAction";
+            treeNode2.Text = "Calendário";
             this.menuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode1,
+            treeNode2});
+            this.menuTreeView.SelectedImageIndex = 0;
             this.menuTreeView.Size = new System.Drawing.Size(220, 422);
             this.menuTreeView.TabIndex = 0;
             this.menuTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.menuTreeView_AfterSelect);
-            // 
-            // postListUserControl
-            // 
-            this.postListUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.postListUserControl.Location = new System.Drawing.Point(0, 0);
-            this.postListUserControl.Name = "postListUserControl";
-            this.postListUserControl.Size = new System.Drawing.Size(546, 422);
-            this.postListUserControl.TabIndex = 0;
             // 
             // statusStrip
             // 
@@ -111,6 +118,21 @@
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // mainMenuImageList
+            // 
+            this.mainMenuImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("mainMenuImageList.ImageStream")));
+            this.mainMenuImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.mainMenuImageList.Images.SetKeyName(0, "colaboradores.png");
+            this.mainMenuImageList.Images.SetKeyName(1, "calendar.png");
+            // 
+            // postListUserControl
+            // 
+            this.postListUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postListUserControl.Location = new System.Drawing.Point(0, 0);
+            this.postListUserControl.Name = "postListUserControl";
+            this.postListUserControl.Size = new System.Drawing.Size(546, 422);
+            this.postListUserControl.TabIndex = 0;
             // 
             // modalWaitingPanel
             // 
@@ -148,6 +170,7 @@
         private System.Windows.Forms.TreeView menuTreeView;
         private PostListUserControl postListUserControl;
         private ModalWaitingPanel modalWaitingPanel;
+        private System.Windows.Forms.ImageList mainMenuImageList;
     }
 }
 

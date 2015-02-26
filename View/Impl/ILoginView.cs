@@ -8,5 +8,6 @@ namespace TadManagementTool.View.Impl
         string GetLastUserStored();
         void StoreLastUserName(string lastUserName);
         void SetUserName(string userName);
+        void SetPasswordFocus();
     }
 }

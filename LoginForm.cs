@@ -144,5 +144,16 @@ namespace TadManagementTool
             }
             emailTextBox.Text = userName;
         }
+
+        public void SetPasswordFocus()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(SetPasswordFocus));
+                return;
+            }
+            ActiveControl = passwordTextBox;
+            passwordTextBox.Focus();
+        }
     }
 }
