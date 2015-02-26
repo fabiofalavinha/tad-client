@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
+using TadManagementTool.Properties;
 using TadManagementTool.View.Impl;
 
 namespace TadManagementTool
@@ -13,6 +14,7 @@ namespace TadManagementTool
         public LoginForm()
         {
             InitializeComponent();
+            Settings.Default.Reload();
             presenter = new LoginPresenter(this);
         }
 
@@ -111,6 +113,36 @@ namespace TadManagementTool
                 return;
             }
             DialogResult = dialogResult;
+        }
+
+        public void StoreLastUserName(string lastUserName)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(StoreLastUserName), lastUserName);
+                return;
+            }
+            Settings.Default.LastUser = lastUserName;
+            Settings.Default.Save();
+        }
+
+        public string GetLastUserStored()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(GetLastUserStored));
+            }
+            return Settings.Default.LastUser;
+        }
+
+        public void SetUserName(string userName)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetUserName), userName);
+                return;
+            }
+            emailTextBox.Text = userName;
         }
     }
 }

@@ -106,15 +106,15 @@ namespace TadManagementTool
             dataGridView.AutoResizeColumns();
         }
 
-        public Collaborator GetCollaboratorSelected()
+        public CollaboratorViewItem GetCollaboratorSelected()
         {
             if (InvokeRequired)
             {
-                return (Collaborator)Invoke(new Func<Collaborator>(GetCollaboratorSelected));
+                return (CollaboratorViewItem)Invoke(new Func<CollaboratorViewItem>(GetCollaboratorSelected));
             }
             if (dataGridView.SelectedRows.Count > 0)
             {
-                return (Collaborator)dataGridView.SelectedRows[0].DataBoundItem;
+                return (CollaboratorViewItem)dataGridView.SelectedRows[0].DataBoundItem;
             }
             return null;
         }

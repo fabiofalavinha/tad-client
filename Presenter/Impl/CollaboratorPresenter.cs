@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TadManagementTool.Model;
 using TadManagementTool.Service;
@@ -19,15 +16,40 @@ namespace TadManagementTool.Presenter.Impl
         {
         }
 
-        public void InitView()
+        private void DoLoadView()
         {
             View.SetUserRoleList(DoGetUserRoleList());
             View.SetPhoneTypeList(DoGetPhoneTypeList());
         }
 
+        public void InitView()
+        {
+            DoLoadView();
+        }
+
         public void InitViewWith(Collaborator collaborator)
         {
-            InitView();
+            View.ShowWaitingPanel("Carregando dados do colaborador...");
+            try
+            {
+                DoLoadView();
+                if (collaborator != null)
+                {
+                    View.SetUserRole(collaborator.UserRole);
+                    View.SetName(collaborator.Name);
+                    View.SetEmail(collaborator.Email);
+                    View.SetBirthDate(collaborator.BirthDate);
+                    View.SetGenderType(collaborator.Gender);
+                    View.SetStartDate(collaborator.StartDate);
+                    View.SetReleaseDate(collaborator.ReleaseDate);
+                    View.SetTelephoneList(collaborator.Telephones);
+                    View.SetId(collaborator.Id);
+                }
+            }
+            finally
+            {
+                View.HideWaitingPanel();
+            }
         }
 
         private IList<UserRoleViewItem> DoGetUserRoleList()
@@ -114,6 +136,7 @@ namespace TadManagementTool.Presenter.Impl
         {
             var task = new Task(() =>
             {
+                View.ShowWaitingPanel("Salvando dados do colaborador...");
                 var userRoleViewItem = View.GetUserRoleSelected();
                 if (userRoleViewItem == null) {
                     View.ShowWarningMessage("Selecione um tipo de usuário");
@@ -164,15 +187,20 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 var collaboratorService = new CollaboratorService();
                 collaboratorService.SaveCollaborator(collaborator);
-                View.OpenListCollaboratorView();
             });
             task.ContinueWith(t =>
             {
+                View.HideWaitingPanel();
                 foreach (var innerException in t.Exception.InnerExceptions)
                 {
                     View.ShowErrorMessage(string.Format("Ocorreu um erro ao salvar as informações do colaborador: {0}", innerException.Message));
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                View.OpenListCollaboratorView();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
         }
     }

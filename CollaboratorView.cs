@@ -35,7 +35,7 @@ namespace TadManagementTool
 
         private void CollaboratorView_Load(object sender, EventArgs e)
         {
-            presenter.InitView();
+            presenter.InitViewWith(collaborator);
         }
 
         private void releaseDateCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -321,6 +321,101 @@ namespace TadManagementTool
                 return (UserRoleViewItem)Invoke(new Func<UserRoleViewItem>(GetUserRoleSelected));
             }
             return (UserRoleViewItem)userRoleComboBox.SelectedItem;
+        }
+
+        public void SetUserRole(UserRole userRole)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<UserRole>(SetUserRole), userRole);
+                return;
+            }
+            userRoleComboBox.SelectedItem = userRoleComboBox.Items.Cast<UserRoleViewItem>().SingleOrDefault(i => i.Wrapper == userRole);
+        }
+
+        public void SetName(string name)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetName), name);
+                return;
+            }
+            nameTextBox.Text = name;
+        }
+
+        public void SetStartDate(DateTime startDate)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime>(SetStartDate), startDate);
+                return;
+            }
+            startDateTimePicker.Value = startDate;
+        }
+
+        public void SetGenderType(GenderType genderType)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<GenderType>(SetGenderType), genderType);
+                return;
+            }
+            maleRadioButton.Checked = genderType == GenderType.Male;
+            femaleRadioButton.Checked = genderType == GenderType.Female;
+        }
+
+        public void SetBirthDate(DateTime birthDate)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime>(SetBirthDate), birthDate);
+                return;
+            }
+            birthDateTimePicker.Value = birthDate;
+        }
+
+        public void SetEmail(string email)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetEmail), email);
+                return;
+            }
+            emailTextBox.Text = email;
+        }
+
+        public void SetReleaseDate(DateTime? releaseDate)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime?>(SetReleaseDate), releaseDate);
+                return;
+            }
+            if (releaseDateCheckBox.Checked = releaseDate.HasValue)
+            {
+                releaseDateTimePicker.Value = releaseDate.Value;
+            }
+        }
+
+        public void SetTelephoneList(Telephone[] telephones)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Telephone[]>(SetTelephoneList), telephones);
+                return;
+            }
+            telephoneListBox.Items.Clear();
+            telephoneListBox.Items.AddRange(telephones);
+        }
+
+        public void SetId(string id)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetId), id);
+                return;
+            }
+            idLabel.Text = id;
         }
     }
 }

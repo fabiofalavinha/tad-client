@@ -9,7 +9,7 @@ namespace TadManagementTool.View.Impl
 {
     public interface IListCollaboratorView : IControlView
     {
-        Collaborator GetCollaboratorSelected();
+        CollaboratorViewItem GetCollaboratorSelected();
         bool ShowBinaryQuestion(string message);
         void SetCollaboratorList(IList<CollaboratorViewItem> list);
         void OpenCollaboratorView();

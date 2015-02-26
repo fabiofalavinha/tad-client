@@ -22,5 +22,17 @@ namespace TadManagementTool.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastUser {
+            get {
+                return ((string)(this["LastUser"]));
+            }
+            set {
+                this["LastUser"] = value;
+            }
+        }
     }
 }

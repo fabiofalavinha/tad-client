@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 using TadManagementTool.Model;
+using TadManagementTool.Properties;
 using TadManagementTool.Service;
 using TadManagementTool.View.Impl;
 
@@ -15,6 +16,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+            View.SetUserName(View.GetLastUserStored());
         }
 
         public void OnCancel()
@@ -43,6 +45,7 @@ namespace TadManagementTool.Presenter.Impl
                 if (result != null)
                 {
                     UserContext.GetInstance().LoggedUser = result;
+                    View.StoreLastUserName(result.UserName);
                     View.SetDialogResult(DialogResult.OK);
                 }
                 else
