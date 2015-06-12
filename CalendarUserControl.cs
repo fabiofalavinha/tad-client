@@ -10,7 +10,6 @@ using TadManagementTool.View.Impl;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Model;
-using WindowsFormsCalendar;
 
 namespace TadManagementTool
 {
@@ -86,7 +85,7 @@ namespace TadManagementTool
             {
                 return (DateTime)Invoke(new Func<DateTime>(GetMonthDaySelected));
             }
-            return monthView.SelectionEnd;
+            return DateTime.Now;
         }
 
         public void SetEvents(IList<Event> events)
@@ -98,9 +97,6 @@ namespace TadManagementTool
             }
             foreach (var eventItem in events)
             {
-
-
-
             }
         }
     }
