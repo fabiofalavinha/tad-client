@@ -17,5 +17,10 @@ namespace TadManagementTool.Service
         {
             restTemplate.PostForMessage<Event>("/event", newEvent);
         }
+
+        public void RemoveEventById(string id)
+        {
+            restTemplate.Delete("/event/{id}", id);
+        }
     }
 }

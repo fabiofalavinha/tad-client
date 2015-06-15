@@ -4,6 +4,7 @@ using TadManagementTool.Model;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.View.Impl;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool
 {
@@ -11,12 +12,17 @@ namespace TadManagementTool
     {
         private readonly IEventEnrollmentPresenter presenter;
 
-        public Event EventResult { get; set; }
+        public EventResult EventResult { get; set; }
 
         public EventForm()
+            : this(null)
+        {
+        }
+
+        public EventForm(Event editedEvent)
         {
             InitializeComponent();
-            presenter = new EventEnrollmentPresenter(this);
+            presenter = new EventEnrollmentPresenter(this, editedEvent);
         }
 
         private void EventForm_Load(object sender, EventArgs e)
@@ -140,6 +146,71 @@ namespace TadManagementTool
                 return VisibilityType.Internal;
             }
             throw new Exception("Unknown visibility type");
+        }
+
+        public void SetEventTitle(string title)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetEventTitle), title);
+                return;
+            }
+            eventTitleTextBox.Text = title;
+        }
+
+        public void SetEventDate(DateTime date)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime>(SetEventDate), date);
+                return;
+            }
+            eventDateTimePicker.Value = date;
+        }
+
+        public void SetEventNotes(string notes)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetEventNotes), notes);
+                return;
+            }
+            eventNotesTextBox.Text = notes;
+        }
+
+        public void SetEventVisibility(VisibilityType visibilityType)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<VisibilityType>(SetEventVisibility), visibilityType);
+                return;
+            }
+            eventPublicVisibilityRadioButton.Checked = visibilityType == VisibilityType.Public;
+            eventInternalVisibilityRadioButton.Checked = visibilityType == VisibilityType.Internal;
+        }
+
+        private void removeEventButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnRemoveEvent();
+        }
+
+        public bool ShowBinaryQuestion(string message)
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<string, bool>(ShowBinaryQuestion), message);
+            }
+            return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        public void SetRemoveButtonVisible(bool visible)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetRemoveButtonVisible), visible);
+                return;
+            }
+            removeEventButton.Visible = visible;
         }
     }
 }

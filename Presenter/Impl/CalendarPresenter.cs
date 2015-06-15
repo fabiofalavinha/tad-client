@@ -50,7 +50,11 @@ namespace TadManagementTool.Presenter.Impl
             });
             task.ContinueWith(t =>
             {
-                View.AddEvent(t.Result);
+                var newEvent = t.Result;
+                if (newEvent != null)
+                {
+                    View.AddEvent(newEvent);
+                }
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
             {

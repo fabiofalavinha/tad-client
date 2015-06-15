@@ -41,6 +41,7 @@
             this.eventVisibilityLabel = new System.Windows.Forms.Label();
             this.eventPublicVisibilityRadioButton = new System.Windows.Forms.RadioButton();
             this.eventInternalVisibilityRadioButton = new System.Windows.Forms.RadioButton();
+            this.removeEventButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -148,6 +149,16 @@
             this.eventInternalVisibilityRadioButton.Text = "Interno";
             this.eventInternalVisibilityRadioButton.UseVisualStyleBackColor = true;
             // 
+            // removeEventButton
+            // 
+            this.removeEventButton.Location = new System.Drawing.Point(10, 245);
+            this.removeEventButton.Name = "removeEventButton";
+            this.removeEventButton.Size = new System.Drawing.Size(80, 23);
+            this.removeEventButton.TabIndex = 0;
+            this.removeEventButton.Text = "Apagar";
+            this.removeEventButton.UseVisualStyleBackColor = true;
+            this.removeEventButton.Click += new System.EventHandler(this.removeEventButton_Click);
+            // 
             // EventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +173,7 @@
             this.Controls.Add(this.eventNotesLabel);
             this.Controls.Add(this.eventTitleTextBox);
             this.Controls.Add(this.eventTitleLabel);
+            this.Controls.Add(this.removeEventButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.DoubleBuffered = true;
@@ -191,5 +203,6 @@
         private System.Windows.Forms.RadioButton eventInternalVisibilityRadioButton;
         private System.Windows.Forms.RadioButton eventPublicVisibilityRadioButton;
         private System.Windows.Forms.Label eventVisibilityLabel;
+        private System.Windows.Forms.Button removeEventButton;
     }
 }

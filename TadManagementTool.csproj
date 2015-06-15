@@ -181,7 +181,9 @@
     <Compile Include="View\Impl\IMainView.cs" />
     <Compile Include="View\Impl\OpenCalendarMenuViewAction.cs" />
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
+    <Compile Include="View\Items\EventResult.cs" />
     <Compile Include="View\Items\PhoneTypeViewItem.cs" />
+    <Compile Include="View\Items\TadEvent.cs" />
     <Compile Include="View\Items\UserRoleViewItem.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="View\Impl\OpenCollaboratorMenuViewAction.cs" />

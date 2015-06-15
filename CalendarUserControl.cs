@@ -11,6 +11,7 @@ using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Model;
 using Calendar.NET;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool
 {
@@ -22,6 +23,7 @@ namespace TadManagementTool
         public CalendarUserControl(IMainView parentView)
         {
             InitializeComponent();
+            calendarControl.EventDetailsCallback = new CustomEventDetailsCallback(this);
             this.parentView = parentView;
             this.presenter = new CalendarPresenter(this);
         }
@@ -112,6 +114,22 @@ namespace TadManagementTool
             {
                 if (eventForm.ShowDialog() == DialogResult.OK)
                 {
+                    return eventForm.EventResult.Target;
+                }
+            }
+            return null;
+        }
+
+        public EventResult OpenEnrollmentEventView(Event targetEvent)
+        {
+            if (InvokeRequired)
+            {
+                return (EventResult)Invoke(new Func<Event, EventResult>(OpenEnrollmentEventView), targetEvent);
+            }
+            using (var eventForm = new EventForm(targetEvent))
+            {
+                if (eventForm.ShowDialog() == DialogResult.OK)
+                {
                     return eventForm.EventResult;
                 }
             }
@@ -130,12 +148,36 @@ namespace TadManagementTool
 
         private void DoAddEvent(Event newEvent)
         {
-            calendarControl.AddEvent(new CustomEvent()
+            calendarControl.AddEvent(new TadEvent(newEvent));
+        }
+    }
+
+    class CustomEventDetailsCallback : IEventDetailsCallback
+    {
+        private readonly ICalendarView view;
+
+        public CustomEventDetailsCallback(ICalendarView view)
+        {
+            this.view = view;
+        }
+
+        public IEvent ShowEvent(IEvent eventDetails)
+        {
+            if (eventDetails != null)
             {
-                Enabled = true,
-                Date = newEvent.Date,
-                EventText = string.Concat(newEvent.Title, Environment.NewLine, newEvent.Notes)
-            });
+                var tadEvent = eventDetails as TadEvent;
+                if (tadEvent != null)
+                {
+                    var eventResult = view.OpenEnrollmentEventView(tadEvent.TargetEvent);
+                    if (eventResult != null)
+                    {
+                        var newTadEvent = new TadEvent(eventResult.Target);
+                        newTadEvent.Enabled = !eventResult.Removed;
+                        return newTadEvent;
+                    }
+                }
+            }
+            return null;
         }
     }
 }
