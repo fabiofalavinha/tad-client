@@ -87,6 +87,12 @@
     <Compile Include="CollaboratorView.Designer.cs">
       <DependentUpon>CollaboratorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventForm.Designer.cs">
+      <DependentUpon>EventForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="ListCollaboratorUserControl.cs">
       <SubType>UserControl</SubType>
@@ -143,11 +149,13 @@
     <Compile Include="Presenter\AbstractDialogPresenter.cs" />
     <Compile Include="Presenter\ICalendarPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorPresenter.cs" />
+    <Compile Include="Presenter\IEventEnrollmentPresenter.cs" />
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
     <Compile Include="Presenter\ILoginPresenter.cs" />
     <Compile Include="Presenter\IMainPresenter.cs" />
     <Compile Include="Presenter\Impl\CalendarPresenter.cs" />
     <Compile Include="Presenter\Impl\CollaboratorPresenter.cs" />
+    <Compile Include="Presenter\Impl\EventEnrollmentPresenter.cs" />
     <Compile Include="Presenter\Impl\ListCollaboratorPresenter.cs" />
     <Compile Include="Presenter\Impl\LoginPresenter.cs" />
     <Compile Include="Presenter\Impl\MainPresenter.cs" />
@@ -166,6 +174,7 @@
     <Compile Include="View\IDialogView.cs" />
     <Compile Include="View\Impl\ICalendarView.cs" />
     <Compile Include="View\Impl\ICollaboratorView.cs" />
+    <Compile Include="View\Impl\IEventEnrollmentView.cs" />
     <Compile Include="View\Impl\IListCollaboratorView.cs" />
     <Compile Include="View\IMenuActionView.cs" />
     <Compile Include="View\Impl\ILoginView.cs" />
@@ -181,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CollaboratorView.resx">
       <DependentUpon>CollaboratorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventForm.resx">
+      <DependentUpon>EventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListCollaboratorUserControl.resx">
       <DependentUpon>ListCollaboratorUserControl.cs</DependentUpon>

@@ -9,6 +9,8 @@ namespace TadManagementTool.View.Impl
     public interface ICalendarView : IControlView
     {
         DateTime GetMonthDaySelected();
+        Event OpenEnrollmentEventView();
         void SetEvents(IList<Event> events);
+        void AddEvent(Event newEvent);
     }
 }

@@ -10,6 +10,7 @@ using TadManagementTool.View.Impl;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Model;
+using Calendar.NET;
 
 namespace TadManagementTool
 {
@@ -74,18 +75,13 @@ namespace TadManagementTool
             MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void monthView_SelectionChanged(object sender, EventArgs e)
-        {
-            presenter.OnMonthDaySelected();
-        }
-
         public DateTime GetMonthDaySelected()
         {
             if (InvokeRequired)
             {
                 return (DateTime)Invoke(new Func<DateTime>(GetMonthDaySelected));
             }
-            return DateTime.Now;
+            return calendarControl.CalendarDate;
         }
 
         public void SetEvents(IList<Event> events)
@@ -97,7 +93,49 @@ namespace TadManagementTool
             }
             foreach (var eventItem in events)
             {
+                DoAddEvent(eventItem);
             }
+        }
+
+        private void addEventButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnAddEvent();
+        }
+
+        public Event OpenEnrollmentEventView()
+        {
+            if (InvokeRequired)
+            {
+                return (Event)Invoke(new Func<Event>(OpenEnrollmentEventView));
+            }
+            using (var eventForm = new EventForm())
+            {
+                if (eventForm.ShowDialog() == DialogResult.OK)
+                {
+                    return eventForm.EventResult;
+                }
+            }
+            return null;
+        }
+
+        public void AddEvent(Event newEvent)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Event>(AddEvent), newEvent);
+                return;
+            }
+            DoAddEvent(newEvent);
+        }
+
+        private void DoAddEvent(Event newEvent)
+        {
+            calendarControl.AddEvent(new CustomEvent()
+            {
+                Enabled = true,
+                Date = newEvent.Date,
+                EventText = string.Concat(newEvent.Title, Environment.NewLine, newEvent.Notes)
+            });
         }
     }
 }

@@ -12,5 +12,10 @@ namespace TadManagementTool.Service
         {
             return restTemplate.GetForObject<IList<Event>>("/events/{year}", year);
         }
+
+        public void AddEvent(Event newEvent)
+        {
+            restTemplate.PostForMessage<Event>("/event", newEvent);
+        }
     }
 }

@@ -5,8 +5,10 @@ using System.Text;
 
 namespace TadManagementTool.Presenter
 {
-    public interface ICalendarPresenter : IPresenter
+    public interface IEventEnrollmentPresenter : IPresenter
     {
-        void OnAddEvent();
+        void OnCancel();
+
+        void OnOk();
     }
 }

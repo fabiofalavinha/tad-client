@@ -42,10 +42,24 @@ namespace TadManagementTool.Presenter.Impl
             task.Start();
         }
 
-        public void OnMonthDaySelected()
+        public void OnAddEvent()
         {
-            var monthDaySelected = View.GetMonthDaySelected();
-
+            var task = new Task<Event>(() => 
+            {
+                return View.OpenEnrollmentEventView();
+            });
+            task.ContinueWith(t =>
+            {
+                View.AddEvent(t.Result);
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao carregar os eventos: {0}", innerException.Message));
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
         }
     }
 }
