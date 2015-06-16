@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.SuspendLayout();
+            // 
+            // PostUserControl
+            // 
+            this.Name = "PostUserControl";
+            this.Size = new System.Drawing.Size(653, 462);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -34,5 +34,20 @@ namespace TadManagementTool.Properties {
                 this["LastUser"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LinkDialogURLs
+        {
+            get
+            {
+                return ((string)(this["LinkDialogURLs"]));
+            }
+            set
+            {
+                this["LinkDialogURLs"] = value;
+            }
+        }
     }
 }

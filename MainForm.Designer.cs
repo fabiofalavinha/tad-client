@@ -31,14 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Colaboradores");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Calendário");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Post");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.menuTreeView = new System.Windows.Forms.TreeView();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenuImageList = new System.Windows.Forms.ImageList(this.components);
             this.postListUserControl = new TadManagementTool.PostListUserControl();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -96,28 +97,18 @@
             treeNode2.SelectedImageKey = "calendar.png";
             treeNode2.Tag = "TadManagementTool.View.Impl.OpenCalendarMenuViewAction";
             treeNode2.Text = "Calendário";
+            treeNode3.Name = "postTreeItem";
+            treeNode3.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            treeNode3.Tag = "TadManagementTool.View.Impl.OpenPostListMenuViewAction";
+            treeNode3.Text = "Post";
             this.menuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
-            treeNode2});
+            treeNode2,
+            treeNode3});
             this.menuTreeView.SelectedImageIndex = 0;
             this.menuTreeView.Size = new System.Drawing.Size(220, 422);
             this.menuTreeView.TabIndex = 0;
             this.menuTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.menuTreeView_AfterSelect);
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 422);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(770, 22);
-            this.statusStrip.TabIndex = 0;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // mainMenuImageList
             // 
@@ -133,6 +124,21 @@
             this.postListUserControl.Name = "postListUserControl";
             this.postListUserControl.Size = new System.Drawing.Size(546, 422);
             this.postListUserControl.TabIndex = 0;
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 422);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(770, 22);
+            this.statusStrip.TabIndex = 0;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // modalWaitingPanel
             // 

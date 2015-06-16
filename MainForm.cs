@@ -138,5 +138,18 @@ namespace TadManagementTool
             userControl.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(userControl);
         }
+
+        public void OpenPostListView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenPostListView));
+                return;
+            }
+            splitContainer.Panel2.Controls.Clear();
+            var userControl = new PostListUserControl();
+            userControl.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(userControl);
+        }
     }
 }
