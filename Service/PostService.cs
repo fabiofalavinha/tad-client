@@ -12,5 +12,15 @@ namespace TadManagementTool.Service
         {
             return restTemplate.GetForObject<IList<Post>>("/posts/{userId}", user.Id);
         }
+
+        public void removePost(Post post)
+        {
+            restTemplate.Delete("/post/{id}", post.Id);
+        }
+
+        public void savePost(Post post)
+        {
+            restTemplate.PostForObject<Post>("/post", post);
+        }
     }
 }

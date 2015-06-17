@@ -30,7 +30,7 @@ namespace TadManagementTool
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.fontComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.fontSizeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -55,14 +55,14 @@ namespace TadManagementTool
             this.indentButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,15 +70,25 @@ namespace TadManagementTool
             this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.modalWaitingPanel1 = new Commons.UI.LoadingPanel.ModalWaitingPanel(this.components);
-            this.toolStrip1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.modalWaitingPanel = new Commons.UI.LoadingPanel.ModalWaitingPanel(this.components);
+            this.buttonPanel = new System.Windows.Forms.Panel();
+            this.backButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.postVisibilityLabel = new System.Windows.Forms.Label();
+            this.postInternalVisibilityRadioButton = new System.Windows.Forms.RadioButton();
+            this.postPublicVisibilityRadioButton = new System.Windows.Forms.RadioButton();
+            this.postVisibilityPanel = new System.Windows.Forms.Panel();
+            this.postTitleTextBox = new TadManagementTool.PlaceholderTextBox();
+            this.toolStrip.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
+            this.buttonPanel.SuspendLayout();
+            this.postVisibilityPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // toolStrip
             // 
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fontComboBox,
             this.fontSizeComboBox,
             this.toolStripSeparator1,
@@ -101,11 +111,11 @@ namespace TadManagementTool
             this.unorderedListButton,
             this.outdentButton,
             this.indentButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(627, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(627, 25);
+            this.toolStrip.TabIndex = 1;
+            this.toolStrip.Text = "toolStrip1";
             // 
             // fontComboBox
             // 
@@ -127,7 +137,7 @@ namespace TadManagementTool
             // boldButton
             // 
             this.boldButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.boldButton.Image = Resources.bold;
+            this.boldButton.Image = global::TadManagementTool.Properties.Resources.bold;
             this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.boldButton.Name = "boldButton";
             this.boldButton.Size = new System.Drawing.Size(23, 22);
@@ -138,7 +148,7 @@ namespace TadManagementTool
             // italicButton
             // 
             this.italicButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.italicButton.Image = Resources.italic;
+            this.italicButton.Image = global::TadManagementTool.Properties.Resources.italic;
             this.italicButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.italicButton.Name = "italicButton";
             this.italicButton.Size = new System.Drawing.Size(23, 22);
@@ -149,7 +159,7 @@ namespace TadManagementTool
             // underlineButton
             // 
             this.underlineButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.underlineButton.Image = Resources.underscore;
+            this.underlineButton.Image = global::TadManagementTool.Properties.Resources.underscore;
             this.underlineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.underlineButton.Name = "underlineButton";
             this.underlineButton.Size = new System.Drawing.Size(23, 22);
@@ -165,7 +175,7 @@ namespace TadManagementTool
             // colorButton
             // 
             this.colorButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.colorButton.Image = Resources.color;
+            this.colorButton.Image = global::TadManagementTool.Properties.Resources.color;
             this.colorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(23, 22);
@@ -176,7 +186,7 @@ namespace TadManagementTool
             // backColorButton
             // 
             this.backColorButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.backColorButton.Image = Resources.backcolor;
+            this.backColorButton.Image = global::TadManagementTool.Properties.Resources.backcolor;
             this.backColorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.backColorButton.Name = "backColorButton";
             this.backColorButton.Size = new System.Drawing.Size(23, 22);
@@ -192,7 +202,7 @@ namespace TadManagementTool
             // linkButton
             // 
             this.linkButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.linkButton.Image = Resources.link;
+            this.linkButton.Image = global::TadManagementTool.Properties.Resources.link;
             this.linkButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.linkButton.Name = "linkButton";
             this.linkButton.Size = new System.Drawing.Size(23, 22);
@@ -203,7 +213,7 @@ namespace TadManagementTool
             // imageButton
             // 
             this.imageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.imageButton.Image = Resources.image;
+            this.imageButton.Image = global::TadManagementTool.Properties.Resources.image;
             this.imageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.imageButton.Name = "imageButton";
             this.imageButton.Size = new System.Drawing.Size(23, 22);
@@ -219,7 +229,7 @@ namespace TadManagementTool
             // justifyLeftButton
             // 
             this.justifyLeftButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.justifyLeftButton.Image = Resources.lj;
+            this.justifyLeftButton.Image = global::TadManagementTool.Properties.Resources.lj;
             this.justifyLeftButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.justifyLeftButton.Name = "justifyLeftButton";
             this.justifyLeftButton.Size = new System.Drawing.Size(23, 22);
@@ -230,7 +240,7 @@ namespace TadManagementTool
             // justifyCenterButton
             // 
             this.justifyCenterButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.justifyCenterButton.Image = Resources.cj;
+            this.justifyCenterButton.Image = global::TadManagementTool.Properties.Resources.cj;
             this.justifyCenterButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.justifyCenterButton.Name = "justifyCenterButton";
             this.justifyCenterButton.Size = new System.Drawing.Size(23, 22);
@@ -241,7 +251,7 @@ namespace TadManagementTool
             // justifyRightButton
             // 
             this.justifyRightButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.justifyRightButton.Image = Resources.rj;
+            this.justifyRightButton.Image = global::TadManagementTool.Properties.Resources.rj;
             this.justifyRightButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.justifyRightButton.Name = "justifyRightButton";
             this.justifyRightButton.Size = new System.Drawing.Size(23, 22);
@@ -252,7 +262,7 @@ namespace TadManagementTool
             // justifyFullButton
             // 
             this.justifyFullButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.justifyFullButton.Image = Resources.fj;
+            this.justifyFullButton.Image = global::TadManagementTool.Properties.Resources.fj;
             this.justifyFullButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.justifyFullButton.Name = "justifyFullButton";
             this.justifyFullButton.Size = new System.Drawing.Size(23, 22);
@@ -268,7 +278,7 @@ namespace TadManagementTool
             // orderedListButton
             // 
             this.orderedListButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.orderedListButton.Image = Resources.ol;
+            this.orderedListButton.Image = global::TadManagementTool.Properties.Resources.ol;
             this.orderedListButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.orderedListButton.Name = "orderedListButton";
             this.orderedListButton.Size = new System.Drawing.Size(23, 22);
@@ -279,7 +289,7 @@ namespace TadManagementTool
             // unorderedListButton
             // 
             this.unorderedListButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.unorderedListButton.Image = Resources.uol;
+            this.unorderedListButton.Image = global::TadManagementTool.Properties.Resources.uol;
             this.unorderedListButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.unorderedListButton.Name = "unorderedListButton";
             this.unorderedListButton.Size = new System.Drawing.Size(23, 22);
@@ -290,7 +300,7 @@ namespace TadManagementTool
             // outdentButton
             // 
             this.outdentButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.outdentButton.Image = Resources.outdent;
+            this.outdentButton.Image = global::TadManagementTool.Properties.Resources.outdent;
             this.outdentButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.outdentButton.Name = "outdentButton";
             this.outdentButton.Size = new System.Drawing.Size(23, 22);
@@ -301,7 +311,7 @@ namespace TadManagementTool
             // indentButton
             // 
             this.indentButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.indentButton.Image = Resources.indent;
+            this.indentButton.Image = global::TadManagementTool.Properties.Resources.indent;
             this.indentButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.indentButton.Name = "indentButton";
             this.indentButton.Size = new System.Drawing.Size(23, 22);
@@ -319,14 +329,14 @@ namespace TadManagementTool
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
             // 
-            // webBrowser1
+            // webBrowser
             // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 25);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(627, 125);
-            this.webBrowser1.TabIndex = 2;
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(0, 25);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(627, 334);
+            this.webBrowser.TabIndex = 2;
             // 
             // cutToolStripMenuItem
             // 
@@ -359,17 +369,17 @@ namespace TadManagementTool
             this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             this.pasteToolStripMenuItem1.Text = "Paste";
             // 
-            // contextMenuStrip1
+            // contextMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cutToolStripMenuItem1,
             this.copyToolStripMenuItem2,
             this.pasteToolStripMenuItem3,
             this.deleteToolStripMenuItem,
             this.backgroundColorToolStripMenuItem,
             this.cSSToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(171, 136);
+            this.contextMenuStrip.Name = "contextMenuStrip1";
+            this.contextMenuStrip.Size = new System.Drawing.Size(171, 136);
             // 
             // cutToolStripMenuItem1
             // 
@@ -411,22 +421,112 @@ namespace TadManagementTool
             this.cSSToolStripMenuItem.Name = "cSSToolStripMenuItem";
             this.cSSToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             // 
-            // modalWaitingPanel1
+            // modalWaitingPanel
             // 
-            this.modalWaitingPanel1.DisplayText = null;
-            this.modalWaitingPanel1.RelatedControl = null;
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = this;
+            // 
+            // buttonPanel
+            // 
+            this.buttonPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buttonPanel.Controls.Add(this.backButton);
+            this.buttonPanel.Controls.Add(this.saveButton);
+            this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonPanel.Location = new System.Drawing.Point(0, 311);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(627, 48);
+            this.buttonPanel.TabIndex = 3;
+            // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(15, 12);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 0;
+            this.backButton.Text = "Voltar";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(534, 10);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 0;
+            this.saveButton.Text = "Salvar";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // postVisibilityLabel
+            // 
+            this.postVisibilityLabel.AutoSize = true;
+            this.postVisibilityLabel.Location = new System.Drawing.Point(13, 10);
+            this.postVisibilityLabel.Name = "postVisibilityLabel";
+            this.postVisibilityLabel.Size = new System.Drawing.Size(62, 13);
+            this.postVisibilityLabel.TabIndex = 4;
+            this.postVisibilityLabel.Text = "Visibilidade:";
+            // 
+            // postInternalVisibilityRadioButton
+            // 
+            this.postInternalVisibilityRadioButton.AutoSize = true;
+            this.postInternalVisibilityRadioButton.Checked = true;
+            this.postInternalVisibilityRadioButton.Location = new System.Drawing.Point(94, 8);
+            this.postInternalVisibilityRadioButton.Name = "postInternalVisibilityRadioButton";
+            this.postInternalVisibilityRadioButton.Size = new System.Drawing.Size(58, 17);
+            this.postInternalVisibilityRadioButton.TabIndex = 5;
+            this.postInternalVisibilityRadioButton.Text = "Interno";
+            this.postInternalVisibilityRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // postPublicVisibilityRadioButton
+            // 
+            this.postPublicVisibilityRadioButton.AutoSize = true;
+            this.postPublicVisibilityRadioButton.Location = new System.Drawing.Point(167, 8);
+            this.postPublicVisibilityRadioButton.Name = "postPublicVisibilityRadioButton";
+            this.postPublicVisibilityRadioButton.Size = new System.Drawing.Size(60, 17);
+            this.postPublicVisibilityRadioButton.TabIndex = 5;
+            this.postPublicVisibilityRadioButton.Text = "Público";
+            this.postPublicVisibilityRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // postVisibilityPanel
+            // 
+            this.postVisibilityPanel.Controls.Add(this.postPublicVisibilityRadioButton);
+            this.postVisibilityPanel.Controls.Add(this.postVisibilityLabel);
+            this.postVisibilityPanel.Controls.Add(this.postInternalVisibilityRadioButton);
+            this.postVisibilityPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.postVisibilityPanel.Location = new System.Drawing.Point(0, 277);
+            this.postVisibilityPanel.Name = "postVisibilityPanel";
+            this.postVisibilityPanel.Size = new System.Drawing.Size(627, 34);
+            this.postVisibilityPanel.TabIndex = 7;
+            // 
+            // postTitleTextBox
+            // 
+            this.postTitleTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.postTitleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postTitleTextBox.Location = new System.Drawing.Point(0, 25);
+            this.postTitleTextBox.Name = "postTitleTextBox";
+            this.postTitleTextBox.PlaceholderText = "Entre com o título";
+            this.postTitleTextBox.Size = new System.Drawing.Size(627, 26);
+            this.postTitleTextBox.TabIndex = 8;
             // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.webBrowser1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.postTitleTextBox);
+            this.Controls.Add(this.postVisibilityPanel);
+            this.Controls.Add(this.buttonPanel);
+            this.Controls.Add(this.webBrowser);
+            this.Controls.Add(this.toolStrip);
+            this.DoubleBuffered = true;
             this.Name = "Editor";
-            this.Size = new System.Drawing.Size(627, 150);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(627, 359);
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            this.contextMenuStrip.ResumeLayout(false);
+            this.buttonPanel.ResumeLayout(false);
+            this.postVisibilityPanel.ResumeLayout(false);
+            this.postVisibilityPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -434,8 +534,8 @@ namespace TadManagementTool
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.ToolStripButton boldButton;
         private System.Windows.Forms.ToolStripButton italicButton;
         private System.Windows.Forms.ToolStripComboBox fontComboBox;
@@ -453,7 +553,7 @@ namespace TadManagementTool
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem2;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem3;
@@ -474,7 +574,15 @@ namespace TadManagementTool
         private System.Windows.Forms.ToolStripButton justifyFullButton;
         private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cSSToolStripMenuItem;
-        private Commons.UI.LoadingPanel.ModalWaitingPanel modalWaitingPanel1;
+        private Commons.UI.LoadingPanel.ModalWaitingPanel modalWaitingPanel;
+        private System.Windows.Forms.Panel buttonPanel;
+        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Label postVisibilityLabel;
+        private System.Windows.Forms.RadioButton postPublicVisibilityRadioButton;
+        private System.Windows.Forms.RadioButton postInternalVisibilityRadioButton;
+        private System.Windows.Forms.Panel postVisibilityPanel;
+        private PlaceholderTextBox postTitleTextBox;
 
     }
 }

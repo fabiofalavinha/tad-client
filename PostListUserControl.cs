@@ -149,5 +149,14 @@ namespace TadManagementTool
             }
             return null;
         }
+
+        public bool ShowBinaryQuestion(string message)
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<string, bool>(ShowBinaryQuestion), message);
+            }
+            return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
     }
 }

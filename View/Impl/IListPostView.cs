@@ -10,6 +10,7 @@ namespace TadManagementTool.View.Impl
     public interface IListPostView : IControlView
     {
         PostViewItem GetPostSelected();
+        bool ShowBinaryQuestion(string message);
         void SetPostList(IList<PostViewItem> list);
         void OpenNewPostView();
         void OpenEditPostView(Post post);

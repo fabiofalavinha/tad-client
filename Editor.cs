@@ -9,6 +9,8 @@ using System.Web;
 using TadManagementTool.Model;
 using TadManagementTool.View.Impl;
 using TadManagementTool.View;
+using System.Threading.Tasks;
+using TadManagementTool.Service;
 
 namespace TadManagementTool
 {
@@ -26,14 +28,12 @@ namespace TadManagementTool
         private bool updatingFontName = false;
         private bool updatingFontSize = false;
         private bool setup = false;
-        private bool init_timer = false;
+        private bool timerInitialized = false;
 
         public delegate void TickDelegate();
 
         public event TickDelegate Tick;
-        
         public event WebBrowserNavigatedEventHandler Navigated;
-
         public event EventHandler<EnterKeyEventArgs> EnterKeyEvent;
 
         public Editor(IMainView parentView, Post post)
@@ -105,27 +105,22 @@ namespace TadManagementTool
             timer.Start();
         }
 
-        private void ParentForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            timer.Stop();
-        }
-
         /// <summary>
         /// Setup navigation and focus event handlers.
         /// </summary>
         private void SetupEvents()
         {
-            webBrowser1.Navigated += webBrowser1_Navigated;
-            webBrowser1.GotFocus += webBrowser1_GotFocus;
-            if (webBrowser1.Version.Major >= 9)
-                webBrowser1.DocumentCompleted += webBrowser1_DocumentCompleted;
+            webBrowser.Navigated += webBrowser_Navigated;
+            webBrowser.GotFocus += webBrowser_GotFocus;
+            if (webBrowser.Version.Major >= 9)
+                webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
         }
 
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            webBrowser1.Document.Write(webBrowser1.DocumentText);
+            webBrowser.Document.Write(webBrowser.DocumentText);
             doc.designMode = "On";
-            webBrowser1.Document.Body.SetAttribute("contentEditable", "true");
+            webBrowser.Document.Body.SetAttribute("contentEditable", "true");
         }
 
         /// <summary>
@@ -134,7 +129,7 @@ namespace TadManagementTool
         /// </summary>
         /// <param name="sender">the sender</param>
         /// <param name="e">EventArgs</param>
-        private void webBrowser1_GotFocus(object sender, EventArgs e)
+        private void webBrowser_GotFocus(object sender, EventArgs e)
         {
             SuperFocus();
         }
@@ -146,7 +141,7 @@ namespace TadManagementTool
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">navigation args</param>
-        void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
             SetBackgroundColor(BackColor);
             if (Navigated != null)
@@ -170,11 +165,10 @@ namespace TadManagementTool
         /// </summary>
         private void SetupBrowser()
         {
-            webBrowser1.DocumentText = "<html><body></body></html>";
-            doc =
-                webBrowser1.Document.DomDocument as IHTMLDocument2;
+            webBrowser.DocumentText = "<html><body></body></html>";
+            doc = webBrowser.Document.DomDocument as IHTMLDocument2;
             doc.designMode = "On";
-            webBrowser1.Document.ContextMenuShowing += Document_ContextMenuShowing;
+            webBrowser.Document.ContextMenuShowing += Document_ContextMenuShowing;
         }
 
         /// <summary>
@@ -182,9 +176,9 @@ namespace TadManagementTool
         /// </summary>
         private void SuperFocus()
         {
-            if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
+            if (webBrowser.Document != null && webBrowser.Document.Body != null)
             {
-                webBrowser1.Document.Body.Focus();
+                webBrowser.Document.Body.Focus();
             }
         }
 
@@ -217,8 +211,8 @@ namespace TadManagementTool
         /// <param name="value">the color to use for the background</param>
         private void SetBackgroundColor(Color value)
         {
-            if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
-                webBrowser1.Document.Body.Style = string.Format("background-color: {0}", value.Name);
+            if (webBrowser.Document != null && webBrowser.Document.Body != null)
+                webBrowser.Document.Body.Style = string.Format("background-color: {0}", value.Name);
         }
 
         /// <summary>
@@ -226,8 +220,8 @@ namespace TadManagementTool
         /// </summary>
         public void Clear()
         {
-            if (webBrowser1.Document.Body != null)
-                webBrowser1.Document.Body.InnerHtml = "";
+            if (webBrowser.Document.Body != null)
+                webBrowser.Document.Body.InnerHtml = "";
         }
 
         /// <summary>
@@ -235,7 +229,7 @@ namespace TadManagementTool
         /// </summary>
         public HtmlDocument Document
         {
-            get { return webBrowser1.Document; }
+            get { return webBrowser.Document; }
         }
 
         /// <summary>
@@ -247,7 +241,7 @@ namespace TadManagementTool
         {
             get
             {
-                string html = webBrowser1.DocumentText;
+                string html = webBrowser.DocumentText;
                 if (html != null)
                 {
                     html = ReplaceFileSystemImages(html);
@@ -256,7 +250,7 @@ namespace TadManagementTool
             }
             set
             {
-                webBrowser1.DocumentText = value;
+                webBrowser.DocumentText = value;
             }
         }
 
@@ -268,7 +262,7 @@ namespace TadManagementTool
         {
             get
             {
-                return webBrowser1.DocumentTitle;
+                return webBrowser.DocumentTitle;
             }
         }
 
@@ -280,9 +274,9 @@ namespace TadManagementTool
         {
             get
             {
-                if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
+                if (webBrowser.Document != null && webBrowser.Document.Body != null)
                 {
-                    var html = webBrowser1.Document.Body.InnerHtml;
+                    var html = webBrowser.Document.Body.InnerHtml;
                     if (html != null)
                     {
                         html = ReplaceFileSystemImages(html);
@@ -293,8 +287,8 @@ namespace TadManagementTool
             }
             set
             {
-                if (webBrowser1.Document.Body != null)
-                    webBrowser1.Document.Body.InnerHtml = value;
+                if (webBrowser.Document.Body != null)
+                    webBrowser.Document.Body.InnerHtml = value;
             }
         }
 
@@ -327,17 +321,17 @@ namespace TadManagementTool
         {
             get
             {
-                if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
+                if (webBrowser.Document != null && webBrowser.Document.Body != null)
                 {
-                    return webBrowser1.Document.Body.InnerText;
+                    return webBrowser.Document.Body.InnerText;
                 }
                 return string.Empty;
             }
             set
             {
                 Document.OpenNew(false);
-                if (webBrowser1.Document.Body != null)
-                    webBrowser1.Document.Body.InnerText = HttpUtility.HtmlEncode(value);
+                if (webBrowser.Document.Body != null)
+                    webBrowser.Document.Body.InnerText = HttpUtility.HtmlEncode(value);
             }
         }
 
@@ -346,22 +340,26 @@ namespace TadManagementTool
         {
             get
             {
-                if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
+                if (webBrowser.Document != null && webBrowser.Document.Body != null)
                 {
-                    return webBrowser1.Document.Body.InnerHtml;
+                    return webBrowser.Document.Body.InnerHtml;
                 }
                 return string.Empty;
             }
             set
             {
                 Document.OpenNew(true);
-                IHTMLDocument2 dom = Document.DomDocument as IHTMLDocument2;
+                var dom = Document.DomDocument as IHTMLDocument2;
                 try
                 {
-                    if (value == null)
+                    if (value == null) 
+                    {
                         dom.clear();
+                    } 
                     else
+                    {
                         dom.write(value);
+                    }
                 }
                 finally
                 {
@@ -521,7 +519,7 @@ namespace TadManagementTool
             pasteToolStripMenuItem3.Enabled = CanPaste();
             deleteToolStripMenuItem.Enabled = CanDelete();
             cSSToolStripMenuItem.Enabled = SelectionType != SelectionType.None;
-            contextMenuStrip1.Show(this, e.ClientMousePosition);
+            contextMenuStrip.Show(this, e.ClientMousePosition);
         }
 
         /// <summary>
@@ -669,8 +667,6 @@ namespace TadManagementTool
         public event MethodInvoker HtmlFontChanged;
         public event MethodInvoker HtmlFontSizeChanged;
 
-        private DateTime lastSplash = DateTime.Now;
-
         /// <summary>
         /// Called when the timer fires to synchronize the format buttons 
         /// with the text editor current selection.
@@ -684,15 +680,23 @@ namespace TadManagementTool
         /// <param name="e">EventArgs</param>
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (!init_timer)
-            {
-                init_timer = true;
-                lastSplash = DateTime.Now;
-            }
-
             // don't process until browser is in ready state.
             if (ReadyState != ReadyState.Complete)
+            {
                 return;
+            }
+
+            if (!timerInitialized)
+            {
+                timerInitialized = true;
+                if (post != null)
+                {
+                    postTitleTextBox.Text = post.Title;
+                    Html = post.Content;
+                    postInternalVisibilityRadioButton.Checked = post.Visibility == VisibilityType.Internal;
+                    postPublicVisibilityRadioButton.Checked = post.Visibility == VisibilityType.Public;
+                }
+            }
 
             SetupKeyListener();
             boldButton.Checked = IsBold();
@@ -712,7 +716,9 @@ namespace TadManagementTool
             UpdateImageSizes();
 
             if (Tick != null)
+            {
                 Tick();
+            }
         }
 
         /// <summary>
@@ -823,7 +829,7 @@ namespace TadManagementTool
         {
             if (!setup)
             {
-                webBrowser1.Document.Body.KeyDown += new HtmlElementEventHandler(Body_KeyDown);
+                webBrowser.Document.Body.KeyDown += Body_KeyDown;
                 setup = true;
             }
         }
@@ -842,10 +848,10 @@ namespace TadManagementTool
             if (e.KeyPressedCode == 13 && !e.ShiftKeyPressed)
             {
                 // handle enter code cancellation
-                bool cancel = false;
+                var cancel = false;
                 if (EnterKeyEvent != null)
                 {
-                    EnterKeyEventArgs args = new EnterKeyEventArgs();
+                    var args = new EnterKeyEventArgs();
                     EnterKeyEvent(this, args);
                     cancel = args.Cancel;
                 }
@@ -887,7 +893,7 @@ namespace TadManagementTool
         /// </summary>
         public void Print()
         {
-            webBrowser1.Document.ExecCommand("Print", true, null);
+            webBrowser.Document.ExecCommand("Print", true, null);
         }
 
         /// <summary>
@@ -895,7 +901,7 @@ namespace TadManagementTool
         /// </summary>
         public void InsertParagraph()
         {
-            webBrowser1.Document.ExecCommand("InsertParagraph", false, null);
+            webBrowser.Document.ExecCommand("InsertParagraph", false, null);
         }
 
         /// <summary>
@@ -903,7 +909,7 @@ namespace TadManagementTool
         /// </summary>
         public void InsertBreak()
         {
-            webBrowser1.Document.ExecCommand("InsertHorizontalRule", false, null);
+            webBrowser.Document.ExecCommand("InsertHorizontalRule", false, null);
         }
 
         /// <summary>
@@ -911,7 +917,7 @@ namespace TadManagementTool
         /// </summary>
         public void SelectAll()
         {
-            webBrowser1.Document.ExecCommand("SelectAll", false, null);
+            webBrowser.Document.ExecCommand("SelectAll", false, null);
         }
 
         /// <summary>
@@ -919,7 +925,7 @@ namespace TadManagementTool
         /// </summary>
         public void Undo()
         {
-            webBrowser1.Document.ExecCommand("Undo", false, null);
+            webBrowser.Document.ExecCommand("Undo", false, null);
         }
 
         /// <summary>
@@ -927,7 +933,7 @@ namespace TadManagementTool
         /// </summary>
         public void Redo()
         {
-            webBrowser1.Document.ExecCommand("Redo", false, null);
+            webBrowser.Document.ExecCommand("Redo", false, null);
         }
 
         /// <summary>
@@ -935,7 +941,7 @@ namespace TadManagementTool
         /// </summary>
         public void Cut()
         {
-            webBrowser1.Document.ExecCommand("Cut", false, null);
+            webBrowser.Document.ExecCommand("Cut", false, null);
         }
 
         /// <summary>
@@ -943,7 +949,7 @@ namespace TadManagementTool
         /// </summary>
         public void Paste()
         {
-            webBrowser1.Document.ExecCommand("Paste", false, null);
+            webBrowser.Document.ExecCommand("Paste", false, null);
         }
 
         /// <summary>
@@ -951,7 +957,7 @@ namespace TadManagementTool
         /// </summary>
         public void Copy()
         {
-            webBrowser1.Document.ExecCommand("Copy", false, null);
+            webBrowser.Document.ExecCommand("Copy", false, null);
         }
 
         /// <summary>
@@ -959,7 +965,7 @@ namespace TadManagementTool
         /// </summary>
         public void OrderedList()
         {
-            webBrowser1.Document.ExecCommand("InsertOrderedList", false, null);
+            webBrowser.Document.ExecCommand("InsertOrderedList", false, null);
         }
 
         /// <summary>
@@ -967,7 +973,7 @@ namespace TadManagementTool
         /// </summary>
         public void UnorderedList()
         {
-            webBrowser1.Document.ExecCommand("InsertUnorderedList", false, null);
+            webBrowser.Document.ExecCommand("InsertUnorderedList", false, null);
         }
 
         /// <summary>
@@ -975,7 +981,7 @@ namespace TadManagementTool
         /// </summary>
         public void JustifyLeft()
         {
-            webBrowser1.Document.ExecCommand("JustifyLeft", false, null);
+            webBrowser.Document.ExecCommand("JustifyLeft", false, null);
         }
 
         /// <summary>
@@ -983,7 +989,7 @@ namespace TadManagementTool
         /// </summary>
         public void JustifyRight()
         {
-            webBrowser1.Document.ExecCommand("JustifyRight", false, null);
+            webBrowser.Document.ExecCommand("JustifyRight", false, null);
         }
 
         /// <summary>
@@ -991,7 +997,7 @@ namespace TadManagementTool
         /// </summary>
         public void JustifyCenter()
         {
-            webBrowser1.Document.ExecCommand("JustifyCenter", false, null);
+            webBrowser.Document.ExecCommand("JustifyCenter", false, null);
         }
 
         /// <summary>
@@ -999,7 +1005,7 @@ namespace TadManagementTool
         /// </summary>
         public void JustifyFull()
         {
-            webBrowser1.Document.ExecCommand("JustifyFull", false, null);
+            webBrowser.Document.ExecCommand("JustifyFull", false, null);
         }
 
         /// <summary>
@@ -1007,7 +1013,7 @@ namespace TadManagementTool
         /// </summary>
         public void Bold()
         {
-            webBrowser1.Document.ExecCommand("Bold", false, null);
+            webBrowser.Document.ExecCommand("Bold", false, null);
         }
 
         /// <summary>
@@ -1015,7 +1021,7 @@ namespace TadManagementTool
         /// </summary>
         public void Italic()
         {
-            webBrowser1.Document.ExecCommand("Italic", false, null);
+            webBrowser.Document.ExecCommand("Italic", false, null);
         }
 
         /// <summary>
@@ -1023,7 +1029,7 @@ namespace TadManagementTool
         /// </summary>
         public void Underline()
         {
-            webBrowser1.Document.ExecCommand("Underline", false, null);
+            webBrowser.Document.ExecCommand("Underline", false, null);
         }
 
         /// <summary>
@@ -1031,7 +1037,7 @@ namespace TadManagementTool
         /// </summary>
         public void Delete()
         {
-            webBrowser1.Document.ExecCommand("Delete", false, null);
+            webBrowser.Document.ExecCommand("Delete", false, null);
         }
 
         /// <summary>
@@ -1039,7 +1045,7 @@ namespace TadManagementTool
         /// </summary>
         public void InsertImage()
         {
-            webBrowser1.Document.ExecCommand("InsertImage", true, null);
+            webBrowser.Document.ExecCommand("InsertImage", true, null);
         }
 
         /// <summary>
@@ -1047,7 +1053,7 @@ namespace TadManagementTool
         /// </summary>
         public void Indent()
         {
-            webBrowser1.Document.ExecCommand("Indent", false, null);
+            webBrowser.Document.ExecCommand("Indent", false, null);
         }
 
         /// <summary>
@@ -1055,7 +1061,7 @@ namespace TadManagementTool
         /// </summary>
         public void Outdent()
         {
-            webBrowser1.Document.ExecCommand("Outdent", false, null);
+            webBrowser.Document.ExecCommand("Outdent", false, null);
         }
 
         /// <summary>
@@ -1064,7 +1070,7 @@ namespace TadManagementTool
         /// <param name="url">The link url</param>
         public void InsertLink(string url)
         {
-            webBrowser1.Document.ExecCommand("CreateLink", false, url);
+            webBrowser.Document.ExecCommand("CreateLink", false, url);
         }
 
         /// <summary>
@@ -1174,7 +1180,7 @@ namespace TadManagementTool
                         sz = 7;
                         break;
                 }
-                webBrowser1.Document.ExecCommand("FontSize", false, sz.ToString());
+                webBrowser.Document.ExecCommand("FontSize", false, sz.ToString());
             }
         }
 
@@ -1195,7 +1201,7 @@ namespace TadManagementTool
             set
             {
                 if (value != null)
-                    webBrowser1.Document.ExecCommand("FontName", false, value.Name);
+                    webBrowser.Document.ExecCommand("FontName", false, value.Name);
             }
         }
 
@@ -1215,7 +1221,7 @@ namespace TadManagementTool
             {
                 string colorstr = 
                     string.Format("#{0:X2}{1:X2}{2:X2}", value.R, value.G, value.B);
-                webBrowser1.Document.ExecCommand("ForeColor", false, colorstr);
+                webBrowser.Document.ExecCommand("ForeColor", false, colorstr);
             }
         }
 
@@ -1235,7 +1241,7 @@ namespace TadManagementTool
             {
                 string colorstr =
                     string.Format("#{0:X2}{1:X2}{2:X2}", value.R, value.G, value.B);
-                webBrowser1.Document.ExecCommand("BackColor", false, colorstr);
+                webBrowser.Document.ExecCommand("BackColor", false, colorstr);
             }
         }
 
@@ -1590,18 +1596,17 @@ namespace TadManagementTool
         public bool Search(string text, bool forward, bool matchWholeWord, bool matchCase)
         {
             bool success = false;
-            if (webBrowser1.Document != null)
+            if (webBrowser.Document != null)
             {
-                IHTMLDocument2 doc =
-                    webBrowser1.Document.DomDocument as IHTMLDocument2;
-                IHTMLBodyElement body = doc.body as IHTMLBodyElement;
+                var doc = webBrowser.Document.DomDocument as IHTMLDocument2;
+                var body = doc.body as IHTMLBodyElement;
                 if (body != null)
                 {
                     IHTMLTxtRange range;
                     if (doc.selection != null)
                     {
                         range = doc.selection.createRange() as IHTMLTxtRange;
-                        IHTMLTxtRange dup = range.duplicate();
+                        var dup = range.duplicate();
                         dup.collapse(true);
                         // if selection is degenerate, then search whole body
                         if (range.isEqual(dup))
@@ -1701,18 +1706,120 @@ namespace TadManagementTool
 
         public void ShowWarningMessage(string message)
         {
-        }
-
-        public void ShowErrorMessage(string message)
-        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowWarningMessage), message);
+                return;
+            }
+            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public void ShowWaitingPanel(string message = null)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowWaitingPanel), message);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                message = "Processando...";
+            }
+            modalWaitingPanel.Show(message);
         }
 
         public void HideWaitingPanel()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(HideWaitingPanel));
+                return;
+            }
+            modalWaitingPanel.Hide();
+        }
+
+        public void ShowErrorMessage(string message)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowErrorMessage), message);
+                return;
+            }
+            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            timer.Stop();
+            parentView.ShowControlView(new PostListUserControl(parentView) { Dock = DockStyle.Fill });
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            var backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += backgrounWorker_DoWork;
+            backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
+            backgroundWorker.RunWorkerAsync(post);
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            HideWaitingPanel();
+
+            if (e.Error == null)
+            {
+                parentView.ShowControlView(new PostListUserControl(parentView) { Dock = DockStyle.Fill });
+            }
+            else
+            {
+                ShowErrorMessage(string.Format("Ops... Ocorreu um erro ao salvar o post [{0}]. Tente repetir a operação.", e.Error.Message));
+            }
+        }
+
+        private void backgrounWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ShowWaitingPanel("Salvando post...");
+
+            var loggedUser = UserContext.GetInstance().LoggedUser;
+
+            var post = (Post)e.Argument;
+            if (post == null)
+            {
+                post = new Post();
+                post.Created = DateTime.Now;
+                post.CreatedBy = loggedUser;
+            }
+            post.Modified = DateTime.Now;
+            post.ModifiedBy = loggedUser;
+
+            var postTitle = postTitleTextBox.Text;
+            if (string.IsNullOrWhiteSpace(postTitle))
+            {
+                ShowWarningMessage("Título do post é obrigatório");
+                return;
+            }
+            post.Title = postTitle;
+
+            var postContent = Html;
+            if (string.IsNullOrWhiteSpace(postContent))
+            {
+                ShowWarningMessage("É obrigatório escrever o conteúdo do post");
+                return;
+            }
+            post.Content = postContent;
+
+            if (postInternalVisibilityRadioButton.Checked)
+            {
+                post.Visibility = VisibilityType.Internal;
+            }
+            else if (postPublicVisibilityRadioButton.Checked)
+            {
+                post.Visibility = VisibilityType.Public;
+            }
+
+            var postService = new PostService();
+            postService.savePost(post);
         }
     }
 

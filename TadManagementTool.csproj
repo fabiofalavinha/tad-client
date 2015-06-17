@@ -160,6 +160,9 @@
     <Compile Include="Model\UserContext.cs" />
     <Compile Include="Model\UserRole.cs" />
     <Compile Include="Model\VisibilityType.cs" />
+    <Compile Include="PlaceholderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PostListUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
