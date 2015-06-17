@@ -147,7 +147,7 @@ namespace TadManagementTool
                 return;
             }
             splitContainer.Panel2.Controls.Clear();
-            var userControl = new PostListUserControl();
+            var userControl = new PostListUserControl(this);
             userControl.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(userControl);
         }

@@ -1,23 +1,27 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using mshtml;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Web;
-using System.Threading;
-using System.Net.Mail;
-using System.Net.Mime;
+using TadManagementTool.Model;
+using TadManagementTool.View.Impl;
+using TadManagementTool.View;
 
 namespace TadManagementTool
 {
-    public partial class Editor : UserControl
+    public partial class Editor : UserControl, IControlView
     {
+        public class EnterKeyEventArgs : EventArgs
+        {
+            public bool Cancel { get; set; }
+        }
+
+        private readonly IMainView parentView;
+        private readonly Post post;
+
         private IHTMLDocument2 doc;
         private bool updatingFontName = false;
         private bool updatingFontSize = false;
@@ -26,26 +30,17 @@ namespace TadManagementTool
 
         public delegate void TickDelegate();
 
-        public class EnterKeyEventArgs : EventArgs
-        {
-            private bool _cancel = false;
-
-            public bool Cancel
-            {
-                get { return _cancel; }
-                set { _cancel = value; }
-            }
-
-        }
-
         public event TickDelegate Tick;
         
         public event WebBrowserNavigatedEventHandler Navigated;
 
         public event EventHandler<EnterKeyEventArgs> EnterKeyEvent;
 
-        public Editor()
+        public Editor(IMainView parentView, Post post)
         {
+            this.parentView = parentView;
+            this.post = post;
+
             Load += Editor_Load;
             InitializeComponent();
             SetupEvents();
@@ -53,52 +48,52 @@ namespace TadManagementTool
             SetupBrowser();
             SetupFontComboBox();
             SetupFontSizeComboBox();
-            boldButton.CheckedChanged += delegate
+            boldButton.CheckedChanged += (s, e) =>
             {
                 if (BoldChanged != null)
                     BoldChanged();
             };
-            italicButton.CheckedChanged += delegate
+            italicButton.CheckedChanged += (s, e) =>
             {
                 if (ItalicChanged != null)
                     ItalicChanged();
             };
-            underlineButton.CheckedChanged += delegate
+            underlineButton.CheckedChanged += (s, e) =>
             {
                 if (UnderlineChanged != null)
                     UnderlineChanged();
             };
-            orderedListButton.CheckedChanged += delegate
+            orderedListButton.CheckedChanged += (s, e) =>
             {
                 if (OrderedListChanged != null)
                     OrderedListChanged();
             };
-            unorderedListButton.CheckedChanged += delegate
+            unorderedListButton.CheckedChanged += (s, e) =>
             {
                 if (UnorderedListChanged != null)
                     UnorderedListChanged();
             };
-            justifyLeftButton.CheckedChanged += delegate
+            justifyLeftButton.CheckedChanged += (s, e) =>
             {
                 if (JustifyLeftChanged != null)
                     JustifyLeftChanged();
             };
-            justifyCenterButton.CheckedChanged += delegate
+            justifyCenterButton.CheckedChanged += (s, e) =>
             {
                 if (JustifyCenterChanged != null)
                     JustifyCenterChanged();
             };
-            justifyRightButton.CheckedChanged += delegate
+            justifyRightButton.CheckedChanged += (s, e) =>
             {
                 if (JustifyRightChanged != null)
                     JustifyRightChanged();
             };
-            justifyFullButton.CheckedChanged += delegate
+            justifyFullButton.CheckedChanged += (s, e) =>
             {
                 if (JustifyFullChanged != null)
                     JustifyFullChanged();
             };
-            linkButton.CheckedChanged += delegate
+            linkButton.CheckedChanged += (s, e) =>
             {
                 if (IsLinkChanged != null)
                     IsLinkChanged();
@@ -113,7 +108,6 @@ namespace TadManagementTool
         private void ParentForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Stop();
-            ParentForm.FormClosed -= new FormClosedEventHandler(ParentForm_FormClosed);
         }
 
         /// <summary>
@@ -121,10 +115,10 @@ namespace TadManagementTool
         /// </summary>
         private void SetupEvents()
         {
-            webBrowser1.Navigated += new WebBrowserNavigatedEventHandler(webBrowser1_Navigated);
-            webBrowser1.GotFocus += new EventHandler(webBrowser1_GotFocus);
+            webBrowser1.Navigated += webBrowser1_Navigated;
+            webBrowser1.GotFocus += webBrowser1_GotFocus;
             if (webBrowser1.Version.Major >= 9)
-                webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser1_DocumentCompleted);
+                webBrowser1.DocumentCompleted += webBrowser1_DocumentCompleted;
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -167,7 +161,7 @@ namespace TadManagementTool
         private void SetupTimer()
         {
             timer.Interval = 200;
-            timer.Tick += new EventHandler(timer_Tick);
+            timer.Tick += timer_Tick;
         }
 
         /// <summary>
@@ -180,8 +174,7 @@ namespace TadManagementTool
             doc =
                 webBrowser1.Document.DomDocument as IHTMLDocument2;
             doc.designMode = "On";
-            webBrowser1.Document.ContextMenuShowing += 
-                new HtmlElementEventHandler(Document_ContextMenuShowing);
+            webBrowser1.Document.ContextMenuShowing += Document_ContextMenuShowing;
         }
 
         /// <summary>
@@ -189,9 +182,10 @@ namespace TadManagementTool
         /// </summary>
         private void SuperFocus()
         {
-            if (webBrowser1.Document != null &&
-                webBrowser1.Document.Body != null)
+            if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
+            {
                 webBrowser1.Document.Body.Focus();
+            }
         }
 
         /// <summary>
@@ -223,10 +217,8 @@ namespace TadManagementTool
         /// <param name="value">the color to use for the background</param>
         private void SetBackgroundColor(Color value)
         {
-            if (webBrowser1.Document != null &&
-                webBrowser1.Document.Body != null)
-                webBrowser1.Document.Body.Style =
-                    string.Format("background-color: {0}", value.Name);
+            if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
+                webBrowser1.Document.Body.Style = string.Format("background-color: {0}", value.Name);
         }
 
         /// <summary>
@@ -288,84 +280,22 @@ namespace TadManagementTool
         {
             get
             {
-                if (webBrowser1.Document != null &&
-                    webBrowser1.Document.Body != null)
+                if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
                 {
-                    string html = webBrowser1.Document.Body.InnerHtml;
+                    var html = webBrowser1.Document.Body.InnerHtml;
                     if (html != null)
                     {
                         html = ReplaceFileSystemImages(html);
                     }
                     return html;
                 }
-                else
-                    return string.Empty;
+                return string.Empty;
             }
             set
             {
                 if (webBrowser1.Document.Body != null)
                     webBrowser1.Document.Body.InnerHtml = value;
             }
-        }
-
-        public MailMessage ToMailMessage()
-        {
-            if (webBrowser1.Document != null &&
-                webBrowser1.Document.Body != null)
-            {
-                string html = webBrowser1.Document.Body.InnerHtml;
-                if (html != null)
-                {
-                    return LinkImages(html);
-                }
-                var msg = new MailMessage();
-                msg.IsBodyHtml = true;
-                return msg;
-            }
-            else
-            {
-                var msg = new MailMessage();
-                msg.IsBodyHtml = true;
-                msg.Body = string.Empty;
-                return msg;
-            }
-        }
-
-        private MailMessage LinkImages(string html)
-        {
-            var msg = new MailMessage();
-            msg.IsBodyHtml = true;
-            var matches = Regex.Matches(html, @"<img[^>]*?src\s*=\s*([""']?[^'"">]+?['""])[^>]*?>", RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline);
-            var img_list = new List<LinkedResource>();
-            var cid = 1;
-            foreach (Match match in matches)
-            {
-                string src = match.Groups[1].Value;
-                src = src.Trim('\"');
-                if (File.Exists(src))
-                {
-                    var ext = Path.GetExtension(src);
-                    if (ext.Length > 0)
-                    {
-                        ext = ext.Substring(1);
-                        var res = new LinkedResource(src);
-                        res.ContentId = string.Format("img{0}.{1}", cid++, ext);
-                        res.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
-                        res.ContentType.MediaType = string.Format("image/{0}", ext);
-                        res.ContentType.Name = res.ContentId;
-                        img_list.Add(res);
-                        src = string.Format("'cid:{0}'", res.ContentId);
-                        html = html.Replace(match.Groups[1].Value, src);
-                    }
-                }
-            }
-            var view = AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html);
-            foreach (var img in img_list)
-            {
-                view.LinkedResources.Add(img);
-            }
-            msg.AlternateViews.Add(view);
-            return msg;
         }
 
         private string ReplaceFileSystemImages(string html)
@@ -397,13 +327,11 @@ namespace TadManagementTool
         {
             get
             {
-                if (webBrowser1.Document != null &&
-                    webBrowser1.Document.Body != null)
+                if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
                 {
                     return webBrowser1.Document.Body.InnerText;
                 }
-                else
-                    return string.Empty;
+                return string.Empty;
             }
             set
             {
@@ -418,13 +346,11 @@ namespace TadManagementTool
         {
             get
             {
-                if (webBrowser1.Document != null &&
-                    webBrowser1.Document.Body != null)
+                if (webBrowser1.Document != null && webBrowser1.Document.Body != null)
                 {
                     return webBrowser1.Document.Body.InnerHtml;
                 }
-                else
-                    return string.Empty;
+                return string.Empty;
             }
             set
             {
@@ -609,8 +535,8 @@ namespace TadManagementTool
             {
                 fontSizeComboBox.Items.Add(x.ToString());
             }
-            fontSizeComboBox.TextChanged += new EventHandler(fontSizeComboBox_TextChanged);
-            fontSizeComboBox.KeyPress += new KeyPressEventHandler(fontSizeComboBox_KeyPress);
+            fontSizeComboBox.TextChanged += fontSizeComboBox_TextChanged;
+            fontSizeComboBox.KeyPress += fontSizeComboBox_KeyPress;
         }
 
         /// <summary>
@@ -642,7 +568,8 @@ namespace TadManagementTool
         /// <param name="e">EventArgs</param>
         private void fontSizeComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (updatingFontSize) return;
+            if (updatingFontSize) 
+                return;
             switch (fontSizeComboBox.Text.Trim())
             {
                 case "1":
@@ -678,13 +605,13 @@ namespace TadManagementTool
         /// </summary>
         private void SetupFontComboBox()
         {
-            AutoCompleteStringCollection ac = new AutoCompleteStringCollection();
-            foreach (FontFamily fam in FontFamily.Families)
+            var ac = new AutoCompleteStringCollection();
+            foreach (var fam in FontFamily.Families)
             {
                 fontComboBox.Items.Add(fam.Name);
                 ac.Add(fam.Name);
             }
-            fontComboBox.Leave += new EventHandler(fontComboBox_TextChanged);
+            fontComboBox.Leave += fontComboBox_TextChanged;
             fontComboBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             fontComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             fontComboBox.AutoCompleteCustomSource = ac;
@@ -759,7 +686,6 @@ namespace TadManagementTool
         {
             if (!init_timer)
             {
-                ParentForm.FormClosed += new FormClosedEventHandler(ParentForm_FormClosed);
                 init_timer = true;
                 lastSplash = DateTime.Now;
             }
@@ -768,14 +694,6 @@ namespace TadManagementTool
             if (ReadyState != ReadyState.Complete)
                 return;
 
-#if TRIAL
-            if (DateTime.Now.Subtract(lastSplash).TotalMinutes > 10)
-            {
-                lastSplash = DateTime.Now;
-                var dlg = new SplashForm();
-                dlg.ShowDialog();
-            }
-#endif
             SetupKeyListener();
             boldButton.Checked = IsBold();
             italicButton.Checked = IsItalic();
@@ -1578,7 +1496,7 @@ namespace TadManagementTool
                     dlg.URL = string.Format("{0}{1}", uri.Host, uri.PathAndQuery == null ? null : uri.PathAndQuery.TrimEnd('/'));
                     dlg.Scheme = string.Format("{0}://", uri.Scheme);
                 }
-                dlg.ShowDialog(this.ParentForm);
+                dlg.ShowDialog();
                 if (!dlg.Accepted) return;
                 string link = string.Format("{0}{1}", dlg.Scheme, dlg.URL);
                 if (link == null || link.Length == 0)
@@ -1780,6 +1698,22 @@ namespace TadManagementTool
             SelectBodyColor();
         }
 
+
+        public void ShowWarningMessage(string message)
+        {
+        }
+
+        public void ShowErrorMessage(string message)
+        {
+        }
+
+        public void ShowWaitingPanel(string message = null)
+        {
+        }
+
+        public void HideWaitingPanel()
+        {
+        }
     }
 
     /// <summary>

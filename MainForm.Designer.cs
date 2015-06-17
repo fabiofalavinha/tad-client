@@ -37,7 +37,6 @@
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.menuTreeView = new System.Windows.Forms.TreeView();
             this.mainMenuImageList = new System.Windows.Forms.ImageList(this.components);
-            this.postListUserControl = new TadManagementTool.PostListUserControl();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
@@ -70,13 +69,6 @@
             // 
             this.splitContainer.Panel1.Controls.Add(this.menuTreeView);
             // 
-            // splitContainer.Panel2
-            // 
-            this.splitContainer.Panel2.Controls.Add(this.postListUserControl);
-            this.splitContainer.Size = new System.Drawing.Size(770, 422);
-            this.splitContainer.SplitterDistance = 220;
-            this.splitContainer.TabIndex = 1;
-            // 
             // menuTreeView
             // 
             this.menuTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -97,8 +89,10 @@
             treeNode2.SelectedImageKey = "calendar.png";
             treeNode2.Tag = "TadManagementTool.View.Impl.OpenCalendarMenuViewAction";
             treeNode2.Text = "Calendário";
+            treeNode3.ImageKey = "post.png";
             treeNode3.Name = "postTreeItem";
             treeNode3.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            treeNode3.SelectedImageKey = "post.png";
             treeNode3.Tag = "TadManagementTool.View.Impl.OpenPostListMenuViewAction";
             treeNode3.Text = "Post";
             this.menuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
@@ -116,14 +110,7 @@
             this.mainMenuImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.mainMenuImageList.Images.SetKeyName(0, "colaboradores.png");
             this.mainMenuImageList.Images.SetKeyName(1, "calendar.png");
-            // 
-            // postListUserControl
-            // 
-            this.postListUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.postListUserControl.Location = new System.Drawing.Point(0, 0);
-            this.postListUserControl.Name = "postListUserControl";
-            this.postListUserControl.Size = new System.Drawing.Size(546, 422);
-            this.postListUserControl.TabIndex = 0;
+            this.mainMenuImageList.Images.SetKeyName(2, "post.png");
             // 
             // statusStrip
             // 
@@ -174,7 +161,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.TreeView menuTreeView;
-        private PostListUserControl postListUserControl;
         private ModalWaitingPanel modalWaitingPanel;
         private System.Windows.Forms.ImageList mainMenuImageList;
     }
