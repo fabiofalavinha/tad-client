@@ -340,6 +340,10 @@ namespace TadManagementTool
         {
             get
             {
+                if (InvokeRequired)
+                {
+                    return (string)Invoke(new Func<string>(() => Html));
+                }
                 if (webBrowser.Document != null && webBrowser.Document.Body != null)
                 {
                     return webBrowser.Document.Body.InnerHtml;

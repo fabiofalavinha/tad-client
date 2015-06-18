@@ -331,11 +331,13 @@ namespace TadManagementTool
             // 
             // webBrowser
             // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(0, 25);
+            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser.Location = new System.Drawing.Point(0, 51);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(627, 334);
+            this.webBrowser.Size = new System.Drawing.Size(627, 226);
             this.webBrowser.TabIndex = 2;
             // 
             // cutToolStripMenuItem
