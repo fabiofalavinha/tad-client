@@ -1805,7 +1805,7 @@ namespace TadManagementTool
             }
             post.Title = postTitle;
 
-            var postContent = Html;
+            var postContent = ReplaceFileSystemImages(Html);
             if (string.IsNullOrWhiteSpace(postContent))
             {
                 ShowWarningMessage("É obrigatório escrever o conteúdo do post");
