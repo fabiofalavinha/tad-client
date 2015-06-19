@@ -49,6 +49,9 @@
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CollaboratorNameColumn,
@@ -57,7 +60,6 @@
             this.CollaboratorGenderColumn,
             this.CollaboratorTelephoneColumn,
             this.CollaboratorActiveColumn});
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
@@ -110,7 +112,7 @@
             // collaboratorDetailButton
             // 
             this.collaboratorDetailButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.collaboratorDetailButton.Location = new System.Drawing.Point(533, 343);
+            this.collaboratorDetailButton.Location = new System.Drawing.Point(536, 343);
             this.collaboratorDetailButton.Name = "collaboratorDetailButton";
             this.collaboratorDetailButton.Size = new System.Drawing.Size(112, 28);
             this.collaboratorDetailButton.TabIndex = 1;
@@ -132,7 +134,7 @@
             // newCollaboratorButton
             // 
             this.newCollaboratorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newCollaboratorButton.Location = new System.Drawing.Point(415, 343);
+            this.newCollaboratorButton.Location = new System.Drawing.Point(418, 343);
             this.newCollaboratorButton.Name = "newCollaboratorButton";
             this.newCollaboratorButton.Size = new System.Drawing.Size(112, 28);
             this.newCollaboratorButton.TabIndex = 1;
@@ -157,7 +159,7 @@
             this.Controls.Add(this.dataGridView);
             this.DoubleBuffered = true;
             this.Name = "ListCollaboratorUserControl";
-            this.Size = new System.Drawing.Size(648, 379);
+            this.Size = new System.Drawing.Size(651, 379);
             this.Load += new System.EventHandler(this.ListCollaboratorUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
