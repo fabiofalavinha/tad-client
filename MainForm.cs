@@ -151,5 +151,18 @@ namespace TadManagementTool
             userControl.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(userControl);
         }
+
+        public void OpenImageListView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenImageListView));
+                return;
+            }
+            splitContainer.Panel2.Controls.Clear();
+            var userControl = new ImageListUserControl(this);
+            userControl.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(userControl);
+        }
     }
 }

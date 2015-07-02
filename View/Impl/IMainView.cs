@@ -7,5 +7,6 @@ namespace TadManagementTool.View.Impl
         void ShowControlView(IControlView controlView);
         void OpenCalendarView();
         void OpenPostListView();
+        void OpenImageListView();
     }
 }

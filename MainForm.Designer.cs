@@ -32,6 +32,7 @@
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Colaboradores");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Calendário");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Post");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Imagens");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
@@ -43,7 +44,6 @@
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
-            this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,9 @@
             // splitContainer.Panel1
             // 
             this.splitContainer.Panel1.Controls.Add(this.menuTreeView);
+            this.splitContainer.Size = new System.Drawing.Size(770, 422);
+            this.splitContainer.SplitterDistance = 256;
+            this.splitContainer.TabIndex = 0;
             // 
             // menuTreeView
             // 
@@ -95,12 +98,18 @@
             treeNode3.SelectedImageKey = "post.png";
             treeNode3.Tag = "TadManagementTool.View.Impl.OpenPostListMenuViewAction";
             treeNode3.Text = "Post";
+            treeNode4.ImageKey = "photograph_edit.png";
+            treeNode4.Name = "carouselImageTreeItem";
+            treeNode4.SelectedImageKey = "photograph_edit.png";
+            treeNode4.Tag = "TadManagementTool.View.Impl.OpenImageListMenuViewAction";
+            treeNode4.Text = "Imagens";
             this.menuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
-            treeNode3});
+            treeNode3,
+            treeNode4});
             this.menuTreeView.SelectedImageIndex = 0;
-            this.menuTreeView.Size = new System.Drawing.Size(220, 422);
+            this.menuTreeView.Size = new System.Drawing.Size(256, 422);
             this.menuTreeView.TabIndex = 0;
             this.menuTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.menuTreeView_AfterSelect);
             // 
@@ -111,6 +120,7 @@
             this.mainMenuImageList.Images.SetKeyName(0, "colaboradores.png");
             this.mainMenuImageList.Images.SetKeyName(1, "calendar.png");
             this.mainMenuImageList.Images.SetKeyName(2, "post.png");
+            this.mainMenuImageList.Images.SetKeyName(3, "photograph_edit.png");
             // 
             // statusStrip
             // 
@@ -145,7 +155,6 @@
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.splitContainer.Panel1.ResumeLayout(false);
-            this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
