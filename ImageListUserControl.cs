@@ -93,7 +93,17 @@ namespace TadManagementTool
                 return;
             }
             imageFlowLayoutPanel.Controls.Clear();
-            imageFlowLayoutPanel.Controls.AddRange(list.Select(i => new ImageItemUserControl(i)).ToArray());
+            imageFlowLayoutPanel.Controls.AddRange(list.Select(i =>
+            {
+                var control = new ImageItemUserControl(i);
+                control.ImageClicked += imageItemUserControl_ImageClicked;
+                return control;
+            }).ToArray());
+        }
+
+        private void imageItemUserControl_ImageClicked(object sender, ImageClickedEventArgs e)
+        {
+            presenter.OnImageItemSelected(e.Image);
         }
 
         public void OpenNewUploadView()
@@ -105,8 +115,68 @@ namespace TadManagementTool
             }
             using (var form = new UploadImageForm()) 
             {
-
+                form.ShowDialog();
             }
+        }
+
+        public void SetImageItemSelected(ImageCarouselViewItem imageCarouselViewItem)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<ImageCarouselViewItem>(SetImageItemSelected), imageCarouselViewItem);
+                return;
+            }
+            imageFlowLayoutPanel.Controls.Cast<ImageItemUserControl>().ToList().ForEach(i =>
+            {
+                if (i.Wrapper.Equals(imageCarouselViewItem))
+                {
+                    i.Wrapper.Select();
+                    i.BackColor = Color.LightBlue;
+                }
+                else
+                {
+                    i.Wrapper.Unselect();
+                    i.BackColor = Color.White;
+                }
+            });
+        }
+
+        public ImageCarouselViewItem GetSelectedImage()
+        {
+            if (InvokeRequired)
+            {
+                return (ImageCarouselViewItem)Invoke(new Func<ImageCarouselViewItem>(GetSelectedImage));
+            }
+            var found = imageFlowLayoutPanel.Controls.Cast<ImageItemUserControl>().SingleOrDefault(i => i.Wrapper.IsSelected);
+            if (found != null)
+            {
+                return found.Wrapper;
+            }
+            return null;
+        }
+
+
+        public void RemoveImageItem(ImageCarouselViewItem imageCarouselViewItem)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<ImageCarouselViewItem>(RemoveImageItem), imageCarouselViewItem);
+                return;
+            }
+            var found = imageFlowLayoutPanel.Controls.Cast<ImageItemUserControl>().SingleOrDefault(i => i.Wrapper.Equals(imageCarouselViewItem));
+            if (found != null)
+            {
+                imageFlowLayoutPanel.Controls.Remove(found);
+            }
+        }
+
+        public bool ShowBinaryQuestion(string message)
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<string, bool>(ShowBinaryQuestion), message);
+            }
+            return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
     }
 }

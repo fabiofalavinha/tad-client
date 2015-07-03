@@ -74,6 +74,7 @@
             this.imageFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageFlowLayoutPanel.AutoScroll = true;
             this.imageFlowLayoutPanel.BackColor = System.Drawing.Color.White;
             this.imageFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.imageFlowLayoutPanel.Name = "imageFlowLayoutPanel";

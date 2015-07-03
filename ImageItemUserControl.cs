@@ -10,12 +10,14 @@ namespace TadManagementTool
 {
     public partial class ImageItemUserControl : UserControl
     {
-        private readonly ImageCarouselViewItem viewItem;
-            
+        public ImageCarouselViewItem Wrapper { get; private set; }
+
+        public event EventHandler<ImageClickedEventArgs> ImageClicked;
+
         public ImageItemUserControl(ImageCarouselViewItem viewItem)
         {
             InitializeComponent();
-            this.viewItem = viewItem;
+            Wrapper = viewItem;
         }
 
         private void ImageItemUserControl_Load(object sender, EventArgs e)
@@ -23,7 +25,7 @@ namespace TadManagementTool
             var worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.RunWorkerAsync(viewItem);
+            worker.RunWorkerAsync(Wrapper);
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -60,6 +62,34 @@ namespace TadManagementTool
                 webRequest.Timeout = DefaultTimeout;
                 return webRequest;
             }
+        }
+
+        private void ImageItemUserControl_Click(object sender, EventArgs e)
+        {
+            OnImageClicked();
+        }
+
+        private void OnImageClicked()
+        {
+            if (ImageClicked != null)
+            {
+                ImageClicked(this, new ImageClickedEventArgs(Wrapper));
+            }
+        }
+
+        private void imageContainerPanel_Click(object sender, EventArgs e)
+        {
+            OnImageClicked();
+        }
+    }
+
+    public class ImageClickedEventArgs : EventArgs
+    {
+        public ImageCarouselViewItem Image { get; private set; }
+
+        public ImageClickedEventArgs(ImageCarouselViewItem image)
+        {
+            Image = image;
         }
     }
 }

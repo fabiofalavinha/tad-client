@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool.Presenter
 {
@@ -9,5 +10,6 @@ namespace TadManagementTool.Presenter
     {
         void OnRemove();
         void OnNewUpload();
+        void OnImageItemSelected(ImageCarouselViewItem imageCarouselViewItem);
     }
 }

@@ -6,23 +6,44 @@ namespace TadManagementTool.View.Items
 {
     public class ImageCarouselViewItem
     {
-        private readonly string serverBaseUrl;
+        private readonly Uri serverBaseUrl;
 
         public CarouselImage Wrapper { get; private set; }
+        public bool IsSelected { get; private set; }
         
         public Uri ImageUrl 
         { 
             get 
             {
-                var baseUrl = new Uri(serverBaseUrl);
-                return new Uri(string.Format("http://{0}:3000/images/{1}", baseUrl.Host, Wrapper.Name));
+                return new Uri(string.Format("http://{0}:3000/images/app/{1}", serverBaseUrl.Host, Wrapper.Name));
             }
         }
 
         public ImageCarouselViewItem(CarouselImage carouselImage)
         {
             Wrapper = carouselImage;
-            this.serverBaseUrl = ConfigurationManager.AppSettings["tad.server"];
+            this.serverBaseUrl = new Uri(ConfigurationManager.AppSettings["tad.server"]);
+        }
+
+        public void Select()
+        {
+            IsSelected = true;
+        }
+
+        public void Unselect()
+        {
+            IsSelected = false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as ImageCarouselViewItem;
+            return other != null && Wrapper.Equals(other.Wrapper);
+        }
+
+        public override int GetHashCode()
+        {
+            return Wrapper.GetHashCode();
         }
     }
 }

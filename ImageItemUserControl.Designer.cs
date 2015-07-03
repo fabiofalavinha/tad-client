@@ -32,21 +32,18 @@
             this.imageContainerPanel = new System.Windows.Forms.Panel();
             this.imageProgressBar = new System.Windows.Forms.ProgressBar();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
-            this.imageContainerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageContainerPanel
             // 
-            this.imageContainerPanel.Controls.Add(this.imageProgressBar);
-            this.imageContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageContainerPanel.Location = new System.Drawing.Point(0, 0);
+            this.imageContainerPanel.Location = new System.Drawing.Point(7, 7);
             this.imageContainerPanel.Name = "imageContainerPanel";
-            this.imageContainerPanel.Size = new System.Drawing.Size(180, 136);
+            this.imageContainerPanel.Size = new System.Drawing.Size(166, 110);
             this.imageContainerPanel.TabIndex = 0;
+            this.imageContainerPanel.Click += new System.EventHandler(this.imageContainerPanel_Click);
             // 
             // imageProgressBar
             // 
-            this.imageProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.imageProgressBar.Location = new System.Drawing.Point(0, 126);
             this.imageProgressBar.Name = "imageProgressBar";
             this.imageProgressBar.Size = new System.Drawing.Size(180, 10);
@@ -61,11 +58,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.imageProgressBar);
             this.Controls.Add(this.imageContainerPanel);
             this.Name = "ImageItemUserControl";
             this.Size = new System.Drawing.Size(180, 136);
             this.Load += new System.EventHandler(this.ImageItemUserControl_Load);
-            this.imageContainerPanel.ResumeLayout(false);
+            this.Click += new System.EventHandler(this.ImageItemUserControl_Click);
             this.ResumeLayout(false);
 
         }
