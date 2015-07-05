@@ -100,7 +100,7 @@ namespace TadManagementTool.Presenter.Impl
             var phoneNumberValidator = new PhoneNumberValidator(phoneAreaCode, phoneTypeViewItem.Wrapper);
             if (!phoneNumberValidator.Validate(phoneNumberString))
             {
-                View.ShowWarningMessage("Número de telefone é inválido. Verifique o código de área informado para acrescentar o número 9.");
+                View.ShowWarningMessage("Número de telefone é inválido");
                 return;
             }
             var phoneNumber = int.Parse(phoneNumberString);

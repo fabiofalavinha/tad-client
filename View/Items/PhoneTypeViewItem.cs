@@ -17,7 +17,7 @@ namespace TadManagementTool.View.Items
 
         public override string ToString()
         {
-            return Wrapper.ToString();
+            return Wrapper.Translate();
         }
     }
 }

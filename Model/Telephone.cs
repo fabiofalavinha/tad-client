@@ -17,7 +17,7 @@ namespace TadManagementTool.Model
 
         public override string ToString()
         {
-            return string.Format("{0}: ({1}) {2}", PhoneType.ToString(), AreaCode, Number);
+            return string.Format("{0}: ({1}) {2}", PhoneType.Translate(), AreaCode, Number);
         }
     }
 }
