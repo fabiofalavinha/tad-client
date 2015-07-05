@@ -134,19 +134,19 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSave()
         {
-            var task = new Task(() =>
+            var task = new Task<Collaborator>(() =>
             {
                 View.ShowWaitingPanel("Salvando dados do colaborador...");
                 var userRoleViewItem = View.GetUserRoleSelected();
                 if (userRoleViewItem == null) {
                     View.ShowWarningMessage("Selecione um tipo de usuário");
-                    return;
+                    return null;
                 }
                 var name = View.GetName();
                 if (string.IsNullOrWhiteSpace(name))
                 {
                     View.ShowWarningMessage("É obrigatório informar um nome");
-                    return;
+                    return null;
                 }
                 var id = View.GetId();
                 var email = View.GetEmail();
@@ -154,21 +154,21 @@ namespace TadManagementTool.Presenter.Impl
                 if (!emailValidator.Validate(email))
                 {
                     View.ShowWarningMessage("Email inválido");
-                    return;
+                    return null;
                 }
                 var birthDate = View.GetBirthDate();
                 var genderType = View.GetGenderType();
                 if (!genderType.HasValue)
                 {
                     View.ShowWarningMessage("Selecione o sexo do colaborador");
-                    return;
+                    return null;
                 }
                 var startDate = View.GetStartDate();
                 var telephones = View.GetTelephoneList();
                 if (!telephones.Any())
                 {
                     View.ShowWarningMessage("Informe pelo menos um telefone");
-                    return;
+                    return null;
                 }
                 var collaborator = new Collaborator()
                 {
@@ -187,6 +187,7 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 var collaboratorService = new CollaboratorService();
                 collaboratorService.SaveCollaborator(collaborator);
+                return collaborator;
             });
             task.ContinueWith(t =>
             {
@@ -199,7 +200,10 @@ namespace TadManagementTool.Presenter.Impl
             task.ContinueWith(t =>
             {
                 View.HideWaitingPanel();
-                View.OpenListCollaboratorView();
+                if (t.Result != null)
+                {
+                    View.OpenListCollaboratorView();
+                }
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
         }
