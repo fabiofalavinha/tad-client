@@ -11,4 +11,18 @@ namespace TadManagementTool.Model
         Financial = 1,
         Collaborator = 2
     }
+
+    public static class UserRoleExtensions
+    {
+        public static string Translate(this UserRole userRole)
+        {
+            switch (userRole)
+            {
+                case UserRole.Administrator: return "Administrador";
+                case UserRole.Collaborator: return "Colaborador";
+                case UserRole.Financial: return "Financeiro";
+                default: return userRole.ToString();
+            }
+        }
+    }
 }
