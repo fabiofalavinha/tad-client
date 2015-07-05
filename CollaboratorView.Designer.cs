@@ -56,6 +56,7 @@
             this.userRoleLabel = new System.Windows.Forms.Label();
             this.userRoleComboBox = new System.Windows.Forms.ComboBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.startDateCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -147,9 +148,10 @@
             // 
             // startDateTimePicker
             // 
-            this.startDateTimePicker.Location = new System.Drawing.Point(135, 156);
+            this.startDateTimePicker.Enabled = false;
+            this.startDateTimePicker.Location = new System.Drawing.Point(156, 156);
             this.startDateTimePicker.Name = "startDateTimePicker";
-            this.startDateTimePicker.Size = new System.Drawing.Size(255, 20);
+            this.startDateTimePicker.Size = new System.Drawing.Size(234, 20);
             this.startDateTimePicker.TabIndex = 14;
             // 
             // releaseDateLabel
@@ -305,6 +307,16 @@
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
             // 
+            // startDateCheckBox
+            // 
+            this.startDateCheckBox.AutoSize = true;
+            this.startDateCheckBox.Location = new System.Drawing.Point(135, 158);
+            this.startDateCheckBox.Name = "startDateCheckBox";
+            this.startDateCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.startDateCheckBox.TabIndex = 16;
+            this.startDateCheckBox.UseVisualStyleBackColor = true;
+            this.startDateCheckBox.CheckedChanged += new System.EventHandler(this.startDateCheckBox_CheckedChanged);
+            // 
             // CollaboratorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,6 +332,7 @@
             this.Controls.Add(this.addTelephoneButton);
             this.Controls.Add(this.removeTelephoneButton);
             this.Controls.Add(this.telephoneListBox);
+            this.Controls.Add(this.startDateCheckBox);
             this.Controls.Add(this.releaseDateCheckBox);
             this.Controls.Add(this.releaseDateTimePicker);
             this.Controls.Add(this.birthDateTimePicker);
@@ -374,5 +387,6 @@
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.ComboBox userRoleComboBox;
         private System.Windows.Forms.Label userRoleLabel;
+        private System.Windows.Forms.CheckBox startDateCheckBox;
     }
 }

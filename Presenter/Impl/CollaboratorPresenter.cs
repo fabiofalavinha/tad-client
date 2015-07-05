@@ -80,6 +80,11 @@ namespace TadManagementTool.Presenter.Impl
             View.SetReleaseDateEnabled(View.IsReleaseDateOptionChecked());
         }
 
+        public void OnEnableStartDateOption()
+        {
+            View.SetStartDateEnabled(View.IsStartDateOptionChecked());
+        }
+
         public void OnAddTelephone()
         {
             var phoneTypeViewItem = View.GetPhoneTypeSelected();
@@ -177,10 +182,13 @@ namespace TadManagementTool.Presenter.Impl
                     Email = email,
                     Gender = genderType.Value,
                     BirthDate = birthDate,
-                    StartDate = startDate,
                     Telephones = telephones.ToArray(),
                     UserRole = userRoleViewItem.Wrapper
                 };
+                if (View.IsStartDateOptionChecked())
+                {
+                    collaborator.StartDate = View.GetStartDate();
+                }
                 if (View.IsReleaseDateOptionChecked())
                 {
                     collaborator.ReleaseDate = View.GetReleaseDate();

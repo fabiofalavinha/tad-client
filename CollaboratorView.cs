@@ -343,14 +343,17 @@ namespace TadManagementTool
             nameTextBox.Text = name;
         }
 
-        public void SetStartDate(DateTime startDate)
+        public void SetStartDate(DateTime? startDate)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<DateTime>(SetStartDate), startDate);
+                BeginInvoke(new Action<DateTime?>(SetStartDate), startDate);
                 return;
             }
-            startDateTimePicker.Value = startDate;
+            if (startDateCheckBox.Checked = startDate.HasValue)
+            {
+                startDateTimePicker.Value = startDate.Value;
+            }
         }
 
         public void SetGenderType(GenderType genderType)
@@ -416,6 +419,30 @@ namespace TadManagementTool
                 return;
             }
             idLabel.Text = id;
+        }
+
+        private void startDateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            presenter.OnEnableStartDateOption();
+        }
+
+        public bool IsStartDateOptionChecked()
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<bool>(IsStartDateOptionChecked));
+            }
+            return startDateCheckBox.Checked;
+        }
+
+        public void SetStartDateEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetStartDateEnabled), enabled);
+                return;
+            }
+            startDateTimePicker.Enabled = enabled;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace TadManagementTool.View.Impl
         string GetEmail();
         string GetId();
         bool IsReleaseDateOptionChecked();
+        bool IsStartDateOptionChecked();
         DateTime GetBirthDate();
         GenderType? GetGenderType();
         DateTime GetStartDate();
@@ -33,12 +34,13 @@ namespace TadManagementTool.View.Impl
         void ClearPhoneFields();
         void SetUserRole(UserRole userRole);
         void SetName(string name);
-        void SetStartDate(DateTime startDate);
+        void SetStartDate(DateTime? startDate);
         void SetGenderType(GenderType genderType);
         void SetBirthDate(DateTime birthDate);
         void SetEmail(string email);
         void SetReleaseDate(DateTime? releaseDate);
         void SetTelephoneList(Telephone[] telephones);
         void SetId(string id);
+        void SetStartDateEnabled(bool enabled);
     }
 }

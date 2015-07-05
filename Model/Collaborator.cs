@@ -21,7 +21,7 @@ namespace TadManagementTool.Model
         public DateTime BirthDate { get; set; }
         
         [JsonProperty("startDate")]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         
         [JsonProperty("releaseDate")]
         public DateTime? ReleaseDate { get; set; }

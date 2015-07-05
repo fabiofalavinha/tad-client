@@ -10,5 +10,6 @@ namespace TadManagementTool.Presenter
         void OnAddTelephone();
         void OnRemoveTelephone();
         void OnSave();
+        void OnEnableStartDateOption();
     }
 }
