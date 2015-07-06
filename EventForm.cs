@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using TadManagementTool.Model;
 using TadManagementTool.Presenter;
@@ -211,6 +212,81 @@ namespace TadManagementTool
                 return;
             }
             removeEventButton.Visible = visible;
+        }
+
+        private void eventBackColorValueLabel_Click(object sender, EventArgs e)
+        {
+            presenter.OnSelectEventBackColor();
+        }
+
+        private void eventFontColorValueLabel_Click(object sender, EventArgs e)
+        {
+            presenter.OnSelectEventFontColor();
+        }
+
+
+        public Color? SelectEventBackColor()
+        {
+            if (InvokeRequired)
+            {
+                return (Color?)Invoke(new Func<Color?>(SelectEventBackColor));
+            }
+            if (backColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                return backColorDialog.Color;
+            }
+            return null;
+        }
+
+        public Color? SelectEventFontColor()
+        {
+            if (InvokeRequired)
+            {
+                return (Color?)Invoke(new Func<Color?>(SelectEventFontColor));
+            }
+            if (fontColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                return fontColorDialog.Color;
+            }
+            return null;
+        }
+
+        public void SetEventBackColor(Color color)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Color>(SetEventBackColor), color);
+                return;
+            }
+            eventBackColorValueLabel.BackColor = color;
+        }
+
+        public void SetEventFontColor(Color color)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Color>(SetEventFontColor), color);
+                return;
+            }
+            eventFontColorValueLabel.BackColor = color;
+        }
+
+        public Color GetEventBackColor()
+        {
+            if (InvokeRequired)
+            {
+                return (Color)Invoke(new Func<Color>(GetEventBackColor));
+            }
+            return eventBackColorValueLabel.BackColor;
+        }
+
+        public Color GetEventFontColor()
+        {
+            if (InvokeRequired)
+            {
+                return (Color)Invoke(new Func<Color>(GetEventFontColor));
+            }
+            return eventFontColorValueLabel.BackColor;
         }
     }
 }

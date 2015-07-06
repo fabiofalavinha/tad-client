@@ -11,5 +11,7 @@ namespace TadManagementTool.Presenter
         void OnCancel();
         void OnOk();
         void OnRemoveEvent();
+        void OnSelectEventBackColor();
+        void OnSelectEventFontColor();
     }
 }

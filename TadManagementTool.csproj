@@ -201,8 +201,10 @@
     <Compile Include="Presenter\Impl\LoginPresenter.cs" />
     <Compile Include="Presenter\Impl\MainPresenter.cs" />
     <Compile Include="Presenter\Impl\UploadImageFilePresenter.cs" />
+    <Compile Include="Presenter\Impl\UserChangePasswordPresenter.cs" />
     <Compile Include="Presenter\IPresenter.cs" />
     <Compile Include="Presenter\IUploadImageFilePresenter.cs" />
+    <Compile Include="Presenter\IUserChangePasswordPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AbstractService.cs" />
@@ -212,11 +214,18 @@
     <Compile Include="Service\PostService.cs" />
     <Compile Include="Service\UserCredentialsService.cs" />
     <Compile Include="Service\VOs\AuthenticationRequest.cs" />
+    <Compile Include="Service\VOs\ChangePasswordRequest.cs" />
     <Compile Include="UploadImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UploadImageForm.Designer.cs">
       <DependentUpon>UploadImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserChangePasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserChangePasswordForm.Designer.cs">
+      <DependentUpon>UserChangePasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Validator\EmailValidator.cs" />
     <Compile Include="Validator\PhoneAreaCodeValidator.cs" />
@@ -243,6 +252,7 @@
     <Compile Include="View\Items\PostViewItem.cs" />
     <Compile Include="View\Items\TadEvent.cs" />
     <Compile Include="View\Items\UserRoleViewItem.cs" />
+    <Compile Include="View\IUserChangePasswordView.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="View\Impl\OpenCollaboratorMenuViewAction.cs" />
     <EmbeddedResource Include="CalendarUserControl.resx">
@@ -308,6 +318,9 @@
     </Compile>
     <EmbeddedResource Include="UploadImageForm.resx">
       <DependentUpon>UploadImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserChangePasswordForm.resx">
+      <DependentUpon>UserChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Data\tad.db" />

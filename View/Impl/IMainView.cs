@@ -1,4 +1,5 @@
 ﻿
+using TadManagementTool.Model;
 namespace TadManagementTool.View.Impl
 {
     public interface IMainView : IDialogView
@@ -8,5 +9,6 @@ namespace TadManagementTool.View.Impl
         void OpenCalendarView();
         void OpenPostListView();
         void OpenImageListView();
+        void OpenUserChangePasswordView(User user);
     }
 }

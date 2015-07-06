@@ -13,9 +13,9 @@ namespace TadManagementTool.Service
             return restTemplate.GetForObject<IList<Event>>("/events/{year}", year);
         }
 
-        public void AddEvent(Event newEvent)
+        public Event AddEvent(Event newEvent)
         {
-            restTemplate.PostForMessage<Event>("/event", newEvent);
+            return restTemplate.PostForMessage<Event>("/event", newEvent).Body;
         }
 
         public void RemoveEventById(string id)

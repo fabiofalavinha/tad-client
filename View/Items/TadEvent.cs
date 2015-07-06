@@ -1,6 +1,7 @@
 ﻿using Calendar.NET;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using TadManagementTool.Model;
@@ -20,6 +21,14 @@ namespace TadManagementTool.View.Items
             Enabled = true;
             TargetEvent = targetEvent;
             Date = targetEvent.Date;
+            if (!string.IsNullOrWhiteSpace(targetEvent.BackColor))
+            {
+                EventColor = targetEvent.BackColor.FromHex();
+            }
+            if (!string.IsNullOrWhiteSpace(targetEvent.FontColor))
+            {
+                EventTextColor = targetEvent.FontColor.FromHex();
+            }
             EventText = string.Concat(TargetEvent.Title, Environment.NewLine, TargetEvent.Notes);
         }
     }

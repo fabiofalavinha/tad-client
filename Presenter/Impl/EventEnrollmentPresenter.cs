@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,8 @@ namespace TadManagementTool.Presenter.Impl
                 View.SetEventDate(editedEvent.Date);
                 View.SetEventNotes(editedEvent.Notes);
                 View.SetEventVisibility(editedEvent.Visibility);
+                View.SetEventFontColor(editedEvent.FontColor.FromHex(Color.White));
+                View.SetEventBackColor(editedEvent.BackColor.FromHex(Color.Red));
                 View.SetRemoveButtonVisible(true);
             }
             else
@@ -65,20 +68,21 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 var date = View.GetEventDate();
                 var notes = View.GetEventNotes();
-
+                
                 var newEvent = new Event()
                 {
                     Title = title,
                     Date = date,
                     Notes = notes,
-                    Visibility = View.GetEventVisibility()
+                    Visibility = View.GetEventVisibility(),
+                    BackColor = View.GetEventBackColor().ToHex(),
+                    FontColor = View.GetEventFontColor().ToHex()
                 };
                 if (editedEvent != null)
                 {
                     newEvent.Id = editedEvent.Id;
                 }
-                eventService.AddEvent(newEvent);
-                return newEvent;
+                return eventService.AddEvent(newEvent);
             });
             task.ContinueWith(t =>
             {
@@ -126,6 +130,24 @@ namespace TadManagementTool.Presenter.Impl
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
+        }
+
+        public void OnSelectEventBackColor()
+        {
+            var eventColor = View.SelectEventBackColor();
+            if (eventColor.HasValue)
+            {
+                View.SetEventBackColor(eventColor.Value);
+            }
+        }
+
+        public void OnSelectEventFontColor()
+        {
+            var color = View.SelectEventFontColor();
+            if (color.HasValue)
+            {
+                View.SetEventFontColor(color.Value);
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using TadManagementTool.Model;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Properties;
@@ -163,6 +164,24 @@ namespace TadManagementTool
             var userControl = new ImageListUserControl(this);
             userControl.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(userControl);
+        }
+
+        private void alterarSenhaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            presenter.OnUserChangePassword();
+        }
+
+        public void OpenUserChangePasswordView(User user)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<User>(OpenUserChangePasswordView), user);
+                return;
+            }
+            using (var form = new UserChangePasswordForm(user))
+            {
+                form.ShowDialog();
+            }
         }
     }
 }

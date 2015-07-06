@@ -16,5 +16,10 @@ namespace TadManagementTool.Service
         {
             return  restTemplate.PostForObject<User>("/authenticate", new AuthenticationRequest() { UserName = userName, Password = password });
         }
+
+        public void ChangePassword(string newPassword, string currentPassword, User user)
+        {
+            restTemplate.PostForObject<ChangePasswordRequest>("/changePassword", new ChangePasswordRequest() { Id = user.Id, NewPassword = newPassword, OldPassword = currentPassword });
+        }
     }
 }

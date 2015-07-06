@@ -1,4 +1,5 @@
-﻿using TadManagementTool.View;
+﻿using TadManagementTool.Model;
+using TadManagementTool.View;
 using TadManagementTool.View.Impl;
 
 namespace TadManagementTool.Presenter.Impl
@@ -17,6 +18,11 @@ namespace TadManagementTool.Presenter.Impl
         public void OnMenuItemSelect(IMenuActionView menuActionView)
         {
             menuActionView.Open(View);
+        }
+
+        public void OnUserChangePassword()
+        {
+            View.OpenUserChangePasswordView(UserContext.GetInstance().LoggedUser);
         }
     }
 }

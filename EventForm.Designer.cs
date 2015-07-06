@@ -37,16 +37,24 @@
             this.eventNotesTextBox = new System.Windows.Forms.TextBox();
             this.eventDateLabel = new System.Windows.Forms.Label();
             this.eventDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.eventVisibilityLabel = new System.Windows.Forms.Label();
             this.eventPublicVisibilityRadioButton = new System.Windows.Forms.RadioButton();
             this.eventInternalVisibilityRadioButton = new System.Windows.Forms.RadioButton();
             this.removeEventButton = new System.Windows.Forms.Button();
+            this.eventBackColorLabel = new System.Windows.Forms.Label();
+            this.backColorDialog = new System.Windows.Forms.ColorDialog();
+            this.eventColorFontLabel = new System.Windows.Forms.Label();
+            this.eventBackColorValueLabel = new System.Windows.Forms.Label();
+            this.eventFontColorValueLabel = new System.Windows.Forms.Label();
+            this.eventColorGroupBox = new System.Windows.Forms.GroupBox();
+            this.fontColorDialog = new System.Windows.Forms.ColorDialog();
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.eventColorGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(393, 245);
+            this.cancelButton.Location = new System.Drawing.Point(393, 299);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 0;
@@ -56,7 +64,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(312, 245);
+            this.okButton.Location = new System.Drawing.Point(312, 299);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 0;
@@ -67,7 +75,7 @@
             // eventTitleLabel
             // 
             this.eventTitleLabel.AutoSize = true;
-            this.eventTitleLabel.Location = new System.Drawing.Point(31, 19);
+            this.eventTitleLabel.Location = new System.Drawing.Point(34, 19);
             this.eventTitleLabel.Name = "eventTitleLabel";
             this.eventTitleLabel.Size = new System.Drawing.Size(38, 13);
             this.eventTitleLabel.TabIndex = 1;
@@ -83,7 +91,7 @@
             // eventNotesLabel
             // 
             this.eventNotesLabel.AutoSize = true;
-            this.eventNotesLabel.Location = new System.Drawing.Point(11, 77);
+            this.eventNotesLabel.Location = new System.Drawing.Point(16, 77);
             this.eventNotesLabel.Name = "eventNotesLabel";
             this.eventNotesLabel.Size = new System.Drawing.Size(58, 13);
             this.eventNotesLabel.TabIndex = 3;
@@ -100,7 +108,7 @@
             // eventDateLabel
             // 
             this.eventDateLabel.AutoSize = true;
-            this.eventDateLabel.Location = new System.Drawing.Point(36, 47);
+            this.eventDateLabel.Location = new System.Drawing.Point(39, 47);
             this.eventDateLabel.Name = "eventDateLabel";
             this.eventDateLabel.Size = new System.Drawing.Size(33, 13);
             this.eventDateLabel.TabIndex = 3;
@@ -113,15 +121,10 @@
             this.eventDateTimePicker.Size = new System.Drawing.Size(225, 20);
             this.eventDateTimePicker.TabIndex = 5;
             // 
-            // modalWaitingPanel
-            // 
-            this.modalWaitingPanel.DisplayText = null;
-            this.modalWaitingPanel.RelatedControl = this;
-            // 
             // eventVisibilityLabel
             // 
             this.eventVisibilityLabel.AutoSize = true;
-            this.eventVisibilityLabel.Location = new System.Drawing.Point(7, 209);
+            this.eventVisibilityLabel.Location = new System.Drawing.Point(12, 209);
             this.eventVisibilityLabel.Name = "eventVisibilityLabel";
             this.eventVisibilityLabel.Size = new System.Drawing.Size(62, 13);
             this.eventVisibilityLabel.TabIndex = 3;
@@ -151,7 +154,7 @@
             // 
             // removeEventButton
             // 
-            this.removeEventButton.Location = new System.Drawing.Point(10, 245);
+            this.removeEventButton.Location = new System.Drawing.Point(15, 299);
             this.removeEventButton.Name = "removeEventButton";
             this.removeEventButton.Size = new System.Drawing.Size(80, 23);
             this.removeEventButton.TabIndex = 0;
@@ -159,11 +162,68 @@
             this.removeEventButton.UseVisualStyleBackColor = true;
             this.removeEventButton.Click += new System.EventHandler(this.removeEventButton_Click);
             // 
+            // eventBackColorLabel
+            // 
+            this.eventBackColorLabel.AutoSize = true;
+            this.eventBackColorLabel.Location = new System.Drawing.Point(54, 19);
+            this.eventBackColorLabel.Name = "eventBackColorLabel";
+            this.eventBackColorLabel.Size = new System.Drawing.Size(40, 13);
+            this.eventBackColorLabel.TabIndex = 7;
+            this.eventBackColorLabel.Text = "Fundo:";
+            // 
+            // eventColorFontLabel
+            // 
+            this.eventColorFontLabel.AutoSize = true;
+            this.eventColorFontLabel.Location = new System.Drawing.Point(164, 19);
+            this.eventColorFontLabel.Name = "eventColorFontLabel";
+            this.eventColorFontLabel.Size = new System.Drawing.Size(37, 13);
+            this.eventColorFontLabel.TabIndex = 8;
+            this.eventColorFontLabel.Text = "Fonte:";
+            // 
+            // eventBackColorValueLabel
+            // 
+            this.eventBackColorValueLabel.BackColor = System.Drawing.Color.Red;
+            this.eventBackColorValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.eventBackColorValueLabel.Location = new System.Drawing.Point(95, 19);
+            this.eventBackColorValueLabel.Name = "eventBackColorValueLabel";
+            this.eventBackColorValueLabel.Size = new System.Drawing.Size(35, 13);
+            this.eventBackColorValueLabel.TabIndex = 9;
+            this.eventBackColorValueLabel.Click += new System.EventHandler(this.eventBackColorValueLabel_Click);
+            // 
+            // eventFontColorValueLabel
+            // 
+            this.eventFontColorValueLabel.BackColor = System.Drawing.Color.White;
+            this.eventFontColorValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.eventFontColorValueLabel.Location = new System.Drawing.Point(204, 19);
+            this.eventFontColorValueLabel.Name = "eventFontColorValueLabel";
+            this.eventFontColorValueLabel.Size = new System.Drawing.Size(35, 13);
+            this.eventFontColorValueLabel.TabIndex = 9;
+            this.eventFontColorValueLabel.Click += new System.EventHandler(this.eventFontColorValueLabel_Click);
+            // 
+            // eventColorGroupBox
+            // 
+            this.eventColorGroupBox.Controls.Add(this.eventBackColorLabel);
+            this.eventColorGroupBox.Controls.Add(this.eventFontColorValueLabel);
+            this.eventColorGroupBox.Controls.Add(this.eventBackColorValueLabel);
+            this.eventColorGroupBox.Controls.Add(this.eventColorFontLabel);
+            this.eventColorGroupBox.Location = new System.Drawing.Point(19, 235);
+            this.eventColorGroupBox.Name = "eventColorGroupBox";
+            this.eventColorGroupBox.Size = new System.Drawing.Size(449, 45);
+            this.eventColorGroupBox.TabIndex = 10;
+            this.eventColorGroupBox.TabStop = false;
+            this.eventColorGroupBox.Text = "Cor";
+            // 
+            // modalWaitingPanel
+            // 
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = this;
+            // 
             // EventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 280);
+            this.ClientSize = new System.Drawing.Size(485, 334);
+            this.Controls.Add(this.eventColorGroupBox);
             this.Controls.Add(this.eventInternalVisibilityRadioButton);
             this.Controls.Add(this.eventPublicVisibilityRadioButton);
             this.Controls.Add(this.eventDateTimePicker);
@@ -184,6 +244,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Evento";
             this.Load += new System.EventHandler(this.EventForm_Load);
+            this.eventColorGroupBox.ResumeLayout(false);
+            this.eventColorGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +266,12 @@
         private System.Windows.Forms.RadioButton eventPublicVisibilityRadioButton;
         private System.Windows.Forms.Label eventVisibilityLabel;
         private System.Windows.Forms.Button removeEventButton;
+        private System.Windows.Forms.Label eventBackColorValueLabel;
+        private System.Windows.Forms.Label eventColorFontLabel;
+        private System.Windows.Forms.Label eventBackColorLabel;
+        private System.Windows.Forms.ColorDialog backColorDialog;
+        private System.Windows.Forms.Label eventFontColorValueLabel;
+        private System.Windows.Forms.GroupBox eventColorGroupBox;
+        private System.Windows.Forms.ColorDialog fontColorDialog;
     }
 }

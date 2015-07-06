@@ -113,7 +113,7 @@ namespace TadManagementTool
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LinkDialog";
-            this.Text = "Create a Link";
+            this.Text = "Criar Link";
             this.Load += new System.EventHandler(this.LinkDialog_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
