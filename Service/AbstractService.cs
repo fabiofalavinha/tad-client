@@ -14,6 +14,8 @@ namespace TadManagementTool.Service
 {
     public abstract class AbstractService
     {
+        private const int DefaultRequestTimeoutInMilliseconds = 1000;
+
         protected readonly RestTemplate restTemplate;
 
         public AbstractService()
@@ -21,6 +23,7 @@ namespace TadManagementTool.Service
             this.restTemplate = new RestTemplate(ConfigurationManager.AppSettings["tad.server"]);
             this.restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             this.restTemplate.ErrorHandler = new CustomResponseErrorHandler();
+            this.restTemplate.RequestFactory = new CustomClientHttpRequestFactory(DefaultRequestTimeoutInMilliseconds);
         }
 
         private class CustomResponseErrorHandler : IResponseErrorHandler
@@ -39,5 +42,12 @@ namespace TadManagementTool.Service
             }
         }
 
+        private class CustomClientHttpRequestFactory : WebClientHttpRequestFactory
+        {
+            public CustomClientHttpRequestFactory(int timeout)
+            {
+                Timeout = timeout;
+            }
+        }
     }
 }
