@@ -182,12 +182,6 @@
     <Compile Include="PostListUserControl.Designer.cs">
       <DependentUpon>PostListUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PostUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PostUserControl.Designer.cs">
-      <DependentUpon>PostUserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presenter\AbstractControlPresenter.cs" />
     <Compile Include="Presenter\AbstractDialogPresenter.cs" />
     <Compile Include="Presenter\ICalendarPresenter.cs" />
@@ -301,9 +295,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PostListUserControl.resx">
       <DependentUpon>PostListUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PostUserControl.resx">
-      <DependentUpon>PostUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
