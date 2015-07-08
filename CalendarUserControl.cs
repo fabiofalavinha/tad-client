@@ -150,6 +150,16 @@ namespace TadManagementTool
         {
             calendarControl.AddEvent(new TadEvent(newEvent));
         }
+
+        public void SetCalendarMonthTo(DateTime now)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime>(SetCalendarMonthTo), now);
+                return;
+            }
+            calendarControl.CalendarDate = now;
+        }
     }
 
     class CustomEventDetailsCallback : IEventDetailsCallback

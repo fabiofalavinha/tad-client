@@ -37,6 +37,7 @@ namespace TadManagementTool.Presenter.Impl
             task.ContinueWith(t => 
             {
                 View.HideWaitingPanel();
+                View.SetCalendarMonthTo(DateTime.Now);
                 View.SetEvents(t.Result);
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();

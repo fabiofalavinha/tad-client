@@ -14,5 +14,6 @@ namespace TadManagementTool.View.Impl
         EventResult OpenEnrollmentEventView(Event targetEvent);
         void SetEvents(IList<Event> events);
         void AddEvent(Event newEvent);
+        void SetCalendarMonthTo(DateTime now);
     }
 }

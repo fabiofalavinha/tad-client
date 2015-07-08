@@ -42,13 +42,14 @@
             this.calendarControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.calendarControl.CalendarDate = new System.DateTime(2015, 6, 12, 12, 3, 41, 637);
+            this.calendarControl.CalendarDate = new System.DateTime(2015, 6, 12, 12, 3, 0, 0);
             this.calendarControl.CalendarView = Calendar.NET.CalendarViews.Month;
             this.calendarControl.DateHeaderFont = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.calendarControl.DayOfWeekFont = new System.Drawing.Font("Arial", 10F);
             this.calendarControl.DaysFont = new System.Drawing.Font("Arial", 10F);
             this.calendarControl.DayViewTimeFont = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.calendarControl.DimDisabledEvents = true;
+            this.calendarControl.EventDetailsCallback = null;
             this.calendarControl.HighlightCurrentDay = true;
             this.calendarControl.LoadPresetHolidays = false;
             this.calendarControl.Location = new System.Drawing.Point(0, 0);
