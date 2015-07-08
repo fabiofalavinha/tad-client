@@ -40,6 +40,8 @@
             this.collaboratorDetailButton = new System.Windows.Forms.Button();
             this.removeCollaboratorButton = new System.Windows.Forms.Button();
             this.newCollaboratorButton = new System.Windows.Forms.Button();
+            this.activeCollaboratorCountLabel = new System.Windows.Forms.Label();
+            this.activeCollaboratorCountValueLabel = new System.Windows.Forms.Label();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
@@ -60,11 +62,15 @@
             this.CollaboratorGenderColumn,
             this.CollaboratorTelephoneColumn,
             this.CollaboratorActiveColumn});
-            this.dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView.Location = new System.Drawing.Point(0, 32);
+            this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(648, 337);
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(651, 305);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             // 
             // CollaboratorNameColumn
             // 
@@ -142,6 +148,25 @@
             this.newCollaboratorButton.UseVisualStyleBackColor = true;
             this.newCollaboratorButton.Click += new System.EventHandler(this.newCollaboratorButton_Click);
             // 
+            // activeCollaboratorCountLabel
+            // 
+            this.activeCollaboratorCountLabel.AutoSize = true;
+            this.activeCollaboratorCountLabel.Location = new System.Drawing.Point(9, 8);
+            this.activeCollaboratorCountLabel.Name = "activeCollaboratorCountLabel";
+            this.activeCollaboratorCountLabel.Size = new System.Drawing.Size(39, 13);
+            this.activeCollaboratorCountLabel.TabIndex = 2;
+            this.activeCollaboratorCountLabel.Text = "Ativos:";
+            // 
+            // activeCollaboratorCountValueLabel
+            // 
+            this.activeCollaboratorCountValueLabel.AutoSize = true;
+            this.activeCollaboratorCountValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activeCollaboratorCountValueLabel.Location = new System.Drawing.Point(54, 6);
+            this.activeCollaboratorCountValueLabel.Name = "activeCollaboratorCountValueLabel";
+            this.activeCollaboratorCountValueLabel.Size = new System.Drawing.Size(34, 16);
+            this.activeCollaboratorCountValueLabel.TabIndex = 3;
+            this.activeCollaboratorCountValueLabel.Text = "N/A";
+            // 
             // modalWaitingPanel
             // 
             this.modalWaitingPanel.DisplayText = null;
@@ -153,6 +178,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Controls.Add(this.activeCollaboratorCountValueLabel);
+            this.Controls.Add(this.activeCollaboratorCountLabel);
             this.Controls.Add(this.removeCollaboratorButton);
             this.Controls.Add(this.newCollaboratorButton);
             this.Controls.Add(this.collaboratorDetailButton);
@@ -164,6 +191,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -181,5 +209,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorGenderColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorTelephoneColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorActiveColumn;
+        private System.Windows.Forms.Label activeCollaboratorCountValueLabel;
+        private System.Windows.Forms.Label activeCollaboratorCountLabel;
     }
 }

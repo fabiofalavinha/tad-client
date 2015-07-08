@@ -23,7 +23,6 @@ namespace TadManagementTool.Service
             this.restTemplate = new RestTemplate(ConfigurationManager.AppSettings["tad.server"]);
             this.restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             this.restTemplate.ErrorHandler = new CustomResponseErrorHandler();
-            this.restTemplate.RequestFactory = new CustomClientHttpRequestFactory(DefaultRequestTimeoutInMilliseconds);
         }
 
         private class CustomResponseErrorHandler : IResponseErrorHandler

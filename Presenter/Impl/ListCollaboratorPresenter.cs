@@ -21,6 +21,7 @@ namespace TadManagementTool.Presenter.Impl
         private void DoSetCollaboratorList(IList<Collaborator> list)
         {
             View.SetCollaboratorList(list.Select(c => new CollaboratorViewItem(c)).ToArray());
+            View.SetActiveCollaboratorCount(list.Count(c => c.Active));
         }
 
         public void InitView()

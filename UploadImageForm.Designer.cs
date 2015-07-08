@@ -71,7 +71,7 @@
             this.startUploadButton.Name = "startUploadButton";
             this.startUploadButton.Size = new System.Drawing.Size(75, 23);
             this.startUploadButton.TabIndex = 2;
-            this.startUploadButton.Text = "Upload";
+            this.startUploadButton.Text = "Iniciar";
             this.startUploadButton.UseVisualStyleBackColor = true;
             this.startUploadButton.Click += new System.EventHandler(this.startUploadButton_Click);
             // 
@@ -90,7 +90,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 157);
-            this.ControlBox = false;
             this.Controls.Add(this.startUploadButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);

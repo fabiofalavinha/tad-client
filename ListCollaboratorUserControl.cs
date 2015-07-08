@@ -153,5 +153,20 @@ namespace TadManagementTool
                 Dock = DockStyle.Fill
             });
         }
+
+        public void SetActiveCollaboratorCount(int count)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<int>(SetActiveCollaboratorCount), count);
+                return;
+            }
+            activeCollaboratorCountValueLabel.Text = count.ToString();
+        }
+
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OnViewCollaboratorDetails();
+        }
     }
 }

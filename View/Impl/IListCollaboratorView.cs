@@ -14,5 +14,6 @@ namespace TadManagementTool.View.Impl
         void SetCollaboratorList(IList<CollaboratorViewItem> list);
         void OpenCollaboratorView();
         void OpenCollaboratorView(Collaborator collaborator);
+        void SetActiveCollaboratorCount(int count);
     }
 }
