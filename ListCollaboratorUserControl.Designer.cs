@@ -42,6 +42,8 @@
             this.newCollaboratorButton = new System.Windows.Forms.Button();
             this.activeCollaboratorCountLabel = new System.Windows.Forms.Label();
             this.activeCollaboratorCountValueLabel = new System.Windows.Forms.Label();
+            this.exportToExcelButton = new System.Windows.Forms.Button();
+            this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
@@ -131,7 +133,7 @@
             this.removeCollaboratorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.removeCollaboratorButton.Location = new System.Drawing.Point(3, 343);
             this.removeCollaboratorButton.Name = "removeCollaboratorButton";
-            this.removeCollaboratorButton.Size = new System.Drawing.Size(112, 28);
+            this.removeCollaboratorButton.Size = new System.Drawing.Size(85, 28);
             this.removeCollaboratorButton.TabIndex = 1;
             this.removeCollaboratorButton.Text = "Apagar";
             this.removeCollaboratorButton.UseVisualStyleBackColor = true;
@@ -167,6 +169,21 @@
             this.activeCollaboratorCountValueLabel.TabIndex = 3;
             this.activeCollaboratorCountValueLabel.Text = "N/A";
             // 
+            // exportToExcelButton
+            // 
+            this.exportToExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.exportToExcelButton.Location = new System.Drawing.Point(94, 343);
+            this.exportToExcelButton.Name = "exportToExcelButton";
+            this.exportToExcelButton.Size = new System.Drawing.Size(101, 28);
+            this.exportToExcelButton.TabIndex = 1;
+            this.exportToExcelButton.Text = "Export p/ Excel";
+            this.exportToExcelButton.UseVisualStyleBackColor = true;
+            this.exportToExcelButton.Click += new System.EventHandler(this.exportToExcelButton_Click);
+            // 
+            // exportToExcelSaveFileDialog
+            // 
+            this.exportToExcelSaveFileDialog.Filter = "Excel files|*.xlsx";
+            // 
             // modalWaitingPanel
             // 
             this.modalWaitingPanel.DisplayText = null;
@@ -180,6 +197,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.Controls.Add(this.activeCollaboratorCountValueLabel);
             this.Controls.Add(this.activeCollaboratorCountLabel);
+            this.Controls.Add(this.exportToExcelButton);
             this.Controls.Add(this.removeCollaboratorButton);
             this.Controls.Add(this.newCollaboratorButton);
             this.Controls.Add(this.collaboratorDetailButton);
@@ -211,5 +229,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorActiveColumn;
         private System.Windows.Forms.Label activeCollaboratorCountValueLabel;
         private System.Windows.Forms.Label activeCollaboratorCountLabel;
+        private System.Windows.Forms.Button exportToExcelButton;
+        private System.Windows.Forms.SaveFileDialog exportToExcelSaveFileDialog;
     }
 }

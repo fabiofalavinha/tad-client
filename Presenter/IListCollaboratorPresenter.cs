@@ -10,5 +10,6 @@ namespace TadManagementTool.Presenter
         void OnRemoveCollaborator();
         void OnNewCollaborator();
         void OnViewCollaboratorDetails();
+        void OnExportToExcel();
     }
 }

@@ -1,5 +1,10 @@
-﻿using System;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.HSSF.Util;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,11 +93,11 @@ namespace TadManagementTool.Presenter.Impl
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
             {
+                View.HideWaitingPanel();
                 foreach (var innerException in t.Exception.InnerExceptions)
                 {
                     View.ShowErrorMessage(string.Format("Ocorreu um erro ao excluir o colaborador: {0}", innerException.Message));
                 }
-                View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
         }
@@ -113,6 +118,39 @@ namespace TadManagementTool.Presenter.Impl
             {
                 View.ShowWarningMessage("Selecione o colaborador para ver os detalhes");
             }
+        }
+
+        public void OnExportToExcel()
+        {
+            var task = new Task<string>(() =>
+            {
+                var filePath = View.SelectFilePathToSaveExcelFile();
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    return null;
+                }
+                View.ShowWaitingPanel("Exportando lista de colaboradores para excel...");
+                var collaboratorService = new CollaboratorService();
+                collaboratorService.ExportToExcel(View.GetCollaboratorList().Select(i => i.Wrapper).ToArray(), filePath);
+                return filePath;
+            });
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                if (t.Result != null)
+                {
+                    View.ShowSuccessMessage(string.Format("Planilha excel foi gerada em '{0}'", t.Result));
+                }
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao excluir o colaborador: {0}", innerException.Message));
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
         }
     }
 }

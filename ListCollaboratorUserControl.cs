@@ -168,5 +168,43 @@ namespace TadManagementTool
         {
             presenter.OnViewCollaboratorDetails();
         }
+
+        private void exportToExcelButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnExportToExcel();
+        }
+
+        public IList<CollaboratorViewItem> GetCollaboratorList()
+        {
+            if (InvokeRequired)
+            {
+                return (IList<CollaboratorViewItem>)Invoke(new Func<IList<CollaboratorViewItem>>(GetCollaboratorList));
+            }
+            return dataGridView.Rows.Cast<DataGridViewRow>().Select(r => (CollaboratorViewItem)r.DataBoundItem).ToArray();
+        }
+
+        public string SelectFilePathToSaveExcelFile()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(SelectFilePathToSaveExcelFile));
+            }
+            var dialogResult = exportToExcelSaveFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                return exportToExcelSaveFileDialog.FileName;
+            }
+            return null;
+        }
+
+        public void ShowSuccessMessage(string message)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowSuccessMessage), message);
+                return;
+            }
+            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
