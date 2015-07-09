@@ -30,12 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.postDataGridView = new System.Windows.Forms.DataGridView();
-            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonPanel = new System.Windows.Forms.Panel();
-            this.viewDetailsButton = new System.Windows.Forms.Button();
-            this.removeButton = new System.Windows.Forms.Button();
-            this.publishedButton = new System.Windows.Forms.Button();
-            this.newPostButton = new System.Windows.Forms.Button();
             this.postTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postCreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postCreadedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +37,12 @@
             this.postModifiedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postVisibilityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.publishedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonPanel = new System.Windows.Forms.Panel();
+            this.newPostButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
+            this.publishedButton = new System.Windows.Forms.Button();
+            this.viewDetailsButton = new System.Windows.Forms.Button();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.postDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
@@ -66,66 +66,13 @@
             this.postVisibilityColumn,
             this.publishedColumn});
             this.postDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.postDataGridView.MultiSelect = false;
             this.postDataGridView.Name = "postDataGridView";
             this.postDataGridView.ReadOnly = true;
             this.postDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.postDataGridView.Size = new System.Drawing.Size(656, 371);
             this.postDataGridView.TabIndex = 0;
-            // 
-            // buttonPanel
-            // 
-            this.buttonPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.buttonPanel.Controls.Add(this.newPostButton);
-            this.buttonPanel.Controls.Add(this.removeButton);
-            this.buttonPanel.Controls.Add(this.publishedButton);
-            this.buttonPanel.Controls.Add(this.viewDetailsButton);
-            this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonPanel.Location = new System.Drawing.Point(0, 377);
-            this.buttonPanel.Name = "buttonPanel";
-            this.buttonPanel.Size = new System.Drawing.Size(656, 54);
-            this.buttonPanel.TabIndex = 1;
-            // 
-            // viewDetailsButton
-            // 
-            this.viewDetailsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewDetailsButton.Location = new System.Drawing.Point(419, 13);
-            this.viewDetailsButton.Name = "viewDetailsButton";
-            this.viewDetailsButton.Size = new System.Drawing.Size(103, 23);
-            this.viewDetailsButton.TabIndex = 0;
-            this.viewDetailsButton.Text = "Ver Detalhes...";
-            this.viewDetailsButton.UseVisualStyleBackColor = true;
-            this.viewDetailsButton.Click += new System.EventHandler(this.viewDetailsButton_Click);
-            // 
-            // removeButton
-            // 
-            this.removeButton.Location = new System.Drawing.Point(13, 13);
-            this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(75, 23);
-            this.removeButton.TabIndex = 0;
-            this.removeButton.Text = "Apagar";
-            this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
-            // 
-            // publishedButton
-            // 
-            this.publishedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.publishedButton.Location = new System.Drawing.Point(537, 13);
-            this.publishedButton.Name = "publishedButton";
-            this.publishedButton.Size = new System.Drawing.Size(103, 23);
-            this.publishedButton.TabIndex = 0;
-            this.publishedButton.Text = "Publicar";
-            this.publishedButton.UseVisualStyleBackColor = true;
-            this.publishedButton.Click += new System.EventHandler(this.publishedButton_Click);
-            // 
-            // newPostButton
-            // 
-            this.newPostButton.Location = new System.Drawing.Point(103, 13);
-            this.newPostButton.Name = "newPostButton";
-            this.newPostButton.Size = new System.Drawing.Size(75, 23);
-            this.newPostButton.TabIndex = 0;
-            this.newPostButton.Text = "Novo";
-            this.newPostButton.UseVisualStyleBackColor = true;
-            this.newPostButton.Click += new System.EventHandler(this.newPostButton_Click);
+            this.postDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.postDataGridView_CellDoubleClick);
             // 
             // postTitleColumn
             // 
@@ -175,6 +122,61 @@
             this.publishedColumn.HeaderText = "Publicado?";
             this.publishedColumn.Name = "publishedColumn";
             this.publishedColumn.ReadOnly = true;
+            // 
+            // buttonPanel
+            // 
+            this.buttonPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buttonPanel.Controls.Add(this.newPostButton);
+            this.buttonPanel.Controls.Add(this.removeButton);
+            this.buttonPanel.Controls.Add(this.publishedButton);
+            this.buttonPanel.Controls.Add(this.viewDetailsButton);
+            this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonPanel.Location = new System.Drawing.Point(0, 377);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(656, 54);
+            this.buttonPanel.TabIndex = 1;
+            // 
+            // newPostButton
+            // 
+            this.newPostButton.Location = new System.Drawing.Point(103, 13);
+            this.newPostButton.Name = "newPostButton";
+            this.newPostButton.Size = new System.Drawing.Size(75, 23);
+            this.newPostButton.TabIndex = 0;
+            this.newPostButton.Text = "Novo";
+            this.newPostButton.UseVisualStyleBackColor = true;
+            this.newPostButton.Click += new System.EventHandler(this.newPostButton_Click);
+            // 
+            // removeButton
+            // 
+            this.removeButton.Location = new System.Drawing.Point(13, 13);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(75, 23);
+            this.removeButton.TabIndex = 0;
+            this.removeButton.Text = "Apagar";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            // 
+            // publishedButton
+            // 
+            this.publishedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.publishedButton.Location = new System.Drawing.Point(537, 13);
+            this.publishedButton.Name = "publishedButton";
+            this.publishedButton.Size = new System.Drawing.Size(103, 23);
+            this.publishedButton.TabIndex = 0;
+            this.publishedButton.Text = "Publicar";
+            this.publishedButton.UseVisualStyleBackColor = true;
+            this.publishedButton.Click += new System.EventHandler(this.publishedButton_Click);
+            // 
+            // viewDetailsButton
+            // 
+            this.viewDetailsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewDetailsButton.Location = new System.Drawing.Point(419, 13);
+            this.viewDetailsButton.Name = "viewDetailsButton";
+            this.viewDetailsButton.Size = new System.Drawing.Size(103, 23);
+            this.viewDetailsButton.TabIndex = 0;
+            this.viewDetailsButton.Text = "Ver Detalhes...";
+            this.viewDetailsButton.UseVisualStyleBackColor = true;
+            this.viewDetailsButton.Click += new System.EventHandler(this.viewDetailsButton_Click);
             // 
             // modalWaitingPanel
             // 

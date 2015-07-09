@@ -158,5 +158,10 @@ namespace TadManagementTool
             }
             return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
+
+        private void postDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OnViewPostDetails();
+        }
     }
 }
