@@ -43,7 +43,9 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.publishedButton = new System.Windows.Forms.Button();
             this.viewDetailsButton = new System.Windows.Forms.Button();
+            this.orderPostListCheckBox = new System.Windows.Forms.CheckBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.saveOrderListButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.postDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.buttonPanel.SuspendLayout();
@@ -65,14 +67,22 @@
             this.postModifiedByColumn,
             this.postVisibilityColumn,
             this.publishedColumn});
-            this.postDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.postDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.postDataGridView.Location = new System.Drawing.Point(0, 36);
             this.postDataGridView.MultiSelect = false;
             this.postDataGridView.Name = "postDataGridView";
             this.postDataGridView.ReadOnly = true;
             this.postDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.postDataGridView.Size = new System.Drawing.Size(656, 371);
+            this.postDataGridView.ShowCellErrors = false;
+            this.postDataGridView.ShowEditingIcon = false;
+            this.postDataGridView.ShowRowErrors = false;
+            this.postDataGridView.Size = new System.Drawing.Size(656, 335);
             this.postDataGridView.TabIndex = 0;
             this.postDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.postDataGridView_CellDoubleClick);
+            this.postDataGridView.DragDrop += new System.Windows.Forms.DragEventHandler(this.postDataGridView_DragDrop);
+            this.postDataGridView.DragOver += new System.Windows.Forms.DragEventHandler(this.postDataGridView_DragOver);
+            this.postDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.postDataGridView_MouseDown);
+            this.postDataGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.postDataGridView_MouseMove);
             // 
             // postTitleColumn
             // 
@@ -178,15 +188,39 @@
             this.viewDetailsButton.UseVisualStyleBackColor = true;
             this.viewDetailsButton.Click += new System.EventHandler(this.viewDetailsButton_Click);
             // 
+            // orderPostListCheckBox
+            // 
+            this.orderPostListCheckBox.AutoSize = true;
+            this.orderPostListCheckBox.Location = new System.Drawing.Point(15, 10);
+            this.orderPostListCheckBox.Name = "orderPostListCheckBox";
+            this.orderPostListCheckBox.Size = new System.Drawing.Size(88, 17);
+            this.orderPostListCheckBox.TabIndex = 2;
+            this.orderPostListCheckBox.Text = "Ordernar lista";
+            this.orderPostListCheckBox.UseVisualStyleBackColor = true;
+            this.orderPostListCheckBox.CheckedChanged += new System.EventHandler(this.orderPostListCheckBox_CheckedChanged);
+            // 
             // modalWaitingPanel
             // 
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
             // 
+            // saveOrderListButton
+            // 
+            this.saveOrderListButton.Location = new System.Drawing.Point(110, 7);
+            this.saveOrderListButton.Name = "saveOrderListButton";
+            this.saveOrderListButton.Size = new System.Drawing.Size(75, 23);
+            this.saveOrderListButton.TabIndex = 3;
+            this.saveOrderListButton.Text = "Salvar";
+            this.saveOrderListButton.UseVisualStyleBackColor = true;
+            this.saveOrderListButton.Visible = false;
+            this.saveOrderListButton.Click += new System.EventHandler(this.saveOrderListButton_Click);
+            // 
             // PostListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.saveOrderListButton);
+            this.Controls.Add(this.orderPostListCheckBox);
             this.Controls.Add(this.buttonPanel);
             this.Controls.Add(this.postDataGridView);
             this.DoubleBuffered = true;
@@ -197,6 +231,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -217,6 +252,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn postModifiedByColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postVisibilityColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn publishedColumn;
+        private System.Windows.Forms.CheckBox orderPostListCheckBox;
+        private System.Windows.Forms.Button saveOrderListButton;
 
     }
 }

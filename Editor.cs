@@ -1823,7 +1823,7 @@ namespace TadManagementTool
             }
 
             var postService = new PostService();
-            postService.savePost(post);
+            postService.SavePost(post);
         }
     }
 

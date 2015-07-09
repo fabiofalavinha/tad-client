@@ -33,7 +33,7 @@ namespace TadManagementTool.Presenter.Impl
         {
             var task = new Task<User>(() =>
             {
-                View.ShowWaitingPanel("Sign in...");
+                View.ShowWaitingPanel("Autenticando...");
                 var userName = View.GetUserName();
                 var password = View.GetPassword();
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))

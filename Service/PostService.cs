@@ -8,17 +8,17 @@ namespace TadManagementTool.Service
 {
     public class PostService : AbstractService
     {
-        public IList<Post> findPosts(User user)
+        public IList<Post> FindPosts(User user)
         {
             return restTemplate.GetForObject<IList<Post>>("/posts/{userId}", user.Id);
         }
 
-        public void removePost(Post post)
+        public void RemovePost(Post post)
         {
             restTemplate.Delete("/post/{id}", post.Id);
         }
 
-        public void savePost(Post post)
+        public void SavePost(Post post)
         {
             restTemplate.PostForObject<Post>("/post", post);
         }

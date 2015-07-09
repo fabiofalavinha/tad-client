@@ -265,6 +265,7 @@
     <Compile Include="View\Items\EventResult.cs" />
     <Compile Include="View\Items\ImageCarouselViewItem.cs" />
     <Compile Include="View\Items\PhoneTypeViewItem.cs" />
+    <Compile Include="View\Items\PostOrderViewItem.cs" />
     <Compile Include="View\Items\PostViewItem.cs" />
     <Compile Include="View\Items\TadEvent.cs" />
     <Compile Include="View\Items\UserRoleViewItem.cs" />

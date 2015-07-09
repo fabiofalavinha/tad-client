@@ -114,8 +114,7 @@ namespace TadManagementTool
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(627, 25);
-            this.toolStrip.TabIndex = 1;
-            this.toolStrip.Text = "toolStrip1";
+            this.toolStrip.TabIndex = 8;
             // 
             // fontComboBox
             // 
@@ -444,7 +443,7 @@ namespace TadManagementTool
             this.backButton.Location = new System.Drawing.Point(15, 12);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 0;
+            this.backButton.TabIndex = 7;
             this.backButton.Text = "Voltar";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
@@ -455,7 +454,7 @@ namespace TadManagementTool
             this.saveButton.Location = new System.Drawing.Point(534, 10);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 0;
+            this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Salvar";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -466,7 +465,7 @@ namespace TadManagementTool
             this.postVisibilityLabel.Location = new System.Drawing.Point(13, 10);
             this.postVisibilityLabel.Name = "postVisibilityLabel";
             this.postVisibilityLabel.Size = new System.Drawing.Size(62, 13);
-            this.postVisibilityLabel.TabIndex = 4;
+            this.postVisibilityLabel.TabIndex = 3;
             this.postVisibilityLabel.Text = "Visibilidade:";
             // 
             // postInternalVisibilityRadioButton
@@ -476,7 +475,8 @@ namespace TadManagementTool
             this.postInternalVisibilityRadioButton.Location = new System.Drawing.Point(94, 8);
             this.postInternalVisibilityRadioButton.Name = "postInternalVisibilityRadioButton";
             this.postInternalVisibilityRadioButton.Size = new System.Drawing.Size(58, 17);
-            this.postInternalVisibilityRadioButton.TabIndex = 5;
+            this.postInternalVisibilityRadioButton.TabIndex = 4;
+            this.postInternalVisibilityRadioButton.TabStop = true;
             this.postInternalVisibilityRadioButton.Text = "Interno";
             this.postInternalVisibilityRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -509,7 +509,7 @@ namespace TadManagementTool
             this.postTitleTextBox.Name = "postTitleTextBox";
             this.postTitleTextBox.PlaceholderText = "Entre com o título";
             this.postTitleTextBox.Size = new System.Drawing.Size(627, 26);
-            this.postTitleTextBox.TabIndex = 8;
+            this.postTitleTextBox.TabIndex = 1;
             // 
             // Editor
             // 

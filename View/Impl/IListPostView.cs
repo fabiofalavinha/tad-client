@@ -11,8 +11,12 @@ namespace TadManagementTool.View.Impl
     {
         PostViewItem GetPostSelected();
         bool ShowBinaryQuestion(string message);
+        bool IsPostListOrderOptionChecked();
+        IList<PostViewItem> GetPostList();
         void SetPostList(IList<PostViewItem> list);
         void OpenNewPostView();
         void OpenEditPostView(Post post);
+        void SetPostListSaveOrderButtonVisible(bool visible);
+        void SetOrderListOptionChecked(bool value);
     }
 }

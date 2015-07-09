@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool.Presenter
 {
@@ -14,5 +15,8 @@ namespace TadManagementTool.Presenter
         void OnPublishPost();
 
         void OnNewPost();
+        void OnOrderPost(PostOrderViewItem viewItem);
+        void OnEnablePostListOrder();
+        void OnSavePostListOrder();
     }
 }

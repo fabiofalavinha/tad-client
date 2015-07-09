@@ -22,6 +22,11 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+            DoLoadPostsAsync();
+        }
+
+        private void DoLoadPostsAsync()
+        {
             var task = new Task(() =>
             {
                 View.ShowWaitingPanel("Carregando posts...");
@@ -52,7 +57,7 @@ namespace TadManagementTool.Presenter.Impl
                     if (View.ShowBinaryQuestion("Deseja apagar este post?"))
                     {
                         View.ShowWaitingPanel("Removendo post...");
-                        postService.removePost(post.Wrapper);
+                        postService.RemovePost(post.Wrapper);
                         return true;
                     }
                 }
@@ -100,7 +105,7 @@ namespace TadManagementTool.Presenter.Impl
                         var post = postViewItem.Wrapper;
                         post.Published = DateTime.Now;
                         post.PublishedBy = UserContext.GetInstance().LoggedUser;
-                        postService.savePost(post);
+                        postService.SavePost(post);
                         return true;
                     }
                 }
@@ -128,13 +133,96 @@ namespace TadManagementTool.Presenter.Impl
 
         private void DoLoadPosts()
         {
-            var posts = postService.findPosts(UserContext.GetInstance().LoggedUser);
+            var posts = postService.FindPosts(UserContext.GetInstance().LoggedUser);
             View.SetPostList(posts.Select(p => new PostViewItem(p)).ToArray());
         }
 
         public void OnNewPost()
         {
             View.OpenNewPostView();
+        }
+
+        private bool postListOrderChanged = false;
+
+        public void OnOrderPost(PostOrderViewItem viewItem)
+        {
+            if (postListOrderChanged = View.IsPostListOrderOptionChecked())
+            {
+                var list = View.GetPostList().ToList();
+                list.RemoveAt(viewItem.LastPosition);
+                list.Insert(viewItem.NewPosition, viewItem.Data);
+
+                var loggedUser = UserContext.GetInstance().LoggedUser;
+                var minute = 1;
+                foreach (var postViewItem in list.Reverse<PostViewItem>())
+                {
+                    var now = DateTime.Now.AddMinutes(minute++);
+                    if (postViewItem.Published)
+                    {
+                        postViewItem.Wrapper.Published = now;
+                        postViewItem.Wrapper.PublishedBy = loggedUser;
+                    }
+                    postViewItem.Wrapper.Modified = now;
+                    postViewItem.Wrapper.ModifiedBy = loggedUser;
+                }
+
+               View.SetPostList(list);
+            }
+        }
+
+        public void OnEnablePostListOrder()
+        {
+            var optionChecked = View.IsPostListOrderOptionChecked();
+            if (!optionChecked && postListOrderChanged)
+            {
+                if (!View.ShowBinaryQuestion("Você fez alterações na lista de posts. Deseja perder as alterações?"))
+                {
+                    return;
+                }
+                else
+                {
+                    DoLoadPostsAsync();
+                }
+            }
+            View.SetPostListSaveOrderButtonVisible(optionChecked);
+        }
+
+        public void OnSavePostListOrder()
+        {
+            var task = new Task(() =>
+            {
+                View.ShowWaitingPanel("Salvando post(s)...");
+                var postService = new PostService();
+                foreach (var post in View.GetPostList().Select(i => i.Wrapper).ToArray())
+                {
+                    postService.SavePost(post);
+                }
+            });
+            task.ContinueWith(t =>
+            {
+                try
+                {
+                    View.SetOrderListOptionChecked(postListOrderChanged = false);
+                    DoLoadPosts();
+                }
+                catch (Exception ex)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao carregar a nova lista de posts: {0}", ex.Message));
+                }
+                finally
+                {
+                    View.HideWaitingPanel();
+                }
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao re-publicar os posts [{0}]. Tente repetir a operação. {1}", View.GetPostSelected().Title, innerException.Message));
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
         }
     }
 }
