@@ -19,6 +19,10 @@ namespace TadManagementTool
         private readonly IMainView parentView;
         private readonly IListPostPresenter presenter;
 
+        private Rectangle dragBoxFromMouseDown;
+        private int rowIndexFromMouseDown;
+        private int rowIndexOfItemUnderMouseToDrop;
+
         public PostListUserControl(IMainView parentView)
         {
             InitializeComponent();
@@ -163,10 +167,6 @@ namespace TadManagementTool
         {
             presenter.OnViewPostDetails();
         }
-
-        private Rectangle dragBoxFromMouseDown;
-        private int rowIndexFromMouseDown;
-        private int rowIndexOfItemUnderMouseToDrop;
 
         private void postDataGridView_DragDrop(object sender, DragEventArgs e)
         {
