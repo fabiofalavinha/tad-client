@@ -88,7 +88,7 @@ namespace TadManagementTool.Service
 
                 dataCell = dataRow.CreateCell(dataColumnNumber++);
                 dataCell.CellStyle.Alignment = HorizontalAlignment.Left;
-                dataCell.SetCellValue(collaborator.BirthDate);
+                dataCell.SetCellValue(collaborator.BirthDate.ToString("dd/MMM/yyyy"));
 
                 dataCell = dataRow.CreateCell(dataColumnNumber++);
                 dataCell.CellStyle.Alignment = HorizontalAlignment.Left;
