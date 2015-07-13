@@ -155,20 +155,38 @@ namespace TadManagementTool.Presenter.Impl
             task.Start();
         }
 
-        public void OnSortCollaboratorList(string propertyName, SortOrder order)
+        public void OnSortCollaboratorList(string propertyName, SortOrder sortOrder)
         {
-            var list = View.GetCollaboratorList();
+            View.SetCollaboratorList(new ListCollaboratorOrder().Sort(View.GetCollaboratorList(), propertyName, sortOrder));
+        }
 
-            if (order == SortOrder.Ascending)
+        private class ListCollaboratorOrder
+        {
+            public IList<CollaboratorViewItem> Sort(IList<CollaboratorViewItem> list, string propertyName, SortOrder sortOrder)
             {
-                list = list.OrderBy(i => i.GetType().GetProperty(propertyName).GetValue(i, null)).ToArray();
+                Func<CollaboratorViewItem, object> orderByAction;
+                if ("BirthDate".Equals(propertyName))
+                {
+                    orderByAction = i => i.Wrapper.BirthDate;
+                }
+                else if ("StartDate".Equals(propertyName))
+                {
+                    orderByAction = i => i.Wrapper.StartDate.HasValue ? i.Wrapper.StartDate : null;
+                }
+                else
+                {
+                    orderByAction = i => i.GetType().GetProperty(propertyName).GetValue(i, null);
+                }
+                if (sortOrder == SortOrder.Ascending)
+                {
+                    list = list.OrderBy(orderByAction).ToArray();
+                }
+                else
+                {
+                    list = list.OrderByDescending(orderByAction).ToArray();
+                }
+                return list;
             }
-            else
-            {
-                list = list.OrderByDescending(i => i.GetType().GetProperty(propertyName).GetValue(i, null)).ToArray();
-            }
-
-            View.SetCollaboratorList(list);
         }
     }
 }
