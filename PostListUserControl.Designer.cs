@@ -30,13 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.postDataGridView = new System.Windows.Forms.DataGridView();
-            this.postTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postCreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postCreadedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postModifiedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postVisibilityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publishedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.newPostButton = new System.Windows.Forms.Button();
@@ -46,6 +39,13 @@
             this.orderPostListCheckBox = new System.Windows.Forms.CheckBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.saveOrderListButton = new System.Windows.Forms.Button();
+            this.postTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postCreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postCreadedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postModifiedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postVisibilityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publishedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.postDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.buttonPanel.SuspendLayout();
@@ -83,55 +83,6 @@
             this.postDataGridView.DragOver += new System.Windows.Forms.DragEventHandler(this.postDataGridView_DragOver);
             this.postDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.postDataGridView_MouseDown);
             this.postDataGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.postDataGridView_MouseMove);
-            // 
-            // postTitleColumn
-            // 
-            this.postTitleColumn.DataPropertyName = "Title";
-            this.postTitleColumn.HeaderText = "Título";
-            this.postTitleColumn.Name = "postTitleColumn";
-            this.postTitleColumn.ReadOnly = true;
-            // 
-            // postCreatedColumn
-            // 
-            this.postCreatedColumn.DataPropertyName = "Created";
-            this.postCreatedColumn.HeaderText = "Criado em";
-            this.postCreatedColumn.Name = "postCreatedColumn";
-            this.postCreatedColumn.ReadOnly = true;
-            // 
-            // postCreadedByColumn
-            // 
-            this.postCreadedByColumn.DataPropertyName = "CreatedBy";
-            this.postCreadedByColumn.HeaderText = "Criado por";
-            this.postCreadedByColumn.Name = "postCreadedByColumn";
-            this.postCreadedByColumn.ReadOnly = true;
-            // 
-            // postModifiedColumn
-            // 
-            this.postModifiedColumn.DataPropertyName = "Modified";
-            this.postModifiedColumn.HeaderText = "Modificado em";
-            this.postModifiedColumn.Name = "postModifiedColumn";
-            this.postModifiedColumn.ReadOnly = true;
-            // 
-            // postModifiedByColumn
-            // 
-            this.postModifiedByColumn.DataPropertyName = "ModifiedBy";
-            this.postModifiedByColumn.HeaderText = "Modificado por";
-            this.postModifiedByColumn.Name = "postModifiedByColumn";
-            this.postModifiedByColumn.ReadOnly = true;
-            // 
-            // postVisibilityColumn
-            // 
-            this.postVisibilityColumn.DataPropertyName = "Visibility";
-            this.postVisibilityColumn.HeaderText = "Visibilidade";
-            this.postVisibilityColumn.Name = "postVisibilityColumn";
-            this.postVisibilityColumn.ReadOnly = true;
-            // 
-            // publishedColumn
-            // 
-            this.publishedColumn.DataPropertyName = "Published";
-            this.publishedColumn.HeaderText = "Publicado?";
-            this.publishedColumn.Name = "publishedColumn";
-            this.publishedColumn.ReadOnly = true;
             // 
             // buttonPanel
             // 
@@ -215,6 +166,55 @@
             this.saveOrderListButton.Visible = false;
             this.saveOrderListButton.Click += new System.EventHandler(this.saveOrderListButton_Click);
             // 
+            // postTitleColumn
+            // 
+            this.postTitleColumn.DataPropertyName = "Title";
+            this.postTitleColumn.HeaderText = "Título";
+            this.postTitleColumn.Name = "postTitleColumn";
+            this.postTitleColumn.ReadOnly = true;
+            // 
+            // postCreatedColumn
+            // 
+            this.postCreatedColumn.DataPropertyName = "Created";
+            this.postCreatedColumn.HeaderText = "Criado em";
+            this.postCreatedColumn.Name = "postCreatedColumn";
+            this.postCreatedColumn.ReadOnly = true;
+            // 
+            // postCreadedByColumn
+            // 
+            this.postCreadedByColumn.DataPropertyName = "CreatedBy";
+            this.postCreadedByColumn.HeaderText = "Criado por";
+            this.postCreadedByColumn.Name = "postCreadedByColumn";
+            this.postCreadedByColumn.ReadOnly = true;
+            // 
+            // postModifiedColumn
+            // 
+            this.postModifiedColumn.DataPropertyName = "Modified";
+            this.postModifiedColumn.HeaderText = "Modificado em";
+            this.postModifiedColumn.Name = "postModifiedColumn";
+            this.postModifiedColumn.ReadOnly = true;
+            // 
+            // postModifiedByColumn
+            // 
+            this.postModifiedByColumn.DataPropertyName = "ModifiedBy";
+            this.postModifiedByColumn.HeaderText = "Modificado por";
+            this.postModifiedByColumn.Name = "postModifiedByColumn";
+            this.postModifiedByColumn.ReadOnly = true;
+            // 
+            // postVisibilityColumn
+            // 
+            this.postVisibilityColumn.DataPropertyName = "Visibility";
+            this.postVisibilityColumn.HeaderText = "Visibilidade";
+            this.postVisibilityColumn.Name = "postVisibilityColumn";
+            this.postVisibilityColumn.ReadOnly = true;
+            // 
+            // publishedColumn
+            // 
+            this.publishedColumn.DataPropertyName = "Published";
+            this.publishedColumn.HeaderText = "Publicado no site?";
+            this.publishedColumn.Name = "publishedColumn";
+            this.publishedColumn.ReadOnly = true;
+            // 
             // PostListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,6 +245,8 @@
         private ModalWaitingPanel modalWaitingPanel;
         private System.Windows.Forms.Button publishedButton;
         private System.Windows.Forms.Button newPostButton;
+        private System.Windows.Forms.CheckBox orderPostListCheckBox;
+        private System.Windows.Forms.Button saveOrderListButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn postTitleColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postCreatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postCreadedByColumn;
@@ -252,8 +254,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn postModifiedByColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postVisibilityColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn publishedColumn;
-        private System.Windows.Forms.CheckBox orderPostListCheckBox;
-        private System.Windows.Forms.Button saveOrderListButton;
 
     }
 }
