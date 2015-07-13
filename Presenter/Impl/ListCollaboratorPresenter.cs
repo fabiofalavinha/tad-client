@@ -6,8 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TadManagementTool.Model;
 using TadManagementTool.Service;
 using TadManagementTool.View;
@@ -151,6 +153,22 @@ namespace TadManagementTool.Presenter.Impl
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
+        }
+
+        public void OnSortCollaboratorList(string propertyName, SortOrder order)
+        {
+            var list = View.GetCollaboratorList();
+
+            if (order == SortOrder.Ascending)
+            {
+                list = list.OrderBy(i => i.GetType().GetProperty(propertyName).GetValue(i, null)).ToArray();
+            }
+            else
+            {
+                list = list.OrderByDescending(i => i.GetType().GetProperty(propertyName).GetValue(i, null)).ToArray();
+            }
+
+            View.SetCollaboratorList(list);
         }
     }
 }

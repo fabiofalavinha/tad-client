@@ -15,7 +15,7 @@ namespace TadManagementTool.View.Items
         public string CreatedBy { get { return Wrapper.CreatedBy.Name; } }
         public string Modified { get { return Wrapper.Modified.ToString(); } }
         public string ModifiedBy { get { return Wrapper.ModifiedBy.Name; } }
-        public string Visibility { get { return Wrapper.Visibility.ToString(); } }
+        public string Visibility { get { return Wrapper.Visibility.Translate(); } }
         public bool Published { get { return Wrapper.Published.HasValue; } }
 
         public PostViewItem(Post wrapper)

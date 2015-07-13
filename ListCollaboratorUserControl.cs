@@ -19,6 +19,7 @@ namespace TadManagementTool
     {
         private readonly IMainView parentView;
         private readonly IListCollaboratorPresenter presenter;
+        private readonly Dictionary<string, SortOrder> columnSortOrderMap = new Dictionary<string, SortOrder>();
 
         public ListCollaboratorUserControl(IMainView parentView)
         {
@@ -206,5 +207,26 @@ namespace TadManagementTool
             }
             MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void dataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var column = dataGridView.Columns[e.ColumnIndex];
+            SortOrder sortOrder;
+            if (columnSortOrderMap.TryGetValue(column.DataPropertyName, out sortOrder))
+            {
+                columnSortOrderMap.Remove(column.DataPropertyName);
+                sortOrder = 
+                    sortOrder == SortOrder.Ascending 
+                    ? SortOrder.Descending 
+                    : SortOrder.Ascending;
+            }
+            else
+            {
+                sortOrder = SortOrder.Ascending;
+            }
+            columnSortOrderMap.Add(column.DataPropertyName, sortOrder);
+            presenter.OnSortCollaboratorList(column.DataPropertyName, sortOrder);
+        }
+
     }
 }

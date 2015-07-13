@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TadManagementTool.Presenter
 {
@@ -11,5 +12,6 @@ namespace TadManagementTool.Presenter
         void OnNewCollaborator();
         void OnViewCollaboratorDetails();
         void OnExportToExcel();
+        void OnSortCollaboratorList(string propertyName, SortOrder sortOrder);
     }
 }
