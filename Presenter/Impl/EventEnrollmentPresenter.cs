@@ -37,7 +37,7 @@ namespace TadManagementTool.Presenter.Impl
                 View.SetEventTitle(editedEvent.Title);
                 View.SetEventDate(editedEvent.Date);
                 View.SetEventNotes(editedEvent.Notes);
-                View.SetEventVisibility(editedEvent.Visibility);
+                View.SetEventVisibility(VisibilityTypeExtensions.FromValue(editedEvent.Visibility));
                 View.SetEventFontColor(editedEvent.FontColor.FromHex(Color.White));
                 View.SetEventBackColor(editedEvent.BackColor.FromHex(Color.Red));
                 View.SetRemoveButtonVisible(true);
@@ -68,13 +68,12 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 var date = View.GetEventDate();
                 var notes = View.GetEventNotes();
-                
                 var newEvent = new Event()
                 {
                     Title = title,
                     Date = date,
                     Notes = notes,
-                    Visibility = View.GetEventVisibility(),
+                    Visibility = (int)View.GetEventVisibility(),
                     BackColor = View.GetEventBackColor().ToHex(),
                     FontColor = View.GetEventFontColor().ToHex()
                 };

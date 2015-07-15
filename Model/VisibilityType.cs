@@ -16,6 +16,11 @@ namespace TadManagementTool.Model
                 default: return "N/A";
             }
         }
+
+        public static VisibilityType FromValue(int value)
+        {
+            return (VisibilityType)Enum.ToObject(typeof(VisibilityType), value);
+        }
     }
 
     public enum VisibilityType

@@ -43,7 +43,7 @@ namespace TadManagementTool.Model
         public DateTime Date { get; set; }
 
         [JsonProperty("visibility")]
-        public VisibilityType Visibility { get; set; }
+        public int Visibility { get; set; }
 
         [JsonProperty("backColor")]
         public string BackColor { get; set; }
