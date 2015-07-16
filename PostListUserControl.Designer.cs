@@ -35,17 +35,19 @@
             this.newPostButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.publishedButton = new System.Windows.Forms.Button();
-            this.viewDetailsButton = new System.Windows.Forms.Button();
+            this.unPublishPostButton = new System.Windows.Forms.Button();
             this.orderPostListCheckBox = new System.Windows.Forms.CheckBox();
-            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.saveOrderListButton = new System.Windows.Forms.Button();
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.postTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postCreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postCreadedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postModifiedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postVisibilityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publishedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isPublishedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.publishedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publishedByColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.postDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.buttonPanel.SuspendLayout();
@@ -66,7 +68,9 @@
             this.postModifiedColumn,
             this.postModifiedByColumn,
             this.postVisibilityColumn,
-            this.publishedColumn});
+            this.isPublishedColumn,
+            this.publishedColumn,
+            this.publishedByColumn});
             this.postDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.postDataGridView.Location = new System.Drawing.Point(0, 36);
             this.postDataGridView.MultiSelect = false;
@@ -78,9 +82,11 @@
             this.postDataGridView.ShowRowErrors = false;
             this.postDataGridView.Size = new System.Drawing.Size(656, 335);
             this.postDataGridView.TabIndex = 0;
+            this.postDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.postDataGridView_CellClick);
             this.postDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.postDataGridView_CellDoubleClick);
             this.postDataGridView.DragDrop += new System.Windows.Forms.DragEventHandler(this.postDataGridView_DragDrop);
             this.postDataGridView.DragOver += new System.Windows.Forms.DragEventHandler(this.postDataGridView_DragOver);
+            this.postDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.postDataGridView_KeyDown);
             this.postDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.postDataGridView_MouseDown);
             this.postDataGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.postDataGridView_MouseMove);
             // 
@@ -90,7 +96,7 @@
             this.buttonPanel.Controls.Add(this.newPostButton);
             this.buttonPanel.Controls.Add(this.removeButton);
             this.buttonPanel.Controls.Add(this.publishedButton);
-            this.buttonPanel.Controls.Add(this.viewDetailsButton);
+            this.buttonPanel.Controls.Add(this.unPublishPostButton);
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonPanel.Location = new System.Drawing.Point(0, 377);
             this.buttonPanel.Name = "buttonPanel";
@@ -99,7 +105,7 @@
             // 
             // newPostButton
             // 
-            this.newPostButton.Location = new System.Drawing.Point(103, 13);
+            this.newPostButton.Location = new System.Drawing.Point(14, 13);
             this.newPostButton.Name = "newPostButton";
             this.newPostButton.Size = new System.Drawing.Size(75, 23);
             this.newPostButton.TabIndex = 0;
@@ -109,7 +115,7 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(13, 13);
+            this.removeButton.Location = new System.Drawing.Point(95, 13);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 0;
@@ -128,16 +134,17 @@
             this.publishedButton.UseVisualStyleBackColor = true;
             this.publishedButton.Click += new System.EventHandler(this.publishedButton_Click);
             // 
-            // viewDetailsButton
+            // unPublishPostButton
             // 
-            this.viewDetailsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewDetailsButton.Location = new System.Drawing.Point(419, 13);
-            this.viewDetailsButton.Name = "viewDetailsButton";
-            this.viewDetailsButton.Size = new System.Drawing.Size(103, 23);
-            this.viewDetailsButton.TabIndex = 0;
-            this.viewDetailsButton.Text = "Ver Detalhes...";
-            this.viewDetailsButton.UseVisualStyleBackColor = true;
-            this.viewDetailsButton.Click += new System.EventHandler(this.viewDetailsButton_Click);
+            this.unPublishPostButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.unPublishPostButton.Location = new System.Drawing.Point(428, 13);
+            this.unPublishPostButton.Name = "unPublishPostButton";
+            this.unPublishPostButton.Size = new System.Drawing.Size(103, 23);
+            this.unPublishPostButton.TabIndex = 0;
+            this.unPublishPostButton.Text = "Despublicar";
+            this.unPublishPostButton.UseVisualStyleBackColor = true;
+            this.unPublishPostButton.Visible = false;
+            this.unPublishPostButton.Click += new System.EventHandler(this.unPublishPostButton_Click);
             // 
             // orderPostListCheckBox
             // 
@@ -150,11 +157,6 @@
             this.orderPostListCheckBox.UseVisualStyleBackColor = true;
             this.orderPostListCheckBox.CheckedChanged += new System.EventHandler(this.orderPostListCheckBox_CheckedChanged);
             // 
-            // modalWaitingPanel
-            // 
-            this.modalWaitingPanel.DisplayText = null;
-            this.modalWaitingPanel.RelatedControl = this;
-            // 
             // saveOrderListButton
             // 
             this.saveOrderListButton.Location = new System.Drawing.Point(110, 7);
@@ -165,6 +167,11 @@
             this.saveOrderListButton.UseVisualStyleBackColor = true;
             this.saveOrderListButton.Visible = false;
             this.saveOrderListButton.Click += new System.EventHandler(this.saveOrderListButton_Click);
+            // 
+            // modalWaitingPanel
+            // 
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = this;
             // 
             // postTitleColumn
             // 
@@ -208,12 +215,26 @@
             this.postVisibilityColumn.Name = "postVisibilityColumn";
             this.postVisibilityColumn.ReadOnly = true;
             // 
+            // isPublishedColumn
+            // 
+            this.isPublishedColumn.DataPropertyName = "IsPublished";
+            this.isPublishedColumn.HeaderText = "Publicado no site?";
+            this.isPublishedColumn.Name = "isPublishedColumn";
+            this.isPublishedColumn.ReadOnly = true;
+            // 
             // publishedColumn
             // 
             this.publishedColumn.DataPropertyName = "Published";
-            this.publishedColumn.HeaderText = "Publicado no site?";
+            this.publishedColumn.HeaderText = "Publicado em";
             this.publishedColumn.Name = "publishedColumn";
             this.publishedColumn.ReadOnly = true;
+            // 
+            // publishedByColumn
+            // 
+            this.publishedByColumn.DataPropertyName = "PublishedBy";
+            this.publishedByColumn.HeaderText = "Publicado por";
+            this.publishedByColumn.Name = "publishedByColumn";
+            this.publishedByColumn.ReadOnly = true;
             // 
             // PostListUserControl
             // 
@@ -241,7 +262,7 @@
         private System.Windows.Forms.BindingSource postBindingSource;
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.Button removeButton;
-        private System.Windows.Forms.Button viewDetailsButton;
+        private System.Windows.Forms.Button unPublishPostButton;
         private ModalWaitingPanel modalWaitingPanel;
         private System.Windows.Forms.Button publishedButton;
         private System.Windows.Forms.Button newPostButton;
@@ -253,7 +274,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn postModifiedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postModifiedByColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn postVisibilityColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn publishedColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isPublishedColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publishedColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publishedByColumn;
 
     }
 }

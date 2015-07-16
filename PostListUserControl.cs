@@ -14,10 +14,10 @@ using TadManagementTool.Model;
 
 namespace TadManagementTool
 {
-    public partial class PostListUserControl : UserControl, IListPostView
+    public partial class PostListUserControl : UserControl, IPostListView
     {
         private readonly IMainView parentView;
-        private readonly IListPostPresenter presenter;
+        private readonly IPostListPresenter presenter;
 
         private Rectangle dragBoxFromMouseDown;
         private int rowIndexFromMouseDown;
@@ -28,7 +28,7 @@ namespace TadManagementTool
             InitializeComponent();
             postDataGridView.AutoGenerateColumns = false;
             this.parentView = parentView;
-            this.presenter = new ListPostPresenter(this);
+            this.presenter = new PostListPresenter(this);
         }
 
         private void PostListUserControl_Load(object sender, EventArgs e)
@@ -85,9 +85,9 @@ namespace TadManagementTool
             presenter.OnPublishPost();
         }
 
-        private void viewDetailsButton_Click(object sender, EventArgs e)
+        private void unPublishPostButton_Click(object sender, EventArgs e)
         {
-            presenter.OnViewPostDetails();
+            presenter.OnUnPublishPost();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -258,6 +258,33 @@ namespace TadManagementTool
                 return;
             }
             orderPostListCheckBox.Checked = false;
+        }
+
+        private void postDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OnPostSelected();
+        }
+
+        public void SetUnPublishButtonVisible(bool visible)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetUnPublishButtonVisible), visible);
+                return;
+            }
+            unPublishPostButton.Visible = visible;
+        }
+
+        private void postDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData & Keys.KeyCode)
+            {
+                case Keys.Up:
+                case Keys.Down:
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    break;
+            }
         }
     }
 }

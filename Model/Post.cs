@@ -37,5 +37,14 @@ namespace TadManagementTool.Model
 
         [JsonProperty(PropertyName = "visibility")]
         public VisibilityType Visibility { get; set; }
+
+        [JsonIgnore]
+        public bool IsPublished { get { return Published.HasValue; } }
+
+        public void Unpublish()
+        {
+            Published = null;
+            PublishedBy = null;
+        }
     }
 }
