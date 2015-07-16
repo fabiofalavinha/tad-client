@@ -37,5 +37,8 @@ namespace TadManagementTool.Model
 
         [JsonIgnore]
         public bool Active { get { return ReleaseDate == null; } }
+
+        [JsonIgnore]
+        public Person Person { get { return new Person(Name, BirthDate); } }
     }
 }

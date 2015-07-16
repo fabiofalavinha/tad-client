@@ -32,5 +32,24 @@ namespace TadManagementTool.Service
             var exporter = new ListCollaboratorExporter();
             exporter.ExportTo(collaborators, filePath);
         }
+
+        public BirthdayList[] FindCurrentYearBirthDays()
+        {
+            var collaborators = FindAll();
+            var birthDayMap = new Dictionary<MonthOfBirthday, BirthdayList>();
+            var currentDateTime = DateTime.Now;
+            foreach (var collaborator in collaborators.Where(c => c.Active && c.BirthDate.Month >= currentDateTime.Month).OrderBy(c => c.BirthDate.Month))
+            {
+                BirthdayList found;
+                var monthOfBirthday = new MonthOfBirthday(collaborator.BirthDate.Month);
+                if (!birthDayMap.TryGetValue(monthOfBirthday, out found))
+                {
+                    found = new BirthdayList(monthOfBirthday);
+                    birthDayMap.Add(monthOfBirthday, found);
+                }
+                found.Add(collaborator.Person);
+            }
+            return birthDayMap.Values.OrderBy(p => p.CurrentMonth.Month).ToArray();
+        }
     }
 }

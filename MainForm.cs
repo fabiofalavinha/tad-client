@@ -17,6 +17,7 @@ namespace TadManagementTool
         {
             InitializeComponent();
             menuTreeView.SelectedNode = menuTreeView.Nodes[0];
+            menuTreeView.ExpandAll();
             presenter = new MainPresenter(this);
         }
 
@@ -110,10 +111,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action(OpenCollaboratorView));
                 return;
             }
-            splitContainer.Panel2.Controls.Clear();
-            var userControl = new ListCollaboratorUserControl(this);
-            userControl.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Add(userControl);
+            DoLoadMainControl(new ListCollaboratorUserControl(this));
         }
 
         public void ShowControlView(IControlView controlView)
@@ -134,10 +132,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action(OpenCalendarView));
                 return;
             }
-            splitContainer.Panel2.Controls.Clear();
-            var userControl = new CalendarUserControl(this);
-            userControl.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Add(userControl);
+            DoLoadMainControl(new CalendarUserControl(this));
         }
 
         public void OpenPostListView()
@@ -147,10 +142,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action(OpenPostListView));
                 return;
             }
-            splitContainer.Panel2.Controls.Clear();
-            var userControl = new PostListUserControl(this);
-            userControl.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Add(userControl);
+            DoLoadMainControl(new PostListUserControl(this));
         }
 
         public void OpenImageListView()
@@ -160,10 +152,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action(OpenImageListView));
                 return;
             }
-            splitContainer.Panel2.Controls.Clear();
-            var userControl = new ImageListUserControl(this);
-            userControl.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Add(userControl);
+            DoLoadMainControl(new ImageListUserControl(this));
         }
 
         private void alterarSenhaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,6 +171,23 @@ namespace TadManagementTool
             {
                 form.ShowDialog();
             }
+        }
+
+        public void OpenCollaboratorBirthDaysView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenCollaboratorBirthDaysView));
+                return;
+            }
+            DoLoadMainControl(new CollaboratorBirthDaysUserControl());
+        }
+
+        private void DoLoadMainControl(UserControl userControl)
+        {
+            splitContainer.Panel2.Controls.Clear();
+            userControl.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(userControl);
         }
     }
 }

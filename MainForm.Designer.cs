@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Colaboradores");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Calendário");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Post");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Imagens");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Aniversariantes");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Colaboradores", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Calendário");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Post");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Imagens");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
@@ -87,34 +89,39 @@
             this.menuTreeView.ImageList = this.mainMenuImageList;
             this.menuTreeView.Location = new System.Drawing.Point(0, 0);
             this.menuTreeView.Name = "menuTreeView";
-            treeNode1.ImageKey = "colaboradores.png";
-            treeNode1.Name = "collaboratorTreeItem";
-            treeNode1.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.SelectedImageKey = "colaboradores.png";
-            treeNode1.Tag = "TadManagementTool.View.Impl.OpenCollaboratorMenuViewAction";
-            treeNode1.Text = "Colaboradores";
-            treeNode2.ImageKey = "calendar.png";
-            treeNode2.Name = "calendarTreeItem";
-            treeNode2.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            treeNode2.SelectedImageKey = "calendar.png";
-            treeNode2.Tag = "TadManagementTool.View.Impl.OpenCalendarMenuViewAction";
-            treeNode2.Text = "Calendário";
-            treeNode3.ImageKey = "post.png";
-            treeNode3.Name = "postTreeItem";
+            treeNode1.ImageKey = "birthdays.png";
+            treeNode1.Name = "collaboratorBirthDaysTreeItem";
+            treeNode1.SelectedImageKey = "birthdays.png";
+            treeNode1.Tag = "TadManagementTool.View.Impl.OpenCollaboratorBirthDaysMenuViewAction";
+            treeNode1.Text = "Aniversariantes";
+            treeNode2.ImageKey = "colaboradores.png";
+            treeNode2.Name = "collaboratorTreeItem";
+            treeNode2.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode2.SelectedImageKey = "colaboradores.png";
+            treeNode2.Tag = "TadManagementTool.View.Impl.OpenCollaboratorMenuViewAction";
+            treeNode2.Text = "Colaboradores";
+            treeNode3.ImageKey = "calendar.png";
+            treeNode3.Name = "calendarTreeItem";
             treeNode3.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            treeNode3.SelectedImageKey = "post.png";
-            treeNode3.Tag = "TadManagementTool.View.Impl.OpenPostListMenuViewAction";
-            treeNode3.Text = "Post";
-            treeNode4.ImageKey = "photograph_edit.png";
-            treeNode4.Name = "carouselImageTreeItem";
-            treeNode4.SelectedImageKey = "photograph_edit.png";
-            treeNode4.Tag = "TadManagementTool.View.Impl.OpenImageListMenuViewAction";
-            treeNode4.Text = "Imagens";
+            treeNode3.SelectedImageKey = "calendar.png";
+            treeNode3.Tag = "TadManagementTool.View.Impl.OpenCalendarMenuViewAction";
+            treeNode3.Text = "Calendário";
+            treeNode4.ImageKey = "post.png";
+            treeNode4.Name = "postTreeItem";
+            treeNode4.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            treeNode4.SelectedImageKey = "post.png";
+            treeNode4.Tag = "TadManagementTool.View.Impl.OpenPostListMenuViewAction";
+            treeNode4.Text = "Post";
+            treeNode5.ImageKey = "photograph_edit.png";
+            treeNode5.Name = "carouselImageTreeItem";
+            treeNode5.SelectedImageKey = "photograph_edit.png";
+            treeNode5.Tag = "TadManagementTool.View.Impl.OpenImageListMenuViewAction";
+            treeNode5.Text = "Imagens";
             this.menuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
             treeNode2,
             treeNode3,
-            treeNode4});
+            treeNode4,
+            treeNode5});
             this.menuTreeView.SelectedImageIndex = 0;
             this.menuTreeView.Size = new System.Drawing.Size(256, 684);
             this.menuTreeView.TabIndex = 0;
@@ -125,9 +132,10 @@
             this.mainMenuImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("mainMenuImageList.ImageStream")));
             this.mainMenuImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.mainMenuImageList.Images.SetKeyName(0, "colaboradores.png");
-            this.mainMenuImageList.Images.SetKeyName(1, "calendar.png");
-            this.mainMenuImageList.Images.SetKeyName(2, "post.png");
-            this.mainMenuImageList.Images.SetKeyName(3, "photograph_edit.png");
+            this.mainMenuImageList.Images.SetKeyName(1, "birthdays.png");
+            this.mainMenuImageList.Images.SetKeyName(2, "calendar.png");
+            this.mainMenuImageList.Images.SetKeyName(3, "post.png");
+            this.mainMenuImageList.Images.SetKeyName(4, "photograph_edit.png");
             // 
             // statusStrip
             // 
