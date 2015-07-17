@@ -70,7 +70,7 @@ namespace TadManagementTool
             this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.modalWaitingPanel = new Commons.UI.LoadingPanel.ModalWaitingPanel(this.components);
+            this.modalWaitingPanel = new ModalWaitingPanel(this.components);
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -576,7 +576,7 @@ namespace TadManagementTool
         private System.Windows.Forms.ToolStripButton justifyFullButton;
         private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cSSToolStripMenuItem;
-        private Commons.UI.LoadingPanel.ModalWaitingPanel modalWaitingPanel;
+        private ModalWaitingPanel modalWaitingPanel;
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button saveButton;

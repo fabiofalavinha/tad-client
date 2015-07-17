@@ -5,10 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TadManagementTool", "TadManagementTool.csproj", "{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}"
 EndProject
-Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "..\Setup\Setup.isproj", "{5C872F73-24AA-455F-8830-4CC2D26C12E7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2} = {49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}
-	EndProjectSection
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "tad-client-setup", "..\Setup\tad-client-setup.vdproj", "{B5F2A822-27E9-442E-A7EB-9D626055A5EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,15 +26,16 @@ Global
 		{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.CD_ROM|Any CPU.Build.0 = CD_ROM
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.Debug|Any CPU.ActiveCfg = DVD-5
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.Debug|Any CPU.Build.0 = DVD-5
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.DVD-5|Any CPU.ActiveCfg = DVD-5
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.DVD-5|Any CPU.Build.0 = DVD-5
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.Release|Any CPU.ActiveCfg = SingleImage
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.SingleImage|Any CPU.ActiveCfg = SingleImage
-		{5C872F73-24AA-455F-8830-4CC2D26C12E7}.SingleImage|Any CPU.Build.0 = SingleImage
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.CD_ROM|Any CPU.ActiveCfg = Release
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.CD_ROM|Any CPU.Build.0 = Release
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Debug|Any CPU.ActiveCfg = Debug
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Debug|Any CPU.Build.0 = Debug
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.DVD-5|Any CPU.ActiveCfg = Debug
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.DVD-5|Any CPU.Build.0 = Debug
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Release|Any CPU.ActiveCfg = Release
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Release|Any CPU.Build.0 = Release
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.SingleImage|Any CPU.ActiveCfg = Release
+		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.SingleImage|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
