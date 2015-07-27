@@ -36,6 +36,7 @@
             this.categoryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.collaboratorColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.newFinancialReferenceButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +63,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(537, 327);
+            this.dataGridView.Size = new System.Drawing.Size(561, 336);
             this.dataGridView.TabIndex = 1;
             // 
             // descriptionColumn
@@ -89,7 +90,7 @@
             // newFinancialReferenceButton
             // 
             this.newFinancialReferenceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newFinancialReferenceButton.Location = new System.Drawing.Point(449, 341);
+            this.newFinancialReferenceButton.Location = new System.Drawing.Point(473, 350);
             this.newFinancialReferenceButton.Name = "newFinancialReferenceButton";
             this.newFinancialReferenceButton.Size = new System.Drawing.Size(75, 39);
             this.newFinancialReferenceButton.TabIndex = 2;
@@ -97,15 +98,27 @@
             this.newFinancialReferenceButton.UseVisualStyleBackColor = true;
             this.newFinancialReferenceButton.Click += new System.EventHandler(this.newFinancialReferenceButton_Click);
             // 
+            // removeButton
+            // 
+            this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.removeButton.Location = new System.Drawing.Point(13, 350);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(75, 39);
+            this.removeButton.TabIndex = 2;
+            this.removeButton.Text = "Apagar";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            // 
             // FinancialReferenceListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.newFinancialReferenceButton);
             this.Controls.Add(this.dataGridView);
             this.DoubleBuffered = true;
             this.Name = "FinancialReferenceListUserControl";
-            this.Size = new System.Drawing.Size(537, 389);
+            this.Size = new System.Drawing.Size(561, 398);
             this.Load += new System.EventHandler(this.FinancialReferenceListUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -122,5 +135,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn collaboratorColumn;
+        private System.Windows.Forms.Button removeButton;
     }
 }

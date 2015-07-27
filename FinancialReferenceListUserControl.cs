@@ -80,20 +80,6 @@ namespace TadManagementTool
             presenter.InitView();
         }
 
-        public void SetCollaboratorList(IList<FinancialReferenceViewItem> list)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetCollaboratorList), list);
-                return;
-            }
-            bindingSource.DataSource = list;
-            dataGridView.DataSource = bindingSource;
-            bindingSource.ResetBindings(false);
-            dataGridView.ClearSelection();
-            dataGridView.AutoResizeColumns();
-        }
-
         public void OpenFinancialReferenceEnrollmentView()
         {
             if (InvokeRequired)
@@ -105,6 +91,48 @@ namespace TadManagementTool
             {
                 Dock = DockStyle.Fill
             });
+        }
+
+        public void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceList), list);
+                return;
+            }
+            bindingSource.DataSource = list;
+            dataGridView.DataSource = bindingSource;
+            bindingSource.ResetBindings(false);
+            dataGridView.ClearSelection();
+            dataGridView.AutoResizeColumns();
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnRemove();
+        }
+
+        public FinancialReferenceViewItem GetFinancialReferenceSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialReferenceViewItem)Invoke(new Func<FinancialReferenceViewItem>(GetFinancialReferenceSelected));
+            }
+            var row = dataGridView.SelectedRows.Cast<DataGridViewRow>().FirstOrDefault();
+            if (row != null)
+            {
+                return (FinancialReferenceViewItem)row.DataBoundItem;
+            }
+            return null;
+        }
+
+        public bool ShowBinaryQuestion(string message)
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<string, bool>(ShowBinaryQuestion), message);
+            }
+            return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
     }
 }
