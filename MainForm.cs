@@ -92,15 +92,19 @@ namespace TadManagementTool
 
         private void menuTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            var menuActionViewString = e.Node.Tag.ToString();
-            var menuActionView = Activator.CreateInstance(Type.GetType(menuActionViewString)) as IMenuActionView;
-            if (menuActionView != null)
+            var tag = e.Node.Tag;
+            if (tag != null)
             {
-                presenter.OnMenuItemSelect(menuActionView);
-            }
-            else
-            {
-                ShowWarningMessage(string.Format("Não foi possível abrir a tela [{0}]", menuActionViewString));
+                var menuActionViewString = e.Node.Tag.ToString();
+                var menuActionView = Activator.CreateInstance(Type.GetType(menuActionViewString)) as IMenuActionView;
+                if (menuActionView != null)
+                {
+                    presenter.OnMenuItemSelect(menuActionView);
+                }
+                else
+                {
+                    ShowWarningMessage(string.Format("Não foi possível abrir a tela [{0}]", menuActionViewString));
+                }
             }
         }
 
@@ -188,6 +192,16 @@ namespace TadManagementTool
             splitContainer.Panel2.Controls.Clear();
             userControl.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(userControl);
+        }
+
+        public void OpenFinancialReferenceListView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenFinancialReferenceListView));
+                return;
+            }
+            DoLoadMainControl(new FinancialReferenceListUserControl(this));
         }
     }
 }

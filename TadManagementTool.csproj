@@ -138,6 +138,18 @@
       <DependentUpon>EventForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="FinancialReferenceListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FinancialReferenceListUserControl.Designer.cs">
+      <DependentUpon>FinancialReferenceListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialReferenceUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FinancialReferenceUserControl.Designer.cs">
+      <DependentUpon>FinancialReferenceUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageItemUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,6 +202,8 @@
     <Compile Include="Model\CarouselImage.cs" />
     <Compile Include="Model\Collaborator.cs" />
     <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\Financial\Category.cs" />
+    <Compile Include="Model\Financial\FinancialReference.cs" />
     <Compile Include="Model\GenderType.cs" />
     <Compile Include="Model\MonthOfBirthday.cs" />
     <Compile Include="Model\Person.cs" />
@@ -215,8 +229,12 @@
     <Compile Include="Presenter\ICollaboratorBirthDaysPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorPresenter.cs" />
     <Compile Include="Presenter\IEventEnrollmentPresenter.cs" />
+    <Compile Include="Presenter\IFinancialReferenceListPresenter.cs" />
+    <Compile Include="Presenter\IFinancialReferencePresenter.cs" />
     <Compile Include="Presenter\IImageListPresenter.cs" />
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
+    <Compile Include="Presenter\Impl\FinancialReferenceListPresenter.cs" />
+    <Compile Include="Presenter\Impl\FinancialReferencePresenter.cs" />
     <Compile Include="Presenter\IPostListPresenter.cs" />
     <Compile Include="Presenter\ILoginPresenter.cs" />
     <Compile Include="Presenter\IMainPresenter.cs" />
@@ -240,6 +258,7 @@
     <Compile Include="Service\CarouselImageService.cs" />
     <Compile Include="Service\EventService.cs" />
     <Compile Include="Service\CollaboratorService.cs" />
+    <Compile Include="Service\FinancialService.cs" />
     <Compile Include="Service\ListCollaboratorExporter.cs" />
     <Compile Include="Service\PostService.cs" />
     <Compile Include="Service\UserCredentialsService.cs" />
@@ -266,6 +285,8 @@
     <Compile Include="View\Impl\ICollaboratorBirthDaysView.cs" />
     <Compile Include="View\Impl\ICollaboratorView.cs" />
     <Compile Include="View\Impl\IEventEnrollmentView.cs" />
+    <Compile Include="View\Impl\IFinancialReferenceListView.cs" />
+    <Compile Include="View\Impl\IFinancialReferenceView.cs" />
     <Compile Include="View\Impl\IImageListView.cs" />
     <Compile Include="View\Impl\IListCollaboratorView.cs" />
     <Compile Include="View\IMenuActionView.cs" />
@@ -275,10 +296,13 @@
     <Compile Include="View\Impl\IUploadImageFileView.cs" />
     <Compile Include="View\Impl\OpenCalendarMenuViewAction.cs" />
     <Compile Include="View\Impl\OpenCollaboratorBirthDaysMenuViewAction.cs" />
+    <Compile Include="View\Impl\OpenFinancialReferenceListMenuViewAction.cs" />
     <Compile Include="View\Impl\OpenImageListMenuViewAction.cs" />
     <Compile Include="View\Impl\OpenPostListMenuViewAction.cs" />
+    <Compile Include="View\Items\CategoryViewItem.cs" />
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
     <Compile Include="View\Items\EventResult.cs" />
+    <Compile Include="View\Items\FinancialReferenceViewItem.cs" />
     <Compile Include="View\Items\ImageCarouselViewItem.cs" />
     <Compile Include="View\Items\PhoneTypeViewItem.cs" />
     <Compile Include="View\Items\PostOrderViewItem.cs" />
@@ -305,6 +329,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EventForm.resx">
       <DependentUpon>EventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinancialReferenceListUserControl.resx">
+      <DependentUpon>FinancialReferenceListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinancialReferenceUserControl.resx">
+      <DependentUpon>FinancialReferenceUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageItemUserControl.resx">
       <DependentUpon>ImageItemUserControl.cs</DependentUpon>

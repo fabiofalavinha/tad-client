@@ -151,22 +151,19 @@ namespace TadManagementTool.Presenter.Impl
                 var list = View.GetPostList().ToList();
                 list.RemoveAt(viewItem.LastPosition);
                 list.Insert(viewItem.NewPosition, viewItem.Data);
-
-                var loggedUser = UserContext.GetInstance().LoggedUser;
-                var minute = 1;
-                foreach (var postViewItem in list.Reverse<PostViewItem>())
+                var orderIndex = 1;
+                foreach (var postViewItem in list)
                 {
-                    var now = DateTime.Now.AddMinutes(minute++);
                     if (postViewItem.IsPublished)
                     {
-                        postViewItem.Wrapper.Published = now;
-                        postViewItem.Wrapper.PublishedBy = loggedUser;
+                        postViewItem.Wrapper.Order = orderIndex++;
                     }
-                    postViewItem.Wrapper.Modified = now;
-                    postViewItem.Wrapper.ModifiedBy = loggedUser;
+                    else
+                    {
+                        postViewItem.Wrapper.Order = 0;
+                    }
                 }
-
-               View.SetPostList(list);
+                View.SetPostList(list);
             }
         }
 

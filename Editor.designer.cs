@@ -70,7 +70,7 @@ namespace TadManagementTool
             this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.modalWaitingPanel = new ModalWaitingPanel(this.components);
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -471,22 +471,22 @@ namespace TadManagementTool
             // postInternalVisibilityRadioButton
             // 
             this.postInternalVisibilityRadioButton.AutoSize = true;
-            this.postInternalVisibilityRadioButton.Checked = true;
             this.postInternalVisibilityRadioButton.Location = new System.Drawing.Point(94, 8);
             this.postInternalVisibilityRadioButton.Name = "postInternalVisibilityRadioButton";
             this.postInternalVisibilityRadioButton.Size = new System.Drawing.Size(58, 17);
             this.postInternalVisibilityRadioButton.TabIndex = 4;
-            this.postInternalVisibilityRadioButton.TabStop = true;
             this.postInternalVisibilityRadioButton.Text = "Interno";
             this.postInternalVisibilityRadioButton.UseVisualStyleBackColor = true;
             // 
             // postPublicVisibilityRadioButton
             // 
             this.postPublicVisibilityRadioButton.AutoSize = true;
+            this.postPublicVisibilityRadioButton.Checked = true;
             this.postPublicVisibilityRadioButton.Location = new System.Drawing.Point(167, 8);
             this.postPublicVisibilityRadioButton.Name = "postPublicVisibilityRadioButton";
             this.postPublicVisibilityRadioButton.Size = new System.Drawing.Size(60, 17);
             this.postPublicVisibilityRadioButton.TabIndex = 5;
+            this.postPublicVisibilityRadioButton.TabStop = true;
             this.postPublicVisibilityRadioButton.Text = "Público";
             this.postPublicVisibilityRadioButton.UseVisualStyleBackColor = true;
             // 

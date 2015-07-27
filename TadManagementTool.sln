@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TadManagementTool", "TadManagementTool.csproj", "{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "tad-client-setup", "..\Setup\tad-client-setup.vdproj", "{B5F2A822-27E9-442E-A7EB-9D626055A5EE}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "tad-client-setup", "..\tad-client-setup\tad-client-setup.vdproj", "{F0448FF4-F22C-420B-8872-A41E57AA7A1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,16 +26,11 @@ Global
 		{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{49DD36D8-1B2A-4F72-AB0B-0BEF5BE81AE2}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.CD_ROM|Any CPU.ActiveCfg = Release
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.CD_ROM|Any CPU.Build.0 = Release
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Debug|Any CPU.ActiveCfg = Debug
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Debug|Any CPU.Build.0 = Debug
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.DVD-5|Any CPU.ActiveCfg = Debug
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.DVD-5|Any CPU.Build.0 = Debug
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Release|Any CPU.ActiveCfg = Release
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.Release|Any CPU.Build.0 = Release
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.SingleImage|Any CPU.ActiveCfg = Release
-		{B5F2A822-27E9-442E-A7EB-9D626055A5EE}.SingleImage|Any CPU.Build.0 = Release
+		{F0448FF4-F22C-420B-8872-A41E57AA7A1B}.CD_ROM|Any CPU.ActiveCfg = Release
+		{F0448FF4-F22C-420B-8872-A41E57AA7A1B}.Debug|Any CPU.ActiveCfg = Debug
+		{F0448FF4-F22C-420B-8872-A41E57AA7A1B}.DVD-5|Any CPU.ActiveCfg = Debug
+		{F0448FF4-F22C-420B-8872-A41E57AA7A1B}.Release|Any CPU.ActiveCfg = Release
+		{F0448FF4-F22C-420B-8872-A41E57AA7A1B}.SingleImage|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

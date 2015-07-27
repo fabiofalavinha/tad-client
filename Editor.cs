@@ -1287,20 +1287,19 @@ namespace TadManagementTool
             // sometimes clrs is HEX organized as (RED)(GREEN)(BLUE)
             if (clrs.StartsWith("#"))
             {
-                int clrn = Convert.ToInt32(clrs.Substring(1), 16);
+                var clrn = Convert.ToInt32(clrs.Substring(1), 16);
                 red = (clrn >> 16) & 255;
                 green = (clrn >> 8) & 255;
                 blue = clrn & 255;
             }
             else // otherwise clrs is DECIMAL organized as (BlUE)(GREEN)(RED)
             {
-                int clrn = Convert.ToInt32(clrs);
+                var clrn = Convert.ToInt32(clrs);
                 red = clrn & 255;
                 green = (clrn >> 8) & 255;
                 blue = (clrn >> 16) & 255;
             }
-            Color incolor = Color.FromArgb(red, green, blue);
-            return incolor;
+            return Color.FromArgb(red, green, blue);
         }
 
         /// <summary>

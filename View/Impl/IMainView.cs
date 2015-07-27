@@ -11,5 +11,6 @@ namespace TadManagementTool.View.Impl
         void OpenImageListView();
         void OpenUserChangePasswordView(User user);
         void OpenCollaboratorBirthDaysView();
+        void OpenFinancialReferenceListView();
     }
 }
