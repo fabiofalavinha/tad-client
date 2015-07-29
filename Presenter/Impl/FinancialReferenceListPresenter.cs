@@ -50,7 +50,8 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OpenFinancialReferenceEnrollmentView()
         {
-            View.OpenFinancialReferenceEnrollmentView();
+            var selected = View.GetFinancialReferenceSelected();
+            View.OpenFinancialReferenceEnrollmentView(selected);
         }
 
         public void OnRemove()

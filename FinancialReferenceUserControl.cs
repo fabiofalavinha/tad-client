@@ -19,11 +19,11 @@ namespace TadManagementTool
         private readonly IMainView parentView;
         private readonly IFinancialReferencePresenter presenter;
 
-        public FinancialReferenceUserControl(IMainView parentView)
+        public FinancialReferenceUserControl(IMainView parentView, FinancialReference selected = null)
         {
             InitializeComponent();
             this.parentView = parentView;
-            this.presenter = new FinancialReferencePresenter(this);
+            this.presenter = new FinancialReferencePresenter(this, selected);
         }
 
         public void ShowWarningMessage(string message)

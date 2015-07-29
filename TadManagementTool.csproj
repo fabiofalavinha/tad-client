@@ -436,6 +436,7 @@
     <Content Include="Resources\post.png" />
     <Content Include="Resources\right_arrow.bmp" />
     <Content Include="Resources\rj.bmp" />
+    <Content Include="Resources\tad.ico" />
     <Content Include="Resources\underscore.bmp" />
     <Content Include="Resources\uol.bmp" />
     <None Include="Resources\phone-delete.png" />

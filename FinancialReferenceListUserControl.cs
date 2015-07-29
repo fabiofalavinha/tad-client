@@ -80,14 +80,14 @@ namespace TadManagementTool
             presenter.InitView();
         }
 
-        public void OpenFinancialReferenceEnrollmentView()
+        public void OpenFinancialReferenceEnrollmentView(FinancialReferenceViewItem selected)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action(OpenFinancialReferenceEnrollmentView));
+                BeginInvoke(new Action<FinancialReferenceViewItem>(OpenFinancialReferenceEnrollmentView), selected);
                 return;
             }
-            parentView.ShowControlView(new FinancialReferenceUserControl(parentView)
+            parentView.ShowControlView(new FinancialReferenceUserControl(parentView, selected.Wrapper)
             {
                 Dock = DockStyle.Fill
             });
@@ -133,6 +133,11 @@ namespace TadManagementTool
                 return (bool)Invoke(new Func<string, bool>(ShowBinaryQuestion), message);
             }
             return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OpenFinancialReferenceEnrollmentView();
         }
     }
 }

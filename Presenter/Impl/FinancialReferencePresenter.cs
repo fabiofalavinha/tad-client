@@ -13,7 +13,8 @@ namespace TadManagementTool.Presenter.Impl
     public class FinancialReferencePresenter : AbstractControlPresenter<IFinancialReferenceView>, IFinancialReferencePresenter
     {
         private readonly FinancialService financialService;
-        private readonly FinancialReference financialReference;
+
+        private FinancialReference financialReference;
 
         public FinancialReferencePresenter(IFinancialReferenceView view)
             : base(view)
@@ -68,7 +69,11 @@ namespace TadManagementTool.Presenter.Impl
                     View.ShowWarningMessage("Selecione uma categoria");
                     return false;
                 }
-                var financialReference = FinancialReference.NewFinancialReference(description, categoryViewItem.Wrapper, View.GetAssociatedWithCollaboratorChecked());
+                if (financialReference == null)
+                    financialReference = new FinancialReference();
+                financialReference.Description = description;
+                financialReference.Category = (int)categoryViewItem.Wrapper;
+                financialReference.AssociatedWithCollaborator = View.GetAssociatedWithCollaboratorChecked();
                 financialService.SaveFinancialReference(financialReference);
                 return true;
             });

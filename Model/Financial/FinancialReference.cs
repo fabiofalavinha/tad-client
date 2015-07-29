@@ -8,16 +8,6 @@ namespace TadManagementTool.Model.Financial
 {
     public class FinancialReference
     {
-        public static FinancialReference NewFinancialReference(string description, Category category, bool associatedWithCollaborator)
-        {
-            return new FinancialReference()
-            {
-                Description = description,
-                Category = (int)category,
-                AssociatedWithCollaborator = associatedWithCollaborator
-            };
-        }
-
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 

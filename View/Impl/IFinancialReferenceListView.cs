@@ -11,7 +11,7 @@ namespace TadManagementTool.View.Impl
     {
         FinancialReferenceViewItem GetFinancialReferenceSelected();
         bool ShowBinaryQuestion(string message);
-        void OpenFinancialReferenceEnrollmentView();
+        void OpenFinancialReferenceEnrollmentView(FinancialReferenceViewItem selected);
         void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list);
     }
 }
