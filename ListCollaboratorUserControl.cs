@@ -228,5 +228,10 @@ namespace TadManagementTool
             presenter.OnSortCollaboratorList(column.DataPropertyName, sortOrder);
         }
 
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var row = dataGridView.Rows[e.RowIndex];
+            e.CellStyle.BackColor = ((CollaboratorViewItem)row.DataBoundItem).Wrapper.Active ? Color.LightGreen : Color.Coral;
+        }
     }
 }
