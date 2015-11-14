@@ -12,5 +12,15 @@ namespace TadManagementTool.Service
         {
             return restTemplate.GetForObject<IList<FinancialReference>>("/financial/references");
         }
+
+        public void SaveFinancialReference(FinancialReference financialReference)
+        {
+            restTemplate.PostForObject<FinancialReference>("/financial/reference", financialReference);
+        }
+
+        public void RemoveFinancialReference(FinancialReference financialReference)
+        {
+            restTemplate.Delete("/financial/reference/{id}", financialReference.Id);
+        }
     }
 }

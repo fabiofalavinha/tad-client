@@ -10,6 +10,7 @@ using TadManagementTool.View.Impl;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.View.Items;
+using TadManagementTool.Model.Financial;
 
 namespace TadManagementTool
 {
@@ -18,11 +19,11 @@ namespace TadManagementTool
         private readonly IMainView parentView;
         private readonly IFinancialReferencePresenter presenter;
 
-        public FinancialReferenceUserControl(IMainView parentView)
+        public FinancialReferenceUserControl(IMainView parentView, FinancialReference selected = null)
         {
             InitializeComponent();
             this.parentView = parentView;
-            this.presenter = new FinancialReferencePresenter(this);
+            this.presenter = new FinancialReferencePresenter(this, selected);
         }
 
         public void ShowWarningMessage(string message)
@@ -106,6 +107,67 @@ namespace TadManagementTool
             {
                 Dock = DockStyle.Fill
             });
+        }
+
+        public void SetDescription(string description)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetDescription), description);
+                return;
+            }
+            descriptionTextBox.Text = description;
+        }
+
+        public void SetCategory(Category category)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Category>(SetCategory), category);
+                return;
+            }
+            var found = categoryComboBox.Items.Cast<CategoryViewItem>().SingleOrDefault(c => c.Wrapper == category);
+            if (found != null) 
+            {
+                categoryComboBox.SelectedItem = found;
+            }
+        }
+
+        public void SetAssociatedWithCollaboratorChecked(bool value)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetAssociatedWithCollaboratorChecked), value);
+                return;
+            }
+            associatedWithCollaboratorCheckBox.Checked = value;
+        }
+
+        public string GetDescription()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(GetDescription));
+            }
+            return descriptionTextBox.Text;
+        }
+
+        public bool GetAssociatedWithCollaboratorChecked()
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<bool>(GetAssociatedWithCollaboratorChecked));
+            }
+            return associatedWithCollaboratorCheckBox.Checked;
+        }
+
+        public CategoryViewItem GetCategorySelected()
+        {
+            if (InvokeRequired)
+            {
+                return (CategoryViewItem)Invoke(new Func<CategoryViewItem>(GetCategorySelected));
+            }
+            return (CategoryViewItem)categoryComboBox.SelectedItem;
         }
     }
 }

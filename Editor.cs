@@ -1219,7 +1219,20 @@ namespace TadManagementTool
             {
                 if (ReadyState != ReadyState.Complete)
                     return Color.Black;
-                return ConvertToColor(doc.queryCommandValue("ForeColor").ToString());
+                var foreColor = doc.queryCommandValue("ForeColor");
+                if (foreColor == null)
+                {
+                    return Color.Black;
+                }
+                else
+                {
+                    var foreColorAsString = foreColor.ToString();
+                    if (string.IsNullOrWhiteSpace(foreColorAsString))
+                    {
+                        return Color.Black;
+                    }
+                    return ConvertToColor(foreColorAsString);
+                }
             }
             set
             {

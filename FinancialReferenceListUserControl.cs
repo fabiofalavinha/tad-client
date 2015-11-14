@@ -80,11 +80,24 @@ namespace TadManagementTool
             presenter.InitView();
         }
 
-        public void SetCollaboratorList(IList<FinancialReferenceViewItem> list)
+        public void OpenFinancialReferenceEnrollmentView(FinancialReferenceViewItem selected)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetCollaboratorList), list);
+                BeginInvoke(new Action<FinancialReferenceViewItem>(OpenFinancialReferenceEnrollmentView), selected);
+                return;
+            }
+            parentView.ShowControlView(new FinancialReferenceUserControl(parentView, selected.Wrapper)
+            {
+                Dock = DockStyle.Fill
+            });
+        }
+
+        public void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceList), list);
                 return;
             }
             bindingSource.DataSource = list;
@@ -94,17 +107,37 @@ namespace TadManagementTool
             dataGridView.AutoResizeColumns();
         }
 
-        public void OpenFinancialReferenceEnrollmentView()
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnRemove();
+        }
+
+        public FinancialReferenceViewItem GetFinancialReferenceSelected()
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action(OpenFinancialReferenceEnrollmentView));
-                return;
+                return (FinancialReferenceViewItem)Invoke(new Func<FinancialReferenceViewItem>(GetFinancialReferenceSelected));
             }
-            parentView.ShowControlView(new FinancialReferenceUserControl(parentView)
+            var row = dataGridView.SelectedRows.Cast<DataGridViewRow>().FirstOrDefault();
+            if (row != null)
             {
-                Dock = DockStyle.Fill
-            });
+                return (FinancialReferenceViewItem)row.DataBoundItem;
+            }
+            return null;
+        }
+
+        public bool ShowBinaryQuestion(string message)
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<string, bool>(ShowBinaryQuestion), message);
+            }
+            return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OpenFinancialReferenceEnrollmentView();
         }
     }
 }
