@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TadManagementTool.View.Impl;
+using TadManagementTool.Model.Financial;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
+using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
-using TadManagementTool.Model.Financial;
 
 namespace TadManagementTool
 {
@@ -19,11 +16,11 @@ namespace TadManagementTool
         private readonly IMainView parentView;
         private readonly IFinancialReferencePresenter presenter;
 
-        public FinancialReferenceUserControl(IMainView parentView, FinancialReference selected = null)
+        public FinancialReferenceUserControl(IMainView parentView, FinancialReferenceViewItem viewItem)
         {
             InitializeComponent();
             this.parentView = parentView;
-            this.presenter = new FinancialReferencePresenter(this, selected);
+            presenter = new FinancialReferencePresenter(this, viewItem != null ? viewItem.Wrapper : null);
         }
 
         public void ShowWarningMessage(string message)

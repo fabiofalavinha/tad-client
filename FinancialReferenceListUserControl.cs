@@ -87,7 +87,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action<FinancialReferenceViewItem>(OpenFinancialReferenceEnrollmentView), selected);
                 return;
             }
-            parentView.ShowControlView(new FinancialReferenceUserControl(parentView, selected.Wrapper)
+            parentView.ShowControlView(new FinancialReferenceUserControl(parentView, selected)
             {
                 Dock = DockStyle.Fill
             });
