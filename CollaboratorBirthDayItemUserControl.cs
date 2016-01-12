@@ -26,7 +26,7 @@ namespace TadManagementTool
             var builder = new StringBuilder();
             foreach (var person in birthDayList.People)
             {
-                builder.Append(builder.Length > 0 ? "\n\r" : string.Empty).AppendFormat("{0} - {1}", person.BirthDate.Day, person.Name);
+                builder.Append(builder.Length > 0 ? "\n\r" : string.Empty).AppendFormat("{0} - {1}", person.BirthDate.Day, person.Name.Length > 20 ? person.Name.Substring(0, 19) + "..." : person.Name);
             }
             personNameLabel.Text = builder.ToString();
         }

@@ -37,9 +37,9 @@
             this.personNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.personNameLabel.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.personNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.personNameLabel.Location = new System.Drawing.Point(140, 89);
+            this.personNameLabel.Location = new System.Drawing.Point(132, 89);
             this.personNameLabel.Name = "personNameLabel";
-            this.personNameLabel.Size = new System.Drawing.Size(165, 126);
+            this.personNameLabel.Size = new System.Drawing.Size(191, 136);
             this.personNameLabel.TabIndex = 0;
             // 
             // dateLabel
