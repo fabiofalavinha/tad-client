@@ -18,7 +18,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnMenuItemSelect(string menuActionTypeViewString)
         {
-            if (string.IsNullOrWhiteSpace(menuActionTypeViewString))
+            if (!string.IsNullOrWhiteSpace(menuActionTypeViewString))
             {
                 try
                 {
