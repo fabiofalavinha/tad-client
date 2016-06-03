@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using TadManagementTool.Model.Financial;
 using TadManagementTool.Service;
 using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;

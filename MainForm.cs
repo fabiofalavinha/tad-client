@@ -193,5 +193,15 @@ namespace TadManagementTool
             }
             DoLoadMainControl(new FinancialReferenceListUserControl(this));
         }
+
+        public void OpenFinancialEntryListView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenFinancialEntryListView));
+                return;
+            }
+            DoLoadMainControl(new FinancialEntryListUserControl(this));
+        }
     }
 }

@@ -4,6 +4,7 @@
     {
         public void Open(IMainView mainView)
         {
+            mainView.OpenFinancialEntryListView();
         }
     }
 }

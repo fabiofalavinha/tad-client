@@ -6,6 +6,7 @@ namespace TadManagementTool.View.Impl
     {
         void OpenCollaboratorView();
         void ShowControlView(IControlView controlView);
+        void OpenFinancialEntryListView();
         void OpenCalendarView();
         void OpenPostListView();
         void OpenImageListView();

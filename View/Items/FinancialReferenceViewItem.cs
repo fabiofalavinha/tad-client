@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TadManagementTool.Model.Financial;
+﻿using TadManagementTool.Model.Financial;
 
 namespace TadManagementTool.View.Items
 {
@@ -10,6 +6,7 @@ namespace TadManagementTool.View.Items
     {
         public FinancialReference Wrapper { get; private set; }
 
+        public string Id { get { return Wrapper.Id; } }
         public string Description { get { return Wrapper.Description; } }
         public string Category { get { return CategoryExtensions.FromValue(Wrapper.Category).Translate(); } }
         public bool AssociatedWithCollaborator { get { return Wrapper.AssociatedWithCollaborator; } }
