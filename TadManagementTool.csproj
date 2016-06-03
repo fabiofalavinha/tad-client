@@ -309,6 +309,7 @@
     <Compile Include="View\Impl\IUploadImageFileView.cs" />
     <Compile Include="View\Impl\OpenCalendarMenuViewAction.cs" />
     <Compile Include="View\Impl\OpenCollaboratorBirthDaysMenuViewAction.cs" />
+    <Compile Include="View\Impl\OpenFinancialEntriesListMenuViewAction.cs" />
     <Compile Include="View\Impl\OpenFinancialReferenceListMenuViewAction.cs" />
     <Compile Include="View\Impl\OpenImageListMenuViewAction.cs" />
     <Compile Include="View\Impl\OpenPostListMenuViewAction.cs" />
@@ -431,7 +432,6 @@
     <None Include="Resources\birthdays.png" />
     <None Include="Resources\birthday-item-background.png" />
     <Content Include="Resources\bold.bmp" />
-    <None Include="Resources\brithday-item-background.png" />
     <Content Include="Resources\calendar.png" />
     <Content Include="Resources\cj.bmp" />
     <Content Include="Resources\colaboradores.png" />
@@ -440,6 +440,7 @@
     <Content Include="Resources\fj.bmp" />
     <Content Include="Resources\indent.bmp" />
     <Content Include="Resources\italic.bmp" />
+    <Content Include="Resources\lancamentos.png" />
     <Content Include="Resources\link.bmp" />
     <Content Include="Resources\lj.bmp" />
     <Content Include="Resources\logo-tad.jpg" />

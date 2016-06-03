@@ -1,10 +1,8 @@
-﻿using TadManagementTool.View;
-
-namespace TadManagementTool.Presenter
+﻿namespace TadManagementTool.Presenter
 {
     public interface IMainPresenter : IPresenter
     {
-        void OnMenuItemSelect(IMenuActionView menuActionView);
+        void OnMenuItemSelect(string menuActionTypeViewString);
         void OnUserChangePassword();
     }
 }

@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using TadManagementTool.Model;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
-using TadManagementTool.Properties;
 using TadManagementTool.View;
 using TadManagementTool.View.Impl;
 
@@ -95,16 +94,7 @@ namespace TadManagementTool
             var tag = e.Node.Tag;
             if (tag != null)
             {
-                var menuActionViewString = e.Node.Tag.ToString();
-                var menuActionView = Activator.CreateInstance(Type.GetType(menuActionViewString)) as IMenuActionView;
-                if (menuActionView != null)
-                {
-                    presenter.OnMenuItemSelect(menuActionView);
-                }
-                else
-                {
-                    ShowWarningMessage(string.Format("Não foi possível abrir a tela [{0}]", menuActionViewString));
-                }
+                presenter.OnMenuItemSelect(tag.ToString());
             }
         }
 

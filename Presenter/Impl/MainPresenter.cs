@@ -1,4 +1,5 @@
-﻿using TadManagementTool.Model;
+﻿using System;
+using TadManagementTool.Model;
 using TadManagementTool.View;
 using TadManagementTool.View.Impl;
 
@@ -15,9 +16,27 @@ namespace TadManagementTool.Presenter.Impl
         {
         }
 
-        public void OnMenuItemSelect(IMenuActionView menuActionView)
+        public void OnMenuItemSelect(string menuActionTypeViewString)
         {
-            menuActionView.Open(View);
+            if (string.IsNullOrWhiteSpace(menuActionTypeViewString))
+            {
+                try
+                {
+                    var menuActionView = Activator.CreateInstance(Type.GetType(menuActionTypeViewString)) as IMenuActionView;
+                    if (menuActionView != null)
+                    {
+                        menuActionView.Open(View);
+                    }
+                    else
+                    {
+                        View.ShowWarningMessage($"Não foi possível abrir a tela [{menuActionTypeViewString}]");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    View.ShowWarningMessage($"Não foi possível executar a oporação desejada [{ex.Message}]");
+                }
+            }
         }
 
         public void OnUserChangePassword()
