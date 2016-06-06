@@ -34,8 +34,15 @@ namespace TadManagementTool
             var viewItem = (ImageCarouselViewItem)e.Argument;
             using (var webClient = new CustomWebClient())
             {
-                webClient.DownloadProgressChanged += (s, ee) => imageProgressBar.Value = ee.ProgressPercentage;
-                e.Result = webClient.DownloadData(viewItem.ImageUrl);
+                try
+                {
+                    webClient.DownloadProgressChanged += (s, ee) => imageProgressBar.Value = ee.ProgressPercentage;
+                    e.Result = webClient.DownloadData(viewItem.ImageUrl);
+                }
+                catch (Exception)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 

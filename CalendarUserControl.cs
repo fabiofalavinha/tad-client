@@ -25,7 +25,7 @@ namespace TadManagementTool
             InitializeComponent();
             calendarControl.EventDetailsCallback = new CustomEventDetailsCallback(this);
             this.parentView = parentView;
-            this.presenter = new CalendarPresenter(this);
+            presenter = new CalendarPresenter(this);
         }
 
         private void CalendarUserControl_Load(object sender, EventArgs e)
@@ -75,15 +75,6 @@ namespace TadManagementTool
                 return;
             }
             MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        public DateTime GetMonthDaySelected()
-        {
-            if (InvokeRequired)
-            {
-                return (DateTime)Invoke(new Func<DateTime>(GetMonthDaySelected));
-            }
-            return calendarControl.CalendarDate;
         }
 
         public void SetEvents(IList<Event> events)
@@ -151,11 +142,11 @@ namespace TadManagementTool
             calendarControl.AddEvent(new TadEvent(newEvent));
         }
 
-        public void SetCalendarMonthTo(DateTime now)
+        public void SetCurrentCalendarDate(DateTime now)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<DateTime>(SetCalendarMonthTo), now);
+                BeginInvoke(new Action<DateTime>(SetCurrentCalendarDate), now);
                 return;
             }
             calendarControl.CalendarDate = now;

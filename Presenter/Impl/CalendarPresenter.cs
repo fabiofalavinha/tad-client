@@ -24,7 +24,9 @@ namespace TadManagementTool.Presenter.Impl
             var task = new Task<IList<Event>>(() =>
             {
                 View.ShowWaitingPanel("Carregando eventos...");
-                return eventService.FindEventByYear(View.GetMonthDaySelected().Year);
+                var today = DateTime.Now;
+                View.SetCurrentCalendarDate(today);
+                return eventService.FindEventByYear(today.Year);
             });
             task.ContinueWith(t =>
             {
@@ -37,7 +39,6 @@ namespace TadManagementTool.Presenter.Impl
             task.ContinueWith(t => 
             {
                 View.HideWaitingPanel();
-                View.SetCalendarMonthTo(DateTime.Now);
                 View.SetEvents(t.Result);
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();

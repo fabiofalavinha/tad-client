@@ -1134,24 +1134,31 @@ namespace TadManagementTool
             {
                 if (ReadyState != ReadyState.Complete)
                     return FontSize.NA;
-                switch ((int)doc.queryCommandValue("FontSize"))
+                try
                 {
-                    case 1:
-                        return FontSize.One;
-                    case 2:
-                        return FontSize.Two;
-                    case 3:
-                        return FontSize.Three;
-                    case 4:
-                        return FontSize.Four;
-                    case 5:
-                        return FontSize.Five;
-                    case 6:
-                        return FontSize.Six;
-                    case 7:
-                        return FontSize.Seven;
-                    default:
-                        return FontSize.NA;
+                    switch ((int)doc.queryCommandValue("FontSize"))
+                    {
+                        case 1:
+                            return FontSize.One;
+                        case 2:
+                            return FontSize.Two;
+                        case 3:
+                            return FontSize.Three;
+                        case 4:
+                            return FontSize.Four;
+                        case 5:
+                            return FontSize.Five;
+                        case 6:
+                            return FontSize.Six;
+                        case 7:
+                            return FontSize.Seven;
+                        default:
+                            return FontSize.NA;
+                    }
+                }
+                catch (Exception)
+                {
+                    return FontSize.NA;
                 }
             }
             set

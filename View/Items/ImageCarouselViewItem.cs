@@ -15,7 +15,7 @@ namespace TadManagementTool.View.Items
         { 
             get 
             {
-                return new Uri(string.Format("http://{0}:3000/images/app/{1}", serverBaseUrl.Host, Wrapper.Name));
+                return new Uri(string.Format("http://{0}/images/app/{1}", serverBaseUrl.Host, Wrapper.Name));
             }
         }
 
