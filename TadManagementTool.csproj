@@ -471,6 +471,9 @@
     <Content Include="Resources\outdent.bmp" />
     <Content Include="Resources\photograph_edit.png" />
     <Content Include="Resources\post.png" />
+    <None Include="Resources\receipt_send_disabled.png" />
+    <None Include="Resources\receipt_send_hot.png" />
+    <None Include="Resources\receipt_send_normal.png" />
     <Content Include="Resources\right_arrow.bmp" />
     <Content Include="Resources\rj.bmp" />
     <Content Include="Resources\tad.ico" />

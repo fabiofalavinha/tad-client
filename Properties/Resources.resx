@@ -181,17 +181,17 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgNJREFUOE+lkutL
-        k2EYxvePhJaHShFBUTEPiCieQOmDiEZgrEbpYGiCQxkqA80IRUkUEZ0YRMS+DDI70MkTmzJnDc8iU8QT
-        2mAEItnle90wHwTDyBduXnie5/rd133Q4ZKfAJqHFs9E08A8zD1emDpmYXjqRlnTFIrMk8iuGkNaxWek
-        GEaQrHecBfw+/vPXODw6hj9whN2fh/Bt/8LSRgA3cxr/DeBZ9kvmTNMoHGNbIrYN+3Aj23IxgJkpds0d
-        oP3VstgmsNexhutZ9QrAms8T0zYzU5xXM46kcjsmvfvoeL2iAeoUgA07T8yaaZuZKab1rzN74jgys1YB
-        2O2gmBZzH49LODXrrJlnzEzxe9cOLH1ziMioVgCOiuIFX0CEQ+/WYf+yieiCFrRp9tkwxnP7Kt5MbKGm
-        6wfC000KwDlTXNLgEvHMkh+Db32o7fYivtQm1l9+3IBOp5P7yjYPwlKNCsAluWudxgvtknb5t9oWcL/V
-        LU2Mvd2JFq3uqs7vAtE/ceNayiMF4KiYMSjmY2O7B4Ua+NaDYQGEJumRbvyG1IcfBHI12aAAXM8R57aI
-        WTNrLLY4tfNPiCvpR1SeVeu6WWzHFD6THSDwFMDdpmUG62NJPKM4Or9ZxBxb8H8l7g5CEu8pAOfM3Wan
-        SeeS8CFHxW4zM2umbWamOCShXAH+/wNOANABIDUxWnDPAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACA0lEQVQ4T6WS60uTYRjG94+ElodKEUFR
+        MQ+IKJ5A6YOIRmCsRulgaIJDGSoDzQhFSRQRnRhExL4MMjvQyRObMmcNzyJTxBPaYAQi2eV73TAfBMPI
+        F25eeJ7n+t3XfdDhkp8AmocWz0TTwDzMPV6YOmZheOpGWdMUisyTyK4aQ1rFZ6QYRpCsd5wF/D7+89c4
+        PDqGP3CE3Z+H8G3/wtJGADdzGv8N4Fn2S+ZM0ygcY1sitg37cCPbcjGAmSl2zR2g/dWy2Caw17GG61n1
+        CsCazxPTNjNTnFczjqRyOya9++h4vaIB6hSADTtPzJppm5kppvWvM3viODKzVgHY7aCYFnMfj0s4Neus
+        mWfMTPF71w4sfXOIyKhWAI6K4gVfQIRD79Zh/7KJ6IIWtGn22TDGc/sq3kxsoabrB8LTTQrAOVNc0uAS
+        8cySH4Nvfajt9iK+1CbWX37cgE6nk/vKNg/CUo0KwCW5a53GC+2Sdvm32hZwv9UtTYy93YkWre6qzu8C
+        0T9x41rKIwXgqJgxKOZjY7sHhRr41oNhAYQm6ZFu/IbUhx8EcjXZoABczxHntohZM2sstji180+IK+lH
+        VJ5V67pZbMcUPpMdIPAUwN2mZQbrY0k8ozg6v1nEHFvwfyXuDkIS7ykA58zdZqdJ55LwIUfFbjMza6Zt
+        ZqY4JKFcAf7/A04A0AEgNTFacM8AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -205,5 +205,14 @@
   </data>
   <data name="birthday_item_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\birthday-item-background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="receipt_send_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\receipt_send_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="receipt_send_hot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\receipt_send_hot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="receipt_send_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\receipt_send_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

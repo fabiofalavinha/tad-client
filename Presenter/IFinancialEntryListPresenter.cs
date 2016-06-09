@@ -3,5 +3,6 @@
     public interface IFinancialEntryListPresenter : IPresenter
     {
         void OnNewFinancialEntryAdded();
+        void OnOpenFinancialEntryView();
     }
 }

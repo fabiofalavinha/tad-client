@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TadManagementTool.Service;
 using TadManagementTool.View;
 using TadManagementTool.View.Items;
@@ -41,6 +42,15 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnNewFinancialEntryAdded()
         {
+        }
+
+        public void OnOpenFinancialEntryView()
+        {
+            var result = View.OpenFinancialEntryView();
+            if (result == DialogResult.OK)
+            {
+                // TODO: refresh list
+            }
         }
     }
 }
