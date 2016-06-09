@@ -103,9 +103,52 @@ namespace TadManagementTool
             presenter.OnOpenFinancialEntryView();
         }
 
+        private void financialEntrySearchButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnSearchFinancialEntries();
+        }
+
         public DialogResult OpenFinancialEntryView()
         {
             throw new NotImplementedException();
+        }
+
+        public DateTime GetFinancialEntryFromDate()
+        {
+            if (InvokeRequired)
+            {
+                return (DateTime)Invoke(new Func<DateTime>(GetFinancialEntryFromDate));
+            }
+            return financialEntryDateFromPicker.Value;
+        }
+
+        public DateTime GetFinancialEntryToDate()
+        {
+            if (InvokeRequired)
+            {
+                return (DateTime)Invoke(new Func<DateTime>(GetFinancialEntryToDate));
+            }
+            return financialEntryDateToPicker.Value;
+        }
+
+        public void SetFinancialEntryFilterDateFrom(DateTime date)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime>(SetFinancialEntryFilterDateFrom), date);
+                return;
+            }
+            financialEntryDateFromPicker.Value = date;
+        }
+
+        public void SetFinancialEntryFilterDateTo(DateTime date)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime>(SetFinancialEntryFilterDateTo), date);
+                return;
+            }
+            financialEntryDateToPicker.Value = date;
         }
 
         /*

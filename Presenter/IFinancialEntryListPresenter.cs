@@ -4,5 +4,6 @@
     {
         void OnNewFinancialEntryAdded();
         void OnOpenFinancialEntryView();
+        void OnSearchFinancialEntries();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TadManagementTool.Service;
@@ -22,7 +23,11 @@ namespace TadManagementTool.Presenter.Impl
             var task = new Task(() =>
             {
                 View.ShowWaitingPanel("Carregando lançamentos...");
+                DoSetFinancialEntryDateRange();
                 View.SetFinancialReferenceList(financialService.GetFinancialReferences().Select(r => new FinancialReferenceViewItem(r)).ToArray());
+
+                // TODO: search financial entries using initial date (from and to)
+
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -40,6 +45,15 @@ namespace TadManagementTool.Presenter.Impl
 
         }
 
+        private void DoSetFinancialEntryDateRange()
+        {
+            var today = DateTime.Now;
+            var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
+            var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+            View.SetFinancialEntryFilterDateFrom(firstDayOfMonth);
+            View.SetFinancialEntryFilterDateTo(lastDayOfMonth);
+        }
+
         public void OnNewFinancialEntryAdded()
         {
         }
@@ -51,6 +65,20 @@ namespace TadManagementTool.Presenter.Impl
             {
                 // TODO: refresh list
             }
+        }
+
+        public void OnSearchFinancialEntries()
+        {
+            var fromDate = View.GetFinancialEntryFromDate();
+            var toDate = View.GetFinancialEntryToDate();
+            if (fromDate > toDate)
+            {
+                View.ShowWarningMessage("Ops... As datas escolhidas para filtrar os lançamentos estão erradas. O primeiro campo de data deve ser menor que o segundo campo de data.");
+                return;
+            }
+
+
+
         }
     }
 }

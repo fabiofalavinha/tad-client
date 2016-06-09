@@ -45,6 +45,7 @@
             this.financialEntryDateToPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryDateFromPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryContentPanel = new System.Windows.Forms.Panel();
+            this.financialEntrySearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
@@ -166,6 +167,7 @@
             // 
             // financialEntryFilterPanel
             // 
+            this.financialEntryFilterPanel.Controls.Add(this.financialEntrySearchButton);
             this.financialEntryFilterPanel.Controls.Add(this.financialEntryDateFilterGroupBox);
             this.financialEntryFilterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.financialEntryFilterPanel.Location = new System.Drawing.Point(0, 0);
@@ -219,6 +221,17 @@
             this.financialEntryContentPanel.Size = new System.Drawing.Size(828, 518);
             this.financialEntryContentPanel.TabIndex = 4;
             // 
+            // financialEntrySearchButton
+            // 
+            this.financialEntrySearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.financialEntrySearchButton.Location = new System.Drawing.Point(733, 20);
+            this.financialEntrySearchButton.Name = "financialEntrySearchButton";
+            this.financialEntrySearchButton.Size = new System.Drawing.Size(82, 23);
+            this.financialEntrySearchButton.TabIndex = 2;
+            this.financialEntrySearchButton.Text = "Buscar...";
+            this.financialEntrySearchButton.UseVisualStyleBackColor = true;
+            this.financialEntrySearchButton.Click += new System.EventHandler(this.financialEntrySearchButton_Click);
+            // 
             // FinancialEntryListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,5 +271,6 @@
         private System.Windows.Forms.DateTimePicker financialEntryDateFromPicker;
         private System.Windows.Forms.Label financialEntryDateRangeLabel;
         private System.Windows.Forms.DateTimePicker financialEntryDateToPicker;
+        private System.Windows.Forms.Button financialEntrySearchButton;
     }
 }
