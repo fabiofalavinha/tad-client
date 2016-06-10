@@ -11,6 +11,21 @@ namespace TadManagementTool.Model.Financial
         [JsonProperty(PropertyName = "date")]
         public DateTime Date { get; set; }
 
+        [JsonProperty(PropertyName = "target")]
+        public FinancialTarget Target { get; set; }
+
+        [JsonProperty(PropertyName = "type")]
+        public FinancialReference Type { get; set; }
+
+        [JsonProperty(PropertyName = "additionalText")]
+        public string AdditionalText { get; set; }
+
+        [JsonProperty(PropertyName = "value")]
+        public decimal Value { get; set; }
+
+        [JsonProperty(PropertyName = "balance")]
+        public decimal Balance { get; set; }
+
         public FinancialEntry()
         {
             Id = Guid.NewGuid().ToString();

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TadManagementTool.Model.Financial
 {
@@ -21,11 +18,22 @@ namespace TadManagementTool.Model.Financial
         {
             return (Category)Enum.ToObject(typeof(Category), value);
         }
-    }
 
+        public static string TranslateValue(int value)
+        {
+            switch (value)
+            {
+                case (int)Category.Receivable: return "C";
+                case (int)Category.Payable: return "D";
+                default: return "N/A";
+            }
+        }
+    }
     public enum Category
     {
         Receivable = 1,
         Payable = 2
     }
 }
+
+

@@ -18,84 +18,17 @@ namespace TadManagementTool
         private readonly IMainView parentView;
         private readonly IFinancialEntryListPresenter presenter;
 
-        private FinancialReferenceViewItem[] currentFinancialReferenceViewItems;
-
         public FinancialEntryListUserControl(IMainView parentView)
         {
             InitializeComponent();
             dataGridView.AutoGenerateColumns = false;
             this.parentView = parentView;
             presenter = new FinancialEntryListPresenter(this);
-            currentFinancialReferenceViewItems = new FinancialReferenceViewItem[] { };
         }
 
         private void FinancialEntryListUserControl_Load(object sender, EventArgs e)
         {
             presenter.InitView();
-        }
-
-        private void dataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            Console.WriteLine("Row added");
-            var gridView = (DataGridView)sender;
-            var row = gridView.Rows[e.RowIndex];
-            var financialEntryTargetColumn = row.Cells["financialEntryTargetColumn"] as DataGridViewComboBoxCell;
-            financialEntryTargetColumn.DataSource = currentFinancialReferenceViewItems;
-            financialEntryTargetColumn.DisplayMember = "Description";
-            financialEntryTargetColumn.ValueMember = "Id";
-            presenter.OnNewFinancialEntryAdded();
-        }
-
-        private void dataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            Console.WriteLine("Users row added");
-            var gridView = (DataGridView)sender;
-            var dataBoundItem = e.Row.DataBoundItem;
-            Console.WriteLine(dataBoundItem);
-            presenter.OnNewFinancialEntryAdded();
-        }
-
-        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            Console.WriteLine($"DataBindingComplete {e.ListChangedType}");
-        }
-
-        private void dataGridView_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            Console.WriteLine("Row validating");
-        }
-
-        private void dataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            Console.WriteLine("Users deleted row");
-        }
-
-        private void dataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-            Console.WriteLine("Users deleting row");
-        }
-
-        private void dataGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            Console.WriteLine("Row validated");
-        }
-
-        public void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceList), list);
-                return;
-            }
-            currentFinancialReferenceViewItems = list.ToArray();
-        }
-
-        private void dataGridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            if (e.Column.CellType.Name == "financialReferenceTypeColumn")
-            {
-                Console.WriteLine("financialReferenceTypeColumn added");
-            }
         }
 
         private void openFinancialEntryViewButton_Click(object sender, EventArgs e)
@@ -110,7 +43,15 @@ namespace TadManagementTool
 
         public DialogResult OpenFinancialEntryView()
         {
-            throw new NotImplementedException();
+            if (InvokeRequired)
+            {
+                return (DialogResult)Invoke(new Func<DialogResult>(OpenFinancialEntryView));
+
+            }
+            using (var form = new FinancialEntryEnrollmentForm())
+            {
+                return form.ShowDialog();
+            }
         }
 
         public DateTime GetFinancialEntryFromDate()
@@ -151,16 +92,54 @@ namespace TadManagementTool
             financialEntryDateToPicker.Value = date;
         }
 
-        /*
-         TODO
+        public void SetFinancialEntryList(IList<FinancialEntryViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<FinancialEntryViewItem>>(SetFinancialEntryList), list);
+                return;
+            }
+            var receiptColumn = dataGridView.Columns.Cast<DataGridViewColumn>().SingleOrDefault(c => c.Name == "financialReceiptActionColumn");
+            if (receiptColumn != null)
+                receiptColumn.CellTemplate = new FinancialReceiptDataGridViewCell();
 
-            - Ao setar a lista na grid, trocar o template da celula do botão de emissao de recibo
+            bindingSource.DataSource = list;
+            dataGridView.DataSource = bindingSource;
+            bindingSource.ResetBindings(false);
+            dataGridView.ClearSelection();
+            dataGridView.AutoResizeColumns();
+        }
 
-            var recoveryColumn = mainMachinesDataGridView.Columns.Cast<DataGridViewColumn>().SingleOrDefault(c => c.Name == "RecoverButtonColumn");
-            if (recoveryColumn != null)
-                recoveryColumn.CellTemplate = new DataGridViewRecoveryCell();
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OnSelectFinancialEntryView();
+        }
 
-         */
+        public FinancialEntryViewItem GetFinancialEntryViewSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialEntryViewItem)Invoke(new Func<FinancialEntryViewItem>(GetFinancialEntryViewSelected));
+            }
+            var selectedRow = dataGridView.SelectedRows.Cast<DataGridViewRow>().FirstOrDefault();
+            if (selectedRow != null)
+            {
+                return (FinancialEntryViewItem)selectedRow.DataBoundItem;
+            }
+            return null;
+        }
+
+        public DialogResult OpenFinancialEntryView(FinancialEntryViewItem selected)
+        {
+            if (InvokeRequired)
+            {
+                return (DialogResult)Invoke(new Func<FinancialEntryViewItem, DialogResult>(OpenFinancialEntryView));
+            }
+            using (var form = new FinancialEntryEnrollmentForm(selected))
+            {
+                return form.ShowDialog();
+            }
+        }
 
         private class FinancialReceiptDataGridViewCell : DataGridViewImageButtonCell
         {
@@ -257,8 +236,8 @@ namespace TadManagementTool
                     {
                         case PushButtonState.Disabled: return buttonImageDisabled;
                         case PushButtonState.Hot: return buttonImageHot;
-                        case PushButtonState.Normal: return buttonImageNormal;
-                        case PushButtonState.Pressed: return buttonImageNormal;
+                        case PushButtonState.Normal:
+                        case PushButtonState.Pressed:
                         case PushButtonState.Default: return buttonImageNormal;
                         default: return buttonImageNormal;
                     }

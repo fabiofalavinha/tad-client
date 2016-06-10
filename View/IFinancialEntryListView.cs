@@ -8,10 +8,12 @@ namespace TadManagementTool.View
     public interface IFinancialEntryListView : IControlView
     {
         DialogResult OpenFinancialEntryView();
+        DialogResult OpenFinancialEntryView(FinancialEntryViewItem selected);
         DateTime GetFinancialEntryFromDate();
         DateTime GetFinancialEntryToDate();
-        void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list);
+        FinancialEntryViewItem GetFinancialEntryViewSelected();
         void SetFinancialEntryFilterDateFrom(DateTime date);
         void SetFinancialEntryFilterDateTo(DateTime date);
+        void SetFinancialEntryList(IList<FinancialEntryViewItem> list);
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.financialEntryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialEntryTargetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,17 +41,19 @@
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.openAddFinancialEntryViewButton = new System.Windows.Forms.Button();
             this.financialEntryFilterPanel = new System.Windows.Forms.Panel();
+            this.financialEntrySearchButton = new System.Windows.Forms.Button();
             this.financialEntryDateFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.financialEntryDateRangeLabel = new System.Windows.Forms.Label();
             this.financialEntryDateToPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryDateFromPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryContentPanel = new System.Windows.Forms.Panel();
-            this.financialEntrySearchButton = new System.Windows.Forms.Button();
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
             this.financialEntryDateFilterGroupBox.SuspendLayout();
             this.financialEntryContentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -68,19 +71,15 @@
             this.financialEntryTotalBalanceColumn,
             this.financialReceiptActionColumn});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(828, 518);
-            this.dataGridView.TabIndex = 1;
-            this.dataGridView.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView_ColumnAdded);
-            this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
-            this.dataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView_RowsAdded);
-            this.dataGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_RowValidated);
-            this.dataGridView.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView_RowValidating);
-            this.dataGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView_UserAddedRow);
-            this.dataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView_UserDeletedRow);
-            this.dataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView_UserDeletingRow);
+            this.dataGridView.TabIndex = 7;
+            this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             // 
             // financialEntryDateColumn
             // 
@@ -152,7 +151,7 @@
             this.buttonPanel.Location = new System.Drawing.Point(0, 574);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(828, 43);
-            this.buttonPanel.TabIndex = 2;
+            this.buttonPanel.TabIndex = 8;
             // 
             // openAddFinancialEntryViewButton
             // 
@@ -160,7 +159,7 @@
             this.openAddFinancialEntryViewButton.Location = new System.Drawing.Point(705, 6);
             this.openAddFinancialEntryViewButton.Name = "openAddFinancialEntryViewButton";
             this.openAddFinancialEntryViewButton.Size = new System.Drawing.Size(110, 30);
-            this.openAddFinancialEntryViewButton.TabIndex = 0;
+            this.openAddFinancialEntryViewButton.TabIndex = 9;
             this.openAddFinancialEntryViewButton.Text = "Novo Lançamento";
             this.openAddFinancialEntryViewButton.UseVisualStyleBackColor = true;
             this.openAddFinancialEntryViewButton.Click += new System.EventHandler(this.openFinancialEntryViewButton_Click);
@@ -174,6 +173,17 @@
             this.financialEntryFilterPanel.Name = "financialEntryFilterPanel";
             this.financialEntryFilterPanel.Size = new System.Drawing.Size(828, 56);
             this.financialEntryFilterPanel.TabIndex = 3;
+            // 
+            // financialEntrySearchButton
+            // 
+            this.financialEntrySearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.financialEntrySearchButton.Location = new System.Drawing.Point(733, 13);
+            this.financialEntrySearchButton.Name = "financialEntrySearchButton";
+            this.financialEntrySearchButton.Size = new System.Drawing.Size(82, 30);
+            this.financialEntrySearchButton.TabIndex = 5;
+            this.financialEntrySearchButton.Text = "Buscar...";
+            this.financialEntrySearchButton.UseVisualStyleBackColor = true;
+            this.financialEntrySearchButton.Click += new System.EventHandler(this.financialEntrySearchButton_Click);
             // 
             // financialEntryDateFilterGroupBox
             // 
@@ -193,7 +203,7 @@
             this.financialEntryDateRangeLabel.Location = new System.Drawing.Point(128, 27);
             this.financialEntryDateRangeLabel.Name = "financialEntryDateRangeLabel";
             this.financialEntryDateRangeLabel.Size = new System.Drawing.Size(22, 13);
-            this.financialEntryDateRangeLabel.TabIndex = 1;
+            this.financialEntryDateRangeLabel.TabIndex = 3;
             this.financialEntryDateRangeLabel.Text = "até";
             // 
             // financialEntryDateToPicker
@@ -202,7 +212,7 @@
             this.financialEntryDateToPicker.Location = new System.Drawing.Point(156, 21);
             this.financialEntryDateToPicker.Name = "financialEntryDateToPicker";
             this.financialEntryDateToPicker.Size = new System.Drawing.Size(95, 20);
-            this.financialEntryDateToPicker.TabIndex = 0;
+            this.financialEntryDateToPicker.TabIndex = 4;
             // 
             // financialEntryDateFromPicker
             // 
@@ -210,7 +220,7 @@
             this.financialEntryDateFromPicker.Location = new System.Drawing.Point(27, 21);
             this.financialEntryDateFromPicker.Name = "financialEntryDateFromPicker";
             this.financialEntryDateFromPicker.Size = new System.Drawing.Size(95, 20);
-            this.financialEntryDateFromPicker.TabIndex = 0;
+            this.financialEntryDateFromPicker.TabIndex = 2;
             // 
             // financialEntryContentPanel
             // 
@@ -219,18 +229,7 @@
             this.financialEntryContentPanel.Location = new System.Drawing.Point(0, 56);
             this.financialEntryContentPanel.Name = "financialEntryContentPanel";
             this.financialEntryContentPanel.Size = new System.Drawing.Size(828, 518);
-            this.financialEntryContentPanel.TabIndex = 4;
-            // 
-            // financialEntrySearchButton
-            // 
-            this.financialEntrySearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.financialEntrySearchButton.Location = new System.Drawing.Point(733, 20);
-            this.financialEntrySearchButton.Name = "financialEntrySearchButton";
-            this.financialEntrySearchButton.Size = new System.Drawing.Size(82, 23);
-            this.financialEntrySearchButton.TabIndex = 2;
-            this.financialEntrySearchButton.Text = "Buscar...";
-            this.financialEntrySearchButton.UseVisualStyleBackColor = true;
-            this.financialEntrySearchButton.Click += new System.EventHandler(this.financialEntrySearchButton_Click);
+            this.financialEntryContentPanel.TabIndex = 6;
             // 
             // FinancialEntryListUserControl
             // 
@@ -248,6 +247,7 @@
             this.financialEntryDateFilterGroupBox.ResumeLayout(false);
             this.financialEntryDateFilterGroupBox.PerformLayout();
             this.financialEntryContentPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -272,5 +272,6 @@
         private System.Windows.Forms.Label financialEntryDateRangeLabel;
         private System.Windows.Forms.DateTimePicker financialEntryDateToPicker;
         private System.Windows.Forms.Button financialEntrySearchButton;
+        private System.Windows.Forms.BindingSource bindingSource;
     }
 }

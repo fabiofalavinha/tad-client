@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TadManagementTool.View;
-using TadManagementTool.View.Impl;
+using TadManagementTool.Model;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
-using TadManagementTool.Model;
+using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
 namespace TadManagementTool
@@ -215,9 +212,9 @@ namespace TadManagementTool
             if (columnSortOrderMap.TryGetValue(column.DataPropertyName, out sortOrder))
             {
                 columnSortOrderMap.Remove(column.DataPropertyName);
-                sortOrder = 
-                    sortOrder == SortOrder.Ascending 
-                    ? SortOrder.Descending 
+                sortOrder =
+                    sortOrder == SortOrder.Ascending
+                    ? SortOrder.Descending
                     : SortOrder.Ascending;
             }
             else

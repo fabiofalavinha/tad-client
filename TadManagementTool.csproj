@@ -157,6 +157,12 @@
       <DependentUpon>EventForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="FinancialEntryEnrollmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinancialEntryEnrollmentForm.Designer.cs">
+      <DependentUpon>FinancialEntryEnrollmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FinancialEntryListUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +236,8 @@
     <Compile Include="Model\Financial\Category.cs" />
     <Compile Include="Model\Financial\FinancialEntry.cs" />
     <Compile Include="Model\Financial\FinancialReference.cs" />
+    <Compile Include="Model\Financial\FinancialTarget.cs" />
+    <Compile Include="Model\Financial\FinancialTargetType.cs" />
     <Compile Include="Model\GenderType.cs" />
     <Compile Include="Model\MonthOfBirthday.cs" />
     <Compile Include="Model\Person.cs" />
@@ -255,11 +263,13 @@
     <Compile Include="Presenter\ICollaboratorBirthDaysPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorPresenter.cs" />
     <Compile Include="Presenter\IEventEnrollmentPresenter.cs" />
+    <Compile Include="Presenter\IFinancialEntryEnrollmentPresenter.cs" />
     <Compile Include="Presenter\IFinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\IFinancialReferenceListPresenter.cs" />
     <Compile Include="Presenter\IFinancialReferencePresenter.cs" />
     <Compile Include="Presenter\IImageListPresenter.cs" />
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
+    <Compile Include="Presenter\Impl\FinancialEntryEnrollmentPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferenceListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferencePresenter.cs" />
@@ -310,6 +320,7 @@
     <Compile Include="View\IControlView.cs" />
     <Compile Include="View\IDialogView.cs" />
     <Compile Include="View\IFinancialEntryListView.cs" />
+    <Compile Include="View\IFinancialEntryEnrollmentView.cs" />
     <Compile Include="View\Impl\ICalendarView.cs" />
     <Compile Include="View\Impl\ICollaboratorBirthDaysView.cs" />
     <Compile Include="View\Impl\ICollaboratorView.cs" />
@@ -363,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EventForm.resx">
       <DependentUpon>EventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinancialEntryEnrollmentForm.resx">
+      <DependentUpon>FinancialEntryEnrollmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FinancialEntryListUserControl.resx">
       <DependentUpon>FinancialEntryListUserControl.cs</DependentUpon>

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TadManagementTool.Model.Financial;
 
 namespace TadManagementTool.Service
@@ -21,6 +19,11 @@ namespace TadManagementTool.Service
         public void RemoveFinancialReference(FinancialReference financialReference)
         {
             restTemplate.Delete("/financial/reference/{id}", financialReference.Id);
+        }
+
+        public IList<FinancialEntry> FindFinancialEntryBy(DateTime from, DateTime to)
+        {
+            return restTemplate.GetForObject<IList<FinancialEntry>>("/financial/entries/{from}/{to}", from.ToString("dd-MM-yyyy"), to.ToString("dd-MM-yyyy"));
         }
     }
 }

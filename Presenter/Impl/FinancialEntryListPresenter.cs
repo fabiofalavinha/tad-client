@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TadManagementTool.Model.Financial;
 using TadManagementTool.Service;
 using TadManagementTool.View;
 using TadManagementTool.View.Items;
@@ -24,10 +26,6 @@ namespace TadManagementTool.Presenter.Impl
             {
                 View.ShowWaitingPanel("Carregando lançamentos...");
                 DoSetFinancialEntryDateRange();
-                View.SetFinancialReferenceList(financialService.GetFinancialReferences().Select(r => new FinancialReferenceViewItem(r)).ToArray());
-
-                // TODO: search financial entries using initial date (from and to)
-
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -42,7 +40,6 @@ namespace TadManagementTool.Presenter.Impl
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
-
         }
 
         private void DoSetFinancialEntryDateRange()
@@ -52,10 +49,8 @@ namespace TadManagementTool.Presenter.Impl
             var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
             View.SetFinancialEntryFilterDateFrom(firstDayOfMonth);
             View.SetFinancialEntryFilterDateTo(lastDayOfMonth);
-        }
-
-        public void OnNewFinancialEntryAdded()
-        {
+            var list = financialService.FindFinancialEntryBy(firstDayOfMonth, lastDayOfMonth);
+            View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
         }
 
         public void OnOpenFinancialEntryView()
@@ -63,22 +58,55 @@ namespace TadManagementTool.Presenter.Impl
             var result = View.OpenFinancialEntryView();
             if (result == DialogResult.OK)
             {
-                // TODO: refresh list
+                OnSearchFinancialEntries();
             }
         }
 
         public void OnSearchFinancialEntries()
         {
-            var fromDate = View.GetFinancialEntryFromDate();
-            var toDate = View.GetFinancialEntryToDate();
-            if (fromDate > toDate)
+            var task = new Task<IList<FinancialEntry>>(() =>
             {
-                View.ShowWarningMessage("Ops... As datas escolhidas para filtrar os lançamentos estão erradas. O primeiro campo de data deve ser menor que o segundo campo de data.");
-                return;
+                var fromDate = View.GetFinancialEntryFromDate();
+                var toDate = View.GetFinancialEntryToDate();
+                if (fromDate > toDate)
+                {
+                    View.ShowWarningMessage("Ops... As datas escolhidas para filtrar os lançamentos estão erradas. O primeiro campo de data deve ser menor que o segundo campo de data.");
+                    return null;
+                }
+                View.ShowWaitingPanel($"Buscando lançamentos de {fromDate.ToShortDateString()} até {toDate.ToShortDateString()}...");
+                return financialService.FindFinancialEntryBy(fromDate, toDate);
+            }, TaskCreationOptions.LongRunning);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage($"Ocorreu um erro ao pesquisar lançamentos. Tente repetir a operação. {innerException.Message}");
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.ContinueWith(t =>
+            {
+                var list = t.Result;
+                if (list != null)
+                {
+                    View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
+                }
+                View.HideWaitingPanel();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.Start();
+        }
+
+        public void OnSelectFinancialEntryView()
+        {
+            var selected = View.GetFinancialEntryViewSelected();
+            if (selected != null)
+            {
+                var result = View.OpenFinancialEntryView(selected);
+                if (result == DialogResult.OK)
+                {
+                    OnSearchFinancialEntries();
+                }
             }
-
-
-
         }
     }
 }
