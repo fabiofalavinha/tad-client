@@ -345,6 +345,7 @@
     <Compile Include="View\Items\EventResult.cs" />
     <Compile Include="View\Items\FinancialEntryViewItem.cs" />
     <Compile Include="View\Items\FinancialReferenceViewItem.cs" />
+    <Compile Include="View\Items\FinancialTargetViewItem.cs" />
     <Compile Include="View\Items\ImageCarouselViewItem.cs" />
     <Compile Include="View\Items\PhoneTypeViewItem.cs" />
     <Compile Include="View\Items\PostOrderViewItem.cs" />

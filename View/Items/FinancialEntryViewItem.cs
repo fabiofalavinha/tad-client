@@ -7,7 +7,7 @@ namespace TadManagementTool.View.Items
         public static FinancialEntryViewItem NewEntry()
         {
             var entry = new FinancialEntry();
-            return new FinancialEntryViewItem()
+            return new FinancialEntryViewItem(entry)
             {
                 Id = entry.Id,
                 Date = entry.Date.ToShortDateString()
@@ -16,7 +16,7 @@ namespace TadManagementTool.View.Items
 
         public static FinancialEntryViewItem FromModel(FinancialEntry wrapper)
         {
-            return new FinancialEntryViewItem()
+            return new FinancialEntryViewItem(wrapper)
             {
                 Id = wrapper.Id,
                 Date = wrapper.Date.ToShortDateString(),
@@ -31,6 +31,8 @@ namespace TadManagementTool.View.Items
             };
         }
 
+        public FinancialEntry Wrapper { get; private set; }
+
         public string Id { get; set; }
         public string Date { get; set; }
         public string TargetReference { get; set; }
@@ -41,5 +43,10 @@ namespace TadManagementTool.View.Items
         public string AdditionalText { get; set; }
         public string Value { get; set; }
         public string Balance { get; set; }
+
+        public FinancialEntryViewItem(FinancialEntry wrapper)
+        {
+            Wrapper = wrapper;
+        }
     }
 }

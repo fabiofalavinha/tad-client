@@ -4,6 +4,9 @@ namespace TadManagementTool.Model.Financial
 {
     public class FinancialTarget
     {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
         [JsonProperty("type")]
         public FinancialTargetType Type { get; set; }
 

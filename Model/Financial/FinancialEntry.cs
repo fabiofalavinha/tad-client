@@ -26,6 +26,9 @@ namespace TadManagementTool.Model.Financial
         [JsonProperty(PropertyName = "balance")]
         public decimal Balance { get; set; }
 
+        [JsonProperty(PropertyName = "previewBalance")]
+        public decimal PreviewBalance { get; set; }
+
         public FinancialEntry()
         {
             Id = Guid.NewGuid().ToString();

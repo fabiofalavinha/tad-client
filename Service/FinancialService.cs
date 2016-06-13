@@ -25,5 +25,10 @@ namespace TadManagementTool.Service
         {
             return restTemplate.GetForObject<IList<FinancialEntry>>("/financial/entries/{from}/{to}", from.ToString("dd-MM-yyyy"), to.ToString("dd-MM-yyyy"));
         }
+
+        public IList<FinancialTarget> FindTargets()
+        {
+            return restTemplate.GetForObject<IList<FinancialTarget>>("/financial/targets");
+        }
     }
 }

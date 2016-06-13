@@ -31,16 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinancialEntryEnrollmentForm));
             this.buttonPanel = new System.Windows.Forms.Panel();
+            this.buttonSeparatorPanel = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.targetRadionButtonGroupPanel = new System.Windows.Forms.Panel();
+            this.targetComboBox = new System.Windows.Forms.ComboBox();
+            this.targetCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
+            this.targetNonCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.categoryPayableRadionButton = new System.Windows.Forms.RadioButton();
             this.categoryReceivableRadionButton = new System.Windows.Forms.RadioButton();
             this.balanceSeparatorPanel = new System.Windows.Forms.Panel();
             this.entryValueTextBox = new System.Windows.Forms.TextBox();
             this.additionalTextTextBox = new System.Windows.Forms.TextBox();
             this.financialTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.targetNonCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
-            this.targetCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.balancePreviewValueLabel = new System.Windows.Forms.Label();
             this.currentBalanceValueLabel = new System.Windows.Forms.Label();
             this.entryValueLabel = new System.Windows.Forms.Label();
@@ -51,9 +54,6 @@
             this.targetLabel = new System.Windows.Forms.Label();
             this.entryDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.entryDateLabel = new System.Windows.Forms.Label();
-            this.buttonSeparatorPanel = new System.Windows.Forms.Panel();
-            this.targetRadionButtonGroupPanel = new System.Windows.Forms.Panel();
-            this.targetComboBox = new System.Windows.Forms.ComboBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
@@ -69,6 +69,14 @@
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(443, 51);
             this.buttonPanel.TabIndex = 19;
+            // 
+            // buttonSeparatorPanel
+            // 
+            this.buttonSeparatorPanel.BackColor = System.Drawing.Color.Black;
+            this.buttonSeparatorPanel.Location = new System.Drawing.Point(1, 2);
+            this.buttonSeparatorPanel.Name = "buttonSeparatorPanel";
+            this.buttonSeparatorPanel.Size = new System.Drawing.Size(443, 1);
+            this.buttonSeparatorPanel.TabIndex = 8;
             // 
             // saveButton
             // 
@@ -105,6 +113,50 @@
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(443, 337);
             this.contentPanel.TabIndex = 0;
+            // 
+            // targetRadionButtonGroupPanel
+            // 
+            this.targetRadionButtonGroupPanel.Controls.Add(this.targetComboBox);
+            this.targetRadionButtonGroupPanel.Controls.Add(this.targetCollaboratorTypeRadioButton);
+            this.targetRadionButtonGroupPanel.Controls.Add(this.targetNonCollaboratorTypeRadioButton);
+            this.targetRadionButtonGroupPanel.Location = new System.Drawing.Point(191, 45);
+            this.targetRadionButtonGroupPanel.Name = "targetRadionButtonGroupPanel";
+            this.targetRadionButtonGroupPanel.Size = new System.Drawing.Size(184, 46);
+            this.targetRadionButtonGroupPanel.TabIndex = 3;
+            // 
+            // targetComboBox
+            // 
+            this.targetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.targetComboBox.Enabled = false;
+            this.targetComboBox.FormattingEnabled = true;
+            this.targetComboBox.Location = new System.Drawing.Point(4, 22);
+            this.targetComboBox.Name = "targetComboBox";
+            this.targetComboBox.Size = new System.Drawing.Size(177, 21);
+            this.targetComboBox.TabIndex = 5;
+            // 
+            // targetCollaboratorTypeRadioButton
+            // 
+            this.targetCollaboratorTypeRadioButton.AutoSize = true;
+            this.targetCollaboratorTypeRadioButton.Location = new System.Drawing.Point(4, 3);
+            this.targetCollaboratorTypeRadioButton.Name = "targetCollaboratorTypeRadioButton";
+            this.targetCollaboratorTypeRadioButton.Size = new System.Drawing.Size(82, 17);
+            this.targetCollaboratorTypeRadioButton.TabIndex = 3;
+            this.targetCollaboratorTypeRadioButton.TabStop = true;
+            this.targetCollaboratorTypeRadioButton.Text = "Colaborador";
+            this.targetCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
+            this.targetCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetCollaboratorTypeRadioButton_CheckedChanged);
+            // 
+            // targetNonCollaboratorTypeRadioButton
+            // 
+            this.targetNonCollaboratorTypeRadioButton.AutoSize = true;
+            this.targetNonCollaboratorTypeRadioButton.Location = new System.Drawing.Point(92, 3);
+            this.targetNonCollaboratorTypeRadioButton.Name = "targetNonCollaboratorTypeRadioButton";
+            this.targetNonCollaboratorTypeRadioButton.Size = new System.Drawing.Size(56, 17);
+            this.targetNonCollaboratorTypeRadioButton.TabIndex = 4;
+            this.targetNonCollaboratorTypeRadioButton.TabStop = true;
+            this.targetNonCollaboratorTypeRadioButton.Text = "Outros";
+            this.targetNonCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
+            this.targetNonCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetNonCollaboratorTypeRadioButton_CheckedChanged);
             // 
             // categoryPayableRadionButton
             // 
@@ -161,28 +213,6 @@
             this.financialTypeComboBox.Name = "financialTypeComboBox";
             this.financialTypeComboBox.Size = new System.Drawing.Size(177, 21);
             this.financialTypeComboBox.TabIndex = 4;
-            // 
-            // targetNonCollaboratorTypeRadioButton
-            // 
-            this.targetNonCollaboratorTypeRadioButton.AutoSize = true;
-            this.targetNonCollaboratorTypeRadioButton.Location = new System.Drawing.Point(92, 3);
-            this.targetNonCollaboratorTypeRadioButton.Name = "targetNonCollaboratorTypeRadioButton";
-            this.targetNonCollaboratorTypeRadioButton.Size = new System.Drawing.Size(56, 17);
-            this.targetNonCollaboratorTypeRadioButton.TabIndex = 4;
-            this.targetNonCollaboratorTypeRadioButton.TabStop = true;
-            this.targetNonCollaboratorTypeRadioButton.Text = "Outros";
-            this.targetNonCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // targetCollaboratorTypeRadioButton
-            // 
-            this.targetCollaboratorTypeRadioButton.AutoSize = true;
-            this.targetCollaboratorTypeRadioButton.Location = new System.Drawing.Point(4, 3);
-            this.targetCollaboratorTypeRadioButton.Name = "targetCollaboratorTypeRadioButton";
-            this.targetCollaboratorTypeRadioButton.Size = new System.Drawing.Size(82, 17);
-            this.targetCollaboratorTypeRadioButton.TabIndex = 3;
-            this.targetCollaboratorTypeRadioButton.TabStop = true;
-            this.targetCollaboratorTypeRadioButton.Text = "Colaborador";
-            this.targetCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
             // 
             // balancePreviewValueLabel
             // 
@@ -272,35 +302,6 @@
             this.entryDateLabel.Size = new System.Drawing.Size(110, 13);
             this.entryDateLabel.TabIndex = 1;
             this.entryDateLabel.Text = "Data do Lançamento:";
-            // 
-            // buttonSeparatorPanel
-            // 
-            this.buttonSeparatorPanel.BackColor = System.Drawing.Color.Black;
-            this.buttonSeparatorPanel.Location = new System.Drawing.Point(1, 2);
-            this.buttonSeparatorPanel.Name = "buttonSeparatorPanel";
-            this.buttonSeparatorPanel.Size = new System.Drawing.Size(443, 1);
-            this.buttonSeparatorPanel.TabIndex = 8;
-            // 
-            // targetRadionButtonGroupPanel
-            // 
-            this.targetRadionButtonGroupPanel.Controls.Add(this.targetComboBox);
-            this.targetRadionButtonGroupPanel.Controls.Add(this.targetCollaboratorTypeRadioButton);
-            this.targetRadionButtonGroupPanel.Controls.Add(this.targetNonCollaboratorTypeRadioButton);
-            this.targetRadionButtonGroupPanel.Location = new System.Drawing.Point(191, 45);
-            this.targetRadionButtonGroupPanel.Name = "targetRadionButtonGroupPanel";
-            this.targetRadionButtonGroupPanel.Size = new System.Drawing.Size(184, 46);
-            this.targetRadionButtonGroupPanel.TabIndex = 3;
-            this.targetRadionButtonGroupPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.targetRadionButtonGroupPanel_Paint);
-            // 
-            // targetComboBox
-            // 
-            this.targetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.targetComboBox.Enabled = false;
-            this.targetComboBox.FormattingEnabled = true;
-            this.targetComboBox.Location = new System.Drawing.Point(4, 22);
-            this.targetComboBox.Name = "targetComboBox";
-            this.targetComboBox.Size = new System.Drawing.Size(177, 21);
-            this.targetComboBox.TabIndex = 5;
             // 
             // modalWaitingPanel
             // 
