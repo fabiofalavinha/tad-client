@@ -24,10 +24,10 @@ namespace TadManagementTool.Model.Financial
         public decimal Value { get; set; }
 
         [JsonProperty(PropertyName = "balance")]
-        public decimal Balance { get; set; }
+        public Balance Balance { get; set; }
 
         [JsonProperty(PropertyName = "previewBalance")]
-        public decimal PreviewBalance { get; set; }
+        public Balance PreviewBalance { get; set; }
 
         public FinancialEntry()
         {

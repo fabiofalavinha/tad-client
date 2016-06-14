@@ -20,14 +20,14 @@ namespace TadManagementTool.View.Items
             {
                 Id = wrapper.Id,
                 Date = wrapper.Date.ToShortDateString(),
-                TargetReference = wrapper.Target.Reference,
-                TargetDescription = wrapper.Target.Description,
+                TargetReference = wrapper.Target.Id,
+                TargetDescription = wrapper.Target.Name,
                 TypeReference = wrapper.Type.Id,
                 TypeReferenceName = wrapper.Type.Description,
                 Category = CategoryExtensions.TranslateValue(wrapper.Type.Category),
                 AdditionalText = wrapper.AdditionalText,
                 Value = wrapper.Value.ToString(),
-                Balance = wrapper.Balance.ToString()
+                Balance = wrapper.Balance.Value.ToString()
             };
         }
 

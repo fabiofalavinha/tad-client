@@ -30,5 +30,10 @@ namespace TadManagementTool.Service
         {
             return restTemplate.GetForObject<IList<FinancialTarget>>("/financial/targets");
         }
+
+        public Balance GetCurrentTotalBalance()
+        {
+            return restTemplate.GetForObject<Balance>("/financial/balance");
+        }
     }
 }

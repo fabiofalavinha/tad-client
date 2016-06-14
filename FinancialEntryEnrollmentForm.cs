@@ -174,7 +174,7 @@ namespace TadManagementTool
             additionalTextTextBox.Text = viewItem.Wrapper.AdditionalText;
             categoryPayableRadionButton.Checked = viewItem.Wrapper.Type.Category == (int)Category.Payable;
             categoryReceivableRadionButton.Checked = viewItem.Wrapper.Type.Category == (int)Category.Receivable;
-            currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.ToString();
+            currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString();
             entryValueTextBox.Text = viewItem.Wrapper.Value.ToString();
             balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.ToString();
         }
@@ -188,6 +188,16 @@ namespace TadManagementTool
             }
             financialTypeComboBox.Items.Clear();
             financialTypeComboBox.Items.AddRange(list.ToArray());
+        }
+
+        public void SetCurrentBalance(string value)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetCurrentBalance), value);
+                return;
+            }
+            currentBalanceValueLabel.Text = value;
         }
     }
 }

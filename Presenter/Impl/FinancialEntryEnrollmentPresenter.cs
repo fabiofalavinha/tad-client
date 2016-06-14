@@ -29,6 +29,7 @@ namespace TadManagementTool.Presenter.Impl
                 View.ShowWaitingPanel("Carregando dados financeiros...");
                 DoLoadTargetLists();
                 DoLoadFinancialReferenceList();
+                View.SetCurrentBalance(financialService.GetCurrentTotalBalance().ToString());
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -78,7 +79,7 @@ namespace TadManagementTool.Presenter.Impl
         {
             try
             {
-                currentFinancialTargetViewItems = financialService.FindTargets().Select(t => new FinancialTargetViewItem() { Id = t.Reference, Name = t.Description }).ToArray();
+                currentFinancialTargetViewItems = financialService.FindTargets().Select(t => new FinancialTargetViewItem() { Id = t.Id, Name = t.Name }).ToArray();
             }
             catch (Exception)
             {

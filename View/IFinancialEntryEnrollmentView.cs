@@ -10,5 +10,6 @@ namespace TadManagementTool.View
         void SetNonCollaboratorList(IList<FinancialTargetViewItem> list);
         void SetFinancialEntry(FinancialEntryViewItem viewItem);
         void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list);
+        void SetCurrentBalance(string value);
     }
 }

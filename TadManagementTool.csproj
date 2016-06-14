@@ -233,6 +233,7 @@
     <Compile Include="Model\CarouselImage.cs" />
     <Compile Include="Model\Collaborator.cs" />
     <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\Financial\Balance.cs" />
     <Compile Include="Model\Financial\Category.cs" />
     <Compile Include="Model\Financial\FinancialEntry.cs" />
     <Compile Include="Model\Financial\FinancialReference.cs" />
