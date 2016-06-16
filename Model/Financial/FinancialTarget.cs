@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace TadManagementTool.Model.Financial
 {
@@ -8,9 +9,14 @@ namespace TadManagementTool.Model.Financial
         public string Id { get; set; }
 
         [JsonProperty("type")]
-        public FinancialTargetType Type { get; set; }
+        public int Type { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        public FinancialTargetType ToTargetType()
+        {
+            return (FinancialTargetType)Enum.ToObject(typeof(FinancialTargetType), Type);
+        }
     }
 }

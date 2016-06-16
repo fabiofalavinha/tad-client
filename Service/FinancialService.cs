@@ -23,7 +23,7 @@ namespace TadManagementTool.Service
 
         public IList<FinancialEntry> FindFinancialEntryBy(DateTime from, DateTime to)
         {
-            return restTemplate.GetForObject<IList<FinancialEntry>>("/financial/entries/{from}/{to}", from.ToString("dd-MM-yyyy"), to.ToString("dd-MM-yyyy"));
+            return restTemplate.GetForObject<IList<FinancialEntry>>("/financial/entries/{from}/{to}", from.ToString("yyyy-MM-dd"), to.ToString("yyyy-MM-dd"));
         }
 
         public IList<FinancialTarget> FindTargets()

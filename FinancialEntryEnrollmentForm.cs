@@ -167,8 +167,8 @@ namespace TadManagementTool
                 return;
             }
             entryDateTimePicker.Value = viewItem.Wrapper.Date;
-            targetCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.Type == FinancialTargetType.Colaborator;
-            targetNonCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.Type == FinancialTargetType.NonColaborator;
+            targetCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.Colaborator;
+            targetNonCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.NonColaborator;
             targetComboBox.SelectedItem = targetComboBox.Items.Cast<FinancialTargetViewItem>().SingleOrDefault(i => i.Id.Equals(viewItem.TargetReference));
             financialTypeComboBox.SelectedItem = financialTypeComboBox.Items.Cast<FinancialReferenceViewItem>().SingleOrDefault(r => r.Id.Equals(viewItem.Wrapper.Type.Id));
             additionalTextTextBox.Text = viewItem.Wrapper.AdditionalText;
