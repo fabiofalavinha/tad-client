@@ -10,7 +10,7 @@ namespace TadManagementTool.View.Items
             return new FinancialEntryViewItem(entry)
             {
                 Id = entry.Id,
-                Date = entry.Date.ToShortDateString()
+                Date = entry.ToEntryDate().ToShortDateString()
             };
         }
 
@@ -19,7 +19,7 @@ namespace TadManagementTool.View.Items
             return new FinancialEntryViewItem(wrapper)
             {
                 Id = wrapper.Id,
-                Date = wrapper.Date.ToShortDateString(),
+                Date = wrapper.ToEntryDate().ToShortDateString(),
                 TargetReference = wrapper.Target.Id,
                 TargetDescription = wrapper.Target.Name,
                 TypeReference = wrapper.Type.Id,
@@ -27,7 +27,7 @@ namespace TadManagementTool.View.Items
                 Category = CategoryExtensions.TranslateValue(wrapper.Type.Category),
                 AdditionalText = wrapper.AdditionalText,
                 Value = wrapper.Value.ToString(),
-                Balance = wrapper.Balance.Value.ToString()
+                Balance = wrapper.PreviewBalance.Value.ToString()
             };
         }
 

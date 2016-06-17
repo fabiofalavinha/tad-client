@@ -35,5 +35,10 @@ namespace TadManagementTool.Service
         {
             return restTemplate.GetForObject<Balance>("/financial/balance");
         }
+
+        public void SaveFinancialEntry(FinancialEntry financialEntry)
+        {
+            restTemplate.PostForObject<FinancialEntry>("/financial/entry", financialEntry);
+        }
     }
 }

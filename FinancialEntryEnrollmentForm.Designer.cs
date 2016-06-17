@@ -38,10 +38,7 @@
             this.targetComboBox = new System.Windows.Forms.ComboBox();
             this.targetCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.targetNonCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
-            this.categoryPayableRadionButton = new System.Windows.Forms.RadioButton();
-            this.categoryReceivableRadionButton = new System.Windows.Forms.RadioButton();
             this.balanceSeparatorPanel = new System.Windows.Forms.Panel();
-            this.entryValueTextBox = new System.Windows.Forms.TextBox();
             this.additionalTextTextBox = new System.Windows.Forms.TextBox();
             this.financialTypeComboBox = new System.Windows.Forms.ComboBox();
             this.balancePreviewValueLabel = new System.Windows.Forms.Label();
@@ -54,6 +51,8 @@
             this.targetLabel = new System.Windows.Forms.Label();
             this.entryDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.entryDateLabel = new System.Windows.Forms.Label();
+            this.categoryTypeLabel = new System.Windows.Forms.Label();
+            this.entryValueTextBox = new TadManagementTool.CurrencyTextBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
@@ -65,7 +64,7 @@
             this.buttonPanel.Controls.Add(this.buttonSeparatorPanel);
             this.buttonPanel.Controls.Add(this.saveButton);
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonPanel.Location = new System.Drawing.Point(0, 337);
+            this.buttonPanel.Location = new System.Drawing.Point(0, 312);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(443, 51);
             this.buttonPanel.TabIndex = 19;
@@ -91,11 +90,10 @@
             // 
             // contentPanel
             // 
-            this.contentPanel.Controls.Add(this.targetRadionButtonGroupPanel);
-            this.contentPanel.Controls.Add(this.categoryPayableRadionButton);
-            this.contentPanel.Controls.Add(this.categoryReceivableRadionButton);
-            this.contentPanel.Controls.Add(this.balanceSeparatorPanel);
+            this.contentPanel.Controls.Add(this.categoryTypeLabel);
             this.contentPanel.Controls.Add(this.entryValueTextBox);
+            this.contentPanel.Controls.Add(this.targetRadionButtonGroupPanel);
+            this.contentPanel.Controls.Add(this.balanceSeparatorPanel);
             this.contentPanel.Controls.Add(this.additionalTextTextBox);
             this.contentPanel.Controls.Add(this.financialTypeComboBox);
             this.contentPanel.Controls.Add(this.balancePreviewValueLabel);
@@ -111,7 +109,7 @@
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(0, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(443, 337);
+            this.contentPanel.Size = new System.Drawing.Size(443, 312);
             this.contentPanel.TabIndex = 0;
             // 
             // targetRadionButtonGroupPanel
@@ -158,43 +156,13 @@
             this.targetNonCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
             this.targetNonCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetNonCollaboratorTypeRadioButton_CheckedChanged);
             // 
-            // categoryPayableRadionButton
-            // 
-            this.categoryPayableRadionButton.AutoSize = true;
-            this.categoryPayableRadionButton.Location = new System.Drawing.Point(259, 225);
-            this.categoryPayableRadionButton.Name = "categoryPayableRadionButton";
-            this.categoryPayableRadionButton.Size = new System.Drawing.Size(56, 17);
-            this.categoryPayableRadionButton.TabIndex = 11;
-            this.categoryPayableRadionButton.TabStop = true;
-            this.categoryPayableRadionButton.Text = "Débito";
-            this.categoryPayableRadionButton.UseVisualStyleBackColor = true;
-            // 
-            // categoryReceivableRadionButton
-            // 
-            this.categoryReceivableRadionButton.AutoSize = true;
-            this.categoryReceivableRadionButton.Location = new System.Drawing.Point(195, 225);
-            this.categoryReceivableRadionButton.Name = "categoryReceivableRadionButton";
-            this.categoryReceivableRadionButton.Size = new System.Drawing.Size(58, 17);
-            this.categoryReceivableRadionButton.TabIndex = 10;
-            this.categoryReceivableRadionButton.TabStop = true;
-            this.categoryReceivableRadionButton.Text = "Crédito";
-            this.categoryReceivableRadionButton.UseVisualStyleBackColor = true;
-            // 
             // balanceSeparatorPanel
             // 
             this.balanceSeparatorPanel.BackColor = System.Drawing.Color.Black;
-            this.balanceSeparatorPanel.Location = new System.Drawing.Point(195, 292);
+            this.balanceSeparatorPanel.Location = new System.Drawing.Point(195, 271);
             this.balanceSeparatorPanel.Name = "balanceSeparatorPanel";
-            this.balanceSeparatorPanel.Size = new System.Drawing.Size(150, 1);
+            this.balanceSeparatorPanel.Size = new System.Drawing.Size(100, 1);
             this.balanceSeparatorPanel.TabIndex = 20;
-            // 
-            // entryValueTextBox
-            // 
-            this.entryValueTextBox.Location = new System.Drawing.Point(195, 265);
-            this.entryValueTextBox.Name = "entryValueTextBox";
-            this.entryValueTextBox.Size = new System.Drawing.Size(100, 20);
-            this.entryValueTextBox.TabIndex = 15;
-            this.entryValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // additionalTextTextBox
             // 
@@ -206,36 +174,42 @@
             // 
             // financialTypeComboBox
             // 
+            this.financialTypeComboBox.DisplayMember = "Description";
             this.financialTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.financialTypeComboBox.Enabled = false;
             this.financialTypeComboBox.FormattingEnabled = true;
             this.financialTypeComboBox.ItemHeight = 13;
             this.financialTypeComboBox.Location = new System.Drawing.Point(195, 97);
             this.financialTypeComboBox.Name = "financialTypeComboBox";
             this.financialTypeComboBox.Size = new System.Drawing.Size(177, 21);
             this.financialTypeComboBox.TabIndex = 4;
+            this.financialTypeComboBox.ValueMember = "Id";
+            this.financialTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.financialTypeComboBox_SelectedIndexChanged);
             // 
             // balancePreviewValueLabel
             // 
-            this.balancePreviewValueLabel.AutoSize = true;
-            this.balancePreviewValueLabel.Location = new System.Drawing.Point(192, 299);
+            this.balancePreviewValueLabel.Location = new System.Drawing.Point(196, 277);
+            this.balancePreviewValueLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.balancePreviewValueLabel.Name = "balancePreviewValueLabel";
-            this.balancePreviewValueLabel.Size = new System.Drawing.Size(27, 13);
+            this.balancePreviewValueLabel.Size = new System.Drawing.Size(100, 13);
             this.balancePreviewValueLabel.TabIndex = 18;
             this.balancePreviewValueLabel.Text = "N/A";
+            this.balancePreviewValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // currentBalanceValueLabel
             // 
-            this.currentBalanceValueLabel.AutoSize = true;
-            this.currentBalanceValueLabel.Location = new System.Drawing.Point(192, 247);
+            this.currentBalanceValueLabel.Location = new System.Drawing.Point(196, 226);
+            this.currentBalanceValueLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.currentBalanceValueLabel.Name = "currentBalanceValueLabel";
-            this.currentBalanceValueLabel.Size = new System.Drawing.Size(27, 13);
+            this.currentBalanceValueLabel.Size = new System.Drawing.Size(100, 13);
             this.currentBalanceValueLabel.TabIndex = 13;
             this.currentBalanceValueLabel.Text = "N/A";
+            this.currentBalanceValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // entryValueLabel
             // 
             this.entryValueLabel.AutoSize = true;
-            this.entryValueLabel.Location = new System.Drawing.Point(75, 269);
+            this.entryValueLabel.Location = new System.Drawing.Point(75, 248);
             this.entryValueLabel.Name = "entryValueLabel";
             this.entryValueLabel.Size = new System.Drawing.Size(111, 13);
             this.entryValueLabel.TabIndex = 14;
@@ -244,7 +218,7 @@
             // balancePreviewLabel
             // 
             this.balancePreviewLabel.AutoSize = true;
-            this.balancePreviewLabel.Location = new System.Drawing.Point(108, 299);
+            this.balancePreviewLabel.Location = new System.Drawing.Point(108, 278);
             this.balancePreviewLabel.Name = "balancePreviewLabel";
             this.balancePreviewLabel.Size = new System.Drawing.Size(78, 13);
             this.balancePreviewLabel.TabIndex = 17;
@@ -253,7 +227,7 @@
             // currentBalanceLabel
             // 
             this.currentBalanceLabel.AutoSize = true;
-            this.currentBalanceLabel.Location = new System.Drawing.Point(122, 247);
+            this.currentBalanceLabel.Location = new System.Drawing.Point(122, 226);
             this.currentBalanceLabel.Name = "currentBalanceLabel";
             this.currentBalanceLabel.Size = new System.Drawing.Size(64, 13);
             this.currentBalanceLabel.TabIndex = 12;
@@ -303,6 +277,30 @@
             this.entryDateLabel.TabIndex = 1;
             this.entryDateLabel.Text = "Data do Lançamento:";
             // 
+            // categoryTypeLabel
+            // 
+            this.categoryTypeLabel.AutoSize = true;
+            this.categoryTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryTypeLabel.Location = new System.Drawing.Point(192, 248);
+            this.categoryTypeLabel.Name = "categoryTypeLabel";
+            this.categoryTypeLabel.Size = new System.Drawing.Size(0, 13);
+            this.categoryTypeLabel.TabIndex = 23;
+            // 
+            // entryValueTextBox
+            // 
+            this.entryValueTextBox.Location = new System.Drawing.Point(209, 245);
+            this.entryValueTextBox.Name = "entryValueTextBox";
+            this.entryValueTextBox.Size = new System.Drawing.Size(86, 20);
+            this.entryValueTextBox.TabIndex = 22;
+            this.entryValueTextBox.Text = "0.00";
+            this.entryValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.entryValueTextBox.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            this.entryValueTextBox.TextChanged += new System.EventHandler(this.entryValueTextBox_TextChanged);
+            // 
             // modalWaitingPanel
             // 
             this.modalWaitingPanel.DisplayText = null;
@@ -312,7 +310,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 388);
+            this.ClientSize = new System.Drawing.Size(443, 363);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.buttonPanel);
             this.DoubleBuffered = true;
@@ -353,12 +351,11 @@
         private System.Windows.Forms.Label balancePreviewValueLabel;
         private System.Windows.Forms.Label entryValueLabel;
         private System.Windows.Forms.Label balancePreviewLabel;
-        private System.Windows.Forms.TextBox entryValueTextBox;
         private System.Windows.Forms.Panel balanceSeparatorPanel;
-        private System.Windows.Forms.RadioButton categoryReceivableRadionButton;
-        private System.Windows.Forms.RadioButton categoryPayableRadionButton;
         private System.Windows.Forms.Panel buttonSeparatorPanel;
         private System.Windows.Forms.Panel targetRadionButtonGroupPanel;
         private System.Windows.Forms.ComboBox targetComboBox;
+        private CurrencyTextBox entryValueTextBox;
+        private System.Windows.Forms.Label categoryTypeLabel;
     }
 }

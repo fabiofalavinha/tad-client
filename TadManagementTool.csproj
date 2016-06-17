@@ -144,6 +144,12 @@
     <Compile Include="CollaboratorView.Designer.cs">
       <DependentUpon>CollaboratorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CurrencyTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CurrencyTextBox.Designer.cs">
+      <DependentUpon>CurrencyTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>

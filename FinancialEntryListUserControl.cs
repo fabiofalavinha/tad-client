@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using TadManagementTool.Model.Financial;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Properties;
@@ -139,6 +141,26 @@ namespace TadManagementTool
             {
                 return form.ShowDialog();
             }
+        }
+
+        public void SetCurrentBalance(Balance balance)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Balance>(SetCurrentBalance), balance);
+                return;
+            }
+            currentBalanceLabel.Text = balance.Value.ToString("#,#.00#;(#,#.00#)", new CultureInfo("pt-BR"));
+        }
+
+        public void SetCurrentBalanceColor(Color color)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Color>(SetCurrentBalanceColor), color);
+                return;
+            }
+            currentBalanceLabel.ForeColor = color;
         }
 
         private class FinancialReceiptDataGridViewCell : DataGridViewImageButtonCell

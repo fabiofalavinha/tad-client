@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TadManagementTool.Model.Financial;
@@ -14,6 +15,9 @@ namespace TadManagementTool
     {
         private readonly IFinancialEntryEnrollmentPresenter presenter;
         private readonly FinancialEntryViewItem currentViewItem;
+
+        private bool populateFormFields = false;
+        private ToolTip currentTargetToolTip;
 
         public FinancialEntryEnrollmentForm()
         {
@@ -100,7 +104,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action(CloseView));
                 return;
             }
-            Close();
+            DialogResult = DialogResult.OK;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -116,6 +120,19 @@ namespace TadManagementTool
         private void targetNonCollaboratorTypeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             presenter.OnCollaboratorTypeSelection();
+        }
+
+        private void entryValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!populateFormFields)
+            {
+                presenter.OnEntryValueChanged();
+            }
+        }
+
+        private void financialTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            presenter.OnFinancialReferenceSelected();
         }
 
         public bool IsCollaboratorTypeSelected()
@@ -134,6 +151,14 @@ namespace TadManagementTool
                 BeginInvoke(new Action<IList<FinancialTargetViewItem>>(SetCollaboratorList), list);
                 return;
             }
+            if (currentTargetToolTip != null)
+            {
+                currentTargetToolTip.Dispose();
+                currentTargetToolTip = null;
+            }
+            targetComboBox.DisplayMember = "Name";
+            targetComboBox.ValueMember = "Id";
+            targetComboBox.Enabled = true;
             targetComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             targetComboBox.Items.Clear();
             targetComboBox.Items.AddRange(list.ToArray());
@@ -146,17 +171,25 @@ namespace TadManagementTool
                 BeginInvoke(new Action<IList<FinancialTargetViewItem>>(SetNonCollaboratorList), list);
                 return;
             }
+            targetComboBox.DisplayMember = "Name";
+            targetComboBox.ValueMember = "Id";
+            targetComboBox.Enabled = true;
             targetComboBox.DropDownStyle = ComboBoxStyle.DropDown;
             targetComboBox.Items.Clear();
             targetComboBox.Items.AddRange(list.ToArray());
-            var toolTip = new ToolTip()
+            if (currentTargetToolTip != null)
+            {
+                currentTargetToolTip.Dispose();
+                currentTargetToolTip = null;
+            }
+            currentTargetToolTip = new ToolTip()
             {
                 IsBalloon = true,
                 ToolTipIcon = ToolTipIcon.Info,
                 ToolTipTitle = "Selecione a origem do lançamento financeiro"
             };
-            toolTip.Show(string.Empty, targetComboBox, 0);
-            toolTip.Show("Caso você não encontre o valor desejado, digite um novo valor no campo", targetComboBox);
+            currentTargetToolTip.Show(string.Empty, targetComboBox, 0);
+            currentTargetToolTip.Show("Caso você não encontre o valor desejado, digite um novo valor no campo", targetComboBox);
         }
 
         public void SetFinancialEntry(FinancialEntryViewItem viewItem)
@@ -166,17 +199,24 @@ namespace TadManagementTool
                 BeginInvoke(new Action<FinancialEntryViewItem>(SetFinancialEntry), viewItem);
                 return;
             }
-            entryDateTimePicker.Value = viewItem.Wrapper.Date;
-            targetCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.Colaborator;
-            targetNonCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.NonColaborator;
-            targetComboBox.SelectedItem = targetComboBox.Items.Cast<FinancialTargetViewItem>().SingleOrDefault(i => i.Id.Equals(viewItem.TargetReference));
-            financialTypeComboBox.SelectedItem = financialTypeComboBox.Items.Cast<FinancialReferenceViewItem>().SingleOrDefault(r => r.Id.Equals(viewItem.Wrapper.Type.Id));
-            additionalTextTextBox.Text = viewItem.Wrapper.AdditionalText;
-            categoryPayableRadionButton.Checked = viewItem.Wrapper.Type.Category == (int)Category.Payable;
-            categoryReceivableRadionButton.Checked = viewItem.Wrapper.Type.Category == (int)Category.Receivable;
-            currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString();
-            entryValueTextBox.Text = viewItem.Wrapper.Value.ToString();
-            balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.ToString();
+            populateFormFields = true;
+            try
+            {
+                entryDateTimePicker.Value = viewItem.Wrapper.ToEntryDate();
+                targetCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.Colaborator;
+                targetNonCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.NonColaborator;
+                targetComboBox.SelectedItem = targetComboBox.Items.Cast<FinancialTargetViewItem>().SingleOrDefault(i => i.Id.Equals(viewItem.TargetReference));
+                financialTypeComboBox.SelectedItem = financialTypeComboBox.Items.Cast<FinancialReferenceViewItem>().SingleOrDefault(r => r.Id.Equals(viewItem.Wrapper.Type.Id));
+                additionalTextTextBox.Text = viewItem.Wrapper.AdditionalText;
+                categoryTypeLabel.Text = viewItem.Wrapper.Type.Category == (int)Category.Payable ? "-" : "+";
+                currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString();
+                entryValueTextBox.Text = viewItem.Wrapper.Value.ToString();
+                balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.Value.ToString();
+            }
+            finally
+            {
+                populateFormFields = false;
+            }
         }
 
         public void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list)
@@ -186,6 +226,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceList), list);
                 return;
             }
+            financialTypeComboBox.Enabled = true;
             financialTypeComboBox.Items.Clear();
             financialTypeComboBox.Items.AddRange(list.ToArray());
         }
@@ -198,6 +239,137 @@ namespace TadManagementTool
                 return;
             }
             currentBalanceValueLabel.Text = value;
+        }
+
+        public string GetFinancialEntryValue()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(GetFinancialEntryValue));
+            }
+            return entryValueTextBox.Text;
+        }
+
+        public void SetEntryPreviewValue(string previewValue)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetEntryPreviewValue), previewValue);
+                return;
+            }
+            balancePreviewValueLabel.Text = previewValue;
+        }
+
+        public string GetEntryPreviewValue()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(GetEntryPreviewValue));
+            }
+            return balancePreviewValueLabel.Text;
+        }
+
+        public void SetEntryValue(decimal value)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<decimal>(SetEntryValue), value);
+                return;
+            }
+            entryValueTextBox.Text = value.ToString();
+        }
+
+        public void SetEntryPreviewValueColor(Color color)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Color>(SetEntryPreviewValueColor), color);
+                return;
+            }
+            balancePreviewValueLabel.ForeColor = color;
+        }
+
+        public string GetAdditionalText()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(GetAdditionalText));
+            }
+            return additionalTextTextBox.Text;
+        }
+
+        public string GetEntryDateAsString(string formatter)
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string, string>(GetEntryDateAsString), formatter);
+            }
+            return entryDateTimePicker.Value.ToString(formatter);
+        }
+
+        public FinancialTargetType? GetEntryTargetType()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialTargetType?)Invoke(new Func<FinancialTargetType?>(GetEntryTargetType));
+            }
+            if (targetCollaboratorTypeRadioButton.Checked)
+            {
+                return FinancialTargetType.Colaborator;
+            }
+            else if (targetNonCollaboratorTypeRadioButton.Checked)
+            {
+                return FinancialTargetType.NonColaborator;
+            }
+            return null;
+        }
+
+        public FinancialTargetViewItem GetEntryTarget()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialTargetViewItem)Invoke(new Func<FinancialTargetViewItem>(GetEntryTarget));
+            }
+            var selected = (FinancialTargetViewItem)targetComboBox.SelectedItem;
+            if (selected == null)
+            {
+                var inputText = targetComboBox.Text;
+                if (!string.IsNullOrWhiteSpace(inputText))
+                {
+                    return new FinancialTargetViewItem()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Name = inputText
+                    };
+                }
+            }
+            return selected;
+        }
+
+        public FinancialReferenceViewItem GetEntryReference()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialReferenceViewItem)Invoke(new Func<FinancialReferenceViewItem>(GetEntryReference));
+            }
+            return (FinancialReferenceViewItem)financialTypeComboBox.SelectedItem;
+        }
+
+        public void SetCategoryType(Category category)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<Category>(SetCategoryType), category);
+                return;
+            }
+            if (category == Category.Payable)
+            {
+                categoryTypeLabel.Text = "-";
+            }
+            else if (category == Category.Receivable)
+            {
+                categoryTypeLabel.Text = "+";
+            }
         }
     }
 }

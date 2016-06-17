@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Globalization;
 
 namespace TadManagementTool.Model.Financial
 {
@@ -9,7 +10,7 @@ namespace TadManagementTool.Model.Financial
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "date")]
-        public DateTime Date { get; set; }
+        public string DateString { get; set; }
 
         [JsonProperty(PropertyName = "target")]
         public FinancialTarget Target { get; set; }
@@ -32,7 +33,12 @@ namespace TadManagementTool.Model.Financial
         public FinancialEntry()
         {
             Id = Guid.NewGuid().ToString();
-            Date = DateTime.Now;
+            DateString = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+
+        public DateTime ToEntryDate()
+        {
+            return DateTime.ParseExact(DateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
         }
     }
 }

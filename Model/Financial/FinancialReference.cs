@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace TadManagementTool.Model.Financial
 {
@@ -15,5 +16,10 @@ namespace TadManagementTool.Model.Financial
 
         [JsonProperty(PropertyName = "associatedWithCollaborator")]
         public bool AssociatedWithCollaborator { get; set; }
+
+        public Category ToCategory()
+        {
+            return (Category)Enum.ToObject(typeof(Category), Category);
+        }
     }
 }

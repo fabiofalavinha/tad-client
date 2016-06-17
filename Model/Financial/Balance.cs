@@ -6,5 +6,7 @@ namespace TadManagementTool.Model.Financial
     {
         [JsonProperty("value")]
         public decimal Value { get; set; }
+
+        public bool IsPositive { get { return Value >= 0; } }
     }
 }

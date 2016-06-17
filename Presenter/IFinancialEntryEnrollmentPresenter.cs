@@ -7,5 +7,7 @@ namespace TadManagementTool.Presenter
         void InitViewWith(FinancialEntryViewItem viewItem);
         void OnCollaboratorTypeSelection();
         void OnSaveFinancialEntry();
+        void OnEntryValueChanged();
+        void OnFinancialReferenceSelected();
     }
 }

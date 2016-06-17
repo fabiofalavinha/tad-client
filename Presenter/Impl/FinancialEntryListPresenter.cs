@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,6 +45,8 @@ namespace TadManagementTool.Presenter.Impl
 
         private void DoSetFinancialEntryDateRange()
         {
+            DoLoadCurrentBalance();
+
             var today = DateTime.Now;
             var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
             var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
@@ -51,6 +54,13 @@ namespace TadManagementTool.Presenter.Impl
             View.SetFinancialEntryFilterDateTo(lastDayOfMonth);
             var list = financialService.FindFinancialEntryBy(firstDayOfMonth, lastDayOfMonth);
             View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
+        }
+
+        private void DoLoadCurrentBalance()
+        {
+            var currentBalance = financialService.GetCurrentTotalBalance();
+            View.SetCurrentBalance(currentBalance);
+            View.SetCurrentBalanceColor(currentBalance.IsPositive ? Color.Blue : Color.Red);
         }
 
         public void OnOpenFinancialEntryView()
@@ -91,6 +101,7 @@ namespace TadManagementTool.Presenter.Impl
                 {
                     View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
                 }
+                DoLoadCurrentBalance();
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
