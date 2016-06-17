@@ -61,6 +61,7 @@ namespace TadManagementTool.Presenter.Impl
                 View.ShowWaitingPanel("Carregando dados financeiros...");
                 DoLoadTargetLists();
                 DoLoadFinancialReferenceList();
+                currentBalance = financialService.GetCurrentTotalBalance().Value;
                 View.SetFinancialEntry(viewItem);
                 currentFinancialEntryViewItem = viewItem;
             }, TaskCreationOptions.LongRunning);
@@ -124,10 +125,13 @@ namespace TadManagementTool.Presenter.Impl
             {
                 View.ShowWaitingPanel("Salvando lançamento financeiro...");
 
+                var balanceInTime = currentBalance;
+
                 var financialEntry = new FinancialEntry();
                 if (currentFinancialEntryViewItem != null)
                 {
                     financialEntry = currentFinancialEntryViewItem.Wrapper;
+                    balanceInTime = financialEntry.Balance.Value;
                 }
 
                 financialEntry.DateString = View.GetEntryDateAsString("yyyy-MM-dd");
@@ -163,7 +167,7 @@ namespace TadManagementTool.Presenter.Impl
 
                 financialEntry.Balance = new Balance()
                 {
-                    Value = currentBalance
+                    Value = balanceInTime
                 };
 
                 var entryValue = decimal.Parse(View.GetFinancialEntryValue());

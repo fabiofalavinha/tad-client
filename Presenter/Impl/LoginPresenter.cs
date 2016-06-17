@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 using TadManagementTool.Model;
-using TadManagementTool.Properties;
 using TadManagementTool.Service;
 using TadManagementTool.View.Impl;
 
@@ -61,11 +60,8 @@ namespace TadManagementTool.Presenter.Impl
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
             {
-                foreach (var innerException in t.Exception.InnerExceptions)
-                {
-                    View.ShowErrorMessage(string.Format("Não foi possível realizar a sua autenticação. {0}", innerException.Message));
-                }
                 View.HideWaitingPanel();
+                View.ShowErrorMessage("Ocorreu um erro na autenticação. Tenta mais uma vez e se o problema persistir contacte o administrador do sistema.");
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
         }

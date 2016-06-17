@@ -212,6 +212,16 @@ namespace TadManagementTool
                 currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString();
                 entryValueTextBox.Text = viewItem.Wrapper.Value.ToString();
                 balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.Value.ToString();
+
+                // disable all controls in edit mode
+                entryDateTimePicker.Enabled = false;
+                targetCollaboratorTypeRadioButton.Enabled = false;
+                targetNonCollaboratorTypeRadioButton.Enabled = false;
+                targetComboBox.Enabled = false;
+                financialTypeComboBox.Enabled = false;
+                additionalTextTextBox.Enabled = false;
+                entryValueTextBox.Enabled = false;
+                saveButton.Enabled = false;
             }
             finally
             {
