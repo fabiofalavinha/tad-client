@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using TadManagementTool.Model;
 using TadManagementTool.View.Impl;
 
 namespace TadManagementTool.View
@@ -9,5 +6,6 @@ namespace TadManagementTool.View
     public interface IMenuActionView
     {
         void Open(IMainView mainView);
+        bool CanUserAccess(User user);
     }
 }

@@ -14,6 +14,13 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+            View.ConfigureMenuPermissions();
+        }
+
+        public bool OnMenuItemAccess(string menuActionTypeViewString)
+        {
+            var menuActionView = CreateMenuAction(menuActionTypeViewString);
+            return menuActionView.CanUserAccess(UserContext.GetInstance().LoggedUser);
         }
 
         public void OnMenuItemSelect(string menuActionTypeViewString)
@@ -22,7 +29,7 @@ namespace TadManagementTool.Presenter.Impl
             {
                 try
                 {
-                    var menuActionView = Activator.CreateInstance(Type.GetType(menuActionTypeViewString)) as IMenuActionView;
+                    var menuActionView = CreateMenuAction(menuActionTypeViewString);
                     if (menuActionView != null)
                     {
                         menuActionView.Open(View);
@@ -37,6 +44,11 @@ namespace TadManagementTool.Presenter.Impl
                     View.ShowWarningMessage($"Não foi possível executar a oporação desejada [{ex.Message}]");
                 }
             }
+        }
+
+        private static IMenuActionView CreateMenuAction(string menuActionTypeViewString)
+        {
+            return Activator.CreateInstance(Type.GetType(menuActionTypeViewString)) as IMenuActionView;
         }
 
         public void OnUserChangePassword()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using TadManagementTool.Model;
 using TadManagementTool.Presenter;
@@ -202,6 +203,23 @@ namespace TadManagementTool
                 return;
             }
             DoLoadMainControl(new FinancialEntryListUserControl(this));
+        }
+
+        public void ConfigureMenuPermissions()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(ConfigureMenuPermissions));
+                return;
+            }
+            foreach (TreeNode node in menuTreeView.Nodes.Cast<TreeNode>().ToArray())
+            {
+                var canAccess = presenter.OnMenuItemAccess(node.Tag.ToString());
+                if (!canAccess)
+                {
+                    menuTreeView.Nodes.Remove(node);
+                }
+            }
         }
     }
 }
