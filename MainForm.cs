@@ -214,10 +214,13 @@ namespace TadManagementTool
             }
             foreach (TreeNode node in menuTreeView.Nodes.Cast<TreeNode>().ToArray())
             {
-                var canAccess = presenter.OnMenuItemAccess(node.Tag.ToString());
-                if (!canAccess)
+                if (node.Tag != null)
                 {
-                    menuTreeView.Nodes.Remove(node);
+                    var canAccess = presenter.OnMenuItemAccess(node.Tag.ToString());
+                    if (!canAccess)
+                    {
+                        menuTreeView.Nodes.Remove(node);
+                    }
                 }
             }
         }
