@@ -381,5 +381,15 @@ namespace TadManagementTool
                 categoryTypeLabel.Text = "+";
             }
         }
+
+        public void SetEntryDateOptionEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetEntryDateOptionEnabled), enabled);
+                return;
+            }
+            entryDateTimePicker.Enabled = enabled;
+        }
     }
 }

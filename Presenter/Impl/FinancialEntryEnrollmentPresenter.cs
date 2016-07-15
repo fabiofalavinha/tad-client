@@ -38,6 +38,7 @@ namespace TadManagementTool.Presenter.Impl
                 currentBalance = financialService.GetCurrentTotalBalance().Value;
                 View.SetCurrentBalance(currentBalance.ToString());
                 View.SetEntryPreviewValue(currentBalance.ToString());
+                View.SetEntryDateOptionEnabled(false);
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
