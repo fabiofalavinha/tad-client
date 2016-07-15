@@ -45,9 +45,12 @@
             this.activeCollaboratorCountValueLabel = new System.Windows.Forms.Label();
             this.exportToExcelButton = new System.Windows.Forms.Button();
             this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.filterGroupBox = new System.Windows.Forms.GroupBox();
+            this.filterActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
+            this.filterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -55,8 +58,8 @@
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToOrderColumns = true;
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -68,12 +71,12 @@
             this.CollaboratorTelephoneColumn,
             this.CollaboratorActiveColumn});
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView.Location = new System.Drawing.Point(0, 32);
+            this.dataGridView.Location = new System.Drawing.Point(0, 73);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(652, 305);
+            this.dataGridView.Size = new System.Drawing.Size(875, 364);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
@@ -136,7 +139,7 @@
             // collaboratorDetailButton
             // 
             this.collaboratorDetailButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.collaboratorDetailButton.Location = new System.Drawing.Point(536, 343);
+            this.collaboratorDetailButton.Location = new System.Drawing.Point(759, 443);
             this.collaboratorDetailButton.Name = "collaboratorDetailButton";
             this.collaboratorDetailButton.Size = new System.Drawing.Size(112, 28);
             this.collaboratorDetailButton.TabIndex = 1;
@@ -147,7 +150,7 @@
             // removeCollaboratorButton
             // 
             this.removeCollaboratorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.removeCollaboratorButton.Location = new System.Drawing.Point(3, 343);
+            this.removeCollaboratorButton.Location = new System.Drawing.Point(3, 443);
             this.removeCollaboratorButton.Name = "removeCollaboratorButton";
             this.removeCollaboratorButton.Size = new System.Drawing.Size(85, 28);
             this.removeCollaboratorButton.TabIndex = 1;
@@ -158,7 +161,7 @@
             // newCollaboratorButton
             // 
             this.newCollaboratorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newCollaboratorButton.Location = new System.Drawing.Point(418, 343);
+            this.newCollaboratorButton.Location = new System.Drawing.Point(641, 443);
             this.newCollaboratorButton.Name = "newCollaboratorButton";
             this.newCollaboratorButton.Size = new System.Drawing.Size(112, 28);
             this.newCollaboratorButton.TabIndex = 1;
@@ -168,8 +171,10 @@
             // 
             // activeCollaboratorCountLabel
             // 
+            this.activeCollaboratorCountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.activeCollaboratorCountLabel.AutoSize = true;
-            this.activeCollaboratorCountLabel.Location = new System.Drawing.Point(9, 8);
+            this.activeCollaboratorCountLabel.Location = new System.Drawing.Point(24, 39);
             this.activeCollaboratorCountLabel.Name = "activeCollaboratorCountLabel";
             this.activeCollaboratorCountLabel.Size = new System.Drawing.Size(39, 13);
             this.activeCollaboratorCountLabel.TabIndex = 2;
@@ -177,9 +182,11 @@
             // 
             // activeCollaboratorCountValueLabel
             // 
+            this.activeCollaboratorCountValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.activeCollaboratorCountValueLabel.AutoSize = true;
             this.activeCollaboratorCountValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activeCollaboratorCountValueLabel.Location = new System.Drawing.Point(54, 6);
+            this.activeCollaboratorCountValueLabel.Location = new System.Drawing.Point(65, 38);
             this.activeCollaboratorCountValueLabel.Name = "activeCollaboratorCountValueLabel";
             this.activeCollaboratorCountValueLabel.Size = new System.Drawing.Size(34, 16);
             this.activeCollaboratorCountValueLabel.TabIndex = 3;
@@ -188,7 +195,7 @@
             // exportToExcelButton
             // 
             this.exportToExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.exportToExcelButton.Location = new System.Drawing.Point(94, 343);
+            this.exportToExcelButton.Location = new System.Drawing.Point(94, 443);
             this.exportToExcelButton.Name = "exportToExcelButton";
             this.exportToExcelButton.Size = new System.Drawing.Size(101, 28);
             this.exportToExcelButton.TabIndex = 1;
@@ -199,6 +206,33 @@
             // exportToExcelSaveFileDialog
             // 
             this.exportToExcelSaveFileDialog.Filter = "Excel files|*.xlsx";
+            // 
+            // filterGroupBox
+            // 
+            this.filterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterGroupBox.Controls.Add(this.filterActiveCheckBox);
+            this.filterGroupBox.Controls.Add(this.activeCollaboratorCountLabel);
+            this.filterGroupBox.Controls.Add(this.activeCollaboratorCountValueLabel);
+            this.filterGroupBox.Location = new System.Drawing.Point(10, 6);
+            this.filterGroupBox.Name = "filterGroupBox";
+            this.filterGroupBox.Size = new System.Drawing.Size(857, 61);
+            this.filterGroupBox.TabIndex = 4;
+            this.filterGroupBox.TabStop = false;
+            this.filterGroupBox.Text = "Filtros";
+            // 
+            // filterActiveCheckBox
+            // 
+            this.filterActiveCheckBox.AutoSize = true;
+            this.filterActiveCheckBox.Checked = true;
+            this.filterActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.filterActiveCheckBox.Location = new System.Drawing.Point(27, 19);
+            this.filterActiveCheckBox.Name = "filterActiveCheckBox";
+            this.filterActiveCheckBox.Size = new System.Drawing.Size(99, 17);
+            this.filterActiveCheckBox.TabIndex = 4;
+            this.filterActiveCheckBox.Text = "Apenas ativos?";
+            this.filterActiveCheckBox.UseVisualStyleBackColor = true;
+            this.filterActiveCheckBox.CheckedChanged += new System.EventHandler(this.filterActiveCheckBox_CheckedChanged);
             // 
             // modalWaitingPanel
             // 
@@ -211,8 +245,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Controls.Add(this.activeCollaboratorCountValueLabel);
-            this.Controls.Add(this.activeCollaboratorCountLabel);
+            this.Controls.Add(this.filterGroupBox);
             this.Controls.Add(this.exportToExcelButton);
             this.Controls.Add(this.removeCollaboratorButton);
             this.Controls.Add(this.newCollaboratorButton);
@@ -220,12 +253,13 @@
             this.Controls.Add(this.dataGridView);
             this.DoubleBuffered = true;
             this.Name = "ListCollaboratorUserControl";
-            this.Size = new System.Drawing.Size(651, 379);
+            this.Size = new System.Drawing.Size(874, 479);
             this.Load += new System.EventHandler(this.ListCollaboratorUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
+            this.filterGroupBox.ResumeLayout(false);
+            this.filterGroupBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -248,5 +282,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorGenderColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorTelephoneColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorActiveColumn;
+        private System.Windows.Forms.GroupBox filterGroupBox;
+        private System.Windows.Forms.CheckBox filterActiveCheckBox;
     }
 }

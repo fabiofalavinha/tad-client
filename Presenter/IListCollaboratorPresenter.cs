@@ -13,5 +13,6 @@ namespace TadManagementTool.Presenter
         void OnViewCollaboratorDetails();
         void OnExportToExcel();
         void OnSortCollaboratorList(string propertyName, SortOrder sortOrder);
+        void OnFilterActiveChanged();
     }
 }

@@ -41,7 +41,7 @@ namespace TadManagementTool.Presenter.Impl
             });
             task.ContinueWith(t =>
             {
-                DoSetCollaboratorList(t.Result);
+                DoSetCollaboratorList(t.Result.Where(c => c.Active == View.GetFilterActive()).ToArray());
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
@@ -158,6 +158,35 @@ namespace TadManagementTool.Presenter.Impl
         public void OnSortCollaboratorList(string propertyName, SortOrder sortOrder)
         {
             View.SetCollaboratorList(new ListCollaboratorOrder().Sort(View.GetCollaboratorList(), propertyName, sortOrder));
+        }
+
+        public void OnFilterActiveChanged()
+        {
+            var task = new Task<IList<Collaborator>>(() =>
+            {
+                View.ShowWaitingPanel("Filtrando colaboradores...");
+                var collaboratorService = new CollaboratorService();
+                return collaboratorService.FindAll();
+            });
+            task.ContinueWith(t =>
+            {
+                var list = t.Result;
+                if (View.GetFilterActive())
+                {
+                    list = list.Where(c => c.Active).ToArray();
+                }
+                DoSetCollaboratorList(list);
+                View.HideWaitingPanel();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao carregar a lista de colaboradores: {0}", innerException.Message));
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
         }
 
         private class ListCollaboratorOrder

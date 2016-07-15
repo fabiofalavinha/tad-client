@@ -230,5 +230,19 @@ namespace TadManagementTool
             var row = dataGridView.Rows[e.RowIndex];
             e.CellStyle.BackColor = ((CollaboratorViewItem)row.DataBoundItem).Wrapper.Active ? Color.LightGreen : Color.Coral;
         }
+
+        public bool GetFilterActive()
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<bool>(GetFilterActive));
+            }
+            return filterActiveCheckBox.Checked;
+        }
+
+        private void filterActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            presenter.OnFilterActiveChanged();
+        }
     }
 }

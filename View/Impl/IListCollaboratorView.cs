@@ -13,6 +13,7 @@ namespace TadManagementTool.View.Impl
         CollaboratorViewItem GetCollaboratorSelected();
         bool ShowBinaryQuestion(string message);
         string SelectFilePathToSaveExcelFile();
+        bool GetFilterActive();
         void SetCollaboratorList(IList<CollaboratorViewItem> list);
         void OpenCollaboratorView();
         void OpenCollaboratorView(Collaborator collaborator);
