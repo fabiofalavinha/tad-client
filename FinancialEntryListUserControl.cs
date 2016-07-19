@@ -163,6 +163,26 @@ namespace TadManagementTool
             currentBalanceLabel.ForeColor = color;
         }
 
+        public void SetTargetTypeFilterList(IList<FinancialTargetTypeViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<FinancialTargetTypeViewItem>>(SetTargetTypeFilterList), list);
+                return;
+            }
+            targetTypeFilterComboBox.Items.Clear();
+            targetTypeFilterComboBox.Items.AddRange(list.ToArray());
+        }
+
+        public FinancialTargetTypeViewItem GetTargetTypeFilterSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialTargetTypeViewItem)Invoke(new Func<FinancialTargetTypeViewItem>(GetTargetTypeFilterSelected));
+            }
+            return (FinancialTargetTypeViewItem)targetTypeFilterComboBox.SelectedItem;
+        }
+
         private class FinancialReceiptDataGridViewCell : DataGridViewImageButtonCell
         {
             public FinancialReceiptDataGridViewCell()

@@ -41,6 +41,10 @@
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.openAddFinancialEntryViewButton = new System.Windows.Forms.Button();
             this.financialEntryFilterPanel = new System.Windows.Forms.Panel();
+            this.targetTypeFilterGroupBox = new System.Windows.Forms.GroupBox();
+            this.targetTypeFilterComboBox = new System.Windows.Forms.ComboBox();
+            this.totalBalanceGroupBox = new System.Windows.Forms.GroupBox();
+            this.currentBalanceLabel = new System.Windows.Forms.Label();
             this.financialEntrySearchButton = new System.Windows.Forms.Button();
             this.financialEntryDateFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.financialEntryDateRangeLabel = new System.Windows.Forms.Label();
@@ -48,15 +52,14 @@
             this.financialEntryDateFromPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryContentPanel = new System.Windows.Forms.Panel();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.totalBalanceGroupBox = new System.Windows.Forms.GroupBox();
-            this.currentBalanceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
+            this.targetTypeFilterGroupBox.SuspendLayout();
+            this.totalBalanceGroupBox.SuspendLayout();
             this.financialEntryDateFilterGroupBox.SuspendLayout();
             this.financialEntryContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
-            this.totalBalanceGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -80,7 +83,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(828, 518);
+            this.dataGridView.Size = new System.Drawing.Size(828, 472);
             this.dataGridView.TabIndex = 7;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             // 
@@ -170,19 +173,61 @@
             // 
             // financialEntryFilterPanel
             // 
+            this.financialEntryFilterPanel.Controls.Add(this.targetTypeFilterGroupBox);
             this.financialEntryFilterPanel.Controls.Add(this.totalBalanceGroupBox);
             this.financialEntryFilterPanel.Controls.Add(this.financialEntrySearchButton);
             this.financialEntryFilterPanel.Controls.Add(this.financialEntryDateFilterGroupBox);
             this.financialEntryFilterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.financialEntryFilterPanel.Location = new System.Drawing.Point(0, 0);
             this.financialEntryFilterPanel.Name = "financialEntryFilterPanel";
-            this.financialEntryFilterPanel.Size = new System.Drawing.Size(828, 56);
+            this.financialEntryFilterPanel.Size = new System.Drawing.Size(828, 102);
             this.financialEntryFilterPanel.TabIndex = 3;
+            // 
+            // targetTypeFilterGroupBox
+            // 
+            this.targetTypeFilterGroupBox.Controls.Add(this.targetTypeFilterComboBox);
+            this.targetTypeFilterGroupBox.Location = new System.Drawing.Point(3, 50);
+            this.targetTypeFilterGroupBox.Name = "targetTypeFilterGroupBox";
+            this.targetTypeFilterGroupBox.Size = new System.Drawing.Size(280, 49);
+            this.targetTypeFilterGroupBox.TabIndex = 7;
+            this.targetTypeFilterGroupBox.TabStop = false;
+            this.targetTypeFilterGroupBox.Text = "Origem";
+            // 
+            // targetTypeFilterComboBox
+            // 
+            this.targetTypeFilterComboBox.DisplayMember = "Name";
+            this.targetTypeFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.targetTypeFilterComboBox.FormattingEnabled = true;
+            this.targetTypeFilterComboBox.Location = new System.Drawing.Point(27, 18);
+            this.targetTypeFilterComboBox.Name = "targetTypeFilterComboBox";
+            this.targetTypeFilterComboBox.Size = new System.Drawing.Size(156, 21);
+            this.targetTypeFilterComboBox.TabIndex = 0;
+            this.targetTypeFilterComboBox.ValueMember = "Id";
+            // 
+            // totalBalanceGroupBox
+            // 
+            this.totalBalanceGroupBox.Controls.Add(this.currentBalanceLabel);
+            this.totalBalanceGroupBox.Location = new System.Drawing.Point(303, 3);
+            this.totalBalanceGroupBox.Name = "totalBalanceGroupBox";
+            this.totalBalanceGroupBox.Size = new System.Drawing.Size(200, 47);
+            this.totalBalanceGroupBox.TabIndex = 6;
+            this.totalBalanceGroupBox.TabStop = false;
+            this.totalBalanceGroupBox.Text = "Saldo Atual";
+            // 
+            // currentBalanceLabel
+            // 
+            this.currentBalanceLabel.AutoSize = true;
+            this.currentBalanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentBalanceLabel.Location = new System.Drawing.Point(14, 16);
+            this.currentBalanceLabel.Name = "currentBalanceLabel";
+            this.currentBalanceLabel.Size = new System.Drawing.Size(46, 25);
+            this.currentBalanceLabel.TabIndex = 0;
+            this.currentBalanceLabel.Text = "N/A";
             // 
             // financialEntrySearchButton
             // 
             this.financialEntrySearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.financialEntrySearchButton.Location = new System.Drawing.Point(733, 13);
+            this.financialEntrySearchButton.Location = new System.Drawing.Point(733, 59);
             this.financialEntrySearchButton.Name = "financialEntrySearchButton";
             this.financialEntrySearchButton.Size = new System.Drawing.Size(82, 30);
             this.financialEntrySearchButton.TabIndex = 5;
@@ -231,30 +276,10 @@
             // 
             this.financialEntryContentPanel.Controls.Add(this.dataGridView);
             this.financialEntryContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.financialEntryContentPanel.Location = new System.Drawing.Point(0, 56);
+            this.financialEntryContentPanel.Location = new System.Drawing.Point(0, 102);
             this.financialEntryContentPanel.Name = "financialEntryContentPanel";
-            this.financialEntryContentPanel.Size = new System.Drawing.Size(828, 518);
+            this.financialEntryContentPanel.Size = new System.Drawing.Size(828, 472);
             this.financialEntryContentPanel.TabIndex = 6;
-            // 
-            // totalBalanceGroupBox
-            // 
-            this.totalBalanceGroupBox.Controls.Add(this.currentBalanceLabel);
-            this.totalBalanceGroupBox.Location = new System.Drawing.Point(303, 3);
-            this.totalBalanceGroupBox.Name = "totalBalanceGroupBox";
-            this.totalBalanceGroupBox.Size = new System.Drawing.Size(200, 47);
-            this.totalBalanceGroupBox.TabIndex = 6;
-            this.totalBalanceGroupBox.TabStop = false;
-            this.totalBalanceGroupBox.Text = "Saldo Atual";
-            // 
-            // currentBalanceLabel
-            // 
-            this.currentBalanceLabel.AutoSize = true;
-            this.currentBalanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentBalanceLabel.Location = new System.Drawing.Point(14, 16);
-            this.currentBalanceLabel.Name = "currentBalanceLabel";
-            this.currentBalanceLabel.Size = new System.Drawing.Size(46, 25);
-            this.currentBalanceLabel.TabIndex = 0;
-            this.currentBalanceLabel.Text = "N/A";
             // 
             // FinancialEntryListUserControl
             // 
@@ -269,12 +294,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.financialEntryFilterPanel.ResumeLayout(false);
+            this.targetTypeFilterGroupBox.ResumeLayout(false);
+            this.totalBalanceGroupBox.ResumeLayout(false);
+            this.totalBalanceGroupBox.PerformLayout();
             this.financialEntryDateFilterGroupBox.ResumeLayout(false);
             this.financialEntryDateFilterGroupBox.PerformLayout();
             this.financialEntryContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
-            this.totalBalanceGroupBox.ResumeLayout(false);
-            this.totalBalanceGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -302,5 +328,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn financialReceiptActionColumn;
         private System.Windows.Forms.GroupBox totalBalanceGroupBox;
         private System.Windows.Forms.Label currentBalanceLabel;
+        private System.Windows.Forms.GroupBox targetTypeFilterGroupBox;
+        private System.Windows.Forms.ComboBox targetTypeFilterComboBox;
     }
 }

@@ -27,6 +27,10 @@ namespace TadManagementTool.Presenter.Impl
             {
                 View.ShowWaitingPanel("Carregando lançamentos...");
                 DoSetFinancialEntryDateRange();
+                var none = new FinancialTargetTypeViewItem(FinancialTargetType.None, "Todos");
+                var collaborator = new FinancialTargetTypeViewItem(FinancialTargetType.Colaborator, "Colaborador");
+                var nonCollaborator = new FinancialTargetTypeViewItem(FinancialTargetType.NonColaborator, "Outros");
+                View.SetTargetTypeFilterList(new[] { none, collaborator, nonCollaborator });
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -99,6 +103,11 @@ namespace TadManagementTool.Presenter.Impl
                 var list = t.Result;
                 if (list != null)
                 {
+                    var targetTypeFilter = View.GetTargetTypeFilterSelected();
+                    if (targetTypeFilter.Wrapper != FinancialTargetType.None)
+                    {
+                        list = list.Where(i => i.Target.ToTargetType() == targetTypeFilter.Wrapper).ToArray();
+                    }
                     View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
                 }
                 DoLoadCurrentBalance();

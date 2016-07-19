@@ -2,6 +2,7 @@
 {
     public enum FinancialTargetType
     {
+        None = -1,
         Colaborator = 0,
         NonColaborator = 1
     }
