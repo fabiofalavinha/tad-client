@@ -31,6 +31,9 @@ namespace TadManagementTool.Presenter.Impl
                 var collaborator = new FinancialTargetTypeViewItem(FinancialTargetType.Colaborator, "Colaborador");
                 var nonCollaborator = new FinancialTargetTypeViewItem(FinancialTargetType.NonColaborator, "Outros");
                 View.SetTargetTypeFilterList(new[] { none, collaborator, nonCollaborator });
+                View.SetTargetTypeFilterSelected(none);
+                var financialRefereceViewItems = financialService.GetFinancialReferences().Select(r => new FinancialReferenceViewItem(r)).ToArray();
+                View.SetFinancialReferenceFilterList(financialRefereceViewItems);
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -108,6 +111,12 @@ namespace TadManagementTool.Presenter.Impl
                     {
                         list = list.Where(i => i.Target.ToTargetType() == targetTypeFilter.Wrapper).ToArray();
                     }
+                    var financialReferenceFilter = View.GetFinancialReferenceFilterSelected();
+                    if (financialReferenceFilter != null)
+                    {
+                        list = list.Where(i => i.Type.Id == financialReferenceFilter.Wrapper.Id).ToArray();
+                    }
+
                     View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
                 }
                 DoLoadCurrentBalance();
@@ -127,6 +136,14 @@ namespace TadManagementTool.Presenter.Impl
                     OnSearchFinancialEntries();
                 }
             }
+        }
+
+        public void OnTargetTypeFilterChanged()
+        {
+            var targetTypeFilterSelected = View.GetTargetTypeFilterSelected();
+            var financialReferenceViewItems = financialService.GetFinancialReferences().Select(r => new FinancialReferenceViewItem(r)).ToArray();
+            var financialReferenceViewItemsFiltered = targetTypeFilterSelected.Filter(financialReferenceViewItems);
+            View.SetFinancialReferenceFilterList(financialReferenceViewItemsFiltered);
         }
     }
 }

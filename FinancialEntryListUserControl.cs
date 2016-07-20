@@ -286,5 +286,40 @@ namespace TadManagementTool
                 }
             }
         }
+
+        private void targetTypeFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            presenter.OnTargetTypeFilterChanged();
+        }
+
+        public void SetFinancialReferenceFilterList(IList<FinancialReferenceViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceFilterList), list);
+                return;
+            }
+            financialReferenceFilterComboBox.Items.Clear();
+            financialReferenceFilterComboBox.Items.AddRange(list.ToArray());
+        }
+
+        public void SetTargetTypeFilterSelected(FinancialTargetTypeViewItem selected)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<FinancialTargetTypeViewItem>(SetTargetTypeFilterSelected), selected);
+                return;
+            }
+            targetTypeFilterComboBox.SelectedItem = selected;
+        }
+
+        public FinancialReferenceViewItem GetFinancialReferenceFilterSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialReferenceViewItem)Invoke(new Func<FinancialReferenceViewItem>(GetFinancialReferenceFilterSelected));
+            }
+            return (FinancialReferenceViewItem)financialReferenceFilterComboBox.SelectedItem;
+        }
     }
 }

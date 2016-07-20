@@ -41,6 +41,8 @@
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.openAddFinancialEntryViewButton = new System.Windows.Forms.Button();
             this.financialEntryFilterPanel = new System.Windows.Forms.Panel();
+            this.financialReferenceFilterGroupBox = new System.Windows.Forms.GroupBox();
+            this.financialReferenceFilterComboBox = new System.Windows.Forms.ComboBox();
             this.targetTypeFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.targetTypeFilterComboBox = new System.Windows.Forms.ComboBox();
             this.totalBalanceGroupBox = new System.Windows.Forms.GroupBox();
@@ -55,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
+            this.financialReferenceFilterGroupBox.SuspendLayout();
             this.targetTypeFilterGroupBox.SuspendLayout();
             this.totalBalanceGroupBox.SuspendLayout();
             this.financialEntryDateFilterGroupBox.SuspendLayout();
@@ -173,6 +176,7 @@
             // 
             // financialEntryFilterPanel
             // 
+            this.financialEntryFilterPanel.Controls.Add(this.financialReferenceFilterGroupBox);
             this.financialEntryFilterPanel.Controls.Add(this.targetTypeFilterGroupBox);
             this.financialEntryFilterPanel.Controls.Add(this.totalBalanceGroupBox);
             this.financialEntryFilterPanel.Controls.Add(this.financialEntrySearchButton);
@@ -182,6 +186,27 @@
             this.financialEntryFilterPanel.Name = "financialEntryFilterPanel";
             this.financialEntryFilterPanel.Size = new System.Drawing.Size(828, 102);
             this.financialEntryFilterPanel.TabIndex = 3;
+            // 
+            // financialReferenceFilterGroupBox
+            // 
+            this.financialReferenceFilterGroupBox.Controls.Add(this.financialReferenceFilterComboBox);
+            this.financialReferenceFilterGroupBox.Location = new System.Drawing.Point(303, 50);
+            this.financialReferenceFilterGroupBox.Name = "financialReferenceFilterGroupBox";
+            this.financialReferenceFilterGroupBox.Size = new System.Drawing.Size(200, 49);
+            this.financialReferenceFilterGroupBox.TabIndex = 8;
+            this.financialReferenceFilterGroupBox.TabStop = false;
+            this.financialReferenceFilterGroupBox.Text = "Tipo de Lançamento";
+            // 
+            // financialReferenceFilterComboBox
+            // 
+            this.financialReferenceFilterComboBox.DisplayMember = "Description";
+            this.financialReferenceFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.financialReferenceFilterComboBox.FormattingEnabled = true;
+            this.financialReferenceFilterComboBox.Location = new System.Drawing.Point(19, 18);
+            this.financialReferenceFilterComboBox.Name = "financialReferenceFilterComboBox";
+            this.financialReferenceFilterComboBox.Size = new System.Drawing.Size(175, 21);
+            this.financialReferenceFilterComboBox.TabIndex = 0;
+            this.financialReferenceFilterComboBox.ValueMember = "Id";
             // 
             // targetTypeFilterGroupBox
             // 
@@ -203,6 +228,7 @@
             this.targetTypeFilterComboBox.Size = new System.Drawing.Size(156, 21);
             this.targetTypeFilterComboBox.TabIndex = 0;
             this.targetTypeFilterComboBox.ValueMember = "Id";
+            this.targetTypeFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.targetTypeFilterComboBox_SelectedIndexChanged);
             // 
             // totalBalanceGroupBox
             // 
@@ -294,6 +320,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.financialEntryFilterPanel.ResumeLayout(false);
+            this.financialReferenceFilterGroupBox.ResumeLayout(false);
             this.targetTypeFilterGroupBox.ResumeLayout(false);
             this.totalBalanceGroupBox.ResumeLayout(false);
             this.totalBalanceGroupBox.PerformLayout();
@@ -330,5 +357,7 @@
         private System.Windows.Forms.Label currentBalanceLabel;
         private System.Windows.Forms.GroupBox targetTypeFilterGroupBox;
         private System.Windows.Forms.ComboBox targetTypeFilterComboBox;
+        private System.Windows.Forms.GroupBox financialReferenceFilterGroupBox;
+        private System.Windows.Forms.ComboBox financialReferenceFilterComboBox;
     }
 }

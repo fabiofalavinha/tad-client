@@ -15,11 +15,14 @@ namespace TadManagementTool.View
         DateTime GetFinancialEntryToDate();
         FinancialEntryViewItem GetFinancialEntryViewSelected();
         FinancialTargetTypeViewItem GetTargetTypeFilterSelected();
+        FinancialReferenceViewItem GetFinancialReferenceFilterSelected();
         void SetFinancialEntryFilterDateFrom(DateTime date);
         void SetFinancialEntryFilterDateTo(DateTime date);
         void SetFinancialEntryList(IList<FinancialEntryViewItem> list);
         void SetCurrentBalance(Balance balance);
         void SetCurrentBalanceColor(Color color);
         void SetTargetTypeFilterList(IList<FinancialTargetTypeViewItem> list);
+        void SetFinancialReferenceFilterList(IList<FinancialReferenceViewItem> list);
+        void SetTargetTypeFilterSelected(FinancialTargetTypeViewItem selected);
     }
 }
