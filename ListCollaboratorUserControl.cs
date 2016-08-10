@@ -228,7 +228,15 @@ namespace TadManagementTool
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var row = dataGridView.Rows[e.RowIndex];
-            e.CellStyle.BackColor = ((CollaboratorViewItem)row.DataBoundItem).Wrapper.Active ? Color.LightGreen : Color.Coral;
+            var viewItem = (CollaboratorViewItem)row.DataBoundItem;
+            if (viewItem.Wrapper.UserRole == UserRole.NonCollaborator)
+            {
+                e.CellStyle.BackColor = Color.Yellow;
+            }
+            else
+            {
+                e.CellStyle.BackColor = viewItem.Wrapper.Active ? Color.LightGreen : Color.Coral;
+            }
         }
 
         public bool GetFilterActive()

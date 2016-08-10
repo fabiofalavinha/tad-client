@@ -11,5 +11,6 @@ namespace TadManagementTool.Presenter
         void OnRemoveTelephone();
         void OnSave();
         void OnEnableStartDateOption();
+        void OnUserRoleChanged();
     }
 }

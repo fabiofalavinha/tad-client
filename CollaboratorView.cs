@@ -444,5 +444,69 @@ namespace TadManagementTool
             }
             startDateTimePicker.Enabled = enabled;
         }
+
+        private void userRoleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            presenter.OnUserRoleChanged();
+        }
+       
+        public void SetStartDateLabelEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetStartDateLabelEnabled), enabled);
+                return;
+            }
+            startDateLabel.Enabled = enabled;
+        }
+
+        public void SetStartCheckBoxEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetStartCheckBoxEnabled), enabled);
+                return;
+            }
+            startDateCheckBox.Enabled = enabled;
+        }
+
+        public void SetReleaseDateLabelEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetReleaseDateLabelEnabled), enabled);
+                return;
+            }
+            releaseDateLabel.Enabled = enabled;
+        }
+
+        public void SetReleaseCheckBoxEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetReleaseCheckBoxEnabled), enabled);
+                return;
+            }
+            releaseDateCheckBox.Enabled = enabled;
+        }
+
+        public string GetObservation()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(GetObservation));
+            }
+            return observationTextBox.Text;
+        }
+
+        public void SetObservation(string observation)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetObservation), observation);
+                return;
+            }
+            observationTextBox.Text = observation;
+        }
     }
 }

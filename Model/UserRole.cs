@@ -9,7 +9,8 @@ namespace TadManagementTool.Model
     {
         Administrator = 0,
         Financial = 1,
-        Collaborator = 2
+        Collaborator = 2,
+        NonCollaborator = 3
     }
 
     public static class UserRoleExtensions
@@ -21,6 +22,7 @@ namespace TadManagementTool.Model
                 case UserRole.Administrator: return "Administrador";
                 case UserRole.Collaborator: return "Colaborador";
                 case UserRole.Financial: return "Financeiro";
+                case UserRole.NonCollaborator: return "Não Colaborador";
                 default: return userRole.ToString();
             }
         }

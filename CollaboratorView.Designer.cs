@@ -55,8 +55,11 @@
             this.idLabel = new System.Windows.Forms.Label();
             this.userRoleLabel = new System.Windows.Forms.Label();
             this.userRoleComboBox = new System.Windows.Forms.ComboBox();
-            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.startDateCheckBox = new System.Windows.Forms.CheckBox();
+            this.observationLabel = new System.Windows.Forms.Label();
+            this.observationTextBox = new System.Windows.Forms.TextBox();
+            this.observationLimitLabel = new System.Windows.Forms.Label();
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.SuspendLayout();
             // 
             // nameLabel
@@ -248,7 +251,7 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(468, 403);
+            this.saveButton.Location = new System.Drawing.Point(468, 569);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 30);
             this.saveButton.TabIndex = 25;
@@ -259,7 +262,7 @@
             // backToListCollaboratorButton
             // 
             this.backToListCollaboratorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.backToListCollaboratorButton.Location = new System.Drawing.Point(3, 403);
+            this.backToListCollaboratorButton.Location = new System.Drawing.Point(3, 569);
             this.backToListCollaboratorButton.Name = "backToListCollaboratorButton";
             this.backToListCollaboratorButton.Size = new System.Drawing.Size(92, 30);
             this.backToListCollaboratorButton.TabIndex = 26;
@@ -301,11 +304,7 @@
             this.userRoleComboBox.Name = "userRoleComboBox";
             this.userRoleComboBox.Size = new System.Drawing.Size(147, 21);
             this.userRoleComboBox.TabIndex = 3;
-            // 
-            // modalWaitingPanel
-            // 
-            this.modalWaitingPanel.DisplayText = null;
-            this.modalWaitingPanel.RelatedControl = this;
+            this.userRoleComboBox.SelectedIndexChanged += new System.EventHandler(this.userRoleComboBox_SelectedIndexChanged);
             // 
             // startDateCheckBox
             // 
@@ -317,11 +316,45 @@
             this.startDateCheckBox.UseVisualStyleBackColor = true;
             this.startDateCheckBox.CheckedChanged += new System.EventHandler(this.startDateCheckBox_CheckedChanged);
             // 
+            // observationLabel
+            // 
+            this.observationLabel.AutoSize = true;
+            this.observationLabel.Location = new System.Drawing.Point(55, 397);
+            this.observationLabel.Name = "observationLabel";
+            this.observationLabel.Size = new System.Drawing.Size(73, 13);
+            this.observationLabel.TabIndex = 28;
+            this.observationLabel.Text = "Observações:";
+            // 
+            // observationTextBox
+            // 
+            this.observationTextBox.Location = new System.Drawing.Point(135, 394);
+            this.observationTextBox.Multiline = true;
+            this.observationTextBox.Name = "observationTextBox";
+            this.observationTextBox.Size = new System.Drawing.Size(176, 151);
+            this.observationTextBox.TabIndex = 29;
+            // 
+            // observationLimitLabel
+            // 
+            this.observationLimitLabel.AutoSize = true;
+            this.observationLimitLabel.Location = new System.Drawing.Point(178, 548);
+            this.observationLimitLabel.Name = "observationLimitLabel";
+            this.observationLimitLabel.Size = new System.Drawing.Size(133, 13);
+            this.observationLimitLabel.TabIndex = 30;
+            this.observationLimitLabel.Text = "(Limite de Caracteres: 999)";
+            // 
+            // modalWaitingPanel
+            // 
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = this;
+            // 
             // CollaboratorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Controls.Add(this.observationLimitLabel);
+            this.Controls.Add(this.observationTextBox);
+            this.Controls.Add(this.observationLabel);
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.backToListCollaboratorButton);
             this.Controls.Add(this.saveButton);
@@ -351,7 +384,7 @@
             this.Controls.Add(this.nameLabel);
             this.DoubleBuffered = true;
             this.Name = "CollaboratorView";
-            this.Size = new System.Drawing.Size(546, 436);
+            this.Size = new System.Drawing.Size(546, 602);
             this.Load += new System.EventHandler(this.CollaboratorView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -388,5 +421,8 @@
         private System.Windows.Forms.ComboBox userRoleComboBox;
         private System.Windows.Forms.Label userRoleLabel;
         private System.Windows.Forms.CheckBox startDateCheckBox;
+        private System.Windows.Forms.Label observationLimitLabel;
+        private System.Windows.Forms.TextBox observationTextBox;
+        private System.Windows.Forms.Label observationLabel;
     }
 }

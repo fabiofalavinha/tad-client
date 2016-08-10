@@ -35,6 +35,9 @@ namespace TadManagementTool.Model
         [JsonProperty("userRole")]
         public UserRole UserRole { get; set; }
 
+        [JsonProperty("observation")] 
+        public string Observation { get; set; }
+
         [JsonIgnore]
         public bool Active { get { return ReleaseDate == null; } }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TadManagementTool.Model;
@@ -44,6 +45,7 @@ namespace TadManagementTool.Presenter.Impl
                     View.SetReleaseDate(collaborator.ReleaseDate);
                     View.SetTelephoneList(collaborator.Telephones);
                     View.SetId(collaborator.Id);
+                    View.SetObservation(collaborator.Observation);
                 }
             }
             finally
@@ -58,6 +60,7 @@ namespace TadManagementTool.Presenter.Impl
             list.Add(new UserRoleViewItem(UserRole.Administrator));
             list.Add(new UserRoleViewItem(UserRole.Collaborator));
             list.Add(new UserRoleViewItem(UserRole.Financial));
+            list.Add(new UserRoleViewItem(UserRole.NonCollaborator));
             return list;
         }
 
@@ -175,6 +178,7 @@ namespace TadManagementTool.Presenter.Impl
                     View.ShowWarningMessage("Informe pelo menos um telefone");
                     return null;
                 }
+                var observation = View.GetObservation();
                 var collaborator = new Collaborator()
                 {
                     Id = id,
@@ -183,7 +187,8 @@ namespace TadManagementTool.Presenter.Impl
                     Gender = genderType.Value,
                     BirthDate = birthDate,
                     Telephones = telephones.ToArray(),
-                    UserRole = userRoleViewItem.Wrapper
+                    UserRole = userRoleViewItem.Wrapper,
+                    Observation = observation
                 };
                 if (View.IsStartDateOptionChecked())
                 {
@@ -214,6 +219,35 @@ namespace TadManagementTool.Presenter.Impl
                 }
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
+
+        }
+
+        public void OnUserRoleChanged()
+        {
+            var userRole = View.GetUserRoleSelected();
+
+            if (userRole.Wrapper != UserRole.NonCollaborator)
+            {
+                View.SetStartDateLabelEnabled(true);
+                View.SetStartCheckBoxEnabled(true);
+                View.SetStartDateEnabled(false);
+
+                View.SetReleaseDateLabelEnabled(true);
+                View.SetReleaseCheckBoxEnabled(true);
+                View.SetReleaseDateEnabled(false);
+            }
+            else 
+            {
+                View.SetStartDateLabelEnabled(false);
+                View.SetStartCheckBoxEnabled(false);
+                View.SetStartDateEnabled(false);
+
+                View.SetReleaseDateLabelEnabled(false);
+                View.SetReleaseCheckBoxEnabled(false);
+                View.SetReleaseDateEnabled(false);
+            }
+
+                      
         }
     }
 }
