@@ -249,5 +249,11 @@ namespace TadManagementTool.Presenter.Impl
 
                       
         }
+
+        public void OnObservationChanged()
+        {
+            var observation = View.GetObservation();
+            View.SetObservationLimit(2000 - observation.Length);
+        }
     }
 }

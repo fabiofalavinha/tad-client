@@ -328,19 +328,22 @@
             // observationTextBox
             // 
             this.observationTextBox.Location = new System.Drawing.Point(135, 394);
+            this.observationTextBox.MaxLength = 2000;
             this.observationTextBox.Multiline = true;
             this.observationTextBox.Name = "observationTextBox";
             this.observationTextBox.Size = new System.Drawing.Size(176, 151);
             this.observationTextBox.TabIndex = 29;
+            this.observationTextBox.TextChanged += new System.EventHandler(this.observationTextBox_TextChanged);
             // 
             // observationLimitLabel
             // 
             this.observationLimitLabel.AutoSize = true;
-            this.observationLimitLabel.Location = new System.Drawing.Point(178, 548);
+            this.observationLimitLabel.Location = new System.Drawing.Point(132, 548);
             this.observationLimitLabel.Name = "observationLimitLabel";
-            this.observationLimitLabel.Size = new System.Drawing.Size(133, 13);
+            this.observationLimitLabel.Size = new System.Drawing.Size(139, 13);
             this.observationLimitLabel.TabIndex = 30;
-            this.observationLimitLabel.Text = "(Limite de Caracteres: 999)";
+            this.observationLimitLabel.Text = "(Limite de Caracteres: 2000)";
+            this.observationLimitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // modalWaitingPanel
             // 

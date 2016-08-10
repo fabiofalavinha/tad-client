@@ -12,5 +12,6 @@ namespace TadManagementTool.Presenter
         void OnSave();
         void OnEnableStartDateOption();
         void OnUserRoleChanged();
+        void OnObservationChanged();
     }
 }

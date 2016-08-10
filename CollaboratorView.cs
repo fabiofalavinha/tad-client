@@ -23,6 +23,7 @@ namespace TadManagementTool
         public CollaboratorView(IMainView parentView)
         {
             InitializeComponent();
+            SetObservationLimit(observationTextBox.MaxLength);
             this.parentView = parentView;
             this.presenter = new CollaboratorPresenter(this);
         }
@@ -507,6 +508,21 @@ namespace TadManagementTool
                 return;
             }
             observationTextBox.Text = observation;
+        }
+
+        private void observationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            presenter.OnObservationChanged();
+        }
+
+        public void SetObservationLimit(int limit)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<int>(SetObservationLimit), limit);
+                return;
+            }
+            observationLimitLabel.Text = string.Format("(Restante de Caracteres: {0})", limit);
         }
     }
 }

@@ -48,5 +48,6 @@ namespace TadManagementTool.View.Impl
         void SetReleaseDateEnabled(bool enabled);
         void SetReleaseCheckBoxEnabled(bool enabled);
         void SetReleaseDateLabelEnabled(bool enabled);
+        void SetObservationLimit(int v);
     }
 }
