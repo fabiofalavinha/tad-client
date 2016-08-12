@@ -27,6 +27,10 @@ namespace TadManagementTool.Presenter.Impl
 
         private void DoSetCollaboratorList(IList<Collaborator> list)
         {
+            if (View.GetFilterActive())
+            {
+                list = list.Where(c => c.Active == View.GetFilterActive()).ToArray();
+            }
             View.SetCollaboratorList(list.Select(c => new CollaboratorViewItem(c)).ToArray());
             View.SetActiveCollaboratorCount(list.Count(c => c.Active));
         }
@@ -41,7 +45,7 @@ namespace TadManagementTool.Presenter.Impl
             });
             task.ContinueWith(t =>
             {
-                DoSetCollaboratorList(t.Result.Where(c => c.Active == View.GetFilterActive()).ToArray());
+                DoSetCollaboratorList(t.Result);
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
@@ -170,12 +174,7 @@ namespace TadManagementTool.Presenter.Impl
             });
             task.ContinueWith(t =>
             {
-                var list = t.Result;
-                if (View.GetFilterActive())
-                {
-                    list = list.Where(c => c.Active).ToArray();
-                }
-                DoSetCollaboratorList(list);
+                DoSetCollaboratorList(t.Result);
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
