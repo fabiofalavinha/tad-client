@@ -167,7 +167,7 @@ namespace TadManagementTool.Presenter.Impl
                 var additionalText = View.GetAdditionalText();
                 if (string.IsNullOrWhiteSpace(additionalText))
                 {
-                    View.ShowWarningMessage("Preencha o campo obervação");
+                    View.ShowWarningMessage("Preencha o campo observação");
                     return false;
                 }
                 financialEntry.AdditionalText = additionalText;
