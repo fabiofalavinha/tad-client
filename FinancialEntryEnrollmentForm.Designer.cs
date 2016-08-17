@@ -34,6 +34,8 @@
             this.buttonSeparatorPanel = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.categoryTypeLabel = new System.Windows.Forms.Label();
+            this.entryValueTextBox = new TadManagementTool.CurrencyTextBox();
             this.targetRadionButtonGroupPanel = new System.Windows.Forms.Panel();
             this.targetComboBox = new System.Windows.Forms.ComboBox();
             this.targetCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
@@ -51,8 +53,6 @@
             this.targetLabel = new System.Windows.Forms.Label();
             this.entryDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.entryDateLabel = new System.Windows.Forms.Label();
-            this.categoryTypeLabel = new System.Windows.Forms.Label();
-            this.entryValueTextBox = new TadManagementTool.CurrencyTextBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
@@ -111,6 +111,30 @@
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(443, 312);
             this.contentPanel.TabIndex = 0;
+            // 
+            // categoryTypeLabel
+            // 
+            this.categoryTypeLabel.AutoSize = true;
+            this.categoryTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryTypeLabel.Location = new System.Drawing.Point(192, 248);
+            this.categoryTypeLabel.Name = "categoryTypeLabel";
+            this.categoryTypeLabel.Size = new System.Drawing.Size(0, 13);
+            this.categoryTypeLabel.TabIndex = 23;
+            // 
+            // entryValueTextBox
+            // 
+            this.entryValueTextBox.Location = new System.Drawing.Point(209, 245);
+            this.entryValueTextBox.Name = "entryValueTextBox";
+            this.entryValueTextBox.Size = new System.Drawing.Size(86, 20);
+            this.entryValueTextBox.TabIndex = 22;
+            this.entryValueTextBox.Text = "0.00";
+            this.entryValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.entryValueTextBox.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            this.entryValueTextBox.TextChanged += new System.EventHandler(this.entryValueTextBox_TextChanged);
             // 
             // targetRadionButtonGroupPanel
             // 
@@ -277,30 +301,6 @@
             this.entryDateLabel.TabIndex = 1;
             this.entryDateLabel.Text = "Data do Lançamento:";
             // 
-            // categoryTypeLabel
-            // 
-            this.categoryTypeLabel.AutoSize = true;
-            this.categoryTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categoryTypeLabel.Location = new System.Drawing.Point(192, 248);
-            this.categoryTypeLabel.Name = "categoryTypeLabel";
-            this.categoryTypeLabel.Size = new System.Drawing.Size(0, 13);
-            this.categoryTypeLabel.TabIndex = 23;
-            // 
-            // entryValueTextBox
-            // 
-            this.entryValueTextBox.Location = new System.Drawing.Point(209, 245);
-            this.entryValueTextBox.Name = "entryValueTextBox";
-            this.entryValueTextBox.Size = new System.Drawing.Size(86, 20);
-            this.entryValueTextBox.TabIndex = 22;
-            this.entryValueTextBox.Text = "0.00";
-            this.entryValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.entryValueTextBox.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            this.entryValueTextBox.TextChanged += new System.EventHandler(this.entryValueTextBox_TextChanged);
-            // 
             // modalWaitingPanel
             // 
             this.modalWaitingPanel.DisplayText = null;
@@ -308,6 +308,7 @@
             // 
             // FinancialEntryEnrollmentForm
             // 
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 363);

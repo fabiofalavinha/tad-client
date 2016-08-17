@@ -159,12 +159,18 @@ namespace TadManagementTool.Presenter.Impl
                 var type = View.GetEntryReference();
                 if (type == null)
                 {
-                    View.ShowWarningMessage("Selecion o tipo de lançamento");
+                    View.ShowWarningMessage("Selecione o tipo de lançamento");
                     return false;
                 }
                 financialEntry.Type = type.Wrapper;
 
-                financialEntry.AdditionalText = View.GetAdditionalText();
+                var additionalText = View.GetAdditionalText();
+                if (string.IsNullOrWhiteSpace(additionalText))
+                {
+                    View.ShowWarningMessage("Preencha o campo obervação");
+                    return false;
+                }
+                financialEntry.AdditionalText = additionalText;
 
                 financialEntry.Balance = new Balance()
                 {

@@ -1,4 +1,5 @@
-﻿using TadManagementTool.Model.Financial;
+﻿using System.Globalization;
+using TadManagementTool.Model.Financial;
 
 namespace TadManagementTool.View.Items
 {
@@ -26,8 +27,8 @@ namespace TadManagementTool.View.Items
                 TypeReferenceName = wrapper.Type.Description,
                 Category = CategoryExtensions.TranslateValue(wrapper.Type.Category),
                 AdditionalText = wrapper.AdditionalText,
-                Value = wrapper.Value.ToString(),
-                Balance = wrapper.PreviewBalance.Value.ToString()
+                Value = wrapper.Value.ToString("#,#.00#;(#,#.00#)", new CultureInfo("pt-BR")),
+                Balance = wrapper.PreviewBalance.Value.ToString("#,#.00#;(#,#.00#)", new CultureInfo("pt-BR"))
             };
         }
 
