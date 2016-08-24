@@ -34,7 +34,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.financialEntryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financialEntryTargetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financialReferenceTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financialEntryObservationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financialEntryBalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financialEntryBalanceTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financialEntryTotalBalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financialReceiptActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonPanel = new System.Windows.Forms.Panel();
+            this.closeFinancialEntryBalanceButton = new System.Windows.Forms.Button();
             this.openAddFinancialEntryViewButton = new System.Windows.Forms.Button();
             this.financialEntryFilterPanel = new System.Windows.Forms.Panel();
             this.financialReferenceFilterGroupBox = new System.Windows.Forms.GroupBox();
@@ -50,14 +59,6 @@
             this.financialEntryDateFromPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryContentPanel = new System.Windows.Forms.Panel();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.financialEntryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.financialEntryTargetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.financialReferenceTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.financialEntryObservationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.financialEntryBalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.financialEntryBalanceTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.financialEntryTotalBalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.financialReceiptActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
@@ -94,14 +95,98 @@
             this.dataGridView.TabIndex = 7;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             // 
+            // financialEntryDateColumn
+            // 
+            this.financialEntryDateColumn.DataPropertyName = "Date";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.financialEntryDateColumn.HeaderText = "Data";
+            this.financialEntryDateColumn.Name = "financialEntryDateColumn";
+            this.financialEntryDateColumn.ReadOnly = true;
+            this.financialEntryDateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // financialEntryTargetColumn
+            // 
+            this.financialEntryTargetColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.financialEntryTargetColumn.DataPropertyName = "TargetDescription";
+            this.financialEntryTargetColumn.HeaderText = "Origem";
+            this.financialEntryTargetColumn.Name = "financialEntryTargetColumn";
+            this.financialEntryTargetColumn.ReadOnly = true;
+            this.financialEntryTargetColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // financialReferenceTypeColumn
+            // 
+            this.financialReferenceTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.financialReferenceTypeColumn.DataPropertyName = "TypeReferenceName";
+            this.financialReferenceTypeColumn.HeaderText = "Tipo de Lançamento";
+            this.financialReferenceTypeColumn.Name = "financialReferenceTypeColumn";
+            this.financialReferenceTypeColumn.ReadOnly = true;
+            this.financialReferenceTypeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // financialEntryObservationColumn
+            // 
+            this.financialEntryObservationColumn.DataPropertyName = "AdditionalText";
+            this.financialEntryObservationColumn.HeaderText = "Observações";
+            this.financialEntryObservationColumn.Name = "financialEntryObservationColumn";
+            this.financialEntryObservationColumn.ReadOnly = true;
+            // 
+            // financialEntryBalanceColumn
+            // 
+            this.financialEntryBalanceColumn.DataPropertyName = "Value";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.financialEntryBalanceColumn.HeaderText = "Valor";
+            this.financialEntryBalanceColumn.Name = "financialEntryBalanceColumn";
+            this.financialEntryBalanceColumn.ReadOnly = true;
+            // 
+            // financialEntryBalanceTypeColumn
+            // 
+            this.financialEntryBalanceTypeColumn.DataPropertyName = "Category";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.financialEntryBalanceTypeColumn.HeaderText = "D/C";
+            this.financialEntryBalanceTypeColumn.Name = "financialEntryBalanceTypeColumn";
+            this.financialEntryBalanceTypeColumn.ReadOnly = true;
+            // 
+            // financialEntryTotalBalanceColumn
+            // 
+            this.financialEntryTotalBalanceColumn.DataPropertyName = "Balance";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.financialEntryTotalBalanceColumn.HeaderText = "Saldo";
+            this.financialEntryTotalBalanceColumn.Name = "financialEntryTotalBalanceColumn";
+            this.financialEntryTotalBalanceColumn.ReadOnly = true;
+            // 
+            // financialReceiptActionColumn
+            // 
+            this.financialReceiptActionColumn.HeaderText = "#";
+            this.financialReceiptActionColumn.Name = "financialReceiptActionColumn";
+            this.financialReceiptActionColumn.ReadOnly = true;
+            this.financialReceiptActionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.financialReceiptActionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.financialReceiptActionColumn.Visible = false;
+            this.financialReceiptActionColumn.Width = 25;
+            // 
             // buttonPanel
             // 
+            this.buttonPanel.Controls.Add(this.closeFinancialEntryBalanceButton);
             this.buttonPanel.Controls.Add(this.openAddFinancialEntryViewButton);
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonPanel.Location = new System.Drawing.Point(0, 574);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(828, 43);
             this.buttonPanel.TabIndex = 8;
+            // 
+            // closeFinancialEntryBalanceButton
+            // 
+            this.closeFinancialEntryBalanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeFinancialEntryBalanceButton.Location = new System.Drawing.Point(15, 6);
+            this.closeFinancialEntryBalanceButton.Name = "closeFinancialEntryBalanceButton";
+            this.closeFinancialEntryBalanceButton.Size = new System.Drawing.Size(110, 30);
+            this.closeFinancialEntryBalanceButton.TabIndex = 10;
+            this.closeFinancialEntryBalanceButton.Text = "Fechar Caixa";
+            this.closeFinancialEntryBalanceButton.UseVisualStyleBackColor = true;
+            this.closeFinancialEntryBalanceButton.Click += new System.EventHandler(this.closeFinancialEntryBalanceButton_Click);
             // 
             // openAddFinancialEntryViewButton
             // 
@@ -247,78 +332,6 @@
             this.financialEntryContentPanel.Size = new System.Drawing.Size(828, 472);
             this.financialEntryContentPanel.TabIndex = 6;
             // 
-            // financialEntryDateColumn
-            // 
-            this.financialEntryDateColumn.DataPropertyName = "Date";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.financialEntryDateColumn.HeaderText = "Data";
-            this.financialEntryDateColumn.Name = "financialEntryDateColumn";
-            this.financialEntryDateColumn.ReadOnly = true;
-            this.financialEntryDateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // financialEntryTargetColumn
-            // 
-            this.financialEntryTargetColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.financialEntryTargetColumn.DataPropertyName = "TargetDescription";
-            this.financialEntryTargetColumn.HeaderText = "Origem";
-            this.financialEntryTargetColumn.Name = "financialEntryTargetColumn";
-            this.financialEntryTargetColumn.ReadOnly = true;
-            this.financialEntryTargetColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // financialReferenceTypeColumn
-            // 
-            this.financialReferenceTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.financialReferenceTypeColumn.DataPropertyName = "TypeReferenceName";
-            this.financialReferenceTypeColumn.HeaderText = "Tipo de Lançamento";
-            this.financialReferenceTypeColumn.Name = "financialReferenceTypeColumn";
-            this.financialReferenceTypeColumn.ReadOnly = true;
-            this.financialReferenceTypeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // financialEntryObservationColumn
-            // 
-            this.financialEntryObservationColumn.DataPropertyName = "AdditionalText";
-            this.financialEntryObservationColumn.HeaderText = "Observações";
-            this.financialEntryObservationColumn.Name = "financialEntryObservationColumn";
-            this.financialEntryObservationColumn.ReadOnly = true;
-            // 
-            // financialEntryBalanceColumn
-            // 
-            this.financialEntryBalanceColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.financialEntryBalanceColumn.HeaderText = "Valor";
-            this.financialEntryBalanceColumn.Name = "financialEntryBalanceColumn";
-            this.financialEntryBalanceColumn.ReadOnly = true;
-            // 
-            // financialEntryBalanceTypeColumn
-            // 
-            this.financialEntryBalanceTypeColumn.DataPropertyName = "Category";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.financialEntryBalanceTypeColumn.HeaderText = "D/C";
-            this.financialEntryBalanceTypeColumn.Name = "financialEntryBalanceTypeColumn";
-            this.financialEntryBalanceTypeColumn.ReadOnly = true;
-            // 
-            // financialEntryTotalBalanceColumn
-            // 
-            this.financialEntryTotalBalanceColumn.DataPropertyName = "Balance";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.financialEntryTotalBalanceColumn.HeaderText = "Saldo";
-            this.financialEntryTotalBalanceColumn.Name = "financialEntryTotalBalanceColumn";
-            this.financialEntryTotalBalanceColumn.ReadOnly = true;
-            // 
-            // financialReceiptActionColumn
-            // 
-            this.financialReceiptActionColumn.HeaderText = "#";
-            this.financialReceiptActionColumn.Name = "financialReceiptActionColumn";
-            this.financialReceiptActionColumn.ReadOnly = true;
-            this.financialReceiptActionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.financialReceiptActionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.financialReceiptActionColumn.Visible = false;
-            this.financialReceiptActionColumn.Width = 25;
-            // 
             // FinancialEntryListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,5 +384,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn financialEntryBalanceTypeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn financialEntryTotalBalanceColumn;
         private System.Windows.Forms.DataGridViewButtonColumn financialReceiptActionColumn;
+        private System.Windows.Forms.Button closeFinancialEntryBalanceButton;
     }
 }

@@ -6,5 +6,6 @@
         void OnSearchFinancialEntries();
         void OnSelectFinancialEntryView();
         void OnTargetTypeFilterChanged();
+        void OnCloseFinancialEntryBalance();
     }
 }

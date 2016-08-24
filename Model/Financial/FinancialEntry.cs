@@ -30,6 +30,12 @@ namespace TadManagementTool.Model.Financial
         [JsonProperty(PropertyName = "previewBalance")]
         public Balance PreviewBalance { get; set; }
 
+        [JsonProperty(PropertyName = "status")]
+        public int Status { get; set; }
+
+        [JsonProperty(PropertyName = "closeableFinancialEntry")]
+        public CloseableFinancialEntry CloseableFinancialEntry { get; set; }
+
         public FinancialEntry()
         {
             Id = Guid.NewGuid().ToString();

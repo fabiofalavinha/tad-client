@@ -321,5 +321,10 @@ namespace TadManagementTool
             }
             return (FinancialReferenceViewItem)financialReferenceFilterComboBox.SelectedItem;
         }
+
+        private void closeFinancialEntryBalanceButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnCloseFinancialEntryBalance();
+        }
     }
 }

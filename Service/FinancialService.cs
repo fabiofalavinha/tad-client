@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using TadManagementTool.Model;
 using TadManagementTool.Model.Financial;
+using TadManagementTool.Service.VOs;
 
 namespace TadManagementTool.Service
 {
@@ -39,6 +41,11 @@ namespace TadManagementTool.Service
         public void SaveFinancialEntry(FinancialEntry financialEntry)
         {
             restTemplate.PostForObject<FinancialEntry>("/financial/entry", financialEntry);
+        }
+
+        public void CloseBalance(User user)
+        {
+            restTemplate.PostForObject<CloseFinancialEntryBalanceDTO>("/financial/close", new CloseFinancialEntryBalanceDTO() { UserId = user.Id });
         }
     }
 }

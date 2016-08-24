@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TadManagementTool.Model;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.Service;
 using TadManagementTool.View;
@@ -140,10 +141,53 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnTargetTypeFilterChanged()
         {
-            var targetTypeFilterSelected = View.GetTargetTypeFilterSelected();
-            var financialReferenceViewItems = financialService.GetFinancialReferences().Select(r => new FinancialReferenceViewItem(r)).ToArray();
-            var financialReferenceViewItemsFiltered = targetTypeFilterSelected.Filter(financialReferenceViewItems);
-            View.SetFinancialReferenceFilterList(financialReferenceViewItemsFiltered);
+            var task = new Task<IList<FinancialReference>>(() =>
+            {
+                View.ShowWaitingPanel("Filtrando...");
+                return financialService.GetFinancialReferences();
+            }, TaskCreationOptions.LongRunning);
+            task.ContinueWith(t =>
+            {
+                var list = t.Result;
+                var viewItems = list.Select(r => new FinancialReferenceViewItem(r)).ToArray();
+                var targetTypeFilterSelected = View.GetTargetTypeFilterSelected();
+                var financialReferenceViewItemsFiltered = targetTypeFilterSelected.Filter(viewItems);
+                View.SetFinancialReferenceFilterList(financialReferenceViewItemsFiltered);
+                View.HideWaitingPanel();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage($"Ocorreu um erro ao filtrar os dados de tipo de lançamento. Tente repetir a operação. {innerException.Message}");
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
+        }
+
+        public void OnCloseFinancialEntryBalance()
+        {
+            var task = new Task(() =>
+            {
+                View.ShowWaitingPanel("Fechando o caixa... ");
+                var loggedUser = UserContext.GetInstance().LoggedUser;
+                financialService.CloseBalance(loggedUser);
+            }, TaskCreationOptions.LongRunning);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage($"Ocorreu um erro ao fechar o caixa. Tente repetir a operação. {innerException.Message}");
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.ContinueWith(t =>
+            {
+                OnSearchFinancialEntries();
+                View.HideWaitingPanel();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.Start();
         }
     }
 }
