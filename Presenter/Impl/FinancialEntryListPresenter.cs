@@ -178,7 +178,7 @@ namespace TadManagementTool.Presenter.Impl
                     return true;
                 }
                 return false;
-             }, TaskCreationOptions.LongRunning);
+            }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
                 View.HideWaitingPanel();
@@ -204,10 +204,13 @@ namespace TadManagementTool.Presenter.Impl
             {
                 if (View.ShowBinaryQuestion("Deseja excluir esse lançamento?"))
                 {
-                var financialEntryViewSelected = View.GetFinancialEntryViewSelected();
                     View.ShowWaitingPanel(string.Format("Excluindo lançamento..."));
-                    financialService.RemoveFinancialEntry(financialEntryViewSelected.Wrapper);
-                    return true;
+                    var financialEntryViewSelected = View.GetFinancialEntryViewSelected();
+                    if (financialEntryViewSelected != null)
+                    {
+                        financialService.RemoveFinancialEntry(financialEntryViewSelected.Wrapper);
+                        return true;
+                    }
                 }
                 return false;
             });

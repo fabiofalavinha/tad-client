@@ -226,7 +226,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action<bool>(SetFinancialEntryDataEnabled), enabled);
                 return;
             }
-            entryDateTimePicker.Enabled = enabled;
+            entryDateTimePicker.Enabled = false;
             targetCollaboratorTypeRadioButton.Enabled = enabled;
             targetNonCollaboratorTypeRadioButton.Enabled = enabled;
             targetComboBox.Enabled = enabled;
