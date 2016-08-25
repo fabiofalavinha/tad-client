@@ -64,6 +64,7 @@ namespace TadManagementTool.Presenter.Impl
                 DoLoadFinancialReferenceList();
                 currentBalance = financialService.GetCurrentTotalBalance().Value;
                 View.SetFinancialEntry(viewItem);
+                View.SetFinancialEntryDataEnabled(!viewItem.Wrapper.Closed);
                 currentFinancialEntryViewItem = viewItem;
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>

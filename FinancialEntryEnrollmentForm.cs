@@ -212,21 +212,28 @@ namespace TadManagementTool
                 currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString();
                 entryValueTextBox.Text = viewItem.Wrapper.Value.ToString();
                 balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.Value.ToString();
-
-                // disable all controls in edit mode
-                entryDateTimePicker.Enabled = false;
-                targetCollaboratorTypeRadioButton.Enabled = false;
-                targetNonCollaboratorTypeRadioButton.Enabled = false;
-                targetComboBox.Enabled = false;
-                financialTypeComboBox.Enabled = false;
-                additionalTextTextBox.Enabled = false;
-                entryValueTextBox.Enabled = false;
-                saveButton.Enabled = false;
             }
             finally
             {
                 populateFormFields = false;
             }
+        }
+
+        public void SetFinancialEntryDataEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetFinancialEntryDataEnabled), enabled);
+                return;
+            }
+            entryDateTimePicker.Enabled = enabled;
+            targetCollaboratorTypeRadioButton.Enabled = enabled;
+            targetNonCollaboratorTypeRadioButton.Enabled = enabled;
+            targetComboBox.Enabled = enabled;
+            financialTypeComboBox.Enabled = enabled;
+            additionalTextTextBox.Enabled = enabled;
+            entryValueTextBox.Enabled = enabled;
+            saveButton.Enabled = enabled;
         }
 
         public void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list)

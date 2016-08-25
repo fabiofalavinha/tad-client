@@ -25,5 +25,6 @@ namespace TadManagementTool.View
         void SetEntryPreviewValueColor(Color color);
         void SetCategoryType(Category category);
         void SetEntryDateOptionEnabled(bool enabled);
+        void SetFinancialEntryDataEnabled(bool enabled);
     }
 }

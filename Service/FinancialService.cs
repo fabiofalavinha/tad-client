@@ -47,5 +47,10 @@ namespace TadManagementTool.Service
         {
             restTemplate.PostForObject<CloseFinancialEntryBalanceDTO>("/financial/close", new CloseFinancialEntryBalanceDTO() { UserId = user.Id });
         }
+
+        public void RemoveFinancialEntry(FinancialEntry financialEntry)
+        {
+            restTemplate.Delete("/financial/entry/{id}", financialEntry.Id);
+        }
     }
 }

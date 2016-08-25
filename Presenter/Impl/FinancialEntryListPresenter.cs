@@ -168,12 +168,17 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnCloseFinancialEntryBalance()
         {
-            var task = new Task(() =>
+            var task = new Task<bool>(() =>
             {
-                View.ShowWaitingPanel("Fechando o caixa... ");
-                var loggedUser = UserContext.GetInstance().LoggedUser;
-                financialService.CloseBalance(loggedUser);
-            }, TaskCreationOptions.LongRunning);
+                if (View.ShowBinaryQuestion("Você realmente quer fechar o caixa?"))
+                {
+                    View.ShowWaitingPanel("Fechando o caixa... ");
+                    var loggedUser = UserContext.GetInstance().LoggedUser;
+                    financialService.CloseBalance(loggedUser);
+                    return true;
+                }
+                return false;
+             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
                 View.HideWaitingPanel();
@@ -184,10 +189,51 @@ namespace TadManagementTool.Presenter.Impl
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.ContinueWith(t =>
             {
-                OnSearchFinancialEntries();
+                if (t.Result)
+                {
+                    OnSearchFinancialEntries();
+                    View.HideWaitingPanel();
+                }
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.Start();
+        }
+
+        public void OnRemoveOpenedFinancialEntry()
+        {
+            var task = new Task<bool>(() =>
+            {
+                if (View.ShowBinaryQuestion("Deseja excluir esse lançamento?"))
+                {
+                var financialEntryViewSelected = View.GetFinancialEntryViewSelected();
+                    View.ShowWaitingPanel(string.Format("Excluindo lançamento..."));
+                    financialService.RemoveFinancialEntry(financialEntryViewSelected.Wrapper);
+                    return true;
+                }
+                return false;
+            });
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage($"Ocorreu um erro ao remover um lançamento. Tente repetir a operação. {innerException.Message}");
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.ContinueWith(t =>
+            {
+                if (t.Result)
+                {
+                    OnSearchFinancialEntries();
+                }
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
+        }
+
+        public void OnSelectedFinancialEntry()
+        {
+            var selectedFinancialItem = View.GetFinancialEntryViewSelected();
+            View.SetRemoveFinancialEntryButtonEnabled(!selectedFinancialItem.Wrapper.Closed);
         }
     }
 }

@@ -241,7 +241,9 @@
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Financial\Balance.cs" />
     <Compile Include="Model\Financial\Category.cs" />
+    <Compile Include="Model\Financial\CloseableFinancialEntry.cs" />
     <Compile Include="Model\Financial\FinancialEntry.cs" />
+    <Compile Include="Model\Financial\FinancialEntryStatus.cs" />
     <Compile Include="Model\Financial\FinancialReference.cs" />
     <Compile Include="Model\Financial\FinancialTarget.cs" />
     <Compile Include="Model\Financial\FinancialTargetType.cs" />
@@ -309,6 +311,7 @@
     <Compile Include="Service\UserCredentialsService.cs" />
     <Compile Include="Service\VOs\AuthenticationRequest.cs" />
     <Compile Include="Service\VOs\ChangePasswordRequest.cs" />
+    <Compile Include="Service\VOs\CloseFinancialEntryBalanceDTO.cs" />
     <Compile Include="UploadImageForm.cs">
       <SubType>Form</SubType>
     </Compile>

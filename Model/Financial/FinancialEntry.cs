@@ -36,6 +36,9 @@ namespace TadManagementTool.Model.Financial
         [JsonProperty(PropertyName = "closeableFinancialEntry")]
         public CloseableFinancialEntry CloseableFinancialEntry { get; set; }
 
+        [JsonIgnore]
+        public bool Closed { get { return Status == (int)FinancialEntryStatus.Closed; } }
+
         public FinancialEntry()
         {
             Id = Guid.NewGuid().ToString();

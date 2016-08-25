@@ -7,5 +7,7 @@
         void OnSelectFinancialEntryView();
         void OnTargetTypeFilterChanged();
         void OnCloseFinancialEntryBalance();
+        void OnRemoveOpenedFinancialEntry();
+        void OnSelectedFinancialEntry();
     }
 }

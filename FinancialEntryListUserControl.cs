@@ -193,6 +193,60 @@ namespace TadManagementTool
             }
         }
 
+        private void targetTypeFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            presenter.OnTargetTypeFilterChanged();
+        }
+
+        public void SetFinancialReferenceFilterList(IList<FinancialReferenceViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceFilterList), list);
+                return;
+            }
+            financialReferenceFilterComboBox.Items.Clear();
+            financialReferenceFilterComboBox.Items.AddRange(list.ToArray());
+        }
+
+        public void SetTargetTypeFilterSelected(FinancialTargetTypeViewItem selected)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<FinancialTargetTypeViewItem>(SetTargetTypeFilterSelected), selected);
+                return;
+            }
+            targetTypeFilterComboBox.SelectedItem = selected;
+        }
+
+        public FinancialReferenceViewItem GetFinancialReferenceFilterSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (FinancialReferenceViewItem)Invoke(new Func<FinancialReferenceViewItem>(GetFinancialReferenceFilterSelected));
+            }
+            return (FinancialReferenceViewItem)financialReferenceFilterComboBox.SelectedItem;
+        }
+
+        private void closeFinancialEntryBalanceButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnCloseFinancialEntryBalance();
+        }
+
+        public bool ShowBinaryQuestion(string message)
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<string, bool>(ShowBinaryQuestion), message);
+            }
+            return MessageBox.Show(message, "TAD", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private void removeOpenedFinancialEntryButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnRemoveOpenedFinancialEntry();
+        }
+
         public abstract class DataGridViewImageButtonCell : DataGridViewButtonCell
         {
             private readonly int buttonImageOffset;
@@ -287,44 +341,22 @@ namespace TadManagementTool
             }
         }
 
-        private void targetTypeFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            presenter.OnTargetTypeFilterChanged();
+            if (e.Clicks == 1)
+            {
+                presenter.OnSelectedFinancialEntry();
+            }
         }
 
-        public void SetFinancialReferenceFilterList(IList<FinancialReferenceViewItem> list)
+        public void SetRemoveFinancialEntryButtonEnabled(bool enabled)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceFilterList), list);
+                BeginInvoke(new Action<bool>(SetRemoveFinancialEntryButtonEnabled), enabled);
                 return;
             }
-            financialReferenceFilterComboBox.Items.Clear();
-            financialReferenceFilterComboBox.Items.AddRange(list.ToArray());
-        }
-
-        public void SetTargetTypeFilterSelected(FinancialTargetTypeViewItem selected)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<FinancialTargetTypeViewItem>(SetTargetTypeFilterSelected), selected);
-                return;
-            }
-            targetTypeFilterComboBox.SelectedItem = selected;
-        }
-
-        public FinancialReferenceViewItem GetFinancialReferenceFilterSelected()
-        {
-            if (InvokeRequired)
-            {
-                return (FinancialReferenceViewItem)Invoke(new Func<FinancialReferenceViewItem>(GetFinancialReferenceFilterSelected));
-            }
-            return (FinancialReferenceViewItem)financialReferenceFilterComboBox.SelectedItem;
-        }
-
-        private void closeFinancialEntryBalanceButton_Click(object sender, EventArgs e)
-        {
-            presenter.OnCloseFinancialEntryBalance();
+            removeOpenedFinancialEntryButton.Enabled = enabled;
         }
     }
 }

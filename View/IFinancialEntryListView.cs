@@ -24,5 +24,7 @@ namespace TadManagementTool.View
         void SetTargetTypeFilterList(IList<FinancialTargetTypeViewItem> list);
         void SetFinancialReferenceFilterList(IList<FinancialReferenceViewItem> list);
         void SetTargetTypeFilterSelected(FinancialTargetTypeViewItem selected);
+        bool ShowBinaryQuestion(string message);
+        void SetRemoveFinancialEntryButtonEnabled(bool enabled);
     }
 }
