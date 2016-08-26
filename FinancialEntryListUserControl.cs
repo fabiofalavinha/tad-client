@@ -247,6 +247,32 @@ namespace TadManagementTool
             presenter.OnRemoveOpenedFinancialEntry();
         }
 
+        private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Clicks == 1)
+            {
+                presenter.OnSelectedFinancialEntry();
+            }
+        }
+
+        public void SetRemoveFinancialEntryButtonEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetRemoveFinancialEntryButtonEnabled), enabled);
+                return;
+            }
+            removeOpenedFinancialEntryButton.Enabled = enabled;
+        }
+
+        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (var row in dataGridView.Rows.Cast<DataGridViewRow>())
+            {
+                row.DefaultCellStyle.BackColor = ((FinancialEntryViewItem)row.DataBoundItem).Wrapper.Closed ? Color.LightGreen : Color.White;
+            }
+        }
+
         public abstract class DataGridViewImageButtonCell : DataGridViewButtonCell
         {
             private readonly int buttonImageOffset;
@@ -339,24 +365,6 @@ namespace TadManagementTool
                     }
                 }
             }
-        }
-
-        private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Clicks == 1)
-            {
-                presenter.OnSelectedFinancialEntry();
-            }
-        }
-
-        public void SetRemoveFinancialEntryButtonEnabled(bool enabled)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<bool>(SetRemoveFinancialEntryButtonEnabled), enabled);
-                return;
-            }
-            removeOpenedFinancialEntryButton.Enabled = enabled;
         }
     }
 }

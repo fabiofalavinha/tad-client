@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.financialEntryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialEntryTargetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,12 +96,13 @@
             this.dataGridView.TabIndex = 7;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseClick);
+            this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
             // 
             // financialEntryDateColumn
             // 
             this.financialEntryDateColumn.DataPropertyName = "Date";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.financialEntryDateColumn.HeaderText = "Data";
             this.financialEntryDateColumn.Name = "financialEntryDateColumn";
             this.financialEntryDateColumn.ReadOnly = true;
@@ -135,8 +136,8 @@
             // financialEntryBalanceColumn
             // 
             this.financialEntryBalanceColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.financialEntryBalanceColumn.HeaderText = "Valor";
             this.financialEntryBalanceColumn.Name = "financialEntryBalanceColumn";
             this.financialEntryBalanceColumn.ReadOnly = true;
@@ -144,8 +145,8 @@
             // financialEntryBalanceTypeColumn
             // 
             this.financialEntryBalanceTypeColumn.DataPropertyName = "Category";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.financialEntryBalanceTypeColumn.HeaderText = "D/C";
             this.financialEntryBalanceTypeColumn.Name = "financialEntryBalanceTypeColumn";
             this.financialEntryBalanceTypeColumn.ReadOnly = true;
@@ -153,8 +154,8 @@
             // financialEntryTotalBalanceColumn
             // 
             this.financialEntryTotalBalanceColumn.DataPropertyName = "Balance";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.financialEntryTotalBalanceColumn.HeaderText = "Saldo";
             this.financialEntryTotalBalanceColumn.Name = "financialEntryTotalBalanceColumn";
             this.financialEntryTotalBalanceColumn.ReadOnly = true;

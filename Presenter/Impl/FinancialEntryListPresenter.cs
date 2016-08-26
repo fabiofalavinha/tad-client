@@ -119,6 +119,7 @@ namespace TadManagementTool.Presenter.Impl
                     }
 
                     View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
+                    View.SetRemoveFinancialEntryButtonEnabled(false);
                 }
                 DoLoadCurrentBalance();
                 View.HideWaitingPanel();

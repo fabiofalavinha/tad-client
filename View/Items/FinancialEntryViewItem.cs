@@ -28,7 +28,7 @@ namespace TadManagementTool.View.Items
                 Category = CategoryExtensions.TranslateValue(wrapper.Type.Category),
                 AdditionalText = wrapper.AdditionalText,
                 Value = wrapper.Value.ToString("#,#.00#;(#,#.00#)", new CultureInfo("pt-BR")),
-                Balance = wrapper.PreviewBalance.Value.ToString("#,#.00#;(#,#.00#)", new CultureInfo("pt-BR"))
+                Balance = wrapper.Balance.Value.ToString("#,#.00#;(#,#.00#)", new CultureInfo("pt-BR"))
             };
         }
 
