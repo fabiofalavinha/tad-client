@@ -164,7 +164,7 @@ namespace TadManagementTool.Presenter.Impl
             View.SetCollaboratorList(new ListCollaboratorOrder().Sort(View.GetCollaboratorList(), propertyName, sortOrder));
         }
 
-        public void OnFilterActiveChanged()
+        public void OnSearchCollaborators()
         {
             var task = new Task<IList<Collaborator>>(() =>
             {

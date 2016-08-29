@@ -247,10 +247,10 @@ namespace TadManagementTool
             }
             return filterActiveCheckBox.Checked;
         }
-
-        private void filterActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        
+        private void collaboratorSearchButton_Click(object sender, EventArgs e)
         {
-            presenter.OnFilterActiveChanged();
+            presenter.OnSearchCollaborators();
         }
     }
 }

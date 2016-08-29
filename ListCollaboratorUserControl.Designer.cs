@@ -46,6 +46,7 @@
             this.exportToExcelButton = new System.Windows.Forms.Button();
             this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.filterGroupBox = new System.Windows.Forms.GroupBox();
+            this.collaboratorSearchButton = new System.Windows.Forms.Button();
             this.filterActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -221,6 +222,17 @@
             this.filterGroupBox.TabStop = false;
             this.filterGroupBox.Text = "Filtros";
             // 
+            // collaboratorSearchButton
+            // 
+            this.collaboratorSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.collaboratorSearchButton.Location = new System.Drawing.Point(759, 22);
+            this.collaboratorSearchButton.Name = "collaboratorSearchButton";
+            this.collaboratorSearchButton.Size = new System.Drawing.Size(102, 36);
+            this.collaboratorSearchButton.TabIndex = 5;
+            this.collaboratorSearchButton.Text = "Buscar";
+            this.collaboratorSearchButton.UseVisualStyleBackColor = true;
+            this.collaboratorSearchButton.Click += new System.EventHandler(this.collaboratorSearchButton_Click);
+            // 
             // filterActiveCheckBox
             // 
             this.filterActiveCheckBox.AutoSize = true;
@@ -232,7 +244,6 @@
             this.filterActiveCheckBox.TabIndex = 4;
             this.filterActiveCheckBox.Text = "Apenas ativos?";
             this.filterActiveCheckBox.UseVisualStyleBackColor = true;
-            this.filterActiveCheckBox.CheckedChanged += new System.EventHandler(this.filterActiveCheckBox_CheckedChanged);
             // 
             // modalWaitingPanel
             // 
@@ -245,6 +256,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Controls.Add(this.collaboratorSearchButton);
             this.Controls.Add(this.filterGroupBox);
             this.Controls.Add(this.exportToExcelButton);
             this.Controls.Add(this.removeCollaboratorButton);
@@ -284,5 +296,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorActiveColumn;
         private System.Windows.Forms.GroupBox filterGroupBox;
         private System.Windows.Forms.CheckBox filterActiveCheckBox;
+        private System.Windows.Forms.Button collaboratorSearchButton;
     }
 }
