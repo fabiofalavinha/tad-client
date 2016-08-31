@@ -38,6 +38,9 @@ namespace TadManagementTool.Model
         [JsonProperty("observation")] 
         public string Observation { get; set; }
 
+        [JsonProperty("contributor")]
+        public bool Contributor { get; set; }
+
         [JsonIgnore]
         public bool Active { get { return ReleaseDate == null; } }
 

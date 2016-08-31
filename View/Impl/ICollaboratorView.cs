@@ -26,6 +26,7 @@ namespace TadManagementTool.View.Impl
         DateTime GetReleaseDate();
         string GetObservation();
         bool ShowBinaryQuestion(string message);
+        bool GetContributor();
         void SetObservation(string observation);
         void OpenListCollaboratorView();
         void SetPhoneTypeList(IList<PhoneTypeViewItem> list);

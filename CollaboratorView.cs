@@ -524,5 +524,14 @@ namespace TadManagementTool
             }
             observationLimitLabel.Text = string.Format("(Restante de Caracteres: {0})", limit);
         }
+
+        public bool GetContributor()
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<bool>(GetContributor));
+            }
+            return contributorCheckBox.Checked;
+        }
     }
 }

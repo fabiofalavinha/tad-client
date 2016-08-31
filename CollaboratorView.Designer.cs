@@ -59,6 +59,8 @@
             this.observationLabel = new System.Windows.Forms.Label();
             this.observationTextBox = new System.Windows.Forms.TextBox();
             this.observationLimitLabel = new System.Windows.Forms.Label();
+            this.contributorCheckBox = new System.Windows.Forms.CheckBox();
+            this.contributorLabel = new System.Windows.Forms.Label();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.SuspendLayout();
             // 
@@ -143,7 +145,7 @@
             // startDateLabel
             // 
             this.startDateLabel.AutoSize = true;
-            this.startDateLabel.Location = new System.Drawing.Point(51, 158);
+            this.startDateLabel.Location = new System.Drawing.Point(51, 178);
             this.startDateLabel.Name = "startDateLabel";
             this.startDateLabel.Size = new System.Drawing.Size(78, 13);
             this.startDateLabel.TabIndex = 13;
@@ -152,7 +154,7 @@
             // startDateTimePicker
             // 
             this.startDateTimePicker.Enabled = false;
-            this.startDateTimePicker.Location = new System.Drawing.Point(156, 156);
+            this.startDateTimePicker.Location = new System.Drawing.Point(156, 176);
             this.startDateTimePicker.Name = "startDateTimePicker";
             this.startDateTimePicker.Size = new System.Drawing.Size(234, 20);
             this.startDateTimePicker.TabIndex = 14;
@@ -160,7 +162,7 @@
             // releaseDateLabel
             // 
             this.releaseDateLabel.AutoSize = true;
-            this.releaseDateLabel.Location = new System.Drawing.Point(50, 184);
+            this.releaseDateLabel.Location = new System.Drawing.Point(50, 204);
             this.releaseDateLabel.Name = "releaseDateLabel";
             this.releaseDateLabel.Size = new System.Drawing.Size(80, 13);
             this.releaseDateLabel.TabIndex = 15;
@@ -169,7 +171,7 @@
             // releaseDateTimePicker
             // 
             this.releaseDateTimePicker.Enabled = false;
-            this.releaseDateTimePicker.Location = new System.Drawing.Point(156, 182);
+            this.releaseDateTimePicker.Location = new System.Drawing.Point(156, 202);
             this.releaseDateTimePicker.Name = "releaseDateTimePicker";
             this.releaseDateTimePicker.Size = new System.Drawing.Size(234, 20);
             this.releaseDateTimePicker.TabIndex = 17;
@@ -177,7 +179,7 @@
             // releaseDateCheckBox
             // 
             this.releaseDateCheckBox.AutoSize = true;
-            this.releaseDateCheckBox.Location = new System.Drawing.Point(135, 185);
+            this.releaseDateCheckBox.Location = new System.Drawing.Point(135, 205);
             this.releaseDateCheckBox.Name = "releaseDateCheckBox";
             this.releaseDateCheckBox.Size = new System.Drawing.Size(15, 14);
             this.releaseDateCheckBox.TabIndex = 16;
@@ -187,7 +189,7 @@
             // telephoneLabel
             // 
             this.telephoneLabel.AutoSize = true;
-            this.telephoneLabel.Location = new System.Drawing.Point(73, 208);
+            this.telephoneLabel.Location = new System.Drawing.Point(73, 228);
             this.telephoneLabel.Name = "telephoneLabel";
             this.telephoneLabel.Size = new System.Drawing.Size(57, 13);
             this.telephoneLabel.TabIndex = 18;
@@ -196,7 +198,7 @@
             // telephoneListBox
             // 
             this.telephoneListBox.FormattingEnabled = true;
-            this.telephoneListBox.Location = new System.Drawing.Point(134, 235);
+            this.telephoneListBox.Location = new System.Drawing.Point(134, 255);
             this.telephoneListBox.Name = "telephoneListBox";
             this.telephoneListBox.Size = new System.Drawing.Size(177, 147);
             this.telephoneListBox.TabIndex = 23;
@@ -206,14 +208,14 @@
             this.phoneTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.phoneTypeComboBox.FormattingEnabled = true;
             this.phoneTypeComboBox.ItemHeight = 13;
-            this.phoneTypeComboBox.Location = new System.Drawing.Point(134, 208);
+            this.phoneTypeComboBox.Location = new System.Drawing.Point(134, 228);
             this.phoneTypeComboBox.Name = "phoneTypeComboBox";
             this.phoneTypeComboBox.Size = new System.Drawing.Size(90, 21);
             this.phoneTypeComboBox.TabIndex = 19;
             // 
             // phoneAreaCodeTextBox
             // 
-            this.phoneAreaCodeTextBox.Location = new System.Drawing.Point(231, 209);
+            this.phoneAreaCodeTextBox.Location = new System.Drawing.Point(231, 229);
             this.phoneAreaCodeTextBox.Name = "phoneAreaCodeTextBox";
             this.phoneAreaCodeTextBox.Size = new System.Drawing.Size(50, 20);
             this.phoneAreaCodeTextBox.TabIndex = 20;
@@ -222,7 +224,7 @@
             // 
             // phoneNumberTextBox
             // 
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(287, 209);
+            this.phoneNumberTextBox.Location = new System.Drawing.Point(287, 229);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(103, 20);
             this.phoneNumberTextBox.TabIndex = 21;
@@ -231,7 +233,7 @@
             // addTelephoneButton
             // 
             this.addTelephoneButton.Image = global::TadManagementTool.Properties.Resources.phone_add;
-            this.addTelephoneButton.Location = new System.Drawing.Point(396, 205);
+            this.addTelephoneButton.Location = new System.Drawing.Point(396, 225);
             this.addTelephoneButton.Name = "addTelephoneButton";
             this.addTelephoneButton.Size = new System.Drawing.Size(32, 28);
             this.addTelephoneButton.TabIndex = 22;
@@ -241,7 +243,7 @@
             // removeTelephoneButton
             // 
             this.removeTelephoneButton.Image = global::TadManagementTool.Properties.Resources.phone_delete;
-            this.removeTelephoneButton.Location = new System.Drawing.Point(317, 235);
+            this.removeTelephoneButton.Location = new System.Drawing.Point(317, 255);
             this.removeTelephoneButton.Name = "removeTelephoneButton";
             this.removeTelephoneButton.Size = new System.Drawing.Size(32, 28);
             this.removeTelephoneButton.TabIndex = 24;
@@ -251,7 +253,7 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(468, 569);
+            this.saveButton.Location = new System.Drawing.Point(468, 603);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 30);
             this.saveButton.TabIndex = 25;
@@ -262,7 +264,7 @@
             // backToListCollaboratorButton
             // 
             this.backToListCollaboratorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.backToListCollaboratorButton.Location = new System.Drawing.Point(3, 569);
+            this.backToListCollaboratorButton.Location = new System.Drawing.Point(3, 603);
             this.backToListCollaboratorButton.Name = "backToListCollaboratorButton";
             this.backToListCollaboratorButton.Size = new System.Drawing.Size(92, 30);
             this.backToListCollaboratorButton.TabIndex = 26;
@@ -309,7 +311,7 @@
             // startDateCheckBox
             // 
             this.startDateCheckBox.AutoSize = true;
-            this.startDateCheckBox.Location = new System.Drawing.Point(135, 158);
+            this.startDateCheckBox.Location = new System.Drawing.Point(135, 178);
             this.startDateCheckBox.Name = "startDateCheckBox";
             this.startDateCheckBox.Size = new System.Drawing.Size(15, 14);
             this.startDateCheckBox.TabIndex = 16;
@@ -319,7 +321,7 @@
             // observationLabel
             // 
             this.observationLabel.AutoSize = true;
-            this.observationLabel.Location = new System.Drawing.Point(55, 397);
+            this.observationLabel.Location = new System.Drawing.Point(55, 417);
             this.observationLabel.Name = "observationLabel";
             this.observationLabel.Size = new System.Drawing.Size(73, 13);
             this.observationLabel.TabIndex = 28;
@@ -327,7 +329,7 @@
             // 
             // observationTextBox
             // 
-            this.observationTextBox.Location = new System.Drawing.Point(135, 394);
+            this.observationTextBox.Location = new System.Drawing.Point(135, 414);
             this.observationTextBox.MaxLength = 2000;
             this.observationTextBox.Multiline = true;
             this.observationTextBox.Name = "observationTextBox";
@@ -338,12 +340,30 @@
             // observationLimitLabel
             // 
             this.observationLimitLabel.AutoSize = true;
-            this.observationLimitLabel.Location = new System.Drawing.Point(132, 548);
+            this.observationLimitLabel.Location = new System.Drawing.Point(132, 568);
             this.observationLimitLabel.Name = "observationLimitLabel";
             this.observationLimitLabel.Size = new System.Drawing.Size(139, 13);
             this.observationLimitLabel.TabIndex = 30;
             this.observationLimitLabel.Text = "(Limite de Caracteres: 2000)";
             this.observationLimitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // contributorCheckBox
+            // 
+            this.contributorCheckBox.AutoSize = true;
+            this.contributorCheckBox.Location = new System.Drawing.Point(135, 156);
+            this.contributorCheckBox.Name = "contributorCheckBox";
+            this.contributorCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.contributorCheckBox.TabIndex = 31;
+            this.contributorCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // contributorLabel
+            // 
+            this.contributorLabel.AutoSize = true;
+            this.contributorLabel.Location = new System.Drawing.Point(64, 156);
+            this.contributorLabel.Name = "contributorLabel";
+            this.contributorLabel.Size = new System.Drawing.Size(66, 13);
+            this.contributorLabel.TabIndex = 32;
+            this.contributorLabel.Text = "Contribuinte:";
             // 
             // modalWaitingPanel
             // 
@@ -355,6 +375,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.Controls.Add(this.contributorLabel);
+            this.Controls.Add(this.contributorCheckBox);
             this.Controls.Add(this.observationLimitLabel);
             this.Controls.Add(this.observationTextBox);
             this.Controls.Add(this.observationLabel);
@@ -387,7 +409,7 @@
             this.Controls.Add(this.nameLabel);
             this.DoubleBuffered = true;
             this.Name = "CollaboratorView";
-            this.Size = new System.Drawing.Size(546, 602);
+            this.Size = new System.Drawing.Size(546, 636);
             this.Load += new System.EventHandler(this.CollaboratorView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -427,5 +449,7 @@
         private System.Windows.Forms.Label observationLimitLabel;
         private System.Windows.Forms.TextBox observationTextBox;
         private System.Windows.Forms.Label observationLabel;
+        private System.Windows.Forms.Label contributorLabel;
+        private System.Windows.Forms.CheckBox contributorCheckBox;
     }
 }

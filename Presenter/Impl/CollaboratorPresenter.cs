@@ -179,6 +179,7 @@ namespace TadManagementTool.Presenter.Impl
                     return null;
                 }
                 var observation = View.GetObservation();
+                var contributor = View.GetContributor();
                 var collaborator = new Collaborator()
                 {
                     Id = id,
@@ -188,7 +189,8 @@ namespace TadManagementTool.Presenter.Impl
                     BirthDate = birthDate,
                     Telephones = telephones.ToArray(),
                     UserRole = userRoleViewItem.Wrapper,
-                    Observation = observation
+                    Observation = observation,
+                    Contributor = contributor
                 };
                 if (View.IsStartDateOptionChecked())
                 {
@@ -225,13 +227,11 @@ namespace TadManagementTool.Presenter.Impl
         public void OnUserRoleChanged()
         {
             var userRole = View.GetUserRoleSelected();
-
             if (userRole.Wrapper != UserRole.NonCollaborator)
             {
                 View.SetStartDateLabelEnabled(true);
                 View.SetStartCheckBoxEnabled(true);
                 View.SetStartDateEnabled(false);
-
                 View.SetReleaseDateLabelEnabled(true);
                 View.SetReleaseCheckBoxEnabled(true);
                 View.SetReleaseDateEnabled(false);
@@ -241,13 +241,10 @@ namespace TadManagementTool.Presenter.Impl
                 View.SetStartDateLabelEnabled(false);
                 View.SetStartCheckBoxEnabled(false);
                 View.SetStartDateEnabled(false);
-
                 View.SetReleaseDateLabelEnabled(false);
                 View.SetReleaseCheckBoxEnabled(false);
                 View.SetReleaseDateEnabled(false);
             }
-
-                      
         }
 
         public void OnObservationChanged()
