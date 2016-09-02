@@ -307,6 +307,7 @@
     <Compile Include="Service\CollaboratorService.cs" />
     <Compile Include="Service\FinancialService.cs" />
     <Compile Include="Service\ListCollaboratorExporter.cs" />
+    <Compile Include="Service\ListFinancialEntryExporter.cs" />
     <Compile Include="Service\PostService.cs" />
     <Compile Include="Service\UserCredentialsService.cs" />
     <Compile Include="Service\VOs\AuthenticationRequest.cs" />

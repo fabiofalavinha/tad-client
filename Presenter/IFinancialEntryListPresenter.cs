@@ -9,5 +9,6 @@
         void OnCloseFinancialEntryBalance();
         void OnRemoveOpenedFinancialEntry();
         void OnSelectedFinancialEntry();
+        void OnExportToExcel();
     }
 }

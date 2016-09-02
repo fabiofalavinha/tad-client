@@ -273,6 +273,44 @@ namespace TadManagementTool
             }
         }
 
+        private void exportToExcelButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnExportToExcel();
+        }
+
+        public string SelectFilePathToSaveExcelFile()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(SelectFilePathToSaveExcelFile));
+            }
+            var dialogResult = exportToExcelSaveFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                return exportToExcelSaveFileDialog.FileName;
+            }
+            return null;
+        }
+
+        public IList<FinancialEntryViewItem> GetFinancialEntryList()
+        {
+            if (InvokeRequired)
+            {
+                return (IList<FinancialEntryViewItem>)Invoke(new Func<IList<FinancialEntryViewItem>>(GetFinancialEntryList));
+            }
+            return dataGridView.Rows.Cast<DataGridViewRow>().Select(r => (FinancialEntryViewItem)r.DataBoundItem).ToArray();
+        }
+
+        public void ShowSuccessMessage(string message)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowSuccessMessage), message);
+                return;
+            }
+            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         public abstract class DataGridViewImageButtonCell : DataGridViewButtonCell
         {
             private readonly int buttonImageOffset;

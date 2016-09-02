@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -238,6 +239,41 @@ namespace TadManagementTool.Presenter.Impl
         {
             var selectedFinancialItem = View.GetFinancialEntryViewSelected();
             View.SetRemoveFinancialEntryButtonEnabled(!selectedFinancialItem.Wrapper.Closed);
+        }
+
+        public void OnExportToExcel()
+        {
+            var task = new Task<string>(() =>
+            {
+                var filePath = View.SelectFilePathToSaveExcelFile();
+                if (!string.IsNullOrWhiteSpace(filePath))
+                {
+                    View.ShowWaitingPanel("Exportando lista de colaboradores para excel...");
+                    var financialService = new FinancialService();
+                    financialService.ExportToExcel(View.GetFinancialEntryList().Select(i => i.Wrapper).ToArray(), filePath);
+                    return filePath;
+                }
+                return string.Empty;
+            });
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                var filePathResult = t.Result;
+                if (!string.IsNullOrEmpty(filePathResult))
+                {
+                    View.ShowSuccessMessage(string.Format("Planilha excel foi gerada em '{0}'", filePathResult));
+                }
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao excluir o lançamento: {0}", innerException.Message));
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
+            
         }
     }
 }

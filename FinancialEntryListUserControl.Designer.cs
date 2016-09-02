@@ -43,6 +43,7 @@
             this.financialEntryTotalBalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialReceiptActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonPanel = new System.Windows.Forms.Panel();
+            this.exportToExcelButton = new System.Windows.Forms.Button();
             this.removeOpenedFinancialEntryButton = new System.Windows.Forms.Button();
             this.closeFinancialEntryBalanceButton = new System.Windows.Forms.Button();
             this.openAddFinancialEntryViewButton = new System.Windows.Forms.Button();
@@ -60,6 +61,7 @@
             this.financialEntryDateFromPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryContentPanel = new System.Windows.Forms.Panel();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
@@ -172,6 +174,7 @@
             // 
             // buttonPanel
             // 
+            this.buttonPanel.Controls.Add(this.exportToExcelButton);
             this.buttonPanel.Controls.Add(this.removeOpenedFinancialEntryButton);
             this.buttonPanel.Controls.Add(this.closeFinancialEntryBalanceButton);
             this.buttonPanel.Controls.Add(this.openAddFinancialEntryViewButton);
@@ -180,6 +183,17 @@
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(828, 43);
             this.buttonPanel.TabIndex = 8;
+            // 
+            // exportToExcelButton
+            // 
+            this.exportToExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportToExcelButton.Location = new System.Drawing.Point(604, 6);
+            this.exportToExcelButton.Name = "exportToExcelButton";
+            this.exportToExcelButton.Size = new System.Drawing.Size(95, 30);
+            this.exportToExcelButton.TabIndex = 12;
+            this.exportToExcelButton.Text = "Export p/ Excel";
+            this.exportToExcelButton.UseVisualStyleBackColor = true;
+            this.exportToExcelButton.Click += new System.EventHandler(this.exportToExcelButton_Click);
             // 
             // removeOpenedFinancialEntryButton
             // 
@@ -346,6 +360,10 @@
             this.financialEntryContentPanel.Size = new System.Drawing.Size(828, 472);
             this.financialEntryContentPanel.TabIndex = 6;
             // 
+            // exportToExcelSaveFileDialog
+            // 
+            this.exportToExcelSaveFileDialog.Filter = "Excel files|*.xlsx";
+            // 
             // FinancialEntryListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,5 +418,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn financialReceiptActionColumn;
         private System.Windows.Forms.Button closeFinancialEntryBalanceButton;
         private System.Windows.Forms.Button removeOpenedFinancialEntryButton;
+        private System.Windows.Forms.Button exportToExcelButton;
+        private System.Windows.Forms.SaveFileDialog exportToExcelSaveFileDialog;
     }
 }

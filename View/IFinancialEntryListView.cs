@@ -16,6 +16,7 @@ namespace TadManagementTool.View
         FinancialEntryViewItem GetFinancialEntryViewSelected();
         FinancialTargetTypeViewItem GetTargetTypeFilterSelected();
         FinancialReferenceViewItem GetFinancialReferenceFilterSelected();
+        IList<FinancialEntryViewItem> GetFinancialEntryList();
         void SetFinancialEntryFilterDateFrom(DateTime date);
         void SetFinancialEntryFilterDateTo(DateTime date);
         void SetFinancialEntryList(IList<FinancialEntryViewItem> list);
@@ -26,5 +27,7 @@ namespace TadManagementTool.View
         void SetTargetTypeFilterSelected(FinancialTargetTypeViewItem selected);
         bool ShowBinaryQuestion(string message);
         void SetRemoveFinancialEntryButtonEnabled(bool enabled);
+        string SelectFilePathToSaveExcelFile();
+        void ShowSuccessMessage(string message);
     }
 }

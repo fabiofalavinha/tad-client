@@ -52,5 +52,11 @@ namespace TadManagementTool.Service
         {
             restTemplate.Delete("/financial/entry/{id}", financialEntry.Id);
         }
+
+        public void ExportToExcel(IList<FinancialEntry> entries, string filePath)
+        {
+            var exporter = new ListFinancialEntryExporter();
+            exporter.ExportTo(entries, filePath);
+        }
     }
 }
