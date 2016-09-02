@@ -234,7 +234,6 @@ namespace TadManagementTool.Presenter.Impl
                         View.ShowWarningMessage("Selecione o tipo de lançamento");
                         View.SetEntryPreviewValue(currentBalance.ToString());
                         View.SetEntryPreviewValueColor(Color.Black);
-                        View.SetEntryValue(0);
                     }
                 }
                 else
@@ -242,7 +241,6 @@ namespace TadManagementTool.Presenter.Impl
                     View.ShowWarningMessage("O valor digitado é inválido");
                     View.SetEntryPreviewValue(currentBalance.ToString());
                     View.SetEntryPreviewValueColor(Color.Black);
-                    View.SetEntryValue(0);
                 }
             }
             else
