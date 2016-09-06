@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using TadManagementTool.Model.Financial;
@@ -222,7 +223,7 @@ namespace TadManagementTool.Presenter.Impl
             if (!string.IsNullOrWhiteSpace(entryValueAsString))
             {
                 decimal entryValue;
-                if (decimal.TryParse(entryValueAsString, out entryValue))
+                if (decimal.TryParse(entryValueAsString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out entryValue))
                 {
                     var type = View.GetEntryReference();
                     if (type != null)
