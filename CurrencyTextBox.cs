@@ -71,8 +71,6 @@ namespace TadManagementTool
             {
                 Text = str.Substring(0, str.Length - 2) + "." + str.Substring(str.Length - 2);
             }
-
-            Console.WriteLine("Valor => {0}", Text);
         }
 
         private bool IsNumeric(int Val)
