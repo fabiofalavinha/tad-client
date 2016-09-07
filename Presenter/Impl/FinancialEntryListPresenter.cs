@@ -28,6 +28,7 @@ namespace TadManagementTool.Presenter.Impl
             var task = new Task(() =>
             {
                 View.ShowWaitingPanel("Carregando lançamentos...");
+                View.SetFinancialCloseableOptionEnabled(UserContext.GetInstance().LoggedUser.IsAdministratorProfile);
                 DoSetFinancialEntryDateRange();
                 var none = new FinancialTargetTypeViewItem(FinancialTargetType.None, "Todos");
                 var collaborator = new FinancialTargetTypeViewItem(FinancialTargetType.Colaborator, "Colaborador");

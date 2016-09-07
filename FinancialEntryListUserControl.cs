@@ -311,6 +311,16 @@ namespace TadManagementTool
             MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        public void SetFinancialCloseableOptionEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetFinancialCloseableOptionEnabled), enabled);
+                return;
+            }
+            closeFinancialEntryBalanceButton.Enabled = enabled;
+        }
+
         public abstract class DataGridViewImageButtonCell : DataGridViewButtonCell
         {
             private readonly int buttonImageOffset;

@@ -20,6 +20,7 @@ namespace TadManagementTool.View
         void SetFinancialEntryFilterDateFrom(DateTime date);
         void SetFinancialEntryFilterDateTo(DateTime date);
         void SetFinancialEntryList(IList<FinancialEntryViewItem> list);
+        void SetFinancialCloseableOptionEnabled(bool enabled);
         void SetCurrentBalance(Balance balance);
         void SetCurrentBalanceColor(Color color);
         void SetTargetTypeFilterList(IList<FinancialTargetTypeViewItem> list);
