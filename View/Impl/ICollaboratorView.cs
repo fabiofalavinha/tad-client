@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TadManagementTool.Model;
 using TadManagementTool.View.Items;
 
@@ -41,6 +39,7 @@ namespace TadManagementTool.View.Impl
         void SetBirthDate(DateTime birthDate);
         void SetEmail(string email);
         void SetReleaseDate(DateTime? releaseDate);
+        void SetContributorEnabled(bool enabled);
         void SetTelephoneList(Telephone[] telephones);
         void SetId(string id);
         void SetStartDateEnabled(bool enabled);

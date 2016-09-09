@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TadManagementTool.Model;
@@ -44,6 +43,7 @@ namespace TadManagementTool.Presenter.Impl
                     View.SetStartDate(collaborator.StartDate);
                     View.SetReleaseDate(collaborator.ReleaseDate);
                     View.SetTelephoneList(collaborator.Telephones);
+                    View.SetContributorEnabled(collaborator.Contributor);
                     View.SetId(collaborator.Id);
                     View.SetObservation(collaborator.Observation);
                 }
@@ -146,7 +146,8 @@ namespace TadManagementTool.Presenter.Impl
             {
                 View.ShowWaitingPanel("Salvando dados do colaborador...");
                 var userRoleViewItem = View.GetUserRoleSelected();
-                if (userRoleViewItem == null) {
+                if (userRoleViewItem == null)
+                {
                     View.ShowWarningMessage("Selecione um tipo de usuário");
                     return null;
                 }
@@ -236,7 +237,7 @@ namespace TadManagementTool.Presenter.Impl
                 View.SetReleaseCheckBoxEnabled(true);
                 View.SetReleaseDateEnabled(false);
             }
-            else 
+            else
             {
                 View.SetStartDateLabelEnabled(false);
                 View.SetStartCheckBoxEnabled(false);

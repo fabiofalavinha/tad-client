@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TadManagementTool.View.Impl;
+using TadManagementTool.Model;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
-using TadManagementTool.Model;
+using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
 namespace TadManagementTool
@@ -279,10 +276,10 @@ namespace TadManagementTool
             {
                 return (GenderType?)Invoke(new Func<GenderType?>(GetGenderType));
             }
-            return maleRadioButton.Checked 
-                ? GenderType.Male 
-                : femaleRadioButton.Checked 
-                    ? GenderType.Female 
+            return maleRadioButton.Checked
+                ? GenderType.Male
+                : femaleRadioButton.Checked
+                    ? GenderType.Female
                     : (GenderType?)null;
         }
 
@@ -450,7 +447,7 @@ namespace TadManagementTool
         {
             presenter.OnUserRoleChanged();
         }
-       
+
         public void SetStartDateLabelEnabled(bool enabled)
         {
             if (InvokeRequired)
@@ -532,6 +529,16 @@ namespace TadManagementTool
                 return (bool)Invoke(new Func<bool>(GetContributor));
             }
             return contributorCheckBox.Checked;
+        }
+
+        public void SetContributorEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetContributorEnabled), enabled);
+                return;
+            }
+            contributorCheckBox.Checked = enabled;
         }
     }
 }
