@@ -179,18 +179,18 @@ namespace TadManagementTool.Presenter.Impl
                     Value = balanceInTime
                 };
 
-                var entryValue = decimal.Parse(View.GetFinancialEntryValue());
+                var entryValue = decimal.Parse(View.GetFinancialEntryValue(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
                 if (entryValue == 0)
                 {
                     View.ShowWarningMessage("Informe um valor válido para o lançamento");
                     return false;
                 }
 
-                financialEntry.Value = decimal.Parse(View.GetFinancialEntryValue());
+                financialEntry.Value = entryValue;
 
                 financialEntry.PreviewBalance = new Balance()
                 {
-                    Value = decimal.Parse(View.GetEntryPreviewValue())
+                    Value = decimal.Parse(View.GetEntryPreviewValue(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture)
                 };
 
                 financialService.SaveFinancialEntry(financialEntry);
@@ -233,20 +233,20 @@ namespace TadManagementTool.Presenter.Impl
                     else
                     {
                         View.ShowWarningMessage("Selecione o tipo de lançamento");
-                        View.SetEntryPreviewValue(currentBalance.ToString());
+                        View.SetEntryPreviewValue(currentBalance.ToString(new CultureInfo("en-US")));
                         View.SetEntryPreviewValueColor(Color.Black);
                     }
                 }
                 else
                 {
                     View.ShowWarningMessage("O valor digitado é inválido");
-                    View.SetEntryPreviewValue(currentBalance.ToString());
+                    View.SetEntryPreviewValue(currentBalance.ToString(new CultureInfo("en-US")));
                     View.SetEntryPreviewValueColor(Color.Black);
                 }
             }
             else
             {
-                View.SetEntryPreviewValue(currentBalance.ToString());
+                View.SetEntryPreviewValue(currentBalance.ToString(new CultureInfo("en-US")));
                 View.SetEntryPreviewValueColor(Color.Black);
             }
         }
@@ -262,7 +262,7 @@ namespace TadManagementTool.Presenter.Impl
             {
                 previewValue = currentBalance + entryValue.Value;
             }
-            View.SetEntryPreviewValue(previewValue.ToString());
+            View.SetEntryPreviewValue(previewValue.ToString(new CultureInfo("en-US")));
             View.SetEntryPreviewValueColor(previewValue == currentBalance ? Color.Black : previewValue >= 0 ? Color.Blue : Color.Red);
         }
 

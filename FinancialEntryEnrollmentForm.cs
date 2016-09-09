@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using TadManagementTool.Model.Financial;
@@ -209,9 +210,9 @@ namespace TadManagementTool
                 financialTypeComboBox.SelectedItem = financialTypeComboBox.Items.Cast<FinancialReferenceViewItem>().SingleOrDefault(r => r.Id.Equals(viewItem.Wrapper.Type.Id));
                 additionalTextTextBox.Text = viewItem.Wrapper.AdditionalText;
                 categoryTypeLabel.Text = viewItem.Wrapper.Type.Category == (int)Category.Payable ? "-" : "+";
-                currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString();
-                entryValueTextBox.Text = viewItem.Wrapper.Value.ToString();
-                balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.Value.ToString();
+                currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString("{0:0.00}", new CultureInfo("en-US"));
+                entryValueTextBox.Text = viewItem.Wrapper.Value.ToString("{0:0.00}", new CultureInfo("en-US"));
+                balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.Value.ToString("{0:0.00}", new CultureInfo("en-US"));
             }
             finally
             {
