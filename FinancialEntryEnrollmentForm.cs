@@ -113,12 +113,7 @@ namespace TadManagementTool
             presenter.OnSaveFinancialEntry();
         }
 
-        private void targetCollaboratorTypeRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            presenter.OnCollaboratorTypeSelection();
-        }
-
-        private void targetNonCollaboratorTypeRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void targetTypeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             presenter.OnCollaboratorTypeSelection();
         }
@@ -145,6 +140,15 @@ namespace TadManagementTool
             return targetCollaboratorTypeRadioButton.Checked;
         }
 
+        public bool IsNonCollaboratorTypeSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<bool>(IsNonCollaboratorTypeSelected));
+            }
+            return targetNonCollaboratorTypeRadioButton.Checked;
+        }
+
         public void SetCollaboratorList(IList<FinancialTargetViewItem> list)
         {
             if (InvokeRequired)
@@ -165,11 +169,11 @@ namespace TadManagementTool
             targetComboBox.Items.AddRange(list.ToArray());
         }
 
-        public void SetNonCollaboratorList(IList<FinancialTargetViewItem> list)
+        public void SetOtherCollaboratorList(IList<FinancialTargetViewItem> list)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<FinancialTargetViewItem>>(SetNonCollaboratorList), list);
+                BeginInvoke(new Action<IList<FinancialTargetViewItem>>(SetOtherCollaboratorList), list);
                 return;
             }
             targetComboBox.DisplayMember = "Name";
@@ -206,12 +210,17 @@ namespace TadManagementTool
                 entryDateTimePicker.Value = viewItem.Wrapper.ToEntryDate();
                 targetCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.Colaborator;
                 targetNonCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.NonColaborator;
+                targetOtherCollaboratorTypeRadioButton.Checked = viewItem.Wrapper.Target.ToTargetType() == FinancialTargetType.Other;
                 targetComboBox.SelectedItem = targetComboBox.Items.Cast<FinancialTargetViewItem>().SingleOrDefault(i => i.Id.Equals(viewItem.TargetReference));
                 financialTypeComboBox.SelectedItem = financialTypeComboBox.Items.Cast<FinancialReferenceViewItem>().SingleOrDefault(r => r.Id.Equals(viewItem.Wrapper.Type.Id));
                 additionalTextTextBox.Text = viewItem.Wrapper.AdditionalText;
                 categoryTypeLabel.Text = viewItem.Wrapper.Type.Category == (int)Category.Payable ? "-" : "+";
-                currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString(new CultureInfo("en-US"));
+                // currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString(new CultureInfo("en-US"));
                 entryValueTextBox.Text = viewItem.Wrapper.Value.ToString(new CultureInfo("en-US"));
+                var visible = string.IsNullOrWhiteSpace(viewItem.Id);
+                balancePreviewValueLabel.Visible = visible;
+                balanceSeparatorPanel.Visible = visible;
+                balancePreviewLabel.Visible = visible;
                 balancePreviewValueLabel.Text = viewItem.Wrapper.PreviewBalance.Value.ToString(new CultureInfo("en-US"));
             }
             finally
@@ -229,7 +238,7 @@ namespace TadManagementTool
             }
             entryDateTimePicker.Enabled = false;
             targetCollaboratorTypeRadioButton.Enabled = enabled;
-            targetNonCollaboratorTypeRadioButton.Enabled = enabled;
+            targetOtherCollaboratorTypeRadioButton.Enabled = enabled;
             targetComboBox.Enabled = enabled;
             financialTypeComboBox.Enabled = enabled;
             additionalTextTextBox.Enabled = enabled;
@@ -339,6 +348,10 @@ namespace TadManagementTool
             {
                 return FinancialTargetType.NonColaborator;
             }
+            else if (targetOtherCollaboratorTypeRadioButton.Checked)
+            {
+                return FinancialTargetType.Other;
+            }
             return null;
         }
 
@@ -398,6 +411,26 @@ namespace TadManagementTool
                 return;
             }
             entryDateTimePicker.Enabled = enabled;
+        }
+
+        public void SetNonCollaboratorList(IList<FinancialTargetViewItem> viewItems)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<FinancialTargetViewItem>>(SetNonCollaboratorList), viewItems);
+                return;
+            }
+            if (currentTargetToolTip != null)
+            {
+                currentTargetToolTip.Dispose();
+                currentTargetToolTip = null;
+            }
+            targetComboBox.DisplayMember = "Name";
+            targetComboBox.ValueMember = "Id";
+            targetComboBox.Enabled = true;
+            targetComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            targetComboBox.Items.Clear();
+            targetComboBox.Items.AddRange(viewItems.ToArray());
         }
     }
 }

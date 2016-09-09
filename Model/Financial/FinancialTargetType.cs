@@ -4,6 +4,7 @@
     {
         None = -1,
         Colaborator = 0,
-        NonColaborator = 1
+        NonColaborator = 1,
+        Other = 2
     }
 }

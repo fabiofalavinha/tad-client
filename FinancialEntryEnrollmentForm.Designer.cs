@@ -39,7 +39,7 @@
             this.targetRadionButtonGroupPanel = new System.Windows.Forms.Panel();
             this.targetComboBox = new System.Windows.Forms.ComboBox();
             this.targetCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
-            this.targetNonCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
+            this.targetOtherCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.balanceSeparatorPanel = new System.Windows.Forms.Panel();
             this.additionalTextTextBox = new System.Windows.Forms.TextBox();
             this.financialTypeComboBox = new System.Windows.Forms.ComboBox();
@@ -54,6 +54,7 @@
             this.entryDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.entryDateLabel = new System.Windows.Forms.Label();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.targetNonCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.targetRadionButtonGroupPanel.SuspendLayout();
@@ -64,7 +65,7 @@
             this.buttonPanel.Controls.Add(this.buttonSeparatorPanel);
             this.buttonPanel.Controls.Add(this.saveButton);
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonPanel.Location = new System.Drawing.Point(0, 312);
+            this.buttonPanel.Location = new System.Drawing.Point(0, 341);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(443, 51);
             this.buttonPanel.TabIndex = 19;
@@ -109,21 +110,21 @@
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(0, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(443, 312);
+            this.contentPanel.Size = new System.Drawing.Size(443, 341);
             this.contentPanel.TabIndex = 0;
             // 
             // categoryTypeLabel
             // 
             this.categoryTypeLabel.AutoSize = true;
             this.categoryTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categoryTypeLabel.Location = new System.Drawing.Point(192, 248);
+            this.categoryTypeLabel.Location = new System.Drawing.Point(192, 273);
             this.categoryTypeLabel.Name = "categoryTypeLabel";
             this.categoryTypeLabel.Size = new System.Drawing.Size(0, 13);
             this.categoryTypeLabel.TabIndex = 23;
             // 
             // entryValueTextBox
             // 
-            this.entryValueTextBox.Location = new System.Drawing.Point(209, 245);
+            this.entryValueTextBox.Location = new System.Drawing.Point(209, 270);
             this.entryValueTextBox.Name = "entryValueTextBox";
             this.entryValueTextBox.Size = new System.Drawing.Size(86, 20);
             this.entryValueTextBox.TabIndex = 22;
@@ -138,12 +139,13 @@
             // 
             // targetRadionButtonGroupPanel
             // 
+            this.targetRadionButtonGroupPanel.Controls.Add(this.targetNonCollaboratorTypeRadioButton);
             this.targetRadionButtonGroupPanel.Controls.Add(this.targetComboBox);
             this.targetRadionButtonGroupPanel.Controls.Add(this.targetCollaboratorTypeRadioButton);
-            this.targetRadionButtonGroupPanel.Controls.Add(this.targetNonCollaboratorTypeRadioButton);
+            this.targetRadionButtonGroupPanel.Controls.Add(this.targetOtherCollaboratorTypeRadioButton);
             this.targetRadionButtonGroupPanel.Location = new System.Drawing.Point(191, 45);
             this.targetRadionButtonGroupPanel.Name = "targetRadionButtonGroupPanel";
-            this.targetRadionButtonGroupPanel.Size = new System.Drawing.Size(184, 46);
+            this.targetRadionButtonGroupPanel.Size = new System.Drawing.Size(198, 71);
             this.targetRadionButtonGroupPanel.TabIndex = 3;
             // 
             // targetComboBox
@@ -151,7 +153,7 @@
             this.targetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.targetComboBox.Enabled = false;
             this.targetComboBox.FormattingEnabled = true;
-            this.targetComboBox.Location = new System.Drawing.Point(4, 22);
+            this.targetComboBox.Location = new System.Drawing.Point(3, 47);
             this.targetComboBox.Name = "targetComboBox";
             this.targetComboBox.Size = new System.Drawing.Size(177, 21);
             this.targetComboBox.TabIndex = 5;
@@ -166,31 +168,31 @@
             this.targetCollaboratorTypeRadioButton.TabStop = true;
             this.targetCollaboratorTypeRadioButton.Text = "Colaborador";
             this.targetCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
-            this.targetCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetCollaboratorTypeRadioButton_CheckedChanged);
+            this.targetCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetTypeRadioButton_CheckedChanged);
             // 
-            // targetNonCollaboratorTypeRadioButton
+            // targetOtherCollaboratorTypeRadioButton
             // 
-            this.targetNonCollaboratorTypeRadioButton.AutoSize = true;
-            this.targetNonCollaboratorTypeRadioButton.Location = new System.Drawing.Point(92, 3);
-            this.targetNonCollaboratorTypeRadioButton.Name = "targetNonCollaboratorTypeRadioButton";
-            this.targetNonCollaboratorTypeRadioButton.Size = new System.Drawing.Size(56, 17);
-            this.targetNonCollaboratorTypeRadioButton.TabIndex = 4;
-            this.targetNonCollaboratorTypeRadioButton.TabStop = true;
-            this.targetNonCollaboratorTypeRadioButton.Text = "Outros";
-            this.targetNonCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
-            this.targetNonCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetNonCollaboratorTypeRadioButton_CheckedChanged);
+            this.targetOtherCollaboratorTypeRadioButton.AutoSize = true;
+            this.targetOtherCollaboratorTypeRadioButton.Location = new System.Drawing.Point(4, 24);
+            this.targetOtherCollaboratorTypeRadioButton.Name = "targetOtherCollaboratorTypeRadioButton";
+            this.targetOtherCollaboratorTypeRadioButton.Size = new System.Drawing.Size(56, 17);
+            this.targetOtherCollaboratorTypeRadioButton.TabIndex = 4;
+            this.targetOtherCollaboratorTypeRadioButton.TabStop = true;
+            this.targetOtherCollaboratorTypeRadioButton.Text = "Outros";
+            this.targetOtherCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
+            this.targetOtherCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetTypeRadioButton_CheckedChanged);
             // 
             // balanceSeparatorPanel
             // 
             this.balanceSeparatorPanel.BackColor = System.Drawing.Color.Black;
-            this.balanceSeparatorPanel.Location = new System.Drawing.Point(195, 271);
+            this.balanceSeparatorPanel.Location = new System.Drawing.Point(195, 296);
             this.balanceSeparatorPanel.Name = "balanceSeparatorPanel";
             this.balanceSeparatorPanel.Size = new System.Drawing.Size(100, 1);
             this.balanceSeparatorPanel.TabIndex = 20;
             // 
             // additionalTextTextBox
             // 
-            this.additionalTextTextBox.Location = new System.Drawing.Point(195, 124);
+            this.additionalTextTextBox.Location = new System.Drawing.Point(195, 149);
             this.additionalTextTextBox.Multiline = true;
             this.additionalTextTextBox.Name = "additionalTextTextBox";
             this.additionalTextTextBox.Size = new System.Drawing.Size(177, 94);
@@ -203,7 +205,7 @@
             this.financialTypeComboBox.Enabled = false;
             this.financialTypeComboBox.FormattingEnabled = true;
             this.financialTypeComboBox.ItemHeight = 13;
-            this.financialTypeComboBox.Location = new System.Drawing.Point(195, 97);
+            this.financialTypeComboBox.Location = new System.Drawing.Point(195, 122);
             this.financialTypeComboBox.Name = "financialTypeComboBox";
             this.financialTypeComboBox.Size = new System.Drawing.Size(177, 21);
             this.financialTypeComboBox.TabIndex = 4;
@@ -212,7 +214,7 @@
             // 
             // balancePreviewValueLabel
             // 
-            this.balancePreviewValueLabel.Location = new System.Drawing.Point(196, 277);
+            this.balancePreviewValueLabel.Location = new System.Drawing.Point(196, 302);
             this.balancePreviewValueLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.balancePreviewValueLabel.Name = "balancePreviewValueLabel";
             this.balancePreviewValueLabel.Size = new System.Drawing.Size(100, 13);
@@ -222,7 +224,7 @@
             // 
             // currentBalanceValueLabel
             // 
-            this.currentBalanceValueLabel.Location = new System.Drawing.Point(196, 226);
+            this.currentBalanceValueLabel.Location = new System.Drawing.Point(196, 251);
             this.currentBalanceValueLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.currentBalanceValueLabel.Name = "currentBalanceValueLabel";
             this.currentBalanceValueLabel.Size = new System.Drawing.Size(100, 13);
@@ -233,7 +235,7 @@
             // entryValueLabel
             // 
             this.entryValueLabel.AutoSize = true;
-            this.entryValueLabel.Location = new System.Drawing.Point(75, 248);
+            this.entryValueLabel.Location = new System.Drawing.Point(75, 273);
             this.entryValueLabel.Name = "entryValueLabel";
             this.entryValueLabel.Size = new System.Drawing.Size(111, 13);
             this.entryValueLabel.TabIndex = 14;
@@ -242,7 +244,7 @@
             // balancePreviewLabel
             // 
             this.balancePreviewLabel.AutoSize = true;
-            this.balancePreviewLabel.Location = new System.Drawing.Point(108, 278);
+            this.balancePreviewLabel.Location = new System.Drawing.Point(108, 303);
             this.balancePreviewLabel.Name = "balancePreviewLabel";
             this.balancePreviewLabel.Size = new System.Drawing.Size(78, 13);
             this.balancePreviewLabel.TabIndex = 17;
@@ -251,7 +253,7 @@
             // currentBalanceLabel
             // 
             this.currentBalanceLabel.AutoSize = true;
-            this.currentBalanceLabel.Location = new System.Drawing.Point(122, 226);
+            this.currentBalanceLabel.Location = new System.Drawing.Point(122, 251);
             this.currentBalanceLabel.Name = "currentBalanceLabel";
             this.currentBalanceLabel.Size = new System.Drawing.Size(64, 13);
             this.currentBalanceLabel.TabIndex = 12;
@@ -260,7 +262,7 @@
             // additionalTextLabel
             // 
             this.additionalTextLabel.AutoSize = true;
-            this.additionalTextLabel.Location = new System.Drawing.Point(116, 126);
+            this.additionalTextLabel.Location = new System.Drawing.Point(116, 151);
             this.additionalTextLabel.Name = "additionalTextLabel";
             this.additionalTextLabel.Size = new System.Drawing.Size(73, 13);
             this.additionalTextLabel.TabIndex = 8;
@@ -269,7 +271,7 @@
             // financialTypeLabel
             // 
             this.financialTypeLabel.AutoSize = true;
-            this.financialTypeLabel.Location = new System.Drawing.Point(81, 100);
+            this.financialTypeLabel.Location = new System.Drawing.Point(81, 125);
             this.financialTypeLabel.Name = "financialTypeLabel";
             this.financialTypeLabel.Size = new System.Drawing.Size(108, 13);
             this.financialTypeLabel.TabIndex = 6;
@@ -306,12 +308,24 @@
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
             // 
+            // targetNonCollaboratorTypeRadioButton
+            // 
+            this.targetNonCollaboratorTypeRadioButton.AutoSize = true;
+            this.targetNonCollaboratorTypeRadioButton.Location = new System.Drawing.Point(92, 3);
+            this.targetNonCollaboratorTypeRadioButton.Name = "targetNonCollaboratorTypeRadioButton";
+            this.targetNonCollaboratorTypeRadioButton.Size = new System.Drawing.Size(105, 17);
+            this.targetNonCollaboratorTypeRadioButton.TabIndex = 6;
+            this.targetNonCollaboratorTypeRadioButton.TabStop = true;
+            this.targetNonCollaboratorTypeRadioButton.Text = "Não Colaborador";
+            this.targetNonCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
+            this.targetNonCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetTypeRadioButton_CheckedChanged);
+            // 
             // FinancialEntryEnrollmentForm
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 363);
+            this.ClientSize = new System.Drawing.Size(443, 392);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.buttonPanel);
             this.DoubleBuffered = true;
@@ -337,7 +351,7 @@
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.RadioButton targetNonCollaboratorTypeRadioButton;
+        private System.Windows.Forms.RadioButton targetOtherCollaboratorTypeRadioButton;
         private System.Windows.Forms.RadioButton targetCollaboratorTypeRadioButton;
         private System.Windows.Forms.Label targetLabel;
         private System.Windows.Forms.DateTimePicker entryDateTimePicker;
@@ -358,5 +372,6 @@
         private System.Windows.Forms.ComboBox targetComboBox;
         private CurrencyTextBox entryValueTextBox;
         private System.Windows.Forms.Label categoryTypeLabel;
+        private System.Windows.Forms.RadioButton targetNonCollaboratorTypeRadioButton;
     }
 }

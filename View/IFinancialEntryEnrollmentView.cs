@@ -8,6 +8,7 @@ namespace TadManagementTool.View
     public interface IFinancialEntryEnrollmentView : IDialogView
     {
         bool IsCollaboratorTypeSelected();
+        bool IsNonCollaboratorTypeSelected();
         string GetAdditionalText();
         string GetEntryPreviewValue();
         string GetFinancialEntryValue();
@@ -16,7 +17,7 @@ namespace TadManagementTool.View
         FinancialTargetViewItem GetEntryTarget();
         FinancialReferenceViewItem GetEntryReference();
         void SetCollaboratorList(IList<FinancialTargetViewItem> list);
-        void SetNonCollaboratorList(IList<FinancialTargetViewItem> list);
+        void SetOtherCollaboratorList(IList<FinancialTargetViewItem> list);
         void SetFinancialEntry(FinancialEntryViewItem viewItem);
         void SetFinancialReferenceList(IList<FinancialReferenceViewItem> list);
         void SetCurrentBalance(string value);
@@ -26,5 +27,6 @@ namespace TadManagementTool.View
         void SetCategoryType(Category category);
         void SetEntryDateOptionEnabled(bool enabled);
         void SetFinancialEntryDataEnabled(bool enabled);
+        void SetNonCollaboratorList(IList<FinancialTargetViewItem> viewItems);
     }
 }

@@ -1,5 +1,4 @@
-﻿using NPOI.SS.Formula.Functions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -30,11 +29,12 @@ namespace TadManagementTool.Presenter.Impl
                 View.ShowWaitingPanel("Carregando lançamentos...");
                 View.SetFinancialCloseableOptionEnabled(UserContext.GetInstance().LoggedUser.IsAdministratorProfile);
                 DoSetFinancialEntryDateRange();
-                var none = new FinancialTargetTypeViewItem(FinancialTargetType.None, "Todos");
+                var all = new FinancialTargetTypeViewItem(FinancialTargetType.None, "Todos");
                 var collaborator = new FinancialTargetTypeViewItem(FinancialTargetType.Colaborator, "Colaborador");
-                var nonCollaborator = new FinancialTargetTypeViewItem(FinancialTargetType.NonColaborator, "Outros");
-                View.SetTargetTypeFilterList(new[] { none, collaborator, nonCollaborator });
-                View.SetTargetTypeFilterSelected(none);
+                var nonCollaborator = new FinancialTargetTypeViewItem(FinancialTargetType.NonColaborator, "Não Colaborador");
+                var other = new FinancialTargetTypeViewItem(FinancialTargetType.Other, "Outros");
+                View.SetTargetTypeFilterList(new[] { all, collaborator, nonCollaborator, other });
+                View.SetTargetTypeFilterSelected(all);
                 var financialRefereceViewItems = financialService.GetFinancialReferences().Select(r => new FinancialReferenceViewItem(r)).ToArray();
                 View.SetFinancialReferenceFilterList(financialRefereceViewItems);
             }, TaskCreationOptions.LongRunning);
@@ -274,7 +274,7 @@ namespace TadManagementTool.Presenter.Impl
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
-            
+
         }
     }
 }

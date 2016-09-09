@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TadManagementTool.Model.Financial;
 
 namespace TadManagementTool.View.Items
@@ -22,15 +20,14 @@ namespace TadManagementTool.View.Items
 
         public IList<FinancialReferenceViewItem> Filter(IList<FinancialReferenceViewItem> financialReferenceViewItems)
         {
-            if (Wrapper == FinancialTargetType.Colaborator)
+            if (Wrapper != FinancialTargetType.Other)
             {
                 return financialReferenceViewItems.Where(r => r.AssociatedWithCollaborator).ToArray();
             }
-            else if (Wrapper == FinancialTargetType.NonColaborator)
+            else
             {
                 return financialReferenceViewItems.Where(r => !r.AssociatedWithCollaborator).ToArray();
             }
-            return financialReferenceViewItems;
         }
     }
 }

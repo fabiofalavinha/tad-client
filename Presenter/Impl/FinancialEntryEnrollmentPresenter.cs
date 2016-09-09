@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using TadManagementTool.Model;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.Service;
 using TadManagementTool.View;
@@ -16,6 +17,7 @@ namespace TadManagementTool.Presenter.Impl
         private readonly CollaboratorService collaboratorService;
 
         private FinancialTargetViewItem[] currentCollaboratorViewItems;
+        private FinancialTargetViewItem[] currentNonCollaboratorViewItems;
         private FinancialTargetViewItem[] currentFinancialTargetViewItems;
         private FinancialEntryViewItem currentFinancialEntryViewItem;
         private FinancialReferenceViewItem[] currentFinancialReferenceViewItems;
@@ -37,7 +39,7 @@ namespace TadManagementTool.Presenter.Impl
                 DoLoadTargetLists();
                 DoLoadFinancialReferenceList();
                 currentBalance = financialService.GetCurrentTotalBalance().Value;
-                View.SetCurrentBalance(currentBalance.ToString());
+                View.SetCurrentBalance(currentBalance.ToString(new CultureInfo("en-US")));
                 View.SetEntryPreviewValue(currentBalance.ToString());
                 View.SetEntryDateOptionEnabled(false);
             }, TaskCreationOptions.LongRunning);
@@ -65,6 +67,7 @@ namespace TadManagementTool.Presenter.Impl
                 DoLoadFinancialReferenceList();
                 currentBalance = financialService.GetCurrentTotalBalance().Value;
                 View.SetFinancialEntry(viewItem);
+                View.SetCurrentBalance(currentBalance.ToString(new CultureInfo("en-US")));
                 View.SetFinancialEntryDataEnabled(!viewItem.Wrapper.Closed);
                 currentFinancialEntryViewItem = viewItem;
             }, TaskCreationOptions.LongRunning);
@@ -100,11 +103,14 @@ namespace TadManagementTool.Presenter.Impl
             }
             try
             {
-                currentCollaboratorViewItems = collaboratorService.FindAll().Where(c => c.Active).Select(c => new FinancialTargetViewItem() { Id = c.Id, Name = c.Name }).ToArray();
+                var allCollaborators = collaboratorService.FindAll();
+                currentCollaboratorViewItems = allCollaborators.Where(c => c.Active && c.UserRole == UserRole.Collaborator).Select(c => new FinancialTargetViewItem() { Id = c.Id, Name = c.Name }).ToArray();
+                currentNonCollaboratorViewItems = allCollaborators.Where(c => c.Active && c.UserRole == UserRole.NonCollaborator).Select(c => new FinancialTargetViewItem() { Id = c.Id, Name = c.Name }).ToArray();
             }
             catch (Exception)
             {
                 currentCollaboratorViewItems = new FinancialTargetViewItem[] { };
+                currentNonCollaboratorViewItems = new FinancialTargetViewItem[] { };
             }
         }
 
@@ -115,9 +121,14 @@ namespace TadManagementTool.Presenter.Impl
                 View.SetCollaboratorList(currentCollaboratorViewItems);
                 View.SetFinancialReferenceList(currentFinancialReferenceViewItems.Where(r => r.AssociatedWithCollaborator).ToArray());
             }
+            else if (View.IsNonCollaboratorTypeSelected())
+            {
+                View.SetNonCollaboratorList(currentNonCollaboratorViewItems);
+                View.SetFinancialReferenceList(currentFinancialReferenceViewItems.Where(r => r.AssociatedWithCollaborator).ToArray());
+            }
             else
             {
-                View.SetNonCollaboratorList(currentFinancialTargetViewItems);
+                View.SetOtherCollaboratorList(currentFinancialTargetViewItems);
                 View.SetFinancialReferenceList(currentFinancialReferenceViewItems.Where(r => !r.AssociatedWithCollaborator).ToArray());
             }
         }
@@ -134,7 +145,6 @@ namespace TadManagementTool.Presenter.Impl
                 if (currentFinancialEntryViewItem != null)
                 {
                     financialEntry = currentFinancialEntryViewItem.Wrapper;
-                    balanceInTime = financialEntry.Balance.Value;
                 }
 
                 financialEntry.DateString = View.GetEntryDateAsString("yyyy-MM-dd");
@@ -174,11 +184,6 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 financialEntry.AdditionalText = additionalText;
 
-                financialEntry.Balance = new Balance()
-                {
-                    Value = balanceInTime
-                };
-
                 var entryValue = decimal.Parse(View.GetFinancialEntryValue(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
                 if (entryValue == 0)
                 {
@@ -188,9 +193,9 @@ namespace TadManagementTool.Presenter.Impl
 
                 financialEntry.Value = entryValue;
 
-                financialEntry.PreviewBalance = new Balance()
+                financialEntry.Balance = new Balance()
                 {
-                    Value = decimal.Parse(View.GetEntryPreviewValue(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture)
+                    Value = string.IsNullOrEmpty(financialEntry.Id) ? balanceInTime : financialEntry.Value
                 };
 
                 financialService.SaveFinancialEntry(financialEntry);
