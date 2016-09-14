@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.View.Items;
@@ -28,5 +29,6 @@ namespace TadManagementTool.View
         void SetEntryDateOptionEnabled(bool enabled);
         void SetFinancialEntryDataEnabled(bool enabled);
         void SetNonCollaboratorList(IList<FinancialTargetViewItem> viewItems);
+        void SetFinancialEntryMinimumDate(DateTime dateTime);
     }
 }

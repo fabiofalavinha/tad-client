@@ -35,8 +35,9 @@ namespace TadManagementTool.Presenter.Impl
                 var other = new FinancialTargetTypeViewItem(FinancialTargetType.Other, "Outros");
                 View.SetTargetTypeFilterList(new[] { all, collaborator, nonCollaborator, other });
                 View.SetTargetTypeFilterSelected(all);
-                var financialRefereceViewItems = financialService.GetFinancialReferences().Select(r => new FinancialReferenceViewItem(r)).ToArray();
+                var financialRefereceViewItems = GetFinancialReferenceList();
                 View.SetFinancialReferenceFilterList(financialRefereceViewItems);
+                View.SetFinancialReferenceFilterOptionEnabled(false);
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -115,11 +116,10 @@ namespace TadManagementTool.Presenter.Impl
                         list = list.Where(i => i.Target.ToTargetType() == targetTypeFilter.Wrapper).ToArray();
                     }
                     var financialReferenceFilter = View.GetFinancialReferenceFilterSelected();
-                    if (financialReferenceFilter != null)
+                    if (financialReferenceFilter != null && !financialReferenceFilter.IsAllOption)
                     {
-                        list = list.Where(i => i.Type.Id == financialReferenceFilter.Wrapper.Id).ToArray();
+                        list = list.Where(i => i.Type.Id.Equals(financialReferenceFilter.Id)).ToArray();
                     }
-
                     View.SetFinancialEntryList(list.Select(e => FinancialEntryViewItem.FromModel(e)).ToArray());
                     View.SetRemoveFinancialEntryButtonEnabled(false);
                 }
@@ -142,20 +142,25 @@ namespace TadManagementTool.Presenter.Impl
             }
         }
 
+        private IList<FinancialReferenceOptionViewItem> GetFinancialReferenceList()
+        {
+            return financialService.GetFinancialReferences().Select(r => new FinancialReferenceOptionViewItem() { Id = r.Id, Description = r.Description, AssociatedWithCollaborator = r.AssociatedWithCollaborator }).ToArray();
+        }
+
         public void OnTargetTypeFilterChanged()
         {
-            var task = new Task<IList<FinancialReference>>(() =>
+            var task = new Task<IList<FinancialReferenceOptionViewItem>>(() =>
             {
                 View.ShowWaitingPanel("Filtrando...");
-                return financialService.GetFinancialReferences();
+                return GetFinancialReferenceList();
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
                 var list = t.Result;
-                var viewItems = list.Select(r => new FinancialReferenceViewItem(r)).ToArray();
                 var targetTypeFilterSelected = View.GetTargetTypeFilterSelected();
-                var financialReferenceViewItemsFiltered = targetTypeFilterSelected.Filter(viewItems);
-                View.SetFinancialReferenceFilterList(financialReferenceViewItemsFiltered);
+                var filteredList = targetTypeFilterSelected.Filter(list);
+                View.SetFinancialReferenceFilterList(filteredList);
+                View.SetFinancialReferenceFilterOptionEnabled(targetTypeFilterSelected.Wrapper != FinancialTargetType.None);
                 View.HideWaitingPanel();
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>

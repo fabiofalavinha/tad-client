@@ -144,12 +144,6 @@
     <Compile Include="CollaboratorView.Designer.cs">
       <DependentUpon>CollaboratorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CurrencyTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CurrencyTextBox.Designer.cs">
-      <DependentUpon>CurrencyTextBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -355,6 +349,7 @@
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
     <Compile Include="View\Items\EventResult.cs" />
     <Compile Include="View\Items\FinancialEntryViewItem.cs" />
+    <Compile Include="View\Items\FinancialReferenceOptionViewItem.cs" />
     <Compile Include="View\Items\FinancialReferenceViewItem.cs" />
     <Compile Include="View\Items\FinancialTargetTypeViewItem.cs" />
     <Compile Include="View\Items\FinancialTargetViewItem.cs" />

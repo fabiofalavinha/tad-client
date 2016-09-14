@@ -18,15 +18,22 @@ namespace TadManagementTool.View.Items
             Name = name;
         }
 
-        public IList<FinancialReferenceViewItem> Filter(IList<FinancialReferenceViewItem> financialReferenceViewItems)
+        public IList<FinancialReferenceOptionViewItem> Filter(IList<FinancialReferenceOptionViewItem> financialReferenceViewItems)
         {
-            if (Wrapper != FinancialTargetType.Other)
+            if (Wrapper == FinancialTargetType.None)
             {
-                return financialReferenceViewItems.Where(r => r.AssociatedWithCollaborator).ToArray();
+                return new FinancialReferenceOptionViewItem[] { };
             }
             else
             {
-                return financialReferenceViewItems.Where(r => !r.AssociatedWithCollaborator).ToArray();
+                if (Wrapper == FinancialTargetType.Other)
+                {
+                    return financialReferenceViewItems.Where(r => !r.AssociatedWithCollaborator).ToArray();
+                }
+                else
+                {
+                    return financialReferenceViewItems.Where(r => r.AssociatedWithCollaborator).ToArray();
+                }
             }
         }
     }

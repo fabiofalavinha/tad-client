@@ -41,7 +41,12 @@ namespace TadManagementTool.Presenter.Impl
                 currentBalance = financialService.GetCurrentTotalBalance().Value;
                 View.SetCurrentBalance(currentBalance.ToString(new CultureInfo("en-US")));
                 View.SetEntryPreviewValue(currentBalance.ToString());
-                View.SetEntryDateOptionEnabled(false);
+                var lastCloseableFinancialEntry = financialService.GetLastCloseableFinancialEntry();
+                if (lastCloseableFinancialEntry != null)
+                {
+                    View.SetFinancialEntryMinimumDate(lastCloseableFinancialEntry.AddDay(1));
+                }
+                View.SetEntryDateOptionEnabled(true);
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -104,7 +109,7 @@ namespace TadManagementTool.Presenter.Impl
             try
             {
                 var allCollaborators = collaboratorService.FindAll();
-                currentCollaboratorViewItems = allCollaborators.Where(c => c.Active && c.UserRole == UserRole.Collaborator).Select(c => new FinancialTargetViewItem() { Id = c.Id, Name = c.Name }).ToArray();
+                currentCollaboratorViewItems = allCollaborators.Where(c => c.Active && c.IsCollaborator).Select(c => new FinancialTargetViewItem() { Id = c.Id, Name = c.Name }).ToArray();
                 currentNonCollaboratorViewItems = allCollaborators.Where(c => c.Active && c.UserRole == UserRole.NonCollaborator).Select(c => new FinancialTargetViewItem() { Id = c.Id, Name = c.Name }).ToArray();
             }
             catch (Exception)

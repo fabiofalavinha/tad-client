@@ -53,6 +53,11 @@ namespace TadManagementTool.Service
             restTemplate.Delete("/financial/entry/{id}", financialEntry.Id);
         }
 
+        public CloseableFinancialEntry GetLastCloseableFinancialEntry()
+        {
+            return restTemplate.GetForObject<CloseableFinancialEntry>("/financial/close/last");
+        }
+
         public void ExportToExcel(IList<FinancialEntry> entries, string filePath)
         {
             var exporter = new ListFinancialEntryExporter();

@@ -35,7 +35,7 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.categoryTypeLabel = new System.Windows.Forms.Label();
-            this.entryValueTextBox = new TadManagementTool.CurrencyTextBox();
+            this.entryValueTextBox = new System.Windows.Forms.TextBox();
             this.targetRadionButtonGroupPanel = new System.Windows.Forms.Panel();
             this.targetComboBox = new System.Windows.Forms.ComboBox();
             this.targetCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
@@ -128,13 +128,7 @@
             this.entryValueTextBox.Name = "entryValueTextBox";
             this.entryValueTextBox.Size = new System.Drawing.Size(86, 20);
             this.entryValueTextBox.TabIndex = 22;
-            this.entryValueTextBox.Text = "0.00";
             this.entryValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.entryValueTextBox.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
             this.entryValueTextBox.TextChanged += new System.EventHandler(this.entryValueTextBox_TextChanged);
             // 
             // targetRadionButtonGroupPanel
@@ -370,7 +364,7 @@
         private System.Windows.Forms.Panel buttonSeparatorPanel;
         private System.Windows.Forms.Panel targetRadionButtonGroupPanel;
         private System.Windows.Forms.ComboBox targetComboBox;
-        private CurrencyTextBox entryValueTextBox;
+        private System.Windows.Forms.TextBox entryValueTextBox;
         private System.Windows.Forms.Label categoryTypeLabel;
         private System.Windows.Forms.RadioButton targetNonCollaboratorTypeRadioButton;
     }

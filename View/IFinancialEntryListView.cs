@@ -15,7 +15,7 @@ namespace TadManagementTool.View
         DateTime GetFinancialEntryToDate();
         FinancialEntryViewItem GetFinancialEntryViewSelected();
         FinancialTargetTypeViewItem GetTargetTypeFilterSelected();
-        FinancialReferenceViewItem GetFinancialReferenceFilterSelected();
+        FinancialReferenceOptionViewItem GetFinancialReferenceFilterSelected();
         IList<FinancialEntryViewItem> GetFinancialEntryList();
         void SetFinancialEntryFilterDateFrom(DateTime date);
         void SetFinancialEntryFilterDateTo(DateTime date);
@@ -24,11 +24,12 @@ namespace TadManagementTool.View
         void SetCurrentBalance(Balance balance);
         void SetCurrentBalanceColor(Color color);
         void SetTargetTypeFilterList(IList<FinancialTargetTypeViewItem> list);
-        void SetFinancialReferenceFilterList(IList<FinancialReferenceViewItem> list);
+        void SetFinancialReferenceFilterList(IList<FinancialReferenceOptionViewItem> list);
         void SetTargetTypeFilterSelected(FinancialTargetTypeViewItem selected);
         bool ShowBinaryQuestion(string message);
         void SetRemoveFinancialEntryButtonEnabled(bool enabled);
         string SelectFilePathToSaveExcelFile();
         void ShowSuccessMessage(string message);
+        void SetFinancialReferenceFilterOptionEnabled(bool v);
     }
 }

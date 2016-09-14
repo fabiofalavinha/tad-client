@@ -198,11 +198,11 @@ namespace TadManagementTool
             presenter.OnTargetTypeFilterChanged();
         }
 
-        public void SetFinancialReferenceFilterList(IList<FinancialReferenceViewItem> list)
+        public void SetFinancialReferenceFilterList(IList<FinancialReferenceOptionViewItem> list)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<FinancialReferenceViewItem>>(SetFinancialReferenceFilterList), list);
+                BeginInvoke(new Action<IList<FinancialReferenceOptionViewItem>>(SetFinancialReferenceFilterList), list);
                 return;
             }
             financialReferenceFilterComboBox.Items.Clear();
@@ -219,13 +219,13 @@ namespace TadManagementTool
             targetTypeFilterComboBox.SelectedItem = selected;
         }
 
-        public FinancialReferenceViewItem GetFinancialReferenceFilterSelected()
+        public FinancialReferenceOptionViewItem GetFinancialReferenceFilterSelected()
         {
             if (InvokeRequired)
             {
-                return (FinancialReferenceViewItem)Invoke(new Func<FinancialReferenceViewItem>(GetFinancialReferenceFilterSelected));
+                return (FinancialReferenceOptionViewItem)Invoke(new Func<FinancialReferenceOptionViewItem>(GetFinancialReferenceFilterSelected));
             }
-            return (FinancialReferenceViewItem)financialReferenceFilterComboBox.SelectedItem;
+            return (FinancialReferenceOptionViewItem)financialReferenceFilterComboBox.SelectedItem;
         }
 
         private void closeFinancialEntryBalanceButton_Click(object sender, EventArgs e)
@@ -319,6 +319,16 @@ namespace TadManagementTool
                 return;
             }
             closeFinancialEntryBalanceButton.Enabled = enabled;
+        }
+
+        public void SetFinancialReferenceFilterOptionEnabled(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetFinancialReferenceFilterOptionEnabled), enabled);
+                return;
+            }
+            financialReferenceFilterComboBox.Enabled = enabled;
         }
 
         public abstract class DataGridViewImageButtonCell : DataGridViewButtonCell

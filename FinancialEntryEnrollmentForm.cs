@@ -18,7 +18,6 @@ namespace TadManagementTool
         private readonly FinancialEntryViewItem currentViewItem;
 
         private bool populateFormFields = false;
-        private ToolTip currentTargetToolTip;
 
         public FinancialEntryEnrollmentForm()
         {
@@ -156,11 +155,6 @@ namespace TadManagementTool
                 BeginInvoke(new Action<IList<FinancialTargetViewItem>>(SetCollaboratorList), list);
                 return;
             }
-            if (currentTargetToolTip != null)
-            {
-                currentTargetToolTip.Dispose();
-                currentTargetToolTip = null;
-            }
             targetComboBox.DisplayMember = "Name";
             targetComboBox.ValueMember = "Id";
             targetComboBox.Enabled = true;
@@ -182,19 +176,6 @@ namespace TadManagementTool
             targetComboBox.DropDownStyle = ComboBoxStyle.DropDown;
             targetComboBox.Items.Clear();
             targetComboBox.Items.AddRange(list.ToArray());
-            if (currentTargetToolTip != null)
-            {
-                currentTargetToolTip.Dispose();
-                currentTargetToolTip = null;
-            }
-            currentTargetToolTip = new ToolTip()
-            {
-                IsBalloon = true,
-                ToolTipIcon = ToolTipIcon.Info,
-                ToolTipTitle = "Selecione a origem do lançamento financeiro"
-            };
-            currentTargetToolTip.Show(string.Empty, targetComboBox, 0);
-            currentTargetToolTip.Show("Caso você não encontre o valor desejado, digite um novo valor no campo", targetComboBox);
         }
 
         public void SetFinancialEntry(FinancialEntryViewItem viewItem)
@@ -216,7 +197,10 @@ namespace TadManagementTool
                 additionalTextTextBox.Text = viewItem.Wrapper.AdditionalText;
                 categoryTypeLabel.Text = viewItem.Wrapper.Type.Category == (int)Category.Payable ? "-" : "+";
                 // currentBalanceValueLabel.Text = viewItem.Wrapper.Balance.Value.ToString(new CultureInfo("en-US"));
-                entryValueTextBox.Text = viewItem.Wrapper.Value.ToString(new CultureInfo("en-US"));
+                if (viewItem.Wrapper.Value > 0)
+                {
+                    entryValueTextBox.Text = viewItem.Wrapper.Value.ToString("#0.00#", new CultureInfo("en-US"));
+                }
                 var visible = string.IsNullOrWhiteSpace(viewItem.Id);
                 balancePreviewValueLabel.Visible = visible;
                 balanceSeparatorPanel.Visible = visible;
@@ -420,17 +404,22 @@ namespace TadManagementTool
                 BeginInvoke(new Action<IList<FinancialTargetViewItem>>(SetNonCollaboratorList), viewItems);
                 return;
             }
-            if (currentTargetToolTip != null)
-            {
-                currentTargetToolTip.Dispose();
-                currentTargetToolTip = null;
-            }
             targetComboBox.DisplayMember = "Name";
             targetComboBox.ValueMember = "Id";
             targetComboBox.Enabled = true;
             targetComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             targetComboBox.Items.Clear();
             targetComboBox.Items.AddRange(viewItems.ToArray());
+        }
+
+        public void SetFinancialEntryMinimumDate(DateTime dateTime)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<DateTime>(SetFinancialEntryMinimumDate), dateTime);
+                return;
+            }
+            entryDateTimePicker.MinDate = dateTime;
         }
     }
 }

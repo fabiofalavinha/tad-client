@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TadManagementTool.Model
 {
@@ -10,22 +7,22 @@ namespace TadManagementTool.Model
     {
         [JsonProperty("id")]
         public string Id { get; set; }
-        
+
         [JsonProperty("name")]
         public string Name { get; set; }
-        
+
         [JsonProperty("email")]
         public string Email { get; set; }
 
         [JsonProperty("birthDate")]
         public DateTime BirthDate { get; set; }
-        
+
         [JsonProperty("startDate")]
         public DateTime? StartDate { get; set; }
-        
+
         [JsonProperty("releaseDate")]
         public DateTime? ReleaseDate { get; set; }
-        
+
         [JsonProperty("genderType")]
         public GenderType Gender { get; set; }
 
@@ -35,7 +32,7 @@ namespace TadManagementTool.Model
         [JsonProperty("userRole")]
         public UserRole UserRole { get; set; }
 
-        [JsonProperty("observation")] 
+        [JsonProperty("observation")]
         public string Observation { get; set; }
 
         [JsonProperty("contributor")]
@@ -46,5 +43,7 @@ namespace TadManagementTool.Model
 
         [JsonIgnore]
         public Person Person { get { return new Person(Name, BirthDate); } }
+
+        public bool IsCollaborator { get { return UserRole == UserRole.Administrator || UserRole == UserRole.Collaborator || UserRole == UserRole.Financial; } }
     }
 }
