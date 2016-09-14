@@ -223,6 +223,7 @@ namespace TadManagementTool
             entryDateTimePicker.Enabled = false;
             targetCollaboratorTypeRadioButton.Enabled = enabled;
             targetOtherCollaboratorTypeRadioButton.Enabled = enabled;
+            targetNonCollaboratorTypeRadioButton.Enabled = enabled;
             targetComboBox.Enabled = enabled;
             financialTypeComboBox.Enabled = enabled;
             additionalTextTextBox.Enabled = enabled;

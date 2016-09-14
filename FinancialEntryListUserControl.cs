@@ -101,7 +101,7 @@ namespace TadManagementTool
                 BeginInvoke(new Action<IList<FinancialEntryViewItem>>(SetFinancialEntryList), list);
                 return;
             }
-            var receiptColumn = dataGridView.Columns.Cast<DataGridViewColumn>().SingleOrDefault(c => c.Name == "financialReceiptActionColumn");
+            var receiptColumn = dataGridView.Columns.Cast<DataGridViewColumn>().SingleOrDefault(c => c.Name.Equals(financialReceiptActionColumn.Name));
             if (receiptColumn != null)
                 receiptColumn.CellTemplate = new FinancialReceiptDataGridViewCell();
 
@@ -183,16 +183,6 @@ namespace TadManagementTool
             return (FinancialTargetTypeViewItem)targetTypeFilterComboBox.SelectedItem;
         }
 
-        private class FinancialReceiptDataGridViewCell : DataGridViewImageButtonCell
-        {
-            public FinancialReceiptDataGridViewCell()
-            {
-                buttonImageHot = Resources.receipt_send_hot;
-                buttonImageNormal = Resources.receipt_send_normal;
-                buttonImageDisabled = Resources.receipt_send_disabled;
-            }
-        }
-
         private void targetTypeFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             presenter.OnTargetTypeFilterChanged();
@@ -251,7 +241,16 @@ namespace TadManagementTool
         {
             if (e.Clicks == 1)
             {
-                presenter.OnSelectedFinancialEntry();
+                var grid = (DataGridView)sender;
+                var cell = grid[e.ColumnIndex, e.RowIndex] as FinancialReceiptDataGridViewCell;
+                if (cell != null && cell.OwningColumn.Name == financialReceiptActionColumn.Name)
+                {
+                    presenter.OnSendFinancialReceipt();
+                }
+                else
+                {
+                    presenter.OnSelectedFinancialEntry();
+                }
             }
         }
 
@@ -329,6 +328,17 @@ namespace TadManagementTool
                 return;
             }
             financialReferenceFilterComboBox.Enabled = enabled;
+        }
+
+        private class FinancialReceiptDataGridViewCell : DataGridViewImageButtonCell
+        {
+            public FinancialReceiptDataGridViewCell()
+            {
+                Enabled = true;
+                buttonImageHot = Resources.receipt_send_hot;
+                buttonImageNormal = Resources.receipt_send_normal;
+                buttonImageDisabled = Resources.receipt_send_disabled;
+            }
         }
 
         public abstract class DataGridViewImageButtonCell : DataGridViewButtonCell

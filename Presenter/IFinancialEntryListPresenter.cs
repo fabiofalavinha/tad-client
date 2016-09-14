@@ -10,5 +10,6 @@
         void OnRemoveOpenedFinancialEntry();
         void OnSelectedFinancialEntry();
         void OnExportToExcel();
+        void OnSendFinancialReceipt();
     }
 }

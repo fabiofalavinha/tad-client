@@ -281,5 +281,12 @@ namespace TadManagementTool.Presenter.Impl
             task.Start();
 
         }
+
+        public void OnSendFinancialReceipt()
+        {
+            // 1 - in task code, check if user wants to send receipt
+            // 2 - if user wants to send, let's call server on REST API path ===> /financial/receipt/{financialEntryId}
+            // 3 - after operation completes, show message to user about the recepit it's on your way
+        }
     }
 }
