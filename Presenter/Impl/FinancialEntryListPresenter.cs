@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -284,9 +285,40 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSendFinancialReceipt()
         {
-            // 1 - in task code, check if user wants to send receipt
-            // 2 - if user wants to send, let's call server on REST API path ===> /financial/receipt/{financialEntryId}
-            // 3 - after operation completes, show message to user about the recepit it's on your way
+            var task = new Task<FinancialReceipt>(() =>
+            {
+                if (View.ShowBinaryQuestion("Deseja enviar o recibo?"))
+                {
+                    View.ShowWaitingPanel("Enviando o recibo...");
+                    var viewItem = View.GetFinancialEntryViewSelected();
+                    return financialService.SendReceipt(viewItem.Wrapper);
+                }
+                return null;
+            });
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                var financialReceipt = t.Result;
+                if (financialReceipt != null)
+                {
+                    View.ShowSuccessMessage(
+                        string.Format("O recibo {0} foi enviado para {1} referente a {2} com valor de {3}",
+                        financialReceipt.Id, financialReceipt.Target.Name, financialReceipt.Entry.Type.Description, financialReceipt.Entry.Value.ToString("C", new CultureInfo("pt-BR"))));
+                }
+                else
+                {
+                    View.ShowWarningMessage("Operação de envio de recibo foi cancelada!");
+                }
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao enviar o recibo: {0}", innerException.Message));
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
         }
     }
 }

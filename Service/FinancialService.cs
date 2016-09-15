@@ -63,5 +63,10 @@ namespace TadManagementTool.Service
             var exporter = new ListFinancialEntryExporter();
             exporter.ExportTo(entries, filePath);
         }
+
+        public FinancialReceipt SendReceipt(FinancialEntry entry)
+        {
+            return restTemplate.PostForObject<FinancialReceipt>($"/financial/receipt/{entry.Id}", entry);
+        }
     }
 }
