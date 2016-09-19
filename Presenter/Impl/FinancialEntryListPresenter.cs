@@ -285,29 +285,42 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSendFinancialReceipt()
         {
-            var task = new Task<FinancialReceipt>(() =>
+            var task = new Task<FinancialReceiptResult>(() =>
             {
-                if (View.ShowBinaryQuestion("Deseja enviar o recibo?"))
+                var result = new FinancialReceiptResult();
+                var viewItem = View.GetFinancialEntryViewSelected();
+                if (viewItem.Wrapper.Type.AssociatedWithCollaborator)
                 {
-                    View.ShowWaitingPanel("Enviando o recibo...");
-                    var viewItem = View.GetFinancialEntryViewSelected();
-                    return financialService.SendReceipt(viewItem.Wrapper);
+                    if (View.ShowBinaryQuestion("Deseja enviar o recibo?"))
+                    {
+                        View.ShowWaitingPanel("Enviando o recibo...");
+                        result.Value = financialService.SendReceipt(viewItem.Wrapper);
+                        result.Success = true;
+                    }
+                    else
+                    {
+                        result.Success = false;
+                    }
                 }
-                return null;
+                return result;
             });
             task.ContinueWith(t =>
             {
                 View.HideWaitingPanel();
-                var financialReceipt = t.Result;
-                if (financialReceipt != null)
+                var financialReceiptResult = t.Result;
+                if (financialReceiptResult.Success.HasValue)
                 {
-                    View.ShowSuccessMessage(
-                        string.Format("O recibo {0} foi enviado para {1} referente a {2} com valor de {3}",
-                        financialReceipt.Id, financialReceipt.Target.Name, financialReceipt.Entry.Type.Description, financialReceipt.Entry.Value.ToString("C", new CultureInfo("pt-BR"))));
-                }
-                else
-                {
-                    View.ShowWarningMessage("Operação de envio de recibo foi cancelada!");
+                    if (financialReceiptResult.Success.Value)
+                    {
+                        var financialReceipt = financialReceiptResult.Value;
+                        View.ShowSuccessMessage(
+                            string.Format("O recibo {0} foi enviado para {1} referente a {2} com valor de {3}",
+                            financialReceipt.Id, financialReceipt.Target.Name, financialReceipt.Entry.Type.Description, financialReceipt.Entry.Value.ToString("C", new CultureInfo("pt-BR"))));
+                    }
+                    else
+                    {
+                        View.ShowWarningMessage("Operação de envio de recibo foi cancelada!");
+                    }
                 }
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
@@ -319,6 +332,12 @@ namespace TadManagementTool.Presenter.Impl
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
+        }
+
+        private class FinancialReceiptResult
+        {
+            public FinancialReceipt Value { get; set; }
+            public bool? Success { get; set; }
         }
     }
 }
