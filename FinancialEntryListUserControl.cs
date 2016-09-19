@@ -268,7 +268,13 @@ namespace TadManagementTool
         {
             foreach (var row in dataGridView.Rows.Cast<DataGridViewRow>())
             {
-                row.DefaultCellStyle.BackColor = ((FinancialEntryViewItem)row.DataBoundItem).Wrapper.Closed ? Color.LightGreen : Color.White;
+                var viewItem = (FinancialEntryViewItem)row.DataBoundItem;
+                row.DefaultCellStyle.BackColor = viewItem.Wrapper.Closed ? Color.LightGreen : Color.White;
+                var cell = row.Cells[financialReceiptActionColumn.Name] as FinancialReceiptDataGridViewCell;
+                if (cell != null)
+                {
+                    cell.Enabled = viewItem.Wrapper.Type.AssociatedWithCollaborator;
+                }
             }
         }
 
