@@ -28,7 +28,8 @@ namespace TadManagementTool.View.Items
                 Category = CategoryExtensions.TranslateValue(wrapper.Type.Category),
                 AdditionalText = wrapper.AdditionalText,
                 Value = wrapper.Value.ToString("#,#0.00#;(#,#0.00#)", new CultureInfo("pt-BR")),
-                Balance = wrapper.Balance.Value.ToString("#,#0.00#;(#,#0.00#)", new CultureInfo("pt-BR"))
+                Balance = wrapper.Balance.Value.ToString("#,#0.00#;(#,#0.00#)", new CultureInfo("pt-BR")),
+                Receipt = wrapper.FinancialReceiptInfo == null || string.IsNullOrWhiteSpace(wrapper.FinancialReceiptInfo.Number) ? "N/D" : string.Concat(wrapper.FinancialReceiptInfo.Number, " - ", wrapper.FinancialReceiptInfo.Sent)
             };
         }
 
@@ -44,6 +45,7 @@ namespace TadManagementTool.View.Items
         public string AdditionalText { get; set; }
         public string Value { get; set; }
         public string Balance { get; set; }
+        public string Receipt { get; set; }
 
         public FinancialEntryViewItem(FinancialEntry wrapper)
         {

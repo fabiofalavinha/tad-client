@@ -239,7 +239,7 @@ namespace TadManagementTool
 
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Clicks == 1)
+            if (e.Clicks == 1 && e.RowIndex != -1)
             {
                 var grid = (DataGridView)sender;
                 var cell = grid[e.ColumnIndex, e.RowIndex] as FinancialReceiptDataGridViewCell;

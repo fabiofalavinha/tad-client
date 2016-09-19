@@ -239,6 +239,7 @@
     <Compile Include="Model\Financial\FinancialEntry.cs" />
     <Compile Include="Model\Financial\FinancialEntryStatus.cs" />
     <Compile Include="Model\Financial\FinancialReceipt.cs" />
+    <Compile Include="Model\Financial\FinancialReceiptInfo.cs" />
     <Compile Include="Model\Financial\FinancialReference.cs" />
     <Compile Include="Model\Financial\FinancialTarget.cs" />
     <Compile Include="Model\Financial\FinancialTargetType.cs" />
