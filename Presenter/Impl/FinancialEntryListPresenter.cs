@@ -256,7 +256,6 @@ namespace TadManagementTool.Presenter.Impl
                 if (!string.IsNullOrWhiteSpace(filePath))
                 {
                     View.ShowWaitingPanel("Exportando lista de colaboradores para excel...");
-                    var financialService = new FinancialService();
                     financialService.ExportToExcel(View.GetFinancialEntryList().Select(i => i.Wrapper).ToArray(), filePath);
                     return filePath;
                 }

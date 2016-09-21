@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using TadManagementTool.Model.Financial;
 
 namespace TadManagementTool.Service
@@ -64,6 +62,11 @@ namespace TadManagementTool.Service
             headerCell.CellStyle.Alignment = HorizontalAlignment.Left;
             headerCell.SetCellValue("Saldo");
 
+            headerCell = headerRow.CreateCell(headerColumnNumber++);
+            headerCell.CellStyle = tableHeadStyle;
+            headerCell.CellStyle.Alignment = HorizontalAlignment.Left;
+            headerCell.SetCellValue("Recibo");
+
             var dataStyle = workbook.CreateCellStyle();
             dataStyle.Alignment = HorizontalAlignment.Left;
             dataStyle.VerticalAlignment = VerticalAlignment.Top;
@@ -103,6 +106,9 @@ namespace TadManagementTool.Service
                 dataCell.CellStyle.Alignment = HorizontalAlignment.Left;
                 dataCell.SetCellValue(financialEntry.Value.ToString("#,#.00#;(#,#.00#)", new CultureInfo("pt-BR")));
 
+                dataCell = dataRow.CreateCell(dataColumnNumber++);
+                dataCell.CellStyle.Alignment = HorizontalAlignment.Left;
+                dataCell.SetCellValue(financialEntry.FinancialReceiptInfo == null ? "N/D" : string.Concat(financialEntry.FinancialReceiptInfo.Number, " - ", financialEntry.FinancialReceiptInfo.Sent));
             }
 
             for (int i = 0; i < dataColumnNumber; i++)

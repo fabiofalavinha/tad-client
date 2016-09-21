@@ -67,6 +67,11 @@ namespace TadManagementTool.Service
             headerCell.CellStyle.Alignment = HorizontalAlignment.Left;
             headerCell.SetCellValue("Ativo?");
 
+            headerCell = headerRow.CreateCell(headerColumnNumber++);
+            headerCell.CellStyle = tableHeadStyle;
+            headerCell.CellStyle.Alignment = HorizontalAlignment.Left;
+            headerCell.SetCellValue("Contribuinte");
+
             var dataStyle = workbook.CreateCellStyle();
             dataStyle.Alignment = HorizontalAlignment.Left;
             dataStyle.VerticalAlignment = VerticalAlignment.Top;
@@ -109,6 +114,10 @@ namespace TadManagementTool.Service
                 dataCell = dataRow.CreateCell(dataColumnNumber++);
                 dataCell.CellStyle.Alignment = HorizontalAlignment.Left;
                 dataCell.SetCellValue(collaborator.Active ? "Sim" : "Não");
+
+                dataCell = dataRow.CreateCell(dataColumnNumber++);
+                dataCell.CellStyle.Alignment = HorizontalAlignment.Left;
+                dataCell.SetCellValue(collaborator.Contributor ? "Sim" : "Não");
             }
 
             for (int i = 0; i < dataColumnNumber; i++)
