@@ -142,5 +142,18 @@ namespace TadManagementTool.Presenter.Impl
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
         }
+
+        public void OnSelectNewsletterUserView()
+        {
+            var selected = View.GetNewsletterUserSelected();
+            if (selected != null)
+            {
+                var result = View.OpenNewsletterUserViewSelected(selected);
+                if (result == DialogResult.OK)
+                {
+                    DoLoad();
+                }
+            }
+        }
     }
 }

@@ -34,12 +34,12 @@
             this.NewsletterUserEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelButton = new System.Windows.Forms.Panel();
+            this.removeNewsletterUserButton = new System.Windows.Forms.Button();
             this.addNewsletterUserButton = new System.Windows.Forms.Button();
             this.exportToExcelButton = new System.Windows.Forms.Button();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
-            this.removeNewsletterUserButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.newsletterDataGridView)).BeginInit();
             this.panelContent.SuspendLayout();
             this.panelButton.SuspendLayout();
@@ -63,6 +63,7 @@
             this.newsletterDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.newsletterDataGridView.Size = new System.Drawing.Size(740, 453);
             this.newsletterDataGridView.TabIndex = 0;
+            this.newsletterDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.newsletterDataGridView_CellDoubleClick);
             // 
             // NewsletterUserNameColumn
             // 
@@ -100,6 +101,17 @@
             this.panelButton.Size = new System.Drawing.Size(740, 58);
             this.panelButton.TabIndex = 2;
             // 
+            // removeNewsletterUserButton
+            // 
+            this.removeNewsletterUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeNewsletterUserButton.Location = new System.Drawing.Point(448, 18);
+            this.removeNewsletterUserButton.Name = "removeNewsletterUserButton";
+            this.removeNewsletterUserButton.Size = new System.Drawing.Size(129, 28);
+            this.removeNewsletterUserButton.TabIndex = 4;
+            this.removeNewsletterUserButton.Text = "Remover Usuário";
+            this.removeNewsletterUserButton.UseVisualStyleBackColor = true;
+            this.removeNewsletterUserButton.Click += new System.EventHandler(this.removeNewsletterUserButton_Click);
+            // 
             // addNewsletterUserButton
             // 
             this.addNewsletterUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -130,17 +142,6 @@
             // 
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
-            // 
-            // removeNewsletterUserButton
-            // 
-            this.removeNewsletterUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeNewsletterUserButton.Location = new System.Drawing.Point(448, 18);
-            this.removeNewsletterUserButton.Name = "removeNewsletterUserButton";
-            this.removeNewsletterUserButton.Size = new System.Drawing.Size(129, 28);
-            this.removeNewsletterUserButton.TabIndex = 4;
-            this.removeNewsletterUserButton.Text = "Remover Usuário";
-            this.removeNewsletterUserButton.UseVisualStyleBackColor = true;
-            this.removeNewsletterUserButton.Click += new System.EventHandler(this.removeNewsletterUserButton_Click);
             // 
             // NewsletterListUserControl
             // 

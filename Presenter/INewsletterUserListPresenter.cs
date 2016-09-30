@@ -10,5 +10,6 @@ namespace TadManagementTool.Presenter
         void OnAddNewsletterUser();
         void OnExportToExcel();
         void OnRemoveNewsletterUser();
+        void OnSelectNewsletterUserView();
     }
 }

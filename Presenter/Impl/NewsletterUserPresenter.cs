@@ -54,12 +54,16 @@ namespace TadManagementTool.Presenter.Impl
                     View.ShowWarningMessage("Informe um email válido");
                     return;
                 }
-                var newsletterService = new NewsletterService();
-                newsletterService.SaveNewsletterUser(new NewsletterUser()
+                var user = new NewsletterUser()
                 {
                     Name = name,
                     Email = email
-                });
+                };
+                if (viewItem != null)
+                {
+                    user.Id = viewItem.Wrapper.Id;
+                }
+                new NewsletterService().SaveNewsletterUser(user);
             });
             task.ContinueWith(t =>
             {

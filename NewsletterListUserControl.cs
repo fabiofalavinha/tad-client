@@ -170,5 +170,22 @@ namespace TadManagementTool
                 return form.ShowDialog();
             }
         }
+
+        private void newsletterDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OnSelectNewsletterUserView();
+        }
+
+        public DialogResult OpenNewsletterUserViewSelected(NewsletterUserViewItem selected)
+        {
+            if (InvokeRequired)
+            {
+                return (DialogResult)Invoke(new Func<NewsletterUserViewItem, DialogResult>(OpenNewsletterUserViewSelected));
+            }
+            using (var form = new NewsletterUserView(selected))
+            {
+                return form.ShowDialog();
+            }
+        }
     }
 }

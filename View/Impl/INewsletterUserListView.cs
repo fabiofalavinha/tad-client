@@ -15,6 +15,7 @@ namespace TadManagementTool.View.Impl
         string SelectFilePathToSaveExcelFile();
         IList<NewsletterUserViewItem> GetNewsletterUserList();
         DialogResult OpenAddNewsletterUserView();
+        DialogResult OpenNewsletterUserViewSelected(NewsletterUserViewItem selected);
         void ShowSuccessMessage(string message);
     }
 }
