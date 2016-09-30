@@ -1,4 +1,3 @@
-using TadManagementTool.Properties;
 namespace TadManagementTool
 {
     partial class Editor

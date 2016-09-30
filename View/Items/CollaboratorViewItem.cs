@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TadManagementTool.Model;
+﻿using System.Linq;
 using TadManagementTool.Extensions;
+using TadManagementTool.Model;
 
 namespace TadManagementTool.View.Items
 {

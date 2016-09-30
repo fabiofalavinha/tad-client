@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TadManagementTool.Model;
+﻿using TadManagementTool.Model;
 
 namespace TadManagementTool.Extensions
 {

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TadManagementTool.Model;
-using TadManagementTool.View.Impl;
-using TadManagementTool.Validator;
-using System.Threading.Tasks;
-using TadManagementTool.Service;
-using TadManagementTool.View.Items;
+﻿using System.Threading.Tasks;
 using System.Windows.Forms;
+using TadManagementTool.Model;
+using TadManagementTool.Service;
+using TadManagementTool.Validator;
+using TadManagementTool.View.Impl;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool.Presenter.Impl
 {
@@ -33,26 +29,26 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSave()
         {
-            var task = new Task(() =>
+            var task = new Task<bool>(() =>
             {
                 View.ShowWaitingPanel("Salvando dados do usuário...");
                 var name = View.GetName();
                 if (string.IsNullOrWhiteSpace(name))
                 {
                     View.ShowWarningMessage("É obrigatório informar um nome");
-                    return;
+                    return false;
                 }
                 var email = View.GetEmail();
                 if (string.IsNullOrWhiteSpace(email))
                 {
                     View.ShowWarningMessage("É obrigatório informar o email");
-                    return;
+                    return false;
                 }
                 var emailValidator = new EmailValidator();
                 if (!emailValidator.Validate(email))
                 {
                     View.ShowWarningMessage("Informe um email válido");
-                    return;
+                    return false;
                 }
                 var user = new NewsletterUser()
                 {
@@ -64,6 +60,7 @@ namespace TadManagementTool.Presenter.Impl
                     user.Id = viewItem.Wrapper.Id;
                 }
                 new NewsletterService().SaveNewsletterUser(user);
+                return true;
             });
             task.ContinueWith(t =>
             {
@@ -76,7 +73,7 @@ namespace TadManagementTool.Presenter.Impl
             task.ContinueWith(t =>
             {
                 View.HideWaitingPanel();
-                View.SetDialogResult(DialogResult.OK);
+                View.SetDialogResult(t.Result ? DialogResult.OK : DialogResult.Cancel);
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
         }

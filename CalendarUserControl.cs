@@ -1,16 +1,11 @@
-﻿using System;
+﻿using Calendar.NET;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TadManagementTool.View.Impl;
+using TadManagementTool.Model;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
-using TadManagementTool.Model;
-using Calendar.NET;
+using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
 namespace TadManagementTool

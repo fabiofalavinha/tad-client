@@ -3,12 +3,9 @@ using Spring.Http.Client;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace TadManagementTool.Service
 {

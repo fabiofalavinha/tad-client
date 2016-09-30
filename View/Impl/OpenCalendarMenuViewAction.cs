@@ -1,6 +1,4 @@
-﻿
-using System;
-using TadManagementTool.Model;
+﻿using TadManagementTool.Model;
 
 namespace TadManagementTool.View.Impl
 {

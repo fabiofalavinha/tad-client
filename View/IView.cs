@@ -1,6 +1,4 @@
-﻿
-using System.Windows.Forms;
-namespace TadManagementTool.View
+﻿namespace TadManagementTool.View
 {
     public interface IView
     {
