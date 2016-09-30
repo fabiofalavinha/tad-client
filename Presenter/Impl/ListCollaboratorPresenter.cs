@@ -92,7 +92,7 @@ namespace TadManagementTool.Presenter.Impl
                     {
                         View.ShowWarningMessage(
                             string.Format(
-                                "O colaborador {0} foi excluído, porém houve um processo ao atualizar a lista de colaboradores. Por favor, tente entrar nesta opção novamente.", collaboratorViewItem.Name));
+                                "O colaborador {0} foi excluído, porém houve um erro ao atualizar a lista de colaboradores. Por favor, tente entrar nesta opção novamente.", collaboratorViewItem.Name));
                     }
                 }
                 View.HideWaitingPanel();
@@ -153,7 +153,7 @@ namespace TadManagementTool.Presenter.Impl
                 View.HideWaitingPanel();
                 foreach (var innerException in t.Exception.InnerExceptions)
                 {
-                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao excluir o colaborador: {0}", innerException.Message));
+                    View.ShowErrorMessage(string.Format("Ocorreu um erro ao tentar gerar a tabela: {0}", innerException.Message));
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();

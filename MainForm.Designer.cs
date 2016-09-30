@@ -33,13 +33,14 @@
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Colaboradores", new System.Windows.Forms.TreeNode[] {
             treeNode1});
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Calendário");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Post");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Imagens");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Lançamentos");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Tipos de Lançamentos");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Secretaria", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode7});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Post(s)");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Newsletter(s)");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Imagens");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Lançamentos");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Tipos de Lançamentos");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Secretaria", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
@@ -116,32 +117,38 @@
             treeNode4.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             treeNode4.SelectedImageKey = "post.png";
             treeNode4.Tag = "TadManagementTool.View.Impl.OpenPostListMenuViewAction";
-            treeNode4.Text = "Post";
-            treeNode5.ImageKey = "photograph_edit.png";
-            treeNode5.Name = "carouselImageTreeItem";
-            treeNode5.SelectedImageKey = "photograph_edit.png";
-            treeNode5.Tag = "TadManagementTool.View.Impl.OpenImageListMenuViewAction";
-            treeNode5.Text = "Imagens";
-            treeNode6.ImageKey = "lancamentos.png";
-            treeNode6.Name = "financialEntriesTreeMenuItem";
-            treeNode6.SelectedImageKey = "lancamentos.png";
-            treeNode6.Tag = "TadManagementTool.View.Impl.OpenFinancialEntriesListMenuViewAction";
-            treeNode6.Text = "Lançamentos";
-            treeNode7.ImageKey = "Accounting Records.png";
-            treeNode7.Name = "financialReferenceTreeMenuItem";
-            treeNode7.SelectedImageKey = "Accounting Records.png";
-            treeNode7.Tag = "TadManagementTool.View.Impl.OpenFinancialReferenceListMenuViewAction";
-            treeNode7.Text = "Tipos de Lançamentos";
-            treeNode8.ImageKey = "Accounts.png";
-            treeNode8.Name = "financialTreeMenuItem";
-            treeNode8.SelectedImageKey = "Accounts.png";
-            treeNode8.Text = "Secretaria";
+            treeNode4.Text = "Post(s)";
+            treeNode5.ImageKey = "newsletter.png";
+            treeNode5.Name = "newsletterTreeMenuItem";
+            treeNode5.SelectedImageKey = "newsletter.png";
+            treeNode5.Tag = "TadManagementTool.View.Impl.OpenNewsletterListMenuViewAction";
+            treeNode5.Text = "Newsletter(s)";
+            treeNode6.ImageKey = "photograph_edit.png";
+            treeNode6.Name = "carouselImageTreeItem";
+            treeNode6.SelectedImageKey = "photograph_edit.png";
+            treeNode6.Tag = "TadManagementTool.View.Impl.OpenImageListMenuViewAction";
+            treeNode6.Text = "Imagens";
+            treeNode7.ImageKey = "lancamentos.png";
+            treeNode7.Name = "financialEntriesTreeMenuItem";
+            treeNode7.SelectedImageKey = "lancamentos.png";
+            treeNode7.Tag = "TadManagementTool.View.Impl.OpenFinancialEntriesListMenuViewAction";
+            treeNode7.Text = "Lançamentos";
+            treeNode8.ImageKey = "Accounting Records.png";
+            treeNode8.Name = "financialReferenceTreeMenuItem";
+            treeNode8.SelectedImageKey = "Accounting Records.png";
+            treeNode8.Tag = "TadManagementTool.View.Impl.OpenFinancialReferenceListMenuViewAction";
+            treeNode8.Text = "Tipos de Lançamentos";
+            treeNode9.ImageKey = "Accounts.png";
+            treeNode9.Name = "financialTreeMenuItem";
+            treeNode9.SelectedImageKey = "Accounts.png";
+            treeNode9.Text = "Secretaria";
             this.menuTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2,
             treeNode3,
             treeNode4,
             treeNode5,
-            treeNode8});
+            treeNode6,
+            treeNode9});
             this.menuTreeView.SelectedImageIndex = 0;
             this.menuTreeView.Size = new System.Drawing.Size(256, 684);
             this.menuTreeView.TabIndex = 0;
@@ -155,12 +162,13 @@
             this.mainMenuImageList.Images.SetKeyName(1, "birthdays.png");
             this.mainMenuImageList.Images.SetKeyName(2, "calendar.png");
             this.mainMenuImageList.Images.SetKeyName(3, "post.png");
-            this.mainMenuImageList.Images.SetKeyName(4, "photograph_edit.png");
-            this.mainMenuImageList.Images.SetKeyName(5, "Accounting Records.png");
-            this.mainMenuImageList.Images.SetKeyName(6, "Accounts Payable.png");
-            this.mainMenuImageList.Images.SetKeyName(7, "Accounts Receivable.png");
-            this.mainMenuImageList.Images.SetKeyName(8, "Accounts.png");
-            this.mainMenuImageList.Images.SetKeyName(9, "lancamentos.png");
+            this.mainMenuImageList.Images.SetKeyName(4, "newsletter.png");
+            this.mainMenuImageList.Images.SetKeyName(5, "photograph_edit.png");
+            this.mainMenuImageList.Images.SetKeyName(6, "Accounting Records.png");
+            this.mainMenuImageList.Images.SetKeyName(7, "Accounts Payable.png");
+            this.mainMenuImageList.Images.SetKeyName(8, "Accounts Receivable.png");
+            this.mainMenuImageList.Images.SetKeyName(9, "Accounts.png");
+            this.mainMenuImageList.Images.SetKeyName(10, "lancamentos.png");
             // 
             // statusStrip
             // 

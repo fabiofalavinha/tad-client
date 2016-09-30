@@ -224,5 +224,15 @@ namespace TadManagementTool
                 }
             }
         }
+
+        public void OpenNewsletterView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenNewsletterView));
+                return;
+            }
+            DoLoadMainControl(new NewsletterListUserControl(this));
+        }
     }
 }
