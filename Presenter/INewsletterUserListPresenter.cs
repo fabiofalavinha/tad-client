@@ -7,7 +7,7 @@ namespace TadManagementTool.Presenter
 {
     public interface INewsletterUserListPresenter : IPresenter
     {
-        void OnNewNewsletterUser();
+        void OnAddNewsletterUser();
         void OnExportToExcel();
         void OnRemoveNewsletterUser();
     }

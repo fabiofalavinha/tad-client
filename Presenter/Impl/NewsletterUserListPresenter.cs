@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TadManagementTool.Model;
 using TadManagementTool.Service;
 using TadManagementTool.View.Impl;
@@ -27,6 +28,11 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+            DoLoad();
+        }
+
+        private void DoLoad()
+        {
             var task = new Task<IList<NewsletterUser>>(() =>
             {
                 View.ShowWaitingPanel("Carregando usuários...");
@@ -48,8 +54,13 @@ namespace TadManagementTool.Presenter.Impl
             task.Start();
         }
 
-        public void OnNewNewsletterUser()
+        public void OnAddNewsletterUser()
         {
+            var dialogResult = View.OpenAddNewsletterUserView();
+            if (dialogResult == DialogResult.OK)
+            {
+                DoLoad();
+            }
         }
 
         public void OnExportToExcel()

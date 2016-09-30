@@ -260,6 +260,12 @@
     <Compile Include="NewsletterListUserControl.Designer.cs">
       <DependentUpon>NewsletterListUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewsletterUserView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewsletterUserView.Designer.cs">
+      <DependentUpon>NewsletterUserView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlaceholderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -286,7 +292,9 @@
     <Compile Include="Presenter\Impl\FinancialReferenceListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferencePresenter.cs" />
     <Compile Include="Presenter\Impl\NewsletterUserListPresenter.cs" />
+    <Compile Include="Presenter\Impl\NewsletterUserPresenter.cs" />
     <Compile Include="Presenter\INewsletterUserListPresenter.cs" />
+    <Compile Include="Presenter\INewsletterUserPresenter.cs" />
     <Compile Include="Presenter\IPostListPresenter.cs" />
     <Compile Include="Presenter\ILoginPresenter.cs" />
     <Compile Include="Presenter\IMainPresenter.cs" />
@@ -349,6 +357,7 @@
     <Compile Include="View\Impl\IListCollaboratorView.cs" />
     <Compile Include="View\IMenuActionView.cs" />
     <Compile Include="View\Impl\INewsletterUserListView.cs" />
+    <Compile Include="View\Impl\INewsletterUserView.cs" />
     <Compile Include="View\Impl\IPostListView.cs" />
     <Compile Include="View\Impl\ILoginView.cs" />
     <Compile Include="View\Impl\IMainView.cs" />
@@ -449,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewsletterListUserControl.resx">
       <DependentUpon>NewsletterListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewsletterUserView.resx">
+      <DependentUpon>NewsletterUserView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PostListUserControl.resx">
       <DependentUpon>PostListUserControl.cs</DependentUpon>

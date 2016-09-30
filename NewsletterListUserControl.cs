@@ -38,7 +38,7 @@ namespace TadManagementTool
 
         private void addNewsletterUserButton_Click(object sender, EventArgs e)
         {
-            presenter.OnNewNewsletterUser();
+            presenter.OnAddNewsletterUser();
         }
 
         public void ShowWarningMessage(string message)
@@ -157,6 +157,18 @@ namespace TadManagementTool
                 return;
             }
             MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public DialogResult OpenAddNewsletterUserView()
+        {
+            if (InvokeRequired)
+            {
+                return (DialogResult)Invoke(new Func<DialogResult>(OpenAddNewsletterUserView));
+            }
+            using (var form = new NewsletterUserView())
+            {
+                return form.ShowDialog();
+            }
         }
     }
 }
