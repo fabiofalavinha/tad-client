@@ -2,7 +2,7 @@
 {
     public sealed class ApplicationVersion
     {
-        public static string Version { get { return "4.1.9"; } }
+        public static string Version { get { return "4.1.10"; } }
 
         private ApplicationVersion()
         {

@@ -79,7 +79,7 @@ namespace TadManagementTool.Presenter.Impl
         {
             var task = new Task<DialogResult>(() =>
             {
-                return View.OpenConfirmCloseFinancialBalanceView();
+                return View.OpenFinancialEntryView();
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
