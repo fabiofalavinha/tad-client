@@ -234,5 +234,15 @@ namespace TadManagementTool
             }
             DoLoadMainControl(new NewsletterListUserControl(this));
         }
+
+        public void SetApplicationVersion(string versionText)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(SetApplicationVersion), versionText);
+                return;
+            }
+            Text = $"TAD - v{versionText}";
+        }
     }
 }

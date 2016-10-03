@@ -1,5 +1,6 @@
 ﻿using Spring.Http;
 using Spring.Http.Client;
+using Spring.Http.Client.Interceptor;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
 using System;
@@ -10,7 +11,25 @@ namespace TadManagementTool.Service
 {
     public abstract class AbstractService
     {
-        private const int DefaultRequestTimeoutInMilliseconds = 1000;
+        private class CustomClientHttpRequestFactory : WebClientHttpRequestFactory
+        {
+            public CustomClientHttpRequestFactory(int timeout)
+            {
+                Timeout = timeout;
+            }
+        }
+
+        private class ApplicationClientVersionRequestHeaderInterceptor : IClientHttpRequestBeforeInterceptor
+        {
+            private static readonly string TadClientVersionHeaderKey = "X-TAD-Client-Version";
+
+            public void BeforeExecute(IClientHttpRequestContext request)
+            {
+                request.Headers.Add(TadClientVersionHeaderKey, ApplicationVersion.Version);
+            }
+        }
+
+        private const int DefaultRequestTimeoutInMilliseconds = 30000;
 
         protected readonly RestTemplate restTemplate;
 
@@ -21,8 +40,11 @@ namespace TadManagementTool.Service
 #else
             restTemplate = new RestTemplate(System.Configuration.ConfigurationManager.AppSettings["tad.server"]);
 #endif
+            restTemplate.RequestFactory = new CustomClientHttpRequestFactory(DefaultRequestTimeoutInMilliseconds);
             restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             restTemplate.ErrorHandler = new CustomResponseErrorHandler();
+            restTemplate.RequestInterceptors.Clear();
+            restTemplate.RequestInterceptors.Add(new ApplicationClientVersionRequestHeaderInterceptor());
         }
 
         private class CustomResponseErrorHandler : IResponseErrorHandler
@@ -38,14 +60,6 @@ namespace TadManagementTool.Service
             public bool HasError(Uri requestUri, HttpMethod requestMethod, IClientHttpResponse response)
             {
                 return response.StatusCode != HttpStatusCode.OK;
-            }
-        }
-
-        private class CustomClientHttpRequestFactory : WebClientHttpRequestFactory
-        {
-            public CustomClientHttpRequestFactory(int timeout)
-            {
-                Timeout = timeout;
             }
         }
     }

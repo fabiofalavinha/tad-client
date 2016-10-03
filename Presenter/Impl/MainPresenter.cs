@@ -14,6 +14,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
+            View.SetApplicationVersion(ApplicationVersion.Version);
             View.ConfigureMenuPermissions();
         }
 

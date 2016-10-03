@@ -77,11 +77,18 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnOpenFinancialEntryView()
         {
-            var result = View.OpenConfirmCloseFinancialBalanceView();
-            if (result == DialogResult.OK)
+            var task = new Task<DialogResult>(() =>
             {
-                OnSearchFinancialEntries();
-            }
+                return View.OpenConfirmCloseFinancialBalanceView();
+            }, TaskCreationOptions.LongRunning);
+            task.ContinueWith(t =>
+            {
+                if (t.Result == DialogResult.OK)
+                {
+                    OnSearchFinancialEntries();
+                }
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.Start();
         }
 
         public void OnSearchFinancialEntries()

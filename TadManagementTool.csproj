@@ -114,6 +114,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationVersion.cs" />
     <Compile Include="BaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

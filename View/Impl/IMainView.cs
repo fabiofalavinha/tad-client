@@ -11,6 +11,7 @@ namespace TadManagementTool.View.Impl
         void OpenPostListView();
         void OpenImageListView();
         void OpenUserChangePasswordView(User user);
+        void SetApplicationVersion(string versionText);
         void OpenCollaboratorBirthDaysView();
         void OpenNewsletterView();
         void OpenFinancialReferenceListView();
