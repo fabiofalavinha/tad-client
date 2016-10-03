@@ -5,12 +5,13 @@ using System.Windows.Forms;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.View.Items;
 
-namespace TadManagementTool.View
+namespace TadManagementTool.View.Impl
 {
     public interface IFinancialEntryListView : IControlView
     {
         DialogResult OpenFinancialEntryView();
         DialogResult OpenFinancialEntryView(FinancialEntryViewItem selected);
+        DialogResult OpenConfirmCloseFinancialBalanceView();
         DateTime GetFinancialEntryFromDate();
         DateTime GetFinancialEntryToDate();
         FinancialEntryViewItem GetFinancialEntryViewSelected();

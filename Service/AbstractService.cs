@@ -3,7 +3,6 @@ using Spring.Http.Client;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
 using System;
-using System.Configuration;
 using System.IO;
 using System.Net;
 
@@ -17,9 +16,13 @@ namespace TadManagementTool.Service
 
         public AbstractService()
         {
-            this.restTemplate = new RestTemplate(ConfigurationManager.AppSettings["tad.server"]);
-            this.restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            this.restTemplate.ErrorHandler = new CustomResponseErrorHandler();
+#if DEBUG
+            restTemplate = new RestTemplate("http://localhost:7139");
+#else
+            restTemplate = new RestTemplate(System.Configuration.ConfigurationManager.AppSettings["tad.server"]);
+#endif
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            restTemplate.ErrorHandler = new CustomResponseErrorHandler();
         }
 
         private class CustomResponseErrorHandler : IResponseErrorHandler

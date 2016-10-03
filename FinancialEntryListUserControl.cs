@@ -9,7 +9,6 @@ using TadManagementTool.Model.Financial;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Properties;
-using TadManagementTool.View;
 using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
@@ -334,6 +333,18 @@ namespace TadManagementTool
                 return;
             }
             financialReferenceFilterComboBox.Enabled = enabled;
+        }
+
+        public DialogResult OpenConfirmCloseFinancialBalanceView()
+        {
+            if (InvokeRequired)
+            {
+                return (DialogResult)Invoke(new Func<DialogResult>(OpenConfirmCloseFinancialBalanceView));
+            }
+            using (var form = new ConfirmCloseFinancialBalanceForm())
+            {
+                return form.ShowDialog();
+            }
         }
 
         private class FinancialReceiptDataGridViewCell : DataGridViewImageButtonCell

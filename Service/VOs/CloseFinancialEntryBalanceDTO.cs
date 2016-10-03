@@ -6,5 +6,8 @@ namespace TadManagementTool.Service.VOs
     {
         [JsonProperty(PropertyName = "userId")]
         public string UserId { get; set; }
+
+        [JsonProperty(PropertyName = "closingDate")]
+        public string ClosingDate { get; set; }
     }
 }

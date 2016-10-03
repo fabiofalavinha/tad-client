@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using TadManagementTool.Model;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.Service;
-using TadManagementTool.View;
+using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
 namespace TadManagementTool.Presenter.Impl
@@ -77,7 +77,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnOpenFinancialEntryView()
         {
-            var result = View.OpenFinancialEntryView();
+            var result = View.OpenConfirmCloseFinancialBalanceView();
             if (result == DialogResult.OK)
             {
                 OnSearchFinancialEntries();
@@ -177,34 +177,11 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnCloseFinancialEntryBalance()
         {
-            var task = new Task<bool>(() =>
+            var result = View.OpenConfirmCloseFinancialBalanceView();
+            if (result == DialogResult.OK)
             {
-                if (View.ShowBinaryQuestion("Você realmente quer fechar o caixa?"))
-                {
-                    View.ShowWaitingPanel("Fechando o caixa... ");
-                    var loggedUser = UserContext.GetInstance().LoggedUser;
-                    financialService.CloseBalance(loggedUser);
-                    return true;
-                }
-                return false;
-            }, TaskCreationOptions.LongRunning);
-            task.ContinueWith(t =>
-            {
-                View.HideWaitingPanel();
-                foreach (var innerException in t.Exception.InnerExceptions)
-                {
-                    View.ShowErrorMessage($"Ocorreu um erro ao fechar o caixa. Tente repetir a operação. {innerException.Message}");
-                }
-            }, TaskContinuationOptions.OnlyOnFaulted);
-            task.ContinueWith(t =>
-            {
-                if (t.Result)
-                {
-                    OnSearchFinancialEntries();
-                    View.HideWaitingPanel();
-                }
-            }, TaskContinuationOptions.OnlyOnRanToCompletion);
-            task.Start();
+                OnSearchFinancialEntries();
+            }
         }
 
         public void OnRemoveOpenedFinancialEntry()

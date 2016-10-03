@@ -4,7 +4,7 @@ using System.Drawing;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.View.Items;
 
-namespace TadManagementTool.View
+namespace TadManagementTool.View.Impl
 {
     public interface IFinancialEntryEnrollmentView : IDialogView
     {

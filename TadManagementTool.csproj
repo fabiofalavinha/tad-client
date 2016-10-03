@@ -144,6 +144,12 @@
     <Compile Include="CollaboratorView.Designer.cs">
       <DependentUpon>CollaboratorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmCloseFinancialBalanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmCloseFinancialBalanceForm.Designer.cs">
+      <DependentUpon>ConfirmCloseFinancialBalanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -280,6 +286,7 @@
     <Compile Include="Presenter\ICalendarPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorBirthDaysPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorPresenter.cs" />
+    <Compile Include="Presenter\IConfirmCloseFinancialBalancePresenter.cs" />
     <Compile Include="Presenter\IEventEnrollmentPresenter.cs" />
     <Compile Include="Presenter\IFinancialEntryEnrollmentPresenter.cs" />
     <Compile Include="Presenter\IFinancialEntryListPresenter.cs" />
@@ -287,6 +294,7 @@
     <Compile Include="Presenter\IFinancialReferencePresenter.cs" />
     <Compile Include="Presenter\IImageListPresenter.cs" />
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
+    <Compile Include="Presenter\Impl\ConfirmCloseFinancialBalancePresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialEntryEnrollmentPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferenceListPresenter.cs" />
@@ -345,8 +353,9 @@
     <Compile Include="Validator\PhoneNumberValidator.cs" />
     <Compile Include="View\IControlView.cs" />
     <Compile Include="View\IDialogView.cs" />
-    <Compile Include="View\IFinancialEntryListView.cs" />
-    <Compile Include="View\IFinancialEntryEnrollmentView.cs" />
+    <Compile Include="View\Impl\IConfirmCloseFinancialBalanceView.cs" />
+    <Compile Include="View\Impl\IFinancialEntryListView.cs" />
+    <Compile Include="View\Impl\IFinancialEntryEnrollmentView.cs" />
     <Compile Include="View\Impl\ICalendarView.cs" />
     <Compile Include="View\Impl\ICollaboratorBirthDaysView.cs" />
     <Compile Include="View\Impl\ICollaboratorView.cs" />
@@ -401,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CollaboratorView.resx">
       <DependentUpon>CollaboratorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmCloseFinancialBalanceForm.resx">
+      <DependentUpon>ConfirmCloseFinancialBalanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>

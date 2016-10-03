@@ -28,6 +28,16 @@ namespace TadManagementTool.Service
             return restTemplate.GetForObject<IList<FinancialEntry>>("/financial/entries/{from}/{to}", from.ToString("yyyy-MM-dd"), to.ToString("yyyy-MM-dd"));
         }
 
+        public FinancialEntry GetFirstOpenedFinancialEntry()
+        {
+            return restTemplate.GetForObject<FinancialEntry>("/financial/opened/first");
+        }
+
+        public FinancialEntry GetLastOpenedFinancialEntry()
+        {
+            return restTemplate.GetForObject<FinancialEntry>("/financial/opened/last");
+        }
+
         public IList<FinancialTarget> FindTargets()
         {
             return restTemplate.GetForObject<IList<FinancialTarget>>("/financial/targets");
@@ -43,9 +53,9 @@ namespace TadManagementTool.Service
             restTemplate.PostForObject<FinancialEntry>("/financial/entry", financialEntry);
         }
 
-        public void CloseBalance(User user)
+        public void CloseBalance(User user, DateTime closingDate)
         {
-            restTemplate.PostForObject<CloseFinancialEntryBalanceDTO>("/financial/close", new CloseFinancialEntryBalanceDTO() { UserId = user.Id });
+            restTemplate.PostForObject<CloseFinancialEntryBalanceDTO>("/financial/close", new CloseFinancialEntryBalanceDTO() { UserId = user.Id, ClosingDate = closingDate.ToString("yyyy-MM-dd") });
         }
 
         public void RemoveFinancialEntry(FinancialEntry financialEntry)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TadManagementTool.Model;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.Service;
-using TadManagementTool.View;
+using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
 namespace TadManagementTool.Presenter.Impl

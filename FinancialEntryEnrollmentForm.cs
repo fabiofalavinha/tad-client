@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using TadManagementTool.Model.Financial;
 using TadManagementTool.Presenter;
 using TadManagementTool.Presenter.Impl;
-using TadManagementTool.View;
+using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
 namespace TadManagementTool
