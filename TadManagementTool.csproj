@@ -253,6 +253,7 @@
     <Compile Include="Model\GenderType.cs" />
     <Compile Include="Model\MonthOfBirthday.cs" />
     <Compile Include="Model\NewsletterUser.cs" />
+    <Compile Include="Model\NewsletterUserConfirmationStatus.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\PhoneType.cs" />
     <Compile Include="Model\Post.cs" />

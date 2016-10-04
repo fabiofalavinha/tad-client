@@ -11,11 +11,13 @@ namespace TadManagementTool.Presenter.Impl
     public class PostListPresenter : AbstractControlPresenter<IPostListView>, IPostListPresenter
     {
         private readonly PostService postService;
+        private readonly NewsletterService newsletterService;
 
         public PostListPresenter(IPostListView view)
             : base(view)
         {
-            this.postService = new PostService();
+            postService = new PostService();
+            newsletterService = new NewsletterService();
         }
 
         public void InitView()
@@ -92,7 +94,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnPublishPost()
         {
-            var task = new Task<bool>(() =>
+            var task = new Task<Tuple<bool, Post>>(() =>
             {
                 var postViewItem = View.GetPostSelected();
                 if (postViewItem != null)
@@ -104,15 +106,29 @@ namespace TadManagementTool.Presenter.Impl
                         post.Published = DateTime.Now;
                         post.PublishedBy = UserContext.GetInstance().LoggedUser;
                         postService.SavePost(post);
-                        return true;
+                        return Tuple.Create<bool, Post>(true, post);
                     }
                 }
-                return false;
+                return Tuple.Create<bool, Post>(false, null);
             });
             task.ContinueWith(t =>
             {
-                if (t.Result)
+                var tuple = t.Result;
+                var sucess = tuple.Item1;
+                if (sucess)
                 {
+                    if (View.ShowBinaryQuestion("Deseja notificar a newsletter pela publicação deste post?"))
+                    {
+                        var post = tuple.Item2;
+                        try
+                        {
+                            newsletterService.NotifyPostPublished(post);
+                        }
+                        catch (Exception ex)
+                        {
+                            View.ShowWarningMessage($"Ocorreu um erro ao notificar a newsletter [{ex.Message}]");
+                        }
+                    }
                     View.ShowWaitingPanel("Carregando posts...");
                     DoLoadPosts();
                 }

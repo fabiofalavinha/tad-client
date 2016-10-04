@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.newsletterDataGridView = new System.Windows.Forms.DataGridView();
-            this.NewsletterUserNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewsletterUserEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelButton = new System.Windows.Forms.Panel();
             this.removeNewsletterUserButton = new System.Windows.Forms.Button();
@@ -40,6 +38,9 @@
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.NewsletterUserNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewsletterUserEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.newsletterDataGridView)).BeginInit();
             this.panelContent.SuspendLayout();
             this.panelButton.SuspendLayout();
@@ -54,7 +55,8 @@
             this.newsletterDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.newsletterDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NewsletterUserNameColumn,
-            this.NewsletterUserEmailColumn});
+            this.NewsletterUserEmailColumn,
+            this.statusColumn});
             this.newsletterDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newsletterDataGridView.Location = new System.Drawing.Point(0, 0);
             this.newsletterDataGridView.MultiSelect = false;
@@ -64,20 +66,6 @@
             this.newsletterDataGridView.Size = new System.Drawing.Size(740, 453);
             this.newsletterDataGridView.TabIndex = 0;
             this.newsletterDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.newsletterDataGridView_CellDoubleClick);
-            // 
-            // NewsletterUserNameColumn
-            // 
-            this.NewsletterUserNameColumn.DataPropertyName = "Name";
-            this.NewsletterUserNameColumn.HeaderText = "Nome";
-            this.NewsletterUserNameColumn.Name = "NewsletterUserNameColumn";
-            this.NewsletterUserNameColumn.ReadOnly = true;
-            // 
-            // NewsletterUserEmailColumn
-            // 
-            this.NewsletterUserEmailColumn.DataPropertyName = "Email";
-            this.NewsletterUserEmailColumn.HeaderText = "Email";
-            this.NewsletterUserEmailColumn.Name = "NewsletterUserEmailColumn";
-            this.NewsletterUserEmailColumn.ReadOnly = true;
             // 
             // panelContent
             // 
@@ -143,6 +131,27 @@
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
             // 
+            // NewsletterUserNameColumn
+            // 
+            this.NewsletterUserNameColumn.DataPropertyName = "Name";
+            this.NewsletterUserNameColumn.HeaderText = "Nome";
+            this.NewsletterUserNameColumn.Name = "NewsletterUserNameColumn";
+            this.NewsletterUserNameColumn.ReadOnly = true;
+            // 
+            // NewsletterUserEmailColumn
+            // 
+            this.NewsletterUserEmailColumn.DataPropertyName = "Email";
+            this.NewsletterUserEmailColumn.HeaderText = "Email";
+            this.NewsletterUserEmailColumn.Name = "NewsletterUserEmailColumn";
+            this.NewsletterUserEmailColumn.ReadOnly = true;
+            // 
+            // statusColumn
+            // 
+            this.statusColumn.DataPropertyName = "Status";
+            this.statusColumn.HeaderText = "Status";
+            this.statusColumn.Name = "statusColumn";
+            this.statusColumn.ReadOnly = true;
+            // 
             // NewsletterListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,8 +180,9 @@
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.SaveFileDialog exportToExcelSaveFileDialog;
         private ModalWaitingPanel modalWaitingPanel;
+        private System.Windows.Forms.Button removeNewsletterUserButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn NewsletterUserNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NewsletterUserEmailColumn;
-        private System.Windows.Forms.Button removeNewsletterUserButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusColumn;
     }
 }

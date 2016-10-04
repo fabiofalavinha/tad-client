@@ -23,5 +23,10 @@ namespace TadManagementTool.Service
             var exporter = new ListNewsletterUserExporter();
             exporter.ExportTo(newsletterUsers, filePath);
         }
+
+        public void NotifyPostPublished(Post post)
+        {
+            restTemplate.PostForMessage("/newsletter/notify/post/{postId}", post, post.Id);
+        }
     }
 }
