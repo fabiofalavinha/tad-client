@@ -29,7 +29,7 @@ namespace TadManagementTool.Service
             }
         }
 
-        private const int DefaultRequestTimeoutInMilliseconds = 30000;
+        private const int DefaultRequestTimeoutInMilliseconds = 60000;
 
         protected readonly RestTemplate restTemplate;
 

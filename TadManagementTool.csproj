@@ -382,6 +382,7 @@
     <Compile Include="View\Impl\OpenPostListMenuViewAction.cs" />
     <Compile Include="View\Items\CategoryViewItem.cs" />
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
+    <Compile Include="View\Items\ContributorViewItem.cs" />
     <Compile Include="View\Items\EventResult.cs" />
     <Compile Include="View\Items\FinancialEntryViewItem.cs" />
     <Compile Include="View\Items\FinancialReferenceOptionViewItem.cs" />

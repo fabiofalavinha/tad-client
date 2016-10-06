@@ -347,6 +347,27 @@ namespace TadManagementTool
             }
         }
 
+        public void SetContributorList(IList<ContributorViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<ContributorViewItem>>(SetContributorList), list);
+                return;
+            }
+            contributorComboBox.Items.Clear();
+            contributorComboBox.Items.AddRange(list.ToArray());
+            contributorComboBox.SelectedItem = list.First();
+        }
+
+        public ContributorViewItem GetContributorFilterSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (ContributorViewItem)Invoke(new Func<ContributorViewItem>(GetContributorFilterSelected));
+            }
+            return (ContributorViewItem)contributorComboBox.SelectedItem;
+        }
+
         private class FinancialReceiptDataGridViewCell : DataGridViewImageButtonCell
         {
             public FinancialReceiptDataGridViewCell()

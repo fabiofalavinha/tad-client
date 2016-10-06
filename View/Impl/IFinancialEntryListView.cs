@@ -16,6 +16,7 @@ namespace TadManagementTool.View.Impl
         DateTime GetFinancialEntryToDate();
         FinancialEntryViewItem GetFinancialEntryViewSelected();
         FinancialTargetTypeViewItem GetTargetTypeFilterSelected();
+        ContributorViewItem GetContributorFilterSelected();
         FinancialReferenceOptionViewItem GetFinancialReferenceFilterSelected();
         IList<FinancialEntryViewItem> GetFinancialEntryList();
         void SetFinancialEntryFilterDateFrom(DateTime date);
@@ -32,5 +33,6 @@ namespace TadManagementTool.View.Impl
         string SelectFilePathToSaveExcelFile();
         void ShowSuccessMessage(string message);
         void SetFinancialReferenceFilterOptionEnabled(bool v);
+        void SetContributorList(IList<ContributorViewItem> list);
     }
 }

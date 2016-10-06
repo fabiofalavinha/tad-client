@@ -16,11 +16,13 @@ namespace TadManagementTool.Presenter.Impl
     public class FinancialEntryListPresenter : AbstractControlPresenter<IFinancialEntryListView>, IFinancialEntryListPresenter
     {
         private readonly FinancialService financialService;
+        private readonly CollaboratorService collaboratorService;
 
         public FinancialEntryListPresenter(IFinancialEntryListView view)
             : base(view)
         {
             financialService = new FinancialService();
+            collaboratorService = new CollaboratorService();
         }
 
         public void InitView()
@@ -39,6 +41,9 @@ namespace TadManagementTool.Presenter.Impl
                 var financialRefereceViewItems = GetFinancialReferenceList();
                 View.SetFinancialReferenceFilterList(financialRefereceViewItems);
                 View.SetFinancialReferenceFilterOptionEnabled(false);
+                var contributors = collaboratorService.FindAll().Where(c => c.Contributor).Select(c => new ContributorViewItem(c)).ToList();
+                contributors.Insert(0, new AllContributorViewItem());
+                View.SetContributorList(contributors);
             }, TaskCreationOptions.LongRunning);
             task.ContinueWith(t =>
             {
@@ -118,6 +123,11 @@ namespace TadManagementTool.Presenter.Impl
                 var list = t.Result;
                 if (list != null)
                 {
+                    var contributorViewItem = View.GetContributorFilterSelected();
+                    if (!contributorViewItem.IsAllOption)
+                    {
+                        list = list.Where(e => e.Target.Id.Equals(contributorViewItem.Id)).ToArray();
+                    }
                     var targetTypeFilter = View.GetTargetTypeFilterSelected();
                     if (targetTypeFilter.Wrapper != FinancialTargetType.None)
                     {
