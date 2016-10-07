@@ -263,6 +263,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserContext.cs" />
     <Compile Include="Model\UserProfile.cs" />
+    <Compile Include="Model\UserProfileFactory.cs" />
     <Compile Include="Model\UserRole.cs" />
     <Compile Include="Model\VisibilityType.cs" />
     <Compile Include="NewsletterListUserControl.cs">
@@ -277,6 +278,7 @@
     <Compile Include="NewsletterUserView.Designer.cs">
       <DependentUpon>NewsletterUserView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\UserPreferencesDAO.cs" />
     <Compile Include="Persistence\UserProfileDAO.cs" />
     <Compile Include="PlaceholderTextBox.cs">
       <SubType>Component</SubType>

@@ -18,6 +18,8 @@ namespace TadManagementTool
         private readonly IListCollaboratorPresenter presenter;
         private readonly Dictionary<string, SortOrder> columnSortOrderMap = new Dictionary<string, SortOrder>();
 
+        private bool updateColumnOrderDisplayIndex = false;
+
         public ListCollaboratorUserControl(IMainView parentView)
         {
             InitializeComponent();
@@ -90,11 +92,21 @@ namespace TadManagementTool
             presenter.OnViewCollaboratorDetails();
         }
 
-        public void SetCollaboratorList(IList<CollaboratorViewItem> list)
+        private void BeginUpdateColumnOrderDisplayIndex()
+        {
+            updateColumnOrderDisplayIndex = true;
+        }
+
+        private void EndUpdateColumnOrderDisplayIndex()
+        {
+            updateColumnOrderDisplayIndex = false;
+        }
+
+        public void SetCollaboratorList(IList<CollaboratorViewItem> list, CollaboratorPreferences collaboratorPreferences)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<CollaboratorViewItem>>(SetCollaboratorList), list);
+                BeginInvoke(new Action<IList<CollaboratorViewItem>, CollaboratorPreferences>(SetCollaboratorList), list, collaboratorPreferences);
                 return;
             }
             bindingSource.DataSource = list;
@@ -102,6 +114,13 @@ namespace TadManagementTool
             bindingSource.ResetBindings(false);
             dataGridView.ClearSelection();
             dataGridView.AutoResizeColumns();
+            BeginUpdateColumnOrderDisplayIndex();
+            foreach (var column in dataGridView.Columns.Cast<DataGridViewColumn>())
+            {
+                var tableColumn = collaboratorPreferences.GetColumn(column.Name);
+                column.DisplayIndex = tableColumn.Index;
+            }
+            EndUpdateColumnOrderDisplayIndex();
         }
 
         public CollaboratorViewItem GetCollaboratorSelected()
@@ -247,7 +266,7 @@ namespace TadManagementTool
             }
             return filterActiveCheckBox.Checked;
         }
-        
+
         private void collaboratorSearchButton_Click(object sender, EventArgs e)
         {
             presenter.OnSearchCollaborators();
@@ -255,7 +274,10 @@ namespace TadManagementTool
 
         private void dataGridView_ColumnDisplayIndexChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            presenter.OnColumnReOrder(e.Column.Name, e.Column.DisplayIndex);
+            if (!updateColumnOrderDisplayIndex)
+            {
+                presenter.OnColumnReOrder(e.Column.Name, e.Column.DisplayIndex);
+            }
         }
     }
 }

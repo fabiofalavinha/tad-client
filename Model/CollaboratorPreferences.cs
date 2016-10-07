@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace TadManagementTool.Model
 {
     public class CollaboratorPreferences
     {
-        public List<TableColumnPreferences> ColumnOrderList { get; set; }
-
-        public CollaboratorPreferences()
+        private class TableColumnPreferencesComparer : IComparer<TableColumnPreferences>
         {
-            ColumnOrderList = new List<TableColumnPreferences>();
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 0, Name = "CollaboratorNameColumn" });
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 1, Name = "CollaboratorEmailColumn" });
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 2, Name = "BirthDateColumn" });
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 3, Name = "CollaboratorStartDateColumn" });
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 4, Name = "CollaboratorGenderColumn" });
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 5, Name = "CollaboratorTelephoneColumn" });
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 6, Name = "contributorColumn" });
-            ColumnOrderList.Add(new TableColumnPreferences() { Index = 7, Name = "CollaboratorActiveColumn" });
+            public int Compare(TableColumnPreferences x, TableColumnPreferences y)
+            {
+                if (x.Index == y.Index)
+                {
+                    return 0;
+                }
+                return x.Index > y.Index ? 1 : -1;
+            }
         }
+
+        public List<TableColumnPreferences> ColumnOrderList { get; set; }
 
         public void ChangeOrder(string name, int index)
         {
@@ -31,6 +28,12 @@ namespace TadManagementTool.Model
                     column.Index = index;
                 }
             }
+            ColumnOrderList.Sort(new TableColumnPreferencesComparer());
+        }
+
+        public TableColumnPreferences GetColumn(string name)
+        {
+            return ColumnOrderList.Single(c => c.Name.Equals(name));
         }
     }
 }

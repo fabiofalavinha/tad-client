@@ -26,7 +26,7 @@ namespace TadManagementTool.Presenter.Impl
             {
                 list = list.Where(c => c.Active == View.GetFilterActive()).ToArray();
             }
-            View.SetCollaboratorList(list.Select(c => new CollaboratorViewItem(c)).ToArray());
+            View.SetCollaboratorList(list.Select(c => new CollaboratorViewItem(c)).ToArray(), UserContext.GetInstance().Profile.CollaboratorPreferences);
             View.SetActiveCollaboratorCount(list.Count(c => c.Active));
         }
 
@@ -156,7 +156,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSortCollaboratorList(string propertyName, SortOrder sortOrder)
         {
-            View.SetCollaboratorList(new ListCollaboratorOrder().Sort(View.GetCollaboratorList(), propertyName, sortOrder));
+            View.SetCollaboratorList(new ListCollaboratorOrder().Sort(View.GetCollaboratorList(), propertyName, sortOrder), UserContext.GetInstance().Profile.CollaboratorPreferences);
         }
 
         public void OnSearchCollaborators()

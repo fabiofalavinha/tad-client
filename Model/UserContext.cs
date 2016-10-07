@@ -14,7 +14,6 @@ namespace TadManagementTool.Model
         }
 
         private User user;
-        private UserProfile userProfile;
 
         public User LoggedUser
         {
@@ -29,7 +28,7 @@ namespace TadManagementTool.Model
                 var loaded = userProfileService.LoadProfile(user);
                 if (loaded == null)
                 {
-                    loaded = new UserProfile(user);
+                    loaded = new UserProfileFactory().CreateProfile(user);
                 }
                 Profile = loaded;
             }
