@@ -1,4 +1,6 @@
-﻿namespace TadManagementTool.Model
+﻿using TadManagementTool.Service;
+
+namespace TadManagementTool.Model
 {
     public sealed class UserContext
     {
@@ -11,7 +13,29 @@
             return instance;
         }
 
-        public User LoggedUser { get; set; }
+        private User user;
+        private UserProfile userProfile;
+
+        public User LoggedUser
+        {
+            get
+            {
+                return user;
+            }
+            set
+            {
+                user = value;
+                var userProfileService = new UserProfileService();
+                var loaded = userProfileService.LoadProfile(user);
+                if (loaded == null)
+                {
+                    loaded = new UserProfile(user);
+                }
+                Profile = loaded;
+            }
+        }
+
+        public UserProfile Profile { get; private set; }
 
         private UserContext()
         {

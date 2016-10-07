@@ -10,5 +10,6 @@ namespace TadManagementTool.Presenter
         void OnExportToExcel();
         void OnSortCollaboratorList(string propertyName, SortOrder sortOrder);
         void OnSearchCollaborators();
+        void OnColumnReOrder(string name, int index);
     }
 }

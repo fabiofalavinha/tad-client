@@ -12,9 +12,12 @@ namespace TadManagementTool.Presenter.Impl
 {
     public class ListCollaboratorPresenter : AbstractControlPresenter<IListCollaboratorView>, IListCollaboratorPresenter
     {
+        private readonly UserProfileService userProfileService;
+
         public ListCollaboratorPresenter(IListCollaboratorView view)
             : base(view)
         {
+            userProfileService = new UserProfileService();
         }
 
         private void DoSetCollaboratorList(IList<Collaborator> list)
@@ -178,6 +181,13 @@ namespace TadManagementTool.Presenter.Impl
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
+        }
+
+        public void OnColumnReOrder(string name, int index)
+        {
+            var userProfile = UserContext.GetInstance().Profile;
+            userProfile.CollaboratorPreferences.ChangeOrder(name, index);
+            userProfileService.SaveProfile(userProfile);
         }
 
         private class ListCollaboratorOrder

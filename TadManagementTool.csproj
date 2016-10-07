@@ -239,6 +239,7 @@
     <Compile Include="Model\BirthdayList.cs" />
     <Compile Include="Model\CarouselImage.cs" />
     <Compile Include="Model\Collaborator.cs" />
+    <Compile Include="Model\CollaboratorPreferences.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Financial\Balance.cs" />
     <Compile Include="Model\Financial\Category.cs" />
@@ -257,9 +258,11 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\PhoneType.cs" />
     <Compile Include="Model\Post.cs" />
+    <Compile Include="Model\TableColumnPreferences.cs" />
     <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserContext.cs" />
+    <Compile Include="Model\UserProfile.cs" />
     <Compile Include="Model\UserRole.cs" />
     <Compile Include="Model\VisibilityType.cs" />
     <Compile Include="NewsletterListUserControl.cs">
@@ -274,6 +277,7 @@
     <Compile Include="NewsletterUserView.Designer.cs">
       <DependentUpon>NewsletterUserView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\UserProfileDAO.cs" />
     <Compile Include="PlaceholderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -335,6 +339,7 @@
     <Compile Include="Service\NewsletterService.cs" />
     <Compile Include="Service\PostService.cs" />
     <Compile Include="Service\UserCredentialsService.cs" />
+    <Compile Include="Service\UserProfileService.cs" />
     <Compile Include="Service\VOs\AuthenticationRequest.cs" />
     <Compile Include="Service\VOs\ChangePasswordRequest.cs" />
     <Compile Include="Service\VOs\CloseFinancialEntryBalanceDTO.cs" />
@@ -509,9 +514,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistence\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\waitProcess.gif" />
   </ItemGroup>

@@ -252,5 +252,10 @@ namespace TadManagementTool
         {
             presenter.OnSearchCollaborators();
         }
+
+        private void dataGridView_ColumnDisplayIndexChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            presenter.OnColumnReOrder(e.Column.Name, e.Column.DisplayIndex);
+        }
     }
 }
