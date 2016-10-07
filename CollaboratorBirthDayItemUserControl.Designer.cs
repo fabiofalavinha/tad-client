@@ -34,21 +34,26 @@
             // 
             // personNameLabel
             // 
-            this.personNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.personNameLabel.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.personNameLabel.BackColor = System.Drawing.Color.LightGray;
+            this.personNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.personNameLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.personNameLabel.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.personNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.personNameLabel.Location = new System.Drawing.Point(132, 89);
+            this.personNameLabel.Location = new System.Drawing.Point(0, 23);
             this.personNameLabel.Name = "personNameLabel";
-            this.personNameLabel.Size = new System.Drawing.Size(191, 136);
+            this.personNameLabel.Padding = new System.Windows.Forms.Padding(5);
+            this.personNameLabel.Size = new System.Drawing.Size(419, 273);
             this.personNameLabel.TabIndex = 0;
             // 
             // dateLabel
             // 
-            this.dateLabel.BackColor = System.Drawing.Color.Transparent;
+            this.dateLabel.BackColor = System.Drawing.Color.LightBlue;
+            this.dateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dateLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(165, 55);
+            this.dateLabel.Location = new System.Drawing.Point(0, 0);
             this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(100, 23);
+            this.dateLabel.Size = new System.Drawing.Size(419, 23);
             this.dateLabel.TabIndex = 1;
             this.dateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -56,7 +61,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::TadManagementTool.Properties.Resources.birthday_item_background;
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.personNameLabel);
             this.DoubleBuffered = true;

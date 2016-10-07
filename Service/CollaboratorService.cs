@@ -33,7 +33,7 @@ namespace TadManagementTool.Service
             var collaborators = FindAll();
             var birthDayMap = new Dictionary<MonthOfBirthday, BirthdayList>();
             var currentDateTime = DateTime.Now;
-            foreach (var collaborator in collaborators.Where(c => c.Active && c.BirthDate.Month >= currentDateTime.Month).OrderBy(c => c.BirthDate.Month))
+            foreach (var collaborator in collaborators.Where(c => c.Active && c.IsCollaborator && c.BirthDate.Month >= currentDateTime.Month).OrderBy(c => c.BirthDate.Month))
             {
                 BirthdayList found;
                 var monthOfBirthday = new MonthOfBirthday(collaborator.BirthDate.Month);
