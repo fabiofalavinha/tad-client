@@ -1,4 +1,6 @@
-﻿namespace TadManagementTool.Model
+﻿using System.Collections.Generic;
+
+namespace TadManagementTool.Model
 {
     public class UserProfileFactory
     {
@@ -6,7 +8,7 @@
         {
             var collaboratorPreferences = new CollaboratorPreferences()
             {
-                ColumnOrderList =
+                ColumnOrderList = new List<TableColumnPreferences>()
                 {
                     new TableColumnPreferences() { Index = 0, Name = "CollaboratorNameColumn" },
                     new TableColumnPreferences() { Index = 1, Name = "CollaboratorEmailColumn" },
