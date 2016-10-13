@@ -34,9 +34,11 @@
             this.buttonSeparatorPanel = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.openHistoryButton = new System.Windows.Forms.Button();
             this.categoryTypeLabel = new System.Windows.Forms.Label();
             this.entryValueTextBox = new System.Windows.Forms.TextBox();
             this.targetRadionButtonGroupPanel = new System.Windows.Forms.Panel();
+            this.targetNonCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.targetComboBox = new System.Windows.Forms.ComboBox();
             this.targetCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.targetOtherCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
@@ -54,7 +56,6 @@
             this.entryDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.entryDateLabel = new System.Windows.Forms.Label();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
-            this.targetNonCollaboratorTypeRadioButton = new System.Windows.Forms.RadioButton();
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.targetRadionButtonGroupPanel.SuspendLayout();
@@ -91,6 +92,7 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.Controls.Add(this.openHistoryButton);
             this.contentPanel.Controls.Add(this.categoryTypeLabel);
             this.contentPanel.Controls.Add(this.entryValueTextBox);
             this.contentPanel.Controls.Add(this.targetRadionButtonGroupPanel);
@@ -112,6 +114,17 @@
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(443, 341);
             this.contentPanel.TabIndex = 0;
+            // 
+            // openHistoryButton
+            // 
+            this.openHistoryButton.Image = global::TadManagementTool.Properties.Resources.financial_entry_history;
+            this.openHistoryButton.Location = new System.Drawing.Point(378, 122);
+            this.openHistoryButton.Name = "openHistoryButton";
+            this.openHistoryButton.Size = new System.Drawing.Size(28, 23);
+            this.openHistoryButton.TabIndex = 24;
+            this.openHistoryButton.UseVisualStyleBackColor = true;
+            this.openHistoryButton.Visible = false;
+            this.openHistoryButton.Click += new System.EventHandler(this.openHistoryButton_Click);
             // 
             // categoryTypeLabel
             // 
@@ -142,6 +155,18 @@
             this.targetRadionButtonGroupPanel.Size = new System.Drawing.Size(198, 71);
             this.targetRadionButtonGroupPanel.TabIndex = 3;
             // 
+            // targetNonCollaboratorTypeRadioButton
+            // 
+            this.targetNonCollaboratorTypeRadioButton.AutoSize = true;
+            this.targetNonCollaboratorTypeRadioButton.Location = new System.Drawing.Point(92, 3);
+            this.targetNonCollaboratorTypeRadioButton.Name = "targetNonCollaboratorTypeRadioButton";
+            this.targetNonCollaboratorTypeRadioButton.Size = new System.Drawing.Size(105, 17);
+            this.targetNonCollaboratorTypeRadioButton.TabIndex = 6;
+            this.targetNonCollaboratorTypeRadioButton.TabStop = true;
+            this.targetNonCollaboratorTypeRadioButton.Text = "Não Colaborador";
+            this.targetNonCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
+            this.targetNonCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetTypeRadioButton_CheckedChanged);
+            // 
             // targetComboBox
             // 
             this.targetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -151,6 +176,7 @@
             this.targetComboBox.Name = "targetComboBox";
             this.targetComboBox.Size = new System.Drawing.Size(177, 21);
             this.targetComboBox.TabIndex = 5;
+            this.targetComboBox.SelectedIndexChanged += new System.EventHandler(this.targetComboBox_SelectedIndexChanged);
             // 
             // targetCollaboratorTypeRadioButton
             // 
@@ -282,7 +308,8 @@
             // 
             // entryDateTimePicker
             // 
-            this.entryDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.entryDateTimePicker.CustomFormat = "dd/MM/yyyy";
+            this.entryDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.entryDateTimePicker.Location = new System.Drawing.Point(195, 22);
             this.entryDateTimePicker.Name = "entryDateTimePicker";
             this.entryDateTimePicker.Size = new System.Drawing.Size(91, 20);
@@ -301,18 +328,6 @@
             // 
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
-            // 
-            // targetNonCollaboratorTypeRadioButton
-            // 
-            this.targetNonCollaboratorTypeRadioButton.AutoSize = true;
-            this.targetNonCollaboratorTypeRadioButton.Location = new System.Drawing.Point(92, 3);
-            this.targetNonCollaboratorTypeRadioButton.Name = "targetNonCollaboratorTypeRadioButton";
-            this.targetNonCollaboratorTypeRadioButton.Size = new System.Drawing.Size(105, 17);
-            this.targetNonCollaboratorTypeRadioButton.TabIndex = 6;
-            this.targetNonCollaboratorTypeRadioButton.TabStop = true;
-            this.targetNonCollaboratorTypeRadioButton.Text = "Não Colaborador";
-            this.targetNonCollaboratorTypeRadioButton.UseVisualStyleBackColor = true;
-            this.targetNonCollaboratorTypeRadioButton.CheckedChanged += new System.EventHandler(this.targetTypeRadioButton_CheckedChanged);
             // 
             // FinancialEntryEnrollmentForm
             // 
@@ -367,5 +382,6 @@
         private System.Windows.Forms.TextBox entryValueTextBox;
         private System.Windows.Forms.Label categoryTypeLabel;
         private System.Windows.Forms.RadioButton targetNonCollaboratorTypeRadioButton;
+        private System.Windows.Forms.Button openHistoryButton;
     }
 }

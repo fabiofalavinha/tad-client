@@ -9,5 +9,7 @@ namespace TadManagementTool.Presenter
         void OnSaveFinancialEntry();
         void OnEntryValueChanged();
         void OnFinancialReferenceSelected();
+        void OnOpenHistoryView();
+        void OnTargetSelected();
     }
 }

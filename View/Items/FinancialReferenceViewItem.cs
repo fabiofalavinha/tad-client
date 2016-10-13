@@ -16,4 +16,14 @@ namespace TadManagementTool.View.Items
             Wrapper = wrapper;
         }
     }
+
+    public class AllOptionFinancialReferenceViewItem : FinancialReferenceOptionViewItem
+    {
+        public AllOptionFinancialReferenceViewItem()
+        {
+            Id = "-1";
+            Description = "Todos";
+            IsAllOption = true;
+        }
+    }
 }

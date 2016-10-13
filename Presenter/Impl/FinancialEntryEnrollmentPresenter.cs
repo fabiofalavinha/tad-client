@@ -135,6 +135,7 @@ namespace TadManagementTool.Presenter.Impl
             {
                 View.SetOtherCollaboratorList(currentFinancialTargetViewItems);
                 View.SetFinancialReferenceList(currentFinancialReferenceViewItems.Where(r => !r.AssociatedWithCollaborator).ToArray());
+                View.SetHistoryButtonVisible(false);
             }
         }
 
@@ -280,6 +281,29 @@ namespace TadManagementTool.Presenter.Impl
         {
             var type = View.GetEntryReference();
             View.SetCategoryType(type.Wrapper.ToCategory());
+        }
+
+        public void OnOpenHistoryView()
+        {
+            var filter = new FinancialTargetHistoryFilter();
+            var targetType = View.GetEntryTargetType();
+            var target = View.GetEntryTarget();
+            filter.Target = new FinancialTarget()
+            {
+                Id = target.Id,
+                Name = target.Name,
+                Type = (int)targetType.Value
+            };
+            View.OpenHistoryView(filter);
+        }
+
+        public void OnTargetSelected()
+        {
+            var targetType = View.GetEntryTargetType();
+            if (targetType.HasValue && (targetType.Value == FinancialTargetType.Colaborator || targetType.Value == FinancialTargetType.NonColaborator))
+            {
+                View.SetHistoryButtonVisible(View.GetEntryTarget() != null);
+            }
         }
     }
 }

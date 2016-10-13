@@ -30,5 +30,7 @@ namespace TadManagementTool.View.Impl
         void SetFinancialEntryDataEnabled(bool enabled);
         void SetNonCollaboratorList(IList<FinancialTargetViewItem> viewItems);
         void SetFinancialEntryMinimumDate(DateTime dateTime);
+        void OpenHistoryView(FinancialTargetHistoryFilter filter);
+        void SetHistoryButtonVisible(bool visible);
     }
 }

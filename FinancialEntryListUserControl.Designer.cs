@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.financialEntryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialEntryTargetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,33 +49,33 @@
             this.closeFinancialEntryBalanceButton = new System.Windows.Forms.Button();
             this.openAddFinancialEntryViewButton = new System.Windows.Forms.Button();
             this.financialEntryFilterPanel = new System.Windows.Forms.Panel();
-            this.targetTypeFilterGroupBox = new System.Windows.Forms.GroupBox();
-            this.financialReferenceFilterComboBox = new System.Windows.Forms.ComboBox();
-            this.targetTypeFilterComboBox = new System.Windows.Forms.ComboBox();
-            this.financialEntrySearchButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.totalBalanceGroupBox = new System.Windows.Forms.GroupBox();
+            this.currentBalanceLabel = new System.Windows.Forms.Label();
             this.financialEntryDateFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.financialEntryDateToLabel = new System.Windows.Forms.Label();
             this.financialEntryDateFromLabel = new System.Windows.Forms.Label();
             this.financialEntryDateToPicker = new System.Windows.Forms.DateTimePicker();
             this.financialEntryDateFromPicker = new System.Windows.Forms.DateTimePicker();
+            this.contributorGroupBox = new System.Windows.Forms.GroupBox();
+            this.contributorComboBox = new System.Windows.Forms.ComboBox();
+            this.financialEntrySearchButton = new System.Windows.Forms.Button();
+            this.targetTypeFilterGroupBox = new System.Windows.Forms.GroupBox();
+            this.financialReferenceFilterComboBox = new System.Windows.Forms.ComboBox();
+            this.targetTypeFilterComboBox = new System.Windows.Forms.ComboBox();
             this.financialEntryContentPanel = new System.Windows.Forms.Panel();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.contributorGroupBox = new System.Windows.Forms.GroupBox();
-            this.contributorComboBox = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.totalBalanceGroupBox = new System.Windows.Forms.GroupBox();
-            this.currentBalanceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
-            this.targetTypeFilterGroupBox.SuspendLayout();
-            this.financialEntryDateFilterGroupBox.SuspendLayout();
-            this.financialEntryContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
-            this.contributorGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
             this.totalBalanceGroupBox.SuspendLayout();
+            this.financialEntryDateFilterGroupBox.SuspendLayout();
+            this.contributorGroupBox.SuspendLayout();
+            this.targetTypeFilterGroupBox.SuspendLayout();
+            this.financialEntryContentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -110,8 +110,8 @@
             // financialEntryDateColumn
             // 
             this.financialEntryDateColumn.DataPropertyName = "Date";
-            dataGridViewCellStyle93.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle93;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.financialEntryDateColumn.HeaderText = "Data";
             this.financialEntryDateColumn.Name = "financialEntryDateColumn";
             this.financialEntryDateColumn.ReadOnly = true;
@@ -143,8 +143,8 @@
             // financialEntryBalanceColumn
             // 
             this.financialEntryBalanceColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.financialEntryBalanceColumn.HeaderText = "Valor";
             this.financialEntryBalanceColumn.Name = "financialEntryBalanceColumn";
             this.financialEntryBalanceColumn.ReadOnly = true;
@@ -152,8 +152,8 @@
             // financialEntryBalanceTypeColumn
             // 
             this.financialEntryBalanceTypeColumn.DataPropertyName = "Category";
-            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.financialEntryBalanceTypeColumn.HeaderText = "D/C";
             this.financialEntryBalanceTypeColumn.Name = "financialEntryBalanceTypeColumn";
             this.financialEntryBalanceTypeColumn.ReadOnly = true;
@@ -161,8 +161,8 @@
             // financialEntryTotalBalanceColumn
             // 
             this.financialEntryTotalBalanceColumn.DataPropertyName = "Balance";
-            dataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.financialEntryTotalBalanceColumn.HeaderText = "Saldo";
             this.financialEntryTotalBalanceColumn.Name = "financialEntryTotalBalanceColumn";
             this.financialEntryTotalBalanceColumn.ReadOnly = true;
@@ -244,131 +244,6 @@
             this.financialEntryFilterPanel.Size = new System.Drawing.Size(1006, 111);
             this.financialEntryFilterPanel.TabIndex = 3;
             // 
-            // targetTypeFilterGroupBox
-            // 
-            this.targetTypeFilterGroupBox.Controls.Add(this.financialReferenceFilterComboBox);
-            this.targetTypeFilterGroupBox.Controls.Add(this.targetTypeFilterComboBox);
-            this.targetTypeFilterGroupBox.Location = new System.Drawing.Point(171, 3);
-            this.targetTypeFilterGroupBox.Name = "targetTypeFilterGroupBox";
-            this.targetTypeFilterGroupBox.Size = new System.Drawing.Size(218, 81);
-            this.targetTypeFilterGroupBox.TabIndex = 7;
-            this.targetTypeFilterGroupBox.TabStop = false;
-            this.targetTypeFilterGroupBox.Text = "Origem / Tipo de Lançamento";
-            // 
-            // financialReferenceFilterComboBox
-            // 
-            this.financialReferenceFilterComboBox.DisplayMember = "Description";
-            this.financialReferenceFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.financialReferenceFilterComboBox.FormattingEnabled = true;
-            this.financialReferenceFilterComboBox.Location = new System.Drawing.Point(17, 46);
-            this.financialReferenceFilterComboBox.Name = "financialReferenceFilterComboBox";
-            this.financialReferenceFilterComboBox.Size = new System.Drawing.Size(175, 21);
-            this.financialReferenceFilterComboBox.TabIndex = 0;
-            this.financialReferenceFilterComboBox.ValueMember = "Id";
-            // 
-            // targetTypeFilterComboBox
-            // 
-            this.targetTypeFilterComboBox.DisplayMember = "Name";
-            this.targetTypeFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.targetTypeFilterComboBox.FormattingEnabled = true;
-            this.targetTypeFilterComboBox.Location = new System.Drawing.Point(17, 19);
-            this.targetTypeFilterComboBox.Name = "targetTypeFilterComboBox";
-            this.targetTypeFilterComboBox.Size = new System.Drawing.Size(175, 21);
-            this.targetTypeFilterComboBox.TabIndex = 0;
-            this.targetTypeFilterComboBox.ValueMember = "Id";
-            this.targetTypeFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.targetTypeFilterComboBox_SelectedIndexChanged);
-            // 
-            // financialEntrySearchButton
-            // 
-            this.financialEntrySearchButton.Location = new System.Drawing.Point(396, 59);
-            this.financialEntrySearchButton.Name = "financialEntrySearchButton";
-            this.financialEntrySearchButton.Size = new System.Drawing.Size(82, 25);
-            this.financialEntrySearchButton.TabIndex = 5;
-            this.financialEntrySearchButton.Text = "Buscar...";
-            this.financialEntrySearchButton.UseVisualStyleBackColor = true;
-            this.financialEntrySearchButton.Click += new System.EventHandler(this.financialEntrySearchButton_Click);
-            // 
-            // financialEntryDateFilterGroupBox
-            // 
-            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateToLabel);
-            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateFromLabel);
-            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateToPicker);
-            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateFromPicker);
-            this.financialEntryDateFilterGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.financialEntryDateFilterGroupBox.Name = "financialEntryDateFilterGroupBox";
-            this.financialEntryDateFilterGroupBox.Size = new System.Drawing.Size(162, 81);
-            this.financialEntryDateFilterGroupBox.TabIndex = 1;
-            this.financialEntryDateFilterGroupBox.TabStop = false;
-            this.financialEntryDateFilterGroupBox.Text = "Data de Lançamento";
-            // 
-            // financialEntryDateToLabel
-            // 
-            this.financialEntryDateToLabel.AutoSize = true;
-            this.financialEntryDateToLabel.Location = new System.Drawing.Point(9, 50);
-            this.financialEntryDateToLabel.Name = "financialEntryDateToLabel";
-            this.financialEntryDateToLabel.Size = new System.Drawing.Size(26, 13);
-            this.financialEntryDateToLabel.TabIndex = 3;
-            this.financialEntryDateToLabel.Text = "Até:";
-            // 
-            // financialEntryDateFromLabel
-            // 
-            this.financialEntryDateFromLabel.AutoSize = true;
-            this.financialEntryDateFromLabel.Location = new System.Drawing.Point(9, 25);
-            this.financialEntryDateFromLabel.Name = "financialEntryDateFromLabel";
-            this.financialEntryDateFromLabel.Size = new System.Drawing.Size(24, 13);
-            this.financialEntryDateFromLabel.TabIndex = 3;
-            this.financialEntryDateFromLabel.Text = "De:";
-            // 
-            // financialEntryDateToPicker
-            // 
-            this.financialEntryDateToPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.financialEntryDateToPicker.Location = new System.Drawing.Point(41, 48);
-            this.financialEntryDateToPicker.Name = "financialEntryDateToPicker";
-            this.financialEntryDateToPicker.Size = new System.Drawing.Size(95, 20);
-            this.financialEntryDateToPicker.TabIndex = 4;
-            // 
-            // financialEntryDateFromPicker
-            // 
-            this.financialEntryDateFromPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.financialEntryDateFromPicker.Location = new System.Drawing.Point(41, 21);
-            this.financialEntryDateFromPicker.Name = "financialEntryDateFromPicker";
-            this.financialEntryDateFromPicker.Size = new System.Drawing.Size(95, 20);
-            this.financialEntryDateFromPicker.TabIndex = 2;
-            // 
-            // financialEntryContentPanel
-            // 
-            this.financialEntryContentPanel.Controls.Add(this.dataGridView);
-            this.financialEntryContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.financialEntryContentPanel.Location = new System.Drawing.Point(0, 111);
-            this.financialEntryContentPanel.Name = "financialEntryContentPanel";
-            this.financialEntryContentPanel.Size = new System.Drawing.Size(1006, 463);
-            this.financialEntryContentPanel.TabIndex = 6;
-            // 
-            // exportToExcelSaveFileDialog
-            // 
-            this.exportToExcelSaveFileDialog.Filter = "Excel files|*.xlsx";
-            // 
-            // contributorGroupBox
-            // 
-            this.contributorGroupBox.Controls.Add(this.contributorComboBox);
-            this.contributorGroupBox.Location = new System.Drawing.Point(396, 4);
-            this.contributorGroupBox.Name = "contributorGroupBox";
-            this.contributorGroupBox.Size = new System.Drawing.Size(200, 50);
-            this.contributorGroupBox.TabIndex = 8;
-            this.contributorGroupBox.TabStop = false;
-            this.contributorGroupBox.Text = "Contribuinte";
-            // 
-            // contributorComboBox
-            // 
-            this.contributorComboBox.DisplayMember = "Name";
-            this.contributorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.contributorComboBox.FormattingEnabled = true;
-            this.contributorComboBox.Location = new System.Drawing.Point(6, 19);
-            this.contributorComboBox.Name = "contributorComboBox";
-            this.contributorComboBox.Size = new System.Drawing.Size(188, 21);
-            this.contributorComboBox.TabIndex = 0;
-            this.contributorComboBox.ValueMember = "Id";
-            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
@@ -405,6 +280,133 @@
             this.currentBalanceLabel.TabIndex = 0;
             this.currentBalanceLabel.Text = "N/A";
             // 
+            // financialEntryDateFilterGroupBox
+            // 
+            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateToLabel);
+            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateFromLabel);
+            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateToPicker);
+            this.financialEntryDateFilterGroupBox.Controls.Add(this.financialEntryDateFromPicker);
+            this.financialEntryDateFilterGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.financialEntryDateFilterGroupBox.Name = "financialEntryDateFilterGroupBox";
+            this.financialEntryDateFilterGroupBox.Size = new System.Drawing.Size(162, 81);
+            this.financialEntryDateFilterGroupBox.TabIndex = 1;
+            this.financialEntryDateFilterGroupBox.TabStop = false;
+            this.financialEntryDateFilterGroupBox.Text = "Data de Lançamento";
+            // 
+            // financialEntryDateToLabel
+            // 
+            this.financialEntryDateToLabel.AutoSize = true;
+            this.financialEntryDateToLabel.Location = new System.Drawing.Point(9, 50);
+            this.financialEntryDateToLabel.Name = "financialEntryDateToLabel";
+            this.financialEntryDateToLabel.Size = new System.Drawing.Size(26, 13);
+            this.financialEntryDateToLabel.TabIndex = 3;
+            this.financialEntryDateToLabel.Text = "Até:";
+            // 
+            // financialEntryDateFromLabel
+            // 
+            this.financialEntryDateFromLabel.AutoSize = true;
+            this.financialEntryDateFromLabel.Location = new System.Drawing.Point(9, 25);
+            this.financialEntryDateFromLabel.Name = "financialEntryDateFromLabel";
+            this.financialEntryDateFromLabel.Size = new System.Drawing.Size(24, 13);
+            this.financialEntryDateFromLabel.TabIndex = 3;
+            this.financialEntryDateFromLabel.Text = "De:";
+            // 
+            // financialEntryDateToPicker
+            // 
+            this.financialEntryDateToPicker.CustomFormat = "dd/MM/yyyy";
+            this.financialEntryDateToPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.financialEntryDateToPicker.Location = new System.Drawing.Point(41, 48);
+            this.financialEntryDateToPicker.Name = "financialEntryDateToPicker";
+            this.financialEntryDateToPicker.Size = new System.Drawing.Size(95, 20);
+            this.financialEntryDateToPicker.TabIndex = 4;
+            // 
+            // financialEntryDateFromPicker
+            // 
+            this.financialEntryDateFromPicker.CustomFormat = "dd/MM/yyyy";
+            this.financialEntryDateFromPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.financialEntryDateFromPicker.Location = new System.Drawing.Point(41, 21);
+            this.financialEntryDateFromPicker.Name = "financialEntryDateFromPicker";
+            this.financialEntryDateFromPicker.Size = new System.Drawing.Size(95, 20);
+            this.financialEntryDateFromPicker.TabIndex = 2;
+            // 
+            // contributorGroupBox
+            // 
+            this.contributorGroupBox.Controls.Add(this.contributorComboBox);
+            this.contributorGroupBox.Location = new System.Drawing.Point(396, 4);
+            this.contributorGroupBox.Name = "contributorGroupBox";
+            this.contributorGroupBox.Size = new System.Drawing.Size(200, 50);
+            this.contributorGroupBox.TabIndex = 8;
+            this.contributorGroupBox.TabStop = false;
+            this.contributorGroupBox.Text = "Contribuinte";
+            // 
+            // contributorComboBox
+            // 
+            this.contributorComboBox.DisplayMember = "Name";
+            this.contributorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.contributorComboBox.FormattingEnabled = true;
+            this.contributorComboBox.Location = new System.Drawing.Point(6, 19);
+            this.contributorComboBox.Name = "contributorComboBox";
+            this.contributorComboBox.Size = new System.Drawing.Size(188, 21);
+            this.contributorComboBox.TabIndex = 0;
+            this.contributorComboBox.ValueMember = "Id";
+            // 
+            // financialEntrySearchButton
+            // 
+            this.financialEntrySearchButton.Location = new System.Drawing.Point(396, 59);
+            this.financialEntrySearchButton.Name = "financialEntrySearchButton";
+            this.financialEntrySearchButton.Size = new System.Drawing.Size(82, 25);
+            this.financialEntrySearchButton.TabIndex = 5;
+            this.financialEntrySearchButton.Text = "Buscar...";
+            this.financialEntrySearchButton.UseVisualStyleBackColor = true;
+            this.financialEntrySearchButton.Click += new System.EventHandler(this.financialEntrySearchButton_Click);
+            // 
+            // targetTypeFilterGroupBox
+            // 
+            this.targetTypeFilterGroupBox.Controls.Add(this.financialReferenceFilterComboBox);
+            this.targetTypeFilterGroupBox.Controls.Add(this.targetTypeFilterComboBox);
+            this.targetTypeFilterGroupBox.Location = new System.Drawing.Point(171, 3);
+            this.targetTypeFilterGroupBox.Name = "targetTypeFilterGroupBox";
+            this.targetTypeFilterGroupBox.Size = new System.Drawing.Size(218, 81);
+            this.targetTypeFilterGroupBox.TabIndex = 7;
+            this.targetTypeFilterGroupBox.TabStop = false;
+            this.targetTypeFilterGroupBox.Text = "Origem / Tipo de Lançamento";
+            // 
+            // financialReferenceFilterComboBox
+            // 
+            this.financialReferenceFilterComboBox.DisplayMember = "Description";
+            this.financialReferenceFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.financialReferenceFilterComboBox.FormattingEnabled = true;
+            this.financialReferenceFilterComboBox.Location = new System.Drawing.Point(17, 46);
+            this.financialReferenceFilterComboBox.Name = "financialReferenceFilterComboBox";
+            this.financialReferenceFilterComboBox.Size = new System.Drawing.Size(175, 21);
+            this.financialReferenceFilterComboBox.TabIndex = 0;
+            this.financialReferenceFilterComboBox.ValueMember = "Id";
+            // 
+            // targetTypeFilterComboBox
+            // 
+            this.targetTypeFilterComboBox.DisplayMember = "Name";
+            this.targetTypeFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.targetTypeFilterComboBox.FormattingEnabled = true;
+            this.targetTypeFilterComboBox.Location = new System.Drawing.Point(17, 19);
+            this.targetTypeFilterComboBox.Name = "targetTypeFilterComboBox";
+            this.targetTypeFilterComboBox.Size = new System.Drawing.Size(175, 21);
+            this.targetTypeFilterComboBox.TabIndex = 0;
+            this.targetTypeFilterComboBox.ValueMember = "Id";
+            this.targetTypeFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.targetTypeFilterComboBox_SelectedIndexChanged);
+            // 
+            // financialEntryContentPanel
+            // 
+            this.financialEntryContentPanel.Controls.Add(this.dataGridView);
+            this.financialEntryContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.financialEntryContentPanel.Location = new System.Drawing.Point(0, 111);
+            this.financialEntryContentPanel.Name = "financialEntryContentPanel";
+            this.financialEntryContentPanel.Size = new System.Drawing.Size(1006, 463);
+            this.financialEntryContentPanel.TabIndex = 6;
+            // 
+            // exportToExcelSaveFileDialog
+            // 
+            this.exportToExcelSaveFileDialog.Filter = "Excel files|*.xlsx";
+            // 
             // FinancialEntryListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,15 +420,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.buttonPanel.ResumeLayout(false);
             this.financialEntryFilterPanel.ResumeLayout(false);
-            this.targetTypeFilterGroupBox.ResumeLayout(false);
-            this.financialEntryDateFilterGroupBox.ResumeLayout(false);
-            this.financialEntryDateFilterGroupBox.PerformLayout();
-            this.financialEntryContentPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
-            this.contributorGroupBox.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.totalBalanceGroupBox.ResumeLayout(false);
             this.totalBalanceGroupBox.PerformLayout();
+            this.financialEntryDateFilterGroupBox.ResumeLayout(false);
+            this.financialEntryDateFilterGroupBox.PerformLayout();
+            this.contributorGroupBox.ResumeLayout(false);
+            this.targetTypeFilterGroupBox.ResumeLayout(false);
+            this.financialEntryContentPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

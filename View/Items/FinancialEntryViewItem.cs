@@ -20,7 +20,7 @@ namespace TadManagementTool.View.Items
             return new FinancialEntryViewItem(wrapper)
             {
                 Id = wrapper.Id,
-                Date = wrapper.ToEntryDate().ToShortDateString(),
+                Date = wrapper.ToEntryDate().ToString("dd/MM/yyyy"),
                 TargetReference = wrapper.Target.Id,
                 TargetDescription = wrapper.Target.Name,
                 TypeReference = wrapper.Type.Id,

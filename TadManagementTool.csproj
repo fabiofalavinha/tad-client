@@ -210,6 +210,12 @@
     <Compile Include="FinancialReferenceUserControl.Designer.cs">
       <DependentUpon>FinancialReferenceUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FinancialTargetHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinancialTargetHistoryForm.Designer.cs">
+      <DependentUpon>FinancialTargetHistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageItemUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,7 +278,9 @@
     <Compile Include="Model\Financial\FinancialReceiptInfo.cs" />
     <Compile Include="Model\Financial\FinancialReference.cs" />
     <Compile Include="Model\Financial\FinancialTarget.cs" />
+    <Compile Include="Model\Financial\FinancialTargetHistoryFilter.cs" />
     <Compile Include="Model\Financial\FinancialTargetType.cs" />
+    <Compile Include="Model\Financial\Period.cs" />
     <Compile Include="Model\GenderType.cs" />
     <Compile Include="Model\MonthOfBirthday.cs" />
     <Compile Include="Model\NewsletterUser.cs" />
@@ -322,6 +330,7 @@
     <Compile Include="Presenter\IFinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\IFinancialReferenceListPresenter.cs" />
     <Compile Include="Presenter\IFinancialReferencePresenter.cs" />
+    <Compile Include="Presenter\IFinancialTargetHistoryPresenter.cs" />
     <Compile Include="Presenter\IImageListPresenter.cs" />
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
     <Compile Include="Presenter\Impl\ConfirmCloseFinancialBalancePresenter.cs" />
@@ -329,6 +338,7 @@
     <Compile Include="Presenter\Impl\FinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferenceListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferencePresenter.cs" />
+    <Compile Include="Presenter\Impl\FinancialTargetHistoryPresenter.cs" />
     <Compile Include="Presenter\Impl\NewsletterUserListPresenter.cs" />
     <Compile Include="Presenter\Impl\NewsletterUserPresenter.cs" />
     <Compile Include="Presenter\INewsletterUserListPresenter.cs" />
@@ -393,6 +403,7 @@
     <Compile Include="View\Impl\IEventEnrollmentView.cs" />
     <Compile Include="View\Impl\IFinancialReferenceListView.cs" />
     <Compile Include="View\Impl\IFinancialReferenceView.cs" />
+    <Compile Include="View\Impl\IFinancialTargetHistoryView.cs" />
     <Compile Include="View\Impl\IImageListView.cs" />
     <Compile Include="View\Impl\IListCollaboratorView.cs" />
     <Compile Include="View\IMenuActionView.cs" />
@@ -463,6 +474,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FinancialReferenceUserControl.resx">
       <DependentUpon>FinancialReferenceUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinancialTargetHistoryForm.resx">
+      <DependentUpon>FinancialTargetHistoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageItemUserControl.resx">
       <DependentUpon>ImageItemUserControl.cs</DependentUpon>
@@ -547,6 +561,7 @@
     <Content Include="App_Readme\Spring.Rest.txt" />
     <Content Include="Resources\add.png" />
     <Content Include="Resources\backcolor.bmp" />
+    <None Include="Resources\financial_entry_history.png" />
     <Content Include="tad.ico" />
     <None Include="Resources\birthdays.png" />
     <None Include="Resources\birthday-item-background.png" />

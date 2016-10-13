@@ -18,6 +18,7 @@ namespace TadManagementTool
         private readonly FinancialEntryViewItem currentViewItem;
 
         private bool populateFormFields = false;
+        private FinancialTargetHistoryForm form;
 
         public FinancialEntryEnrollmentForm()
         {
@@ -103,6 +104,10 @@ namespace TadManagementTool
             {
                 BeginInvoke(new Action(CloseView));
                 return;
+            }
+            if (form != null)
+            {
+                form.Close();
             }
             DialogResult = DialogResult.OK;
         }
@@ -421,6 +426,43 @@ namespace TadManagementTool
                 return;
             }
             entryDateTimePicker.MinDate = dateTime;
+        }
+
+        private void openHistoryButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnOpenHistoryView();
+        }
+
+        public void OpenHistoryView(FinancialTargetHistoryFilter filter)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<FinancialTargetHistoryFilter>(OpenHistoryView), filter);
+                return;
+            }
+            if (form != null)
+            {
+                form.Close();
+                form = null;
+            }
+            form = new FinancialTargetHistoryForm(filter);
+            form.Location = new Point(Location.X + Width, Location.Y);
+            form.Show();
+        }
+
+        public void SetHistoryButtonVisible(bool visible)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetHistoryButtonVisible), visible);
+                return;
+            }
+            openHistoryButton.Visible = visible;
+        }
+
+        private void targetComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            presenter.OnTargetSelected();
         }
     }
 }
