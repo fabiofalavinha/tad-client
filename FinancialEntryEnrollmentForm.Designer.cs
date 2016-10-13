@@ -312,7 +312,7 @@
             this.entryDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.entryDateTimePicker.Location = new System.Drawing.Point(195, 22);
             this.entryDateTimePicker.Name = "entryDateTimePicker";
-            this.entryDateTimePicker.Size = new System.Drawing.Size(91, 20);
+            this.entryDateTimePicker.Size = new System.Drawing.Size(101, 20);
             this.entryDateTimePicker.TabIndex = 2;
             // 
             // entryDateLabel
@@ -345,6 +345,7 @@
             this.Name = "FinancialEntryEnrollmentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dados do Lançamento Financeiro";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FinancialEntryEnrollmentForm_FormClosing);
             this.Load += new System.EventHandler(this.FinancialEntryEnrollmentForm_Load);
             this.buttonPanel.ResumeLayout(false);
             this.contentPanel.ResumeLayout(false);

@@ -105,10 +105,6 @@ namespace TadManagementTool
                 BeginInvoke(new Action(CloseView));
                 return;
             }
-            if (form != null)
-            {
-                form.Close();
-            }
             DialogResult = DialogResult.OK;
         }
 
@@ -463,6 +459,15 @@ namespace TadManagementTool
         private void targetComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             presenter.OnTargetSelected();
+        }
+
+        private void FinancialEntryEnrollmentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (form != null)
+            {
+                form.Close();
+                form = null;
+            }
         }
     }
 }
