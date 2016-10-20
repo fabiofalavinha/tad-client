@@ -173,6 +173,12 @@
     <Compile Include="ConfirmCloseFinancialBalanceForm.Designer.cs">
       <DependentUpon>ConfirmCloseFinancialBalanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsecrationListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsecrationListUserControl.Designer.cs">
+      <DependentUpon>ConsecrationListUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -456,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmCloseFinancialBalanceForm.resx">
       <DependentUpon>ConfirmCloseFinancialBalanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsecrationListUserControl.resx">
+      <DependentUpon>ConsecrationListUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>

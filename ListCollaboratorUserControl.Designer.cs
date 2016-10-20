@@ -49,6 +49,7 @@
             this.filterGroupBox = new System.Windows.Forms.GroupBox();
             this.filterActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.collaboratorSearchButton = new System.Windows.Forms.Button();
+            this.nonCollaboratorFilterCheckBox = new System.Windows.Forms.CheckBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
@@ -222,6 +223,7 @@
             // 
             this.filterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterGroupBox.Controls.Add(this.nonCollaboratorFilterCheckBox);
             this.filterGroupBox.Controls.Add(this.filterActiveCheckBox);
             this.filterGroupBox.Controls.Add(this.activeCollaboratorCountLabel);
             this.filterGroupBox.Controls.Add(this.activeCollaboratorCountValueLabel);
@@ -254,6 +256,18 @@
             this.collaboratorSearchButton.Text = "Buscar";
             this.collaboratorSearchButton.UseVisualStyleBackColor = true;
             this.collaboratorSearchButton.Click += new System.EventHandler(this.collaboratorSearchButton_Click);
+            // 
+            // nonCollaboratorFilterCheckBox
+            // 
+            this.nonCollaboratorFilterCheckBox.AutoSize = true;
+            this.nonCollaboratorFilterCheckBox.Checked = true;
+            this.nonCollaboratorFilterCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.nonCollaboratorFilterCheckBox.Location = new System.Drawing.Point(148, 19);
+            this.nonCollaboratorFilterCheckBox.Name = "nonCollaboratorFilterCheckBox";
+            this.nonCollaboratorFilterCheckBox.Size = new System.Drawing.Size(123, 17);
+            this.nonCollaboratorFilterCheckBox.TabIndex = 5;
+            this.nonCollaboratorFilterCheckBox.Text = "Não Colaboradores?";
+            this.nonCollaboratorFilterCheckBox.UseVisualStyleBackColor = true;
             // 
             // modalWaitingPanel
             // 
@@ -308,5 +322,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorTelephoneColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contributorColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollaboratorActiveColumn;
+        private System.Windows.Forms.CheckBox nonCollaboratorFilterCheckBox;
     }
 }

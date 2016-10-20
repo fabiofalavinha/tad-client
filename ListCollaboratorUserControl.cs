@@ -258,11 +258,11 @@ namespace TadManagementTool
             }
         }
 
-        public bool GetFilterActive()
+        public bool IsActiveFilterChecked()
         {
             if (InvokeRequired)
             {
-                return (bool)Invoke(new Func<bool>(GetFilterActive));
+                return (bool)Invoke(new Func<bool>(IsActiveFilterChecked));
             }
             return filterActiveCheckBox.Checked;
         }
@@ -278,6 +278,15 @@ namespace TadManagementTool
             {
                 presenter.OnColumnReOrder(e.Column.Name, e.Column.DisplayIndex);
             }
+        }
+
+        public bool IsNonCollaboratorFilterChecked()
+        {
+            if (InvokeRequired)
+            {
+                return (bool)Invoke(new Func<bool>(IsNonCollaboratorFilterChecked));
+            }
+            return nonCollaboratorFilterCheckBox.Checked;
         }
     }
 }

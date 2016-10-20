@@ -22,9 +22,13 @@ namespace TadManagementTool.Presenter.Impl
 
         private void DoSetCollaboratorList(IList<Collaborator> list)
         {
-            if (View.GetFilterActive())
+            if (View.IsActiveFilterChecked())
             {
-                list = list.Where(c => c.Active == View.GetFilterActive()).ToArray();
+                list = list.Where(c => c.Active == View.IsActiveFilterChecked()).ToArray();
+            }
+            if (!View.IsNonCollaboratorFilterChecked())
+            {
+                list = list.Where(c => c.IsCollaborator).ToArray();
             }
             View.SetCollaboratorList(list.Select(c => new CollaboratorViewItem(c)).ToArray(), UserContext.GetInstance().Profile.CollaboratorPreferences);
             View.SetActiveCollaboratorCount(list.Count(c => c.Active));
