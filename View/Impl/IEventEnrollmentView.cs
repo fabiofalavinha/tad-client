@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using TadManagementTool.Model;
 using TadManagementTool.View.Items;
@@ -12,6 +13,7 @@ namespace TadManagementTool.View.Impl
         DateTime GetEventDate();
         string GetEventNotes();
         VisibilityType GetEventVisibility();
+        EventCategoryViewItem GetEventCategory();
         Color? SelectEventBackColor();
         Color? SelectEventFontColor();
         Color GetEventBackColor();
@@ -24,5 +26,8 @@ namespace TadManagementTool.View.Impl
         void SetRemoveButtonVisible(bool visible);
         void SetEventBackColor(Color color);
         void SetEventFontColor(Color color);
+        void SetCategoryList(IList<EventCategoryViewItem> list);
+        void SetCategoryVisible(bool visible);
+        void SetEventCategory(EventCategoryViewItem viewItem);
     }
 }

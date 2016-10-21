@@ -47,5 +47,18 @@ namespace TadManagementTool.Model
 
         [JsonProperty("fontColor")]
         public string FontColor { get; set; }
+
+        [JsonProperty("category")]
+        public int Category { get; set; }
+
+        public VisibilityType GetVisibilityType()
+        {
+            return VisibilityTypeExtensions.FromValue(Visibility);
+        }
+
+        public EventCategory GetEventCategory()
+        {
+            return EventCategoryExtensions.FromValue(Category);
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using TadManagementTool.Model;
 using TadManagementTool.Presenter;
@@ -287,6 +289,62 @@ namespace TadManagementTool
                 return (Color)Invoke(new Func<Color>(GetEventFontColor));
             }
             return eventFontColorValueLabel.BackColor;
+        }
+
+        private void eventInternalVisibilityRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            presenter.OnInternalVisibilitySelected();
+        }
+
+        private void eventPublicVisibilityRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            presenter.OnPublicVisibilitySelected();
+        }
+
+        public void SetCategoryVisible(bool visible)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetCategoryVisible), visible);
+                return;
+            }
+            categoryLabel.Visible = visible;
+            categoryComboBox.Visible = visible;
+            categoryComboBox.SelectedIndex = -1;
+        }
+
+        public void SetCategoryList(IList<EventCategoryViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<EventCategoryViewItem>>(SetCategoryList), list);
+                return;
+            }
+            categoryComboBox.Items.Clear();
+            categoryComboBox.Items.AddRange(list.ToArray());
+        }
+
+        public EventCategoryViewItem GetEventCategory()
+        {
+            if (InvokeRequired)
+            {
+                return (EventCategoryViewItem)Invoke(new Func<EventCategoryViewItem>(GetEventCategory));
+            }
+            return (EventCategoryViewItem)categoryComboBox.SelectedItem;
+        }
+
+        public void SetEventCategory(EventCategoryViewItem viewItem)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<EventCategoryViewItem>(SetEventCategory), viewItem);
+                return;
+            }
+            var found = categoryComboBox.Items.Cast<EventCategoryViewItem>().SingleOrDefault(i => i.Id.Equals(viewItem.Id));
+            if (found != null)
+            {
+                categoryComboBox.SelectedItem = found;
+            }
         }
     }
 }

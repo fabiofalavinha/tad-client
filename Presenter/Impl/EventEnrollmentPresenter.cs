@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TadManagementTool.Model;
@@ -11,7 +12,7 @@ namespace TadManagementTool.Presenter.Impl
     public class EventEnrollmentPresenter : AbstractDialogPresenter<IEventEnrollmentView>, IEventEnrollmentPresenter
     {
         private readonly EventService eventService;
-        
+
         private Event editedEvent;
 
         public EventEnrollmentPresenter(IEventEnrollmentView view)
@@ -23,17 +24,19 @@ namespace TadManagementTool.Presenter.Impl
             : base(view)
         {
             this.editedEvent = editedEvent;
-            this.eventService = new EventService();
+            eventService = new EventService();
         }
 
         public void InitView()
         {
+            View.SetCategoryList(EventCategoryExtensions.GetEventCategoryList().Select(c => new EventCategoryViewItem(c)).ToArray());
             if (editedEvent != null)
             {
                 View.SetEventTitle(editedEvent.Title);
                 View.SetEventDate(editedEvent.Date);
                 View.SetEventNotes(editedEvent.Notes);
                 View.SetEventVisibility(VisibilityTypeExtensions.FromValue(editedEvent.Visibility));
+                View.SetEventCategory(new EventCategoryViewItem(editedEvent.GetEventCategory()));
                 View.SetEventFontColor(editedEvent.FontColor.FromHex(Color.White));
                 View.SetEventBackColor(editedEvent.BackColor.FromHex(Color.Red));
                 View.SetRemoveButtonVisible(true);
@@ -55,25 +58,46 @@ namespace TadManagementTool.Presenter.Impl
         {
             var task = new Task<Event>(() =>
             {
-                View.ShowWaitingPanel("Criando evento...");
+                var updatingEvent = editedEvent != null;
+                if (updatingEvent)
+                {
+                    View.ShowWaitingPanel("Atualizando evento...");
+                }
+                else
+                {
+                    View.ShowWaitingPanel("Criando evento...");
+                }
                 var title = View.GetEventTitle();
                 if (string.IsNullOrWhiteSpace(title))
                 {
                     View.ShowWarningMessage("Título do evento é obrigatório");
                     return null;
                 }
+                var category = EventCategory.General;
                 var date = View.GetEventDate();
                 var notes = View.GetEventNotes();
+                var eventVisibility = View.GetEventVisibility();
+                if (eventVisibility == VisibilityType.Internal)
+                {
+                    var eventCategoryViewItem = View.GetEventCategory();
+                    if (eventCategoryViewItem == null)
+                    {
+                        View.ShowWarningMessage("Selecione uma categoria para o evento");
+                        return null;
+                    }
+                    category = eventCategoryViewItem.Wrapper;
+                }
                 var newEvent = new Event()
                 {
                     Title = title,
                     Date = date,
                     Notes = notes,
+                    Category = (int)category,
                     Visibility = (int)View.GetEventVisibility(),
                     BackColor = View.GetEventBackColor().ToHex(),
                     FontColor = View.GetEventFontColor().ToHex()
                 };
-                if (editedEvent != null)
+                if (updatingEvent)
                 {
                     newEvent.Id = editedEvent.Id;
                 }
@@ -92,7 +116,7 @@ namespace TadManagementTool.Presenter.Impl
             task.ContinueWith(t =>
             {
                 View.HideWaitingPanel();
-                foreach (var innerException in t.Exception.InnerExceptions) 
+                foreach (var innerException in t.Exception.InnerExceptions)
                 {
                     View.ShowErrorMessage(innerException.Message);
                 }
@@ -143,6 +167,16 @@ namespace TadManagementTool.Presenter.Impl
             {
                 View.SetEventFontColor(color.Value);
             }
+        }
+
+        public void OnInternalVisibilitySelected()
+        {
+            View.SetCategoryVisible(true);
+        }
+
+        public void OnPublicVisibilitySelected()
+        {
+            View.SetCategoryVisible(false);
         }
     }
 }

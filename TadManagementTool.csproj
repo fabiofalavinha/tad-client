@@ -275,6 +275,7 @@
     <Compile Include="Model\Collaborator.cs" />
     <Compile Include="Model\CollaboratorPreferences.cs" />
     <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\EventCategory.cs" />
     <Compile Include="Model\Financial\Balance.cs" />
     <Compile Include="Model\Financial\Category.cs" />
     <Compile Include="Model\Financial\CloseableFinancialEntry.cs" />
@@ -429,6 +430,7 @@
     <Compile Include="View\Items\CategoryViewItem.cs" />
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
     <Compile Include="View\Items\ContributorViewItem.cs" />
+    <Compile Include="View\Items\EventCategoryViewItem.cs" />
     <Compile Include="View\Items\EventResult.cs" />
     <Compile Include="View\Items\FinancialEntryViewItem.cs" />
     <Compile Include="View\Items\FinancialReferenceOptionViewItem.cs" />
