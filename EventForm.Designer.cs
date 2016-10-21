@@ -49,6 +49,8 @@
             this.eventColorGroupBox = new System.Windows.Forms.GroupBox();
             this.fontColorDialog = new System.Windows.Forms.ColorDialog();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.categoryLabel = new System.Windows.Forms.Label();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.eventColorGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,6 +143,7 @@
             this.eventPublicVisibilityRadioButton.TabStop = true;
             this.eventPublicVisibilityRadioButton.Text = "Público";
             this.eventPublicVisibilityRadioButton.UseVisualStyleBackColor = true;
+            this.eventPublicVisibilityRadioButton.CheckedChanged += new System.EventHandler(this.eventPublicVisibilityRadioButton_CheckedChanged);
             // 
             // eventInternalVisibilityRadioButton
             // 
@@ -151,6 +154,7 @@
             this.eventInternalVisibilityRadioButton.TabIndex = 6;
             this.eventInternalVisibilityRadioButton.Text = "Interno";
             this.eventInternalVisibilityRadioButton.UseVisualStyleBackColor = true;
+            this.eventInternalVisibilityRadioButton.CheckedChanged += new System.EventHandler(this.eventInternalVisibilityRadioButton_CheckedChanged);
             // 
             // removeEventButton
             // 
@@ -218,17 +222,41 @@
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = this;
             // 
+            // categoryLabel
+            // 
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Location = new System.Drawing.Point(241, 209);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(55, 13);
+            this.categoryLabel.TabIndex = 3;
+            this.categoryLabel.Text = "Categoria:";
+            this.categoryLabel.Visible = false;
+            // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.DisplayMember = "Name";
+            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(302, 206);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.categoryComboBox.TabIndex = 11;
+            this.categoryComboBox.ValueMember = "Id";
+            this.categoryComboBox.Visible = false;
+            // 
             // EventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 334);
+            this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.eventColorGroupBox);
             this.Controls.Add(this.eventInternalVisibilityRadioButton);
             this.Controls.Add(this.eventPublicVisibilityRadioButton);
             this.Controls.Add(this.eventDateTimePicker);
             this.Controls.Add(this.eventNotesTextBox);
             this.Controls.Add(this.eventDateLabel);
+            this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.eventVisibilityLabel);
             this.Controls.Add(this.eventNotesLabel);
             this.Controls.Add(this.eventTitleTextBox);
@@ -273,5 +301,7 @@
         private System.Windows.Forms.Label eventFontColorValueLabel;
         private System.Windows.Forms.GroupBox eventColorGroupBox;
         private System.Windows.Forms.ColorDialog fontColorDialog;
+        private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.ComboBox categoryComboBox;
     }
 }

@@ -7,5 +7,7 @@
         void OnRemoveEvent();
         void OnSelectEventBackColor();
         void OnSelectEventFontColor();
+        void OnInternalVisibilitySelected();
+        void OnPublicVisibilitySelected();
     }
 }
