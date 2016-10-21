@@ -274,6 +274,10 @@
     <Compile Include="Model\CarouselImage.cs" />
     <Compile Include="Model\Collaborator.cs" />
     <Compile Include="Model\CollaboratorPreferences.cs" />
+    <Compile Include="Model\CommunicationMessage.cs" />
+    <Compile Include="Model\Consecration.cs" />
+    <Compile Include="Model\Element.cs" />
+    <Compile Include="Model\ElementUnit.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\EventCategory.cs" />
     <Compile Include="Model\Financial\Balance.cs" />
