@@ -34,5 +34,7 @@ namespace TadManagementTool.View.Impl
         void ShowSuccessMessage(string message);
         void SetFinancialReferenceFilterOptionEnabled(bool v);
         void SetContributorList(IList<ContributorViewItem> list);
+        void ShowBalance();
+        void HideBalance();
     }
 }

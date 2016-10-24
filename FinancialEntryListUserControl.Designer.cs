@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.financialEntryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialEntryTargetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +51,8 @@
             this.financialEntryFilterPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.totalBalanceGroupBox = new System.Windows.Forms.GroupBox();
+            this.moneyDisplayPictureBox = new System.Windows.Forms.PictureBox();
+            this.moneyViewPictureBox = new System.Windows.Forms.PictureBox();
             this.currentBalanceLabel = new System.Windows.Forms.Label();
             this.financialEntryDateFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.financialEntryDateToLabel = new System.Windows.Forms.Label();
@@ -64,13 +66,15 @@
             this.financialReferenceFilterComboBox = new System.Windows.Forms.ComboBox();
             this.targetTypeFilterComboBox = new System.Windows.Forms.ComboBox();
             this.financialEntryContentPanel = new System.Windows.Forms.Panel();
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.exportToExcelSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.buttonPanel.SuspendLayout();
             this.financialEntryFilterPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.totalBalanceGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyDisplayPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyViewPictureBox)).BeginInit();
             this.financialEntryDateFilterGroupBox.SuspendLayout();
             this.contributorGroupBox.SuspendLayout();
             this.targetTypeFilterGroupBox.SuspendLayout();
@@ -110,8 +114,8 @@
             // financialEntryDateColumn
             // 
             this.financialEntryDateColumn.DataPropertyName = "Date";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryDateColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.financialEntryDateColumn.HeaderText = "Data";
             this.financialEntryDateColumn.Name = "financialEntryDateColumn";
             this.financialEntryDateColumn.ReadOnly = true;
@@ -143,8 +147,8 @@
             // financialEntryBalanceColumn
             // 
             this.financialEntryBalanceColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryBalanceColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.financialEntryBalanceColumn.HeaderText = "Valor";
             this.financialEntryBalanceColumn.Name = "financialEntryBalanceColumn";
             this.financialEntryBalanceColumn.ReadOnly = true;
@@ -152,8 +156,8 @@
             // financialEntryBalanceTypeColumn
             // 
             this.financialEntryBalanceTypeColumn.DataPropertyName = "Category";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.financialEntryBalanceTypeColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.financialEntryBalanceTypeColumn.HeaderText = "D/C";
             this.financialEntryBalanceTypeColumn.Name = "financialEntryBalanceTypeColumn";
             this.financialEntryBalanceTypeColumn.ReadOnly = true;
@@ -161,8 +165,8 @@
             // financialEntryTotalBalanceColumn
             // 
             this.financialEntryTotalBalanceColumn.DataPropertyName = "Balance";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.financialEntryTotalBalanceColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.financialEntryTotalBalanceColumn.HeaderText = "Saldo";
             this.financialEntryTotalBalanceColumn.Name = "financialEntryTotalBalanceColumn";
             this.financialEntryTotalBalanceColumn.ReadOnly = true;
@@ -260,6 +264,8 @@
             // 
             // totalBalanceGroupBox
             // 
+            this.totalBalanceGroupBox.Controls.Add(this.moneyDisplayPictureBox);
+            this.totalBalanceGroupBox.Controls.Add(this.moneyViewPictureBox);
             this.totalBalanceGroupBox.Controls.Add(this.currentBalanceLabel);
             this.totalBalanceGroupBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.totalBalanceGroupBox.Location = new System.Drawing.Point(602, 4);
@@ -270,6 +276,31 @@
             this.totalBalanceGroupBox.TabStop = false;
             this.totalBalanceGroupBox.Text = "Saldo Atual";
             // 
+            // moneyDisplayPictureBox
+            // 
+            this.moneyDisplayPictureBox.Image = global::TadManagementTool.Properties.Resources.money_hide;
+            this.moneyDisplayPictureBox.Location = new System.Drawing.Point(72, 24);
+            this.moneyDisplayPictureBox.Name = "moneyDisplayPictureBox";
+            this.moneyDisplayPictureBox.Size = new System.Drawing.Size(44, 38);
+            this.moneyDisplayPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.moneyDisplayPictureBox.TabIndex = 10;
+            this.moneyDisplayPictureBox.TabStop = false;
+            // 
+            // moneyViewPictureBox
+            // 
+            this.moneyViewPictureBox.Image = global::TadManagementTool.Properties.Resources.money_search;
+            this.moneyViewPictureBox.Location = new System.Drawing.Point(161, 52);
+            this.moneyViewPictureBox.Name = "moneyViewPictureBox";
+            this.moneyViewPictureBox.Size = new System.Drawing.Size(29, 25);
+            this.moneyViewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.moneyViewPictureBox.TabIndex = 10;
+            this.moneyViewPictureBox.TabStop = false;
+            this.moneyViewPictureBox.Click += new System.EventHandler(this.moneyViewPictureBox_Click);
+            this.moneyViewPictureBox.MouseEnter += new System.EventHandler(this.moneyViewPictureBox_MouseEnter);
+            this.moneyViewPictureBox.MouseLeave += new System.EventHandler(this.moneyViewPictureBox_MouseLeave);
+            this.moneyViewPictureBox.MouseHover += new System.EventHandler(this.moneyViewPictureBox_MouseHover);
+            this.moneyViewPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.moneyViewPictureBox_MouseMove);
+            // 
             // currentBalanceLabel
             // 
             this.currentBalanceLabel.AutoSize = true;
@@ -279,6 +310,7 @@
             this.currentBalanceLabel.Size = new System.Drawing.Size(46, 25);
             this.currentBalanceLabel.TabIndex = 0;
             this.currentBalanceLabel.Text = "N/A";
+            this.currentBalanceLabel.Visible = false;
             // 
             // financialEntryDateFilterGroupBox
             // 
@@ -423,6 +455,8 @@
             this.panel1.ResumeLayout(false);
             this.totalBalanceGroupBox.ResumeLayout(false);
             this.totalBalanceGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyDisplayPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyViewPictureBox)).EndInit();
             this.financialEntryDateFilterGroupBox.ResumeLayout(false);
             this.financialEntryDateFilterGroupBox.PerformLayout();
             this.contributorGroupBox.ResumeLayout(false);
@@ -468,5 +502,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox totalBalanceGroupBox;
         private System.Windows.Forms.Label currentBalanceLabel;
+        private System.Windows.Forms.PictureBox moneyViewPictureBox;
+        private System.Windows.Forms.PictureBox moneyDisplayPictureBox;
     }
 }

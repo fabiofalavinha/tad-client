@@ -379,6 +379,53 @@ namespace TadManagementTool
             }
         }
 
+        private void moneyViewPictureBox_Click(object sender, EventArgs e)
+        {
+            presenter.OnDisplayBalance();
+        }
+
+        public void ShowBalance()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(ShowBalance));
+                return;
+            }
+            moneyDisplayPictureBox.Visible = false;
+            currentBalanceLabel.Visible = true;
+        }
+
+        public void HideBalance()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(HideBalance));
+                return;
+            }
+            moneyDisplayPictureBox.Visible = true;
+            currentBalanceLabel.Visible = false;
+        }
+
+        private void moneyViewPictureBox_MouseEnter(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void moneyViewPictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
+
+        private void moneyViewPictureBox_MouseHover(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void moneyViewPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
         public abstract class DataGridViewImageButtonCell : DataGridViewButtonCell
         {
             private readonly int buttonImageOffset;

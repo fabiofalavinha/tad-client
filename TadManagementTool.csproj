@@ -28,8 +28,8 @@
     <SuiteName>TAD</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>1612</ApplicationRevision>
-    <ApplicationVersion>4.1.15.%2a</ApplicationVersion>
+    <ApplicationRevision>1613</ApplicationRevision>
+    <ApplicationVersion>4.1.16.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -579,6 +579,9 @@
     <Content Include="Resources\add.png" />
     <Content Include="Resources\backcolor.bmp" />
     <None Include="Resources\financial_entry_history.png" />
+    <Content Include="Resources\money_hide.png" />
+    <Content Include="Resources\money_search.png" />
+    <Content Include="Resources\money_show.png" />
     <Content Include="tad.ico" />
     <None Include="Resources\birthdays.png" />
     <None Include="Resources\birthday-item-background.png" />

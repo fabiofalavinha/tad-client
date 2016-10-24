@@ -11,5 +11,6 @@
         void OnSelectedFinancialEntry();
         void OnExportToExcel();
         void OnSendFinancialReceipt();
+        void OnDisplayBalance();
     }
 }

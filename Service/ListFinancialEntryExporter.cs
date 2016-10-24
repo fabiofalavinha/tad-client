@@ -80,7 +80,7 @@ namespace TadManagementTool.Service
 
                 var dataCell = dataRow.CreateCell(dataColumnNumber++);
                 dataCell.CellStyle.Alignment = HorizontalAlignment.Left;
-                dataCell.SetCellValue(financialEntry.DateString);
+                dataCell.SetCellValue(financialEntry.ToEntryDate().ToString("dd/MM/yyyy", new CultureInfo("pt-BR")));
 
                 dataCell = dataRow.CreateCell(dataColumnNumber++);
                 dataCell.CellStyle.Alignment = HorizontalAlignment.Left;

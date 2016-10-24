@@ -18,6 +18,8 @@ namespace TadManagementTool.Presenter.Impl
         private readonly FinancialService financialService;
         private readonly CollaboratorService collaboratorService;
 
+        private bool displayBalance = false;
+
         public FinancialEntryListPresenter(IFinancialEntryListView view)
             : base(view)
         {
@@ -325,6 +327,19 @@ namespace TadManagementTool.Presenter.Impl
                 }
             }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
+        }
+
+        public void OnDisplayBalance()
+        {
+            displayBalance = !displayBalance;
+            if (displayBalance)
+            {
+                View.ShowBalance();
+            }
+            else
+            {
+                View.HideBalance();
+            }
         }
 
         private class FinancialReceiptResult
