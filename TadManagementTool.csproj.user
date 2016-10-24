@@ -2,8 +2,8 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>C:\Projects\Development\CS\TAD\Deploy\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>http://faf-box-111242.nitrousapp.com:4000/app/|http://www.temploamordivino.com.br/tadclient/</InstallUrlHistory>
+    <PublishUrlHistory>D:\Projects\Development\TAD\CS\Deploy\|C:\Projects\Development\CS\TAD\Deploy\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>http://faf-box-111242.nitrousapp.com:4000/app/|http://faf-box-111242.nitrousapp.com:4000/|http://www.temploamordivino.com.br/tadclient/</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />

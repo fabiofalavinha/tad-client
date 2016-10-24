@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Projects\Development\CS\TAD\Deploy\</PublishUrl>
+    <PublishUrl>D:\Projects\Development\TAD\CS\Deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,8 +26,10 @@
     <ProductName>TAD Client Tool</ProductName>
     <PublisherName>Templo Amor Divino</PublisherName>
     <SuiteName>TAD</SuiteName>
-    <ApplicationRevision>1615</ApplicationRevision>
-    <ApplicationVersion>4.1.14.%2a</ApplicationVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>1612</ApplicationRevision>
+    <ApplicationVersion>4.1.15.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
