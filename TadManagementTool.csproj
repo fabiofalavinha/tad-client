@@ -175,11 +175,11 @@
     <Compile Include="ConfirmCloseFinancialBalanceForm.Designer.cs">
       <DependentUpon>ConfirmCloseFinancialBalanceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsecrationListUserControl.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="ConsecrationListForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsecrationListUserControl.Designer.cs">
-      <DependentUpon>ConsecrationListUserControl.cs</DependentUpon>
+    <Compile Include="ConsecrationListForm.Designer.cs">
+      <DependentUpon>ConsecrationListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor.cs">
       <SubType>UserControl</SubType>
@@ -192,6 +192,12 @@
     </Compile>
     <Compile Include="EventForm.Designer.cs">
       <DependentUpon>EventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsecrationHistoryListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsecrationHistoryListUserControl.Designer.cs">
+      <DependentUpon>ConsecrationHistoryListUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="FinancialEntryEnrollmentForm.cs">
@@ -334,11 +340,14 @@
     </Compile>
     <Compile Include="Presenter\AbstractControlPresenter.cs" />
     <Compile Include="Presenter\AbstractDialogPresenter.cs" />
+    <Compile Include="Presenter\ConsecrationHistoryListPresenter.cs" />
     <Compile Include="Presenter\ICalendarPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorBirthDaysPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorPresenter.cs" />
     <Compile Include="Presenter\IConfirmCloseFinancialBalancePresenter.cs" />
+    <Compile Include="Presenter\IConsecrationEnrollmentPresenter.cs" />
     <Compile Include="Presenter\IEventEnrollmentPresenter.cs" />
+    <Compile Include="Presenter\IConsecrationHistoryListPresenter.cs" />
     <Compile Include="Presenter\IFinancialEntryEnrollmentPresenter.cs" />
     <Compile Include="Presenter\IFinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\IFinancialReferenceListPresenter.cs" />
@@ -347,6 +356,7 @@
     <Compile Include="Presenter\IImageListPresenter.cs" />
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
     <Compile Include="Presenter\Impl\ConfirmCloseFinancialBalancePresenter.cs" />
+    <Compile Include="Presenter\Impl\ConsecrationEnrollmentPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialEntryEnrollmentPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferenceListPresenter.cs" />
@@ -408,6 +418,8 @@
     <Compile Include="View\IControlView.cs" />
     <Compile Include="View\IDialogView.cs" />
     <Compile Include="View\Impl\IConfirmCloseFinancialBalanceView.cs" />
+    <Compile Include="View\Impl\IConsecrationEnrollmentView.cs" />
+    <Compile Include="View\Impl\IConsecrationHistoryListView.cs" />
     <Compile Include="View\Impl\IFinancialEntryListView.cs" />
     <Compile Include="View\Impl\IFinancialEntryEnrollmentView.cs" />
     <Compile Include="View\Impl\ICalendarView.cs" />
@@ -435,6 +447,7 @@
     <Compile Include="View\Impl\OpenPostListMenuViewAction.cs" />
     <Compile Include="View\Items\CategoryViewItem.cs" />
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
+    <Compile Include="View\Items\ConsecrationViewItem.cs" />
     <Compile Include="View\Items\ContributorViewItem.cs" />
     <Compile Include="View\Items\EventCategoryViewItem.cs" />
     <Compile Include="View\Items\EventResult.cs" />
@@ -471,8 +484,8 @@
     <EmbeddedResource Include="ConfirmCloseFinancialBalanceForm.resx">
       <DependentUpon>ConfirmCloseFinancialBalanceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsecrationListUserControl.resx">
-      <DependentUpon>ConsecrationListUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="ConsecrationListForm.resx">
+      <DependentUpon>ConsecrationListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
