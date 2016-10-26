@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using TadManagementTool.View.Impl;
 
 namespace TadManagementTool
 {
-    public partial class ConsecrationListForm : Form, IConsecrationHistoryListView
+    public partial class ConsecrationEnrollmentForm : Form, IConsecrationEnrollmentView
     {
-        public ConsecrationListForm()
+        public ConsecrationEnrollmentForm()
         {
             InitializeComponent();
         }
@@ -79,6 +73,11 @@ namespace TadManagementTool
                 return;
             }
             MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

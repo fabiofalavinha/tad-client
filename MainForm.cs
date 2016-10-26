@@ -244,5 +244,15 @@ namespace TadManagementTool
             }
             Text = $"TAD - v{versionText}";
         }
+
+        public void OpenConsecrationView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenConsecrationView));
+                return;
+            }
+            DoLoadMainControl(new ConsecrationHistoryListUserControl(this));
+        }
     }
 }

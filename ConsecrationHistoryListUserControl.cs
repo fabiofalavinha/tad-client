@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using TadManagementTool.View.Impl;
 
@@ -12,10 +6,12 @@ namespace TadManagementTool
 {
     public partial class ConsecrationHistoryListUserControl : UserControl, IConsecrationHistoryListView
     {
-        
-        public ConsecrationHistoryListUserControl()
+        private readonly IMainView parentView;
+
+        public ConsecrationHistoryListUserControl(IMainView parentView)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.parentView = parentView;
         }
 
         public void CloseView()

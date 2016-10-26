@@ -346,5 +346,23 @@ namespace TadManagementTool
                 categoryComboBox.SelectedItem = found;
             }
         }
+
+        private void openConsecrationDetailsButton_Click(object sender, EventArgs e)
+        {
+            presenter.OnOpenConsecrationView();
+        }
+
+        public void OpenConsecrationView()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(OpenConsecrationView));
+                return;
+            }
+            using (var form = new ConsecrationEnrollmentForm())
+            {
+                form.ShowDialog();
+            }
+        }
     }
 }

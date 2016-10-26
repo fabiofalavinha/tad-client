@@ -51,6 +51,7 @@
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.categoryLabel = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.openConsecrationDetailsButton = new System.Windows.Forms.Button();
             this.eventColorGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -225,7 +226,7 @@
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(241, 209);
+            this.categoryLabel.Location = new System.Drawing.Point(224, 209);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(55, 13);
             this.categoryLabel.TabIndex = 3;
@@ -237,18 +238,29 @@
             this.categoryComboBox.DisplayMember = "Name";
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(302, 206);
+            this.categoryComboBox.Location = new System.Drawing.Point(285, 206);
             this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.categoryComboBox.Size = new System.Drawing.Size(102, 21);
             this.categoryComboBox.TabIndex = 11;
             this.categoryComboBox.ValueMember = "Id";
             this.categoryComboBox.Visible = false;
+            // 
+            // openConsecrationDetailsButton
+            // 
+            this.openConsecrationDetailsButton.Location = new System.Drawing.Point(393, 205);
+            this.openConsecrationDetailsButton.Name = "openConsecrationDetailsButton";
+            this.openConsecrationDetailsButton.Size = new System.Drawing.Size(75, 23);
+            this.openConsecrationDetailsButton.TabIndex = 12;
+            this.openConsecrationDetailsButton.Text = "Detalhes...";
+            this.openConsecrationDetailsButton.UseVisualStyleBackColor = true;
+            this.openConsecrationDetailsButton.Click += new System.EventHandler(this.openConsecrationDetailsButton_Click);
             // 
             // EventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 334);
+            this.Controls.Add(this.openConsecrationDetailsButton);
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.eventColorGroupBox);
             this.Controls.Add(this.eventInternalVisibilityRadioButton);
@@ -303,5 +315,6 @@
         private System.Windows.Forms.ColorDialog fontColorDialog;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.Button openConsecrationDetailsButton;
     }
 }

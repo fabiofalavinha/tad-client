@@ -9,5 +9,6 @@
         void OnSelectEventFontColor();
         void OnInternalVisibilitySelected();
         void OnPublicVisibilitySelected();
+        void OnOpenConsecrationView();
     }
 }

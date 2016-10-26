@@ -1,15 +1,12 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TadManagementTool.Model
 {
-    public class Consecration 
+    public class Consecration
     {
         [JsonProperty("id")]
-        public  string Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("event")]
         public Event Event { get; set; }

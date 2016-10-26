@@ -1,6 +1,6 @@
 ﻿namespace TadManagementTool
 {
-    partial class ConsecrationListForm
+    partial class ConsecrationEnrollmentForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,48 +29,47 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsecrationEnrollmentForm));
             this.buttonPanel = new System.Windows.Forms.Panel();
-            this.backButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.itemsTabPage = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ElementNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ElementQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ElementUnitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrimaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.SecondaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.emailTabPage = new System.Windows.Forms.TabPage();
             this.mailContentTextBox = new System.Windows.Forms.TextBox();
-            this.itemsTabPage = new System.Windows.Forms.TabPage();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
+            this.itemsTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.emailTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonPanel
             // 
-            this.buttonPanel.Controls.Add(this.backButton);
             this.buttonPanel.Controls.Add(this.saveButton);
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonPanel.Location = new System.Drawing.Point(0, 446);
+            this.buttonPanel.Location = new System.Drawing.Point(0, 479);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(755, 52);
             this.buttonPanel.TabIndex = 1;
             // 
-            // backButton
-            // 
-            this.backButton.Location = new System.Drawing.Point(4, 7);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(85, 37);
-            this.backButton.TabIndex = 1;
-            this.backButton.Text = "Voltar";
-            this.backButton.UseVisualStyleBackColor = true;
-            // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(682, 7);
+            this.saveButton.Location = new System.Drawing.Point(658, 7);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(85, 37);
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Salvar";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // contentPanel
             // 
@@ -92,6 +91,62 @@
             this.tabControl.Size = new System.Drawing.Size(755, 479);
             this.tabControl.TabIndex = 1;
             // 
+            // itemsTabPage
+            // 
+            this.itemsTabPage.Controls.Add(this.dataGridView1);
+            this.itemsTabPage.Location = new System.Drawing.Point(4, 22);
+            this.itemsTabPage.Name = "itemsTabPage";
+            this.itemsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.itemsTabPage.Size = new System.Drawing.Size(747, 453);
+            this.itemsTabPage.TabIndex = 0;
+            this.itemsTabPage.Text = "Itens";
+            this.itemsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ElementNameColumn,
+            this.ElementQuantityColumn,
+            this.ElementUnitColumn,
+            this.PrimaryCollaboratorColumn,
+            this.SecondaryCollaboratorColumn});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(741, 447);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // ElementNameColumn
+            // 
+            this.ElementNameColumn.DataPropertyName = "Name";
+            this.ElementNameColumn.HeaderText = "Nome";
+            this.ElementNameColumn.Name = "ElementNameColumn";
+            // 
+            // ElementQuantityColumn
+            // 
+            this.ElementQuantityColumn.DataPropertyName = "Quantity";
+            this.ElementQuantityColumn.HeaderText = "Quantidade";
+            this.ElementQuantityColumn.Name = "ElementQuantityColumn";
+            // 
+            // ElementUnitColumn
+            // 
+            this.ElementUnitColumn.DataPropertyName = "Unit";
+            this.ElementUnitColumn.HeaderText = "Unidade";
+            this.ElementUnitColumn.Name = "ElementUnitColumn";
+            // 
+            // PrimaryCollaboratorColumn
+            // 
+            this.PrimaryCollaboratorColumn.DataPropertyName = "PrimaryCollaboratorId";
+            this.PrimaryCollaboratorColumn.HeaderText = "Colaborador 1";
+            this.PrimaryCollaboratorColumn.Name = "PrimaryCollaboratorColumn";
+            // 
+            // SecondaryCollaboratorColumn
+            // 
+            this.SecondaryCollaboratorColumn.DataPropertyName = "SecondaryCollaboratorId";
+            this.SecondaryCollaboratorColumn.HeaderText = "Colaborador 2";
+            this.SecondaryCollaboratorColumn.Name = "SecondaryCollaboratorColumn";
+            // 
             // emailTabPage
             // 
             this.emailTabPage.Controls.Add(this.mailContentTextBox);
@@ -112,32 +167,27 @@
             this.mailContentTextBox.Size = new System.Drawing.Size(741, 447);
             this.mailContentTextBox.TabIndex = 0;
             // 
-            // itemsTabPage
-            // 
-            this.itemsTabPage.Location = new System.Drawing.Point(4, 22);
-            this.itemsTabPage.Name = "itemsTabPage";
-            this.itemsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.itemsTabPage.Size = new System.Drawing.Size(747, 453);
-            this.itemsTabPage.TabIndex = 0;
-            this.itemsTabPage.Text = "Itens";
-            this.itemsTabPage.UseVisualStyleBackColor = true;
-            // 
             // modalWaitingPanel
             // 
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = null;
             // 
-            // ConsecrationListForm
+            // ConsecrationEnrollmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 498);
+            this.ClientSize = new System.Drawing.Size(755, 531);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.buttonPanel);
-            this.Name = "ConsecrationListForm";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ConsecrationEnrollmentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "{0} - Detalhes da Consagração";
             this.buttonPanel.ResumeLayout(false);
             this.contentPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
+            this.itemsTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.emailTabPage.ResumeLayout(false);
             this.emailTabPage.PerformLayout();
             this.ResumeLayout(false);
@@ -150,9 +200,14 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage emailTabPage;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.TextBox mailContentTextBox;
         private System.Windows.Forms.TabPage itemsTabPage;
         private ModalWaitingPanel modalWaitingPanel;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ElementNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ElementQuantityColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ElementUnitColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn PrimaryCollaboratorColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn SecondaryCollaboratorColumn;
     }
 }

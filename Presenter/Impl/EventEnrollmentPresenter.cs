@@ -178,5 +178,10 @@ namespace TadManagementTool.Presenter.Impl
         {
             View.SetCategoryVisible(false);
         }
+
+        public void OnOpenConsecrationView()
+        {
+            View.OpenConsecrationView();
+        }
     }
 }
