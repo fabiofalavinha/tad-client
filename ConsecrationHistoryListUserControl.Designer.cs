@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.consecrationDataGridView = new System.Windows.Forms.DataGridView();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.consecrationDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,6 +65,11 @@
             this.DateColumn.Name = "DateColumn";
             this.DateColumn.ReadOnly = true;
             // 
+            // modalWaitingPanel
+            // 
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = null;
+            // 
             // ConsecrationHistoryListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -80,5 +87,6 @@
         private System.Windows.Forms.DataGridView consecrationDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateColumn;
+        private ModalWaitingPanel modalWaitingPanel;
     }
 }

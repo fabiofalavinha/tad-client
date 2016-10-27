@@ -35,21 +35,23 @@
             this.contentPanel = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.itemsTabPage = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ElementNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ElementQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ElementUnitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrimaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.SecondaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.emailTabPage = new System.Windows.Forms.TabPage();
             this.mailContentTextBox = new System.Windows.Forms.TextBox();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.ElementNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ElementQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ElementUnitColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.PrimaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.SecondaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.itemsTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.emailTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonPanel
@@ -93,7 +95,7 @@
             // 
             // itemsTabPage
             // 
-            this.itemsTabPage.Controls.Add(this.dataGridView1);
+            this.itemsTabPage.Controls.Add(this.dataGridView);
             this.itemsTabPage.Location = new System.Drawing.Point(4, 22);
             this.itemsTabPage.Name = "itemsTabPage";
             this.itemsTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -102,50 +104,20 @@
             this.itemsTabPage.Text = "Itens";
             this.itemsTabPage.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ElementNameColumn,
             this.ElementQuantityColumn,
             this.ElementUnitColumn,
             this.PrimaryCollaboratorColumn,
             this.SecondaryCollaboratorColumn});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(741, 447);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // ElementNameColumn
-            // 
-            this.ElementNameColumn.DataPropertyName = "Name";
-            this.ElementNameColumn.HeaderText = "Nome";
-            this.ElementNameColumn.Name = "ElementNameColumn";
-            // 
-            // ElementQuantityColumn
-            // 
-            this.ElementQuantityColumn.DataPropertyName = "Quantity";
-            this.ElementQuantityColumn.HeaderText = "Quantidade";
-            this.ElementQuantityColumn.Name = "ElementQuantityColumn";
-            // 
-            // ElementUnitColumn
-            // 
-            this.ElementUnitColumn.DataPropertyName = "Unit";
-            this.ElementUnitColumn.HeaderText = "Unidade";
-            this.ElementUnitColumn.Name = "ElementUnitColumn";
-            // 
-            // PrimaryCollaboratorColumn
-            // 
-            this.PrimaryCollaboratorColumn.DataPropertyName = "PrimaryCollaboratorId";
-            this.PrimaryCollaboratorColumn.HeaderText = "Colaborador 1";
-            this.PrimaryCollaboratorColumn.Name = "PrimaryCollaboratorColumn";
-            // 
-            // SecondaryCollaboratorColumn
-            // 
-            this.SecondaryCollaboratorColumn.DataPropertyName = "SecondaryCollaboratorId";
-            this.SecondaryCollaboratorColumn.HeaderText = "Colaborador 2";
-            this.SecondaryCollaboratorColumn.Name = "SecondaryCollaboratorColumn";
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(741, 447);
+            this.dataGridView.TabIndex = 0;
             // 
             // emailTabPage
             // 
@@ -172,6 +144,38 @@
             this.modalWaitingPanel.DisplayText = null;
             this.modalWaitingPanel.RelatedControl = null;
             // 
+            // ElementNameColumn
+            // 
+            this.ElementNameColumn.DataPropertyName = "Name";
+            this.ElementNameColumn.HeaderText = "Nome";
+            this.ElementNameColumn.Name = "ElementNameColumn";
+            // 
+            // ElementQuantityColumn
+            // 
+            this.ElementQuantityColumn.DataPropertyName = "Quantity";
+            this.ElementQuantityColumn.HeaderText = "Quantidade";
+            this.ElementQuantityColumn.Name = "ElementQuantityColumn";
+            // 
+            // ElementUnitColumn
+            // 
+            this.ElementUnitColumn.DataPropertyName = "Unit";
+            this.ElementUnitColumn.HeaderText = "Unidade";
+            this.ElementUnitColumn.Name = "ElementUnitColumn";
+            this.ElementUnitColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ElementUnitColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // PrimaryCollaboratorColumn
+            // 
+            this.PrimaryCollaboratorColumn.DataPropertyName = "PrimaryCollaboratorId";
+            this.PrimaryCollaboratorColumn.HeaderText = "Colaborador 1";
+            this.PrimaryCollaboratorColumn.Name = "PrimaryCollaboratorColumn";
+            // 
+            // SecondaryCollaboratorColumn
+            // 
+            this.SecondaryCollaboratorColumn.DataPropertyName = "SecondaryCollaboratorId";
+            this.SecondaryCollaboratorColumn.HeaderText = "Colaborador 2";
+            this.SecondaryCollaboratorColumn.Name = "SecondaryCollaboratorColumn";
+            // 
             // ConsecrationEnrollmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,13 +187,15 @@
             this.Name = "ConsecrationEnrollmentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "{0} - Detalhes da Consagração";
+            this.Load += new System.EventHandler(this.ConsecrationEnrollmentForm_Load);
             this.buttonPanel.ResumeLayout(false);
             this.contentPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.itemsTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.emailTabPage.ResumeLayout(false);
             this.emailTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,11 +209,12 @@
         private System.Windows.Forms.TextBox mailContentTextBox;
         private System.Windows.Forms.TabPage itemsTabPage;
         private ModalWaitingPanel modalWaitingPanel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn ElementNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ElementQuantityColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ElementUnitColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ElementUnitColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn PrimaryCollaboratorColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn SecondaryCollaboratorColumn;
+        private System.Windows.Forms.BindingSource bindingSource;
     }
 }

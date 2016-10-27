@@ -340,7 +340,7 @@
     </Compile>
     <Compile Include="Presenter\AbstractControlPresenter.cs" />
     <Compile Include="Presenter\AbstractDialogPresenter.cs" />
-    <Compile Include="Presenter\ConsecrationHistoryListPresenter.cs" />
+    <Compile Include="Presenter\Impl\ConsecrationHistoryListPresenter.cs" />
     <Compile Include="Presenter\ICalendarPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorBirthDaysPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorPresenter.cs" />
@@ -450,6 +450,7 @@
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
     <Compile Include="View\Items\ConsecrationViewItem.cs" />
     <Compile Include="View\Items\ContributorViewItem.cs" />
+    <Compile Include="View\Items\ElementViewItem.cs" />
     <Compile Include="View\Items\EventCategoryViewItem.cs" />
     <Compile Include="View\Items\EventResult.cs" />
     <Compile Include="View\Items\FinancialEntryViewItem.cs" />

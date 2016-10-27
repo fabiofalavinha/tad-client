@@ -181,7 +181,11 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnOpenConsecrationView()
         {
-            View.OpenConsecrationView();
-        }
+            if (editedEvent.GetEventCategory() == EventCategory.Consecration)
+            {
+                
+                View.OpenConsecrationView(editedEvent.Id);
+            }
+        } 
     }
 }

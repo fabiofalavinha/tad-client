@@ -19,5 +19,10 @@ namespace TadManagementTool.Service
         {
             restTemplate.Delete("/event/{id}", id);
         }
+
+        public Consecration FindConsecrationByEventId(string id)
+        {
+            return restTemplate.GetForObject<Consecration>("/event/{id}/consecration", id);
+        }
     }
 }

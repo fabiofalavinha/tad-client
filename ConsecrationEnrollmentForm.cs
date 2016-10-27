@@ -1,14 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using TadManagementTool.Model;
+using TadManagementTool.Presenter;
+using TadManagementTool.Presenter.Impl;
 using TadManagementTool.View.Impl;
 
 namespace TadManagementTool
 {
     public partial class ConsecrationEnrollmentForm : Form, IConsecrationEnrollmentView
     {
-        public ConsecrationEnrollmentForm()
+        public IConsecrationEnrollmentPresenter presenter;
+
+        public ConsecrationEnrollmentForm(string eventId)
         {
             InitializeComponent();
+            dataGridView.AutoGenerateColumns = false;
+            presenter = new ConsecrationEnrollmentPresenter(this, eventId);
         }
 
         public void CloseView()
@@ -77,7 +85,36 @@ namespace TadManagementTool
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            presenter.OnSaveConsecration();
+        }
 
+        private void ConsecrationEnrollmentForm_Load(object sender, EventArgs e)
+        {
+            presenter.InitView();
+        }
+
+        public void SetElementList(IList<Element> elements)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<Element>>(SetElementList), elements);
+                return;
+            }
+            bindingSource.DataSource = elements;
+            dataGridView.DataSource = bindingSource;
+            bindingSource.ResetBindings(false);
+            dataGridView.ClearSelection();
+            dataGridView.AutoResizeColumns();
+        }
+
+        public void SetComunicationMessage(CommunicationMessage message)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<CommunicationMessage>(SetComunicationMessage), message);
+                return;
+            }
+            mailContentTextBox.Text = message.Content;
         }
     }
 }

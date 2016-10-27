@@ -16,32 +16,56 @@ namespace TadManagementTool
 
         public void CloseView()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void HideWaitingPanel()
         {
-            throw new NotImplementedException();
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(HideWaitingPanel));
+                return;
+            }
+            modalWaitingPanel.Hide();
         }
 
         public void SetDialogResult(DialogResult dialogResult)
         {
-            throw new NotImplementedException();
+           
         }
 
         public void ShowErrorMessage(string message)
         {
-            throw new NotImplementedException();
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowErrorMessage), message);
+                return;
+            }
+            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void ShowWaitingPanel(string message = null)
         {
-            throw new NotImplementedException();
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowWaitingPanel), message);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                message = "Processando...";
+            }
+            modalWaitingPanel.Show(message);
         }
 
         public void ShowWarningMessage(string message)
         {
-            throw new NotImplementedException();
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<string>(ShowWarningMessage), message);
+                return;
+            }
+            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

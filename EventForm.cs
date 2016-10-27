@@ -352,14 +352,14 @@ namespace TadManagementTool
             presenter.OnOpenConsecrationView();
         }
 
-        public void OpenConsecrationView()
+        public void OpenConsecrationView(string eventId)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action(OpenConsecrationView));
+                BeginInvoke(new Action<string>(OpenConsecrationView), eventId);
                 return;
             }
-            using (var form = new ConsecrationEnrollmentForm())
+            using (var form = new ConsecrationEnrollmentForm(eventId))
             {
                 form.ShowDialog();
             }

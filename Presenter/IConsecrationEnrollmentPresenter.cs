@@ -7,5 +7,6 @@ namespace TadManagementTool.Presenter
 {
     public interface IConsecrationEnrollmentPresenter : IPresenter
     {
+        void OnSaveConsecration();
     }
 }
