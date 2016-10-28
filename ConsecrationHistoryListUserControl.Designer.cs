@@ -71,13 +71,14 @@
             // modalWaitingPanel
             // 
             this.modalWaitingPanel.DisplayText = null;
-            this.modalWaitingPanel.RelatedControl = null;
+            this.modalWaitingPanel.RelatedControl = this;
             // 
             // ConsecrationHistoryListUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.consecrationDataGridView);
+            this.DoubleBuffered = true;
             this.Name = "ConsecrationHistoryListUserControl";
             this.Size = new System.Drawing.Size(763, 468);
             this.Load += new System.EventHandler(this.ConsecrationHistoryListUserControl_Load);
