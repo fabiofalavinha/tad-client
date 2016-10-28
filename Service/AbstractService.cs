@@ -36,8 +36,7 @@ namespace TadManagementTool.Service
         public AbstractService()
         {
 #if DEBUG
-            //restTemplate = new RestTemplate("http://localhost:7139");
-            restTemplate = new RestTemplate(System.Configuration.ConfigurationManager.AppSettings["tad.server"]);
+            restTemplate = new RestTemplate("http://localhost:7139");
 #else
             restTemplate = new RestTemplate(System.Configuration.ConfigurationManager.AppSettings["tad.server"]);
 #endif

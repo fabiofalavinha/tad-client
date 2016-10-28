@@ -20,7 +20,7 @@ namespace TadManagementTool.Presenter.Impl
             userProfileService = new UserProfileService();
         }
 
-        private void DoSetCollaboratorList(IList<Model.Collaborator> list)
+        private void DoSetCollaboratorList(IList<Collaborator> list)
         {
             if (View.IsActiveFilterChecked())
             {
@@ -36,7 +36,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void InitView()
         {
-            var task = new Task<IList<Model.Collaborator>>(() =>
+            var task = new Task<IList<Collaborator>>(() =>
             {
                 View.ShowWaitingPanel("Carregando colaboradores...");
                 var collaboratorService = new CollaboratorService();
@@ -61,15 +61,15 @@ namespace TadManagementTool.Presenter.Impl
         public void OnRemoveCollaborator()
         {
             var collaboratorService = new CollaboratorService();
-            var task = new Task<View.Items.CollaboratorViewItem>((Func<View.Items.CollaboratorViewItem>)(() =>
+            var task = new Task<CollaboratorViewItem>(() =>
             {
-                var collaboratorViewItem = (View.Items.CollaboratorViewItem)View.GetCollaboratorSelected();
+                var collaboratorViewItem = View.GetCollaboratorSelected();
                 if (collaboratorViewItem != null)
                 {
                     if (View.ShowBinaryQuestion("Deseja excluir este colaborador?"))
                     {
                         View.ShowWaitingPanel(string.Format("Excluindo colaborador - {0}...", collaboratorViewItem.Name));
-                        collaboratorService.RemoveCollaborator((Model.Collaborator)collaboratorViewItem.Wrapper);
+                        collaboratorService.RemoveCollaborator(collaboratorViewItem.Wrapper);
                     }
                 }
                 else
@@ -77,7 +77,7 @@ namespace TadManagementTool.Presenter.Impl
                     View.ShowWarningMessage("Selecione o colaborador que deseja excluir");
                 }
                 return collaboratorViewItem;
-            }));
+            });
             task.ContinueWith(t =>
             {
                 var collaboratorViewItem = t.Result;
@@ -114,7 +114,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnViewCollaboratorDetails()
         {
-            var collaboratorViewItem = (View.Items.CollaboratorViewItem)View.GetCollaboratorSelected();
+            var collaboratorViewItem = View.GetCollaboratorSelected();
             if (collaboratorViewItem != null)
             {
                 View.OpenCollaboratorView(collaboratorViewItem.Wrapper);
@@ -165,7 +165,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSearchCollaborators()
         {
-            var task = new Task<IList<Model.Collaborator>>(() =>
+            var task = new Task<IList<Collaborator>>(() =>
             {
                 View.ShowWaitingPanel("Filtrando colaboradores...");
                 var collaboratorService = new CollaboratorService();
@@ -196,9 +196,9 @@ namespace TadManagementTool.Presenter.Impl
 
         private class ListCollaboratorOrder
         {
-            public IList<View.Items.CollaboratorViewItem> Sort(IList<View.Items.CollaboratorViewItem> list, string propertyName, SortOrder sortOrder)
+            public IList<CollaboratorViewItem> Sort(IList<CollaboratorViewItem> list, string propertyName, SortOrder sortOrder)
             {
-                Func<View.Items.CollaboratorViewItem, object> orderByAction;
+                Func<CollaboratorViewItem, object> orderByAction;
                 if ("BirthDate".Equals(propertyName))
                 {
                     orderByAction = i => i.Wrapper.BirthDate;
