@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TadManagementTool.Model;
 
 namespace TadManagementTool.Service
@@ -23,6 +24,11 @@ namespace TadManagementTool.Service
         public Consecration FindConsecrationByEventId(string id)
         {
             return restTemplate.GetForObject<Consecration>("/event/{id}/consecration", id);
+        }
+
+        public IList<Consecration> FindAllConsecrations()
+        {
+            return restTemplate.GetForObject<IList<Consecration>>("/event/consecrations");
         }
     }
 }

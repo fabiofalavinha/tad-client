@@ -10,7 +10,7 @@ using TadManagementTool.View.Impl;
 
 namespace TadManagementTool
 {
-    public partial class UploadImageForm : Form, IUploadImageFileView
+    public partial class UploadImageForm : AbstractForm, IUploadImageFileView
     {
         private readonly IUploadImageFilePresenter presenter;
 
@@ -24,37 +24,7 @@ namespace TadManagementTool
         {
             presenter.InitView();
         }
-
-        public void SetDialogResult(DialogResult dialogResult)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<DialogResult>(SetDialogResult), dialogResult);
-                return;
-            }
-            DialogResult = dialogResult;
-        }
-
-        public void CloseView()
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(CloseView));
-                return;
-            }
-            Close();
-        }
-
-        public void ShowWarningMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowWarningMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
+        
         public void ShowWaitingPanel(string message = null)
         {
             if (InvokeRequired)
@@ -78,17 +48,7 @@ namespace TadManagementTool
             }
             modalWaitingPanel.Hide();
         }
-
-        public void ShowErrorMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowErrorMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
+        
         private void addButton_Click(object sender, EventArgs e)
         {
             presenter.OnSelectImageFiles();

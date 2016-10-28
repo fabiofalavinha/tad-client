@@ -66,6 +66,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSaveConsecration()
         {
+            
         }
     }
 }

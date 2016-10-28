@@ -11,5 +11,10 @@ namespace TadManagementTool.View.Items
         public Consecration Wrapper { get; private set; }
         public string Name { get { return Wrapper.Event.Title; } }
         public string Date { get { return Wrapper.Event.Date.ToString("dd/MMM/yy"); } }
+
+        public ConsecrationViewItem(Consecration wrapper)
+        {
+            Wrapper = wrapper;
+        }
     }
 }

@@ -33,7 +33,9 @@
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.consecrationDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // consecrationDataGridView
@@ -78,6 +80,7 @@
             this.Name = "ConsecrationHistoryListUserControl";
             this.Size = new System.Drawing.Size(763, 468);
             ((System.ComponentModel.ISupportInitialize)(this.consecrationDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -88,5 +91,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateColumn;
         private ModalWaitingPanel modalWaitingPanel;
+        private System.Windows.Forms.BindingSource bindingSource;
     }
 }

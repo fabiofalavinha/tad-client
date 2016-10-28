@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using TadManagementTool.Model;
 using TadManagementTool.View.Impl;
+using TadManagementTool.View.Items;
 
 namespace TadManagementTool
 {
@@ -22,6 +25,20 @@ namespace TadManagementTool
                 return;
             }
             modalWaitingPanel.Hide();
+        }
+
+        public void SetConsecrationList(IList<ConsecrationViewItem> list)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<IList<ConsecrationViewItem>>(SetConsecrationList), list);
+                return;
+            }
+            bindingSource.DataSource = list;
+            consecrationDataGridView.DataSource = bindingSource;
+            bindingSource.ResetBindings(false);
+            consecrationDataGridView.ClearSelection();
+            consecrationDataGridView.AutoResizeColumns();
         }
 
         public void ShowErrorMessage(string message)

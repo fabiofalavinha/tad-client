@@ -9,7 +9,7 @@ using TadManagementTool.View.Impl;
 
 namespace TadManagementTool
 {
-    public partial class MainForm : Form, IMainView
+    public partial class MainForm : AbstractForm, IMainView
     {
         private readonly IMainPresenter presenter;
 
@@ -24,16 +24,6 @@ namespace TadManagementTool
         private void MainForm_Load(object sender, EventArgs e)
         {
             presenter.InitView();
-        }
-
-        public void ShowWarningMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowWarningMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public void ShowWaitingPanel(string message = null)
@@ -59,37 +49,7 @@ namespace TadManagementTool
             }
             modalWaitingPanel.Hide();
         }
-
-        public void ShowErrorMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowErrorMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        public void CloseView()
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(CloseView));
-                return;
-            }
-            Close();
-        }
-
-        public void SetDialogResult(DialogResult dialogResult)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<DialogResult>(SetDialogResult), dialogResult);
-                return;
-            }
-            DialogResult = dialogResult;
-        }
-
+      
         private void menuTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             var tag = e.Node.Tag;

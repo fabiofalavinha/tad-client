@@ -7,7 +7,7 @@ using TadManagementTool.View.Items;
 
 namespace TadManagementTool
 {
-    public partial class NewsletterUserView : Form, INewsletterUserView
+    public partial class NewsletterUserView : AbstractForm, INewsletterUserView
     {
         private readonly INewsletterUserPresenter presenter;
            
@@ -55,27 +55,7 @@ namespace TadManagementTool
             }
             return emailTextBox.Text;
         }
-                
-        public void ShowWarningMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowWarningMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
-        public void ShowErrorMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowErrorMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
+       
         public void ShowWaitingPanel(string message = null)
         {
             if (InvokeRequired)
@@ -99,17 +79,7 @@ namespace TadManagementTool
             }
             modalWaitingPanel.Hide();
         }
-
-        public void SetDialogResult(DialogResult result)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<DialogResult>(SetDialogResult), result);
-                return;
-            }
-            DialogResult = result;
-        }
-
+        
         public void SetName(string name)
         {
             if (InvokeRequired)

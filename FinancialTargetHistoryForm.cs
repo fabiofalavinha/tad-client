@@ -14,7 +14,7 @@ using TadManagementTool.View.Items;
 
 namespace TadManagementTool
 {
-    public partial class FinancialTargetHistoryForm : Form, IFinancialTargetHistoryView
+    public partial class FinancialTargetHistoryForm : AbstractForm, IFinancialTargetHistoryView
     {
         private readonly IFinancialTargetHistoryPresenter presenter;
 
@@ -29,17 +29,7 @@ namespace TadManagementTool
         {
             presenter.InitView();
         }
-
-        public void CloseView()
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(HideWaitingPanel));
-                return;
-            }
-            Close();
-        }
-
+        
         public void HideWaitingPanel()
         {
             if (InvokeRequired)
@@ -49,27 +39,7 @@ namespace TadManagementTool
             }
             modalWaitingPanel.Hide();
         }
-
-        public void SetDialogResult(DialogResult result)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<DialogResult>(SetDialogResult), result);
-                return;
-            }
-            DialogResult = result;
-        }
-
-        public void ShowErrorMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowErrorMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
+        
         public void ShowWaitingPanel(string message = null)
         {
             if (InvokeRequired)
@@ -83,17 +53,7 @@ namespace TadManagementTool
             }
             modalWaitingPanel.Show(message);
         }
-
-        public void ShowWarningMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowWarningMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
+        
         public void SetFinancialHistoryFilterDateFrom(DateTime date)
         {
             if (InvokeRequired)

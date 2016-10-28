@@ -12,7 +12,7 @@ using TadManagementTool.View.Items;
 
 namespace TadManagementTool
 {
-    public partial class FinancialEntryEnrollmentForm : Form, IFinancialEntryEnrollmentView
+    public partial class FinancialEntryEnrollmentForm : AbstractForm, IFinancialEntryEnrollmentView
     {
         private readonly IFinancialEntryEnrollmentPresenter presenter;
         private readonly FinancialEntryViewItem currentViewItem;
@@ -43,17 +43,7 @@ namespace TadManagementTool
                 presenter.InitViewWith(currentViewItem);
             }
         }
-
-        public void ShowWarningMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowWarningMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
+        
         public void ShowWaitingPanel(string message = null)
         {
             if (InvokeRequired)
@@ -77,37 +67,7 @@ namespace TadManagementTool
             }
             modalWaitingPanel.Hide();
         }
-
-        public void ShowErrorMessage(string message)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<string>(ShowErrorMessage), message);
-                return;
-            }
-            MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        public void SetDialogResult(DialogResult dialogResult)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<DialogResult>(SetDialogResult), dialogResult);
-                return;
-            }
-            DialogResult = dialogResult;
-        }
-
-        public void CloseView()
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(CloseView));
-                return;
-            }
-            DialogResult = DialogResult.OK;
-        }
-
+        
         private void saveButton_Click(object sender, EventArgs e)
         {
             presenter.OnSaveFinancialEntry();
