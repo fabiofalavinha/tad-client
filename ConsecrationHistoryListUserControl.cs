@@ -14,11 +14,6 @@ namespace TadManagementTool
             this.parentView = parentView;
         }
 
-        public void CloseView()
-        {
-            
-        }
-
         public void HideWaitingPanel()
         {
             if (InvokeRequired)
@@ -27,11 +22,6 @@ namespace TadManagementTool
                 return;
             }
             modalWaitingPanel.Hide();
-        }
-
-        public void SetDialogResult(DialogResult dialogResult)
-        {
-           
         }
 
         public void ShowErrorMessage(string message)

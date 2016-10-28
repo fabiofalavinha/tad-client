@@ -181,11 +181,19 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnOpenConsecrationView()
         {
-            if (editedEvent.GetEventCategory() == EventCategory.Consecration)
+            if (View.GetEventCategory().Wrapper == EventCategory.Consecration)
             {
-                
-                View.OpenConsecrationView(editedEvent.Id);
+                View.OpenConsecrationView(editedEvent);
             }
-        } 
+            else
+            {
+                View.ShowWarningMessage("Este evento não está classificado como uma consagração");
+            }
+        }
+
+        public void OnCategorySelection()
+        {
+            View.SetConsecrationDetailsButtonVisible(View.GetEventCategory().Wrapper == EventCategory.Consecration);
+        }
     }
 }

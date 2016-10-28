@@ -244,6 +244,7 @@
             this.categoryComboBox.TabIndex = 11;
             this.categoryComboBox.ValueMember = "Id";
             this.categoryComboBox.Visible = false;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
             // 
             // openConsecrationDetailsButton
             // 

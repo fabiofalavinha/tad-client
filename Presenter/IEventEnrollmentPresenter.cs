@@ -10,5 +10,6 @@
         void OnInternalVisibilitySelected();
         void OnPublicVisibilitySelected();
         void OnOpenConsecrationView();
+        void OnCategorySelection();
     }
 }

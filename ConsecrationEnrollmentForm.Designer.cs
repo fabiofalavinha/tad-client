@@ -36,15 +36,16 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.itemsTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.emailTabPage = new System.Windows.Forms.TabPage();
-            this.mailContentTextBox = new System.Windows.Forms.TextBox();
-            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.ElementNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ElementQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ElementUnitColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.PrimaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.SecondaryCollaboratorColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.emailTabPage = new System.Windows.Forms.TabPage();
+            this.mailContentTextBox = new System.Windows.Forms.TextBox();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
+            this.mailTemplateConfigurationLabel = new System.Windows.Forms.Label();
             this.buttonPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -118,31 +119,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(741, 447);
             this.dataGridView.TabIndex = 0;
-            // 
-            // emailTabPage
-            // 
-            this.emailTabPage.Controls.Add(this.mailContentTextBox);
-            this.emailTabPage.Location = new System.Drawing.Point(4, 22);
-            this.emailTabPage.Name = "emailTabPage";
-            this.emailTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.emailTabPage.Size = new System.Drawing.Size(747, 453);
-            this.emailTabPage.TabIndex = 1;
-            this.emailTabPage.Text = "e-Mail";
-            this.emailTabPage.UseVisualStyleBackColor = true;
-            // 
-            // mailContentTextBox
-            // 
-            this.mailContentTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mailContentTextBox.Location = new System.Drawing.Point(3, 3);
-            this.mailContentTextBox.Multiline = true;
-            this.mailContentTextBox.Name = "mailContentTextBox";
-            this.mailContentTextBox.Size = new System.Drawing.Size(741, 447);
-            this.mailContentTextBox.TabIndex = 0;
-            // 
-            // modalWaitingPanel
-            // 
-            this.modalWaitingPanel.DisplayText = null;
-            this.modalWaitingPanel.RelatedControl = null;
+            this.dataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_RowEnter);
             // 
             // ElementNameColumn
             // 
@@ -176,6 +153,40 @@
             this.SecondaryCollaboratorColumn.HeaderText = "Colaborador 2";
             this.SecondaryCollaboratorColumn.Name = "SecondaryCollaboratorColumn";
             // 
+            // emailTabPage
+            // 
+            this.emailTabPage.Controls.Add(this.mailTemplateConfigurationLabel);
+            this.emailTabPage.Controls.Add(this.mailContentTextBox);
+            this.emailTabPage.Location = new System.Drawing.Point(4, 22);
+            this.emailTabPage.Name = "emailTabPage";
+            this.emailTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.emailTabPage.Size = new System.Drawing.Size(747, 453);
+            this.emailTabPage.TabIndex = 1;
+            this.emailTabPage.Text = "e-Mail";
+            this.emailTabPage.UseVisualStyleBackColor = true;
+            // 
+            // mailContentTextBox
+            // 
+            this.mailContentTextBox.Location = new System.Drawing.Point(3, 48);
+            this.mailContentTextBox.Multiline = true;
+            this.mailContentTextBox.Name = "mailContentTextBox";
+            this.mailContentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.mailContentTextBox.Size = new System.Drawing.Size(741, 402);
+            this.mailContentTextBox.TabIndex = 0;
+            // 
+            // modalWaitingPanel
+            // 
+            this.modalWaitingPanel.DisplayText = null;
+            this.modalWaitingPanel.RelatedControl = null;
+            // 
+            // mailTemplateConfigurationLabel
+            // 
+            this.mailTemplateConfigurationLabel.Location = new System.Drawing.Point(3, 5);
+            this.mailTemplateConfigurationLabel.Name = "mailTemplateConfigurationLabel";
+            this.mailTemplateConfigurationLabel.Size = new System.Drawing.Size(741, 29);
+            this.mailTemplateConfigurationLabel.TabIndex = 1;
+            this.mailTemplateConfigurationLabel.Text = resources.GetString("mailTemplateConfigurationLabel.Text");
+            // 
             // ConsecrationEnrollmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,7 +197,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConsecrationEnrollmentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "{0} - Detalhes da Consagração";
+            this.Text = "Detalhes da Consagração";
             this.Load += new System.EventHandler(this.ConsecrationEnrollmentForm_Load);
             this.buttonPanel.ResumeLayout(false);
             this.contentPanel.ResumeLayout(false);
@@ -216,5 +227,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn PrimaryCollaboratorColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn SecondaryCollaboratorColumn;
         private System.Windows.Forms.BindingSource bindingSource;
+        private System.Windows.Forms.Label mailTemplateConfigurationLabel;
     }
 }

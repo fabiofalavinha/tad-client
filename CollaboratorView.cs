@@ -15,7 +15,7 @@ namespace TadManagementTool
     {
         private readonly IMainView parentView;
         private readonly ICollaboratorPresenter presenter;
-        private readonly Collaborator collaborator;
+        private readonly Model.Collaborator collaborator;
 
         public CollaboratorView(IMainView parentView)
         {
@@ -25,7 +25,7 @@ namespace TadManagementTool
             this.presenter = new CollaboratorPresenter(this);
         }
 
-        public CollaboratorView(IMainView parentView, Collaborator collaborator)
+        public CollaboratorView(IMainView parentView, Model.Collaborator collaborator)
             : this(parentView)
         {
             this.collaborator = collaborator;

@@ -102,11 +102,11 @@ namespace TadManagementTool
             updateColumnOrderDisplayIndex = false;
         }
 
-        public void SetCollaboratorList(IList<CollaboratorViewItem> list, CollaboratorPreferences collaboratorPreferences)
+        public void SetCollaboratorList(IList<View.Items.CollaboratorViewItem> list, CollaboratorPreferences collaboratorPreferences)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<CollaboratorViewItem>, CollaboratorPreferences>(SetCollaboratorList), list, collaboratorPreferences);
+                BeginInvoke(new Action<IList<View.Items.CollaboratorViewItem>, CollaboratorPreferences>(SetCollaboratorList), list, collaboratorPreferences);
                 return;
             }
             bindingSource.DataSource = list;
@@ -127,11 +127,11 @@ namespace TadManagementTool
         {
             if (InvokeRequired)
             {
-                return (CollaboratorViewItem)Invoke(new Func<CollaboratorViewItem>(GetCollaboratorSelected));
+                return (View.Items.CollaboratorViewItem)Invoke(new Func<View.Items.CollaboratorViewItem>(this.GetCollaboratorSelected));
             }
             if (dataGridView.SelectedRows.Count > 0)
             {
-                return (CollaboratorViewItem)dataGridView.SelectedRows[0].DataBoundItem;
+                return (View.Items.CollaboratorViewItem)dataGridView.SelectedRows[0].DataBoundItem;
             }
             return null;
         }
@@ -158,11 +158,11 @@ namespace TadManagementTool
             });
         }
 
-        public void OpenCollaboratorView(Collaborator collaborator)
+        public void OpenCollaboratorView(Model.Collaborator collaborator)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<Collaborator>(OpenCollaboratorView), collaborator);
+                BeginInvoke(new Action<Model.Collaborator>(OpenCollaboratorView), collaborator);
                 return;
             }
             parentView.ShowControlView(new CollaboratorView(parentView, collaborator)
@@ -191,11 +191,11 @@ namespace TadManagementTool
             presenter.OnExportToExcel();
         }
 
-        public IList<CollaboratorViewItem> GetCollaboratorList()
+        public IList<View.Items.CollaboratorViewItem> GetCollaboratorList()
         {
             if (InvokeRequired)
             {
-                return (IList<CollaboratorViewItem>)Invoke(new Func<IList<CollaboratorViewItem>>(GetCollaboratorList));
+                return (IList<View.Items.CollaboratorViewItem>)Invoke(new Func<IList<View.Items.CollaboratorViewItem>>(GetCollaboratorList));
             }
             return dataGridView.Rows.Cast<DataGridViewRow>().Select(r => (CollaboratorViewItem)r.DataBoundItem).ToArray();
         }
@@ -247,7 +247,7 @@ namespace TadManagementTool
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var row = dataGridView.Rows[e.RowIndex];
-            var viewItem = (CollaboratorViewItem)row.DataBoundItem;
+            var viewItem = (View.Items.CollaboratorViewItem)row.DataBoundItem;
             if (viewItem.Wrapper.UserRole == UserRole.NonCollaborator)
             {
                 e.CellStyle.BackColor = Color.Yellow;

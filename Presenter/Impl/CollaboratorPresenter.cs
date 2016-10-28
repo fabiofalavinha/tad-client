@@ -27,7 +27,7 @@ namespace TadManagementTool.Presenter.Impl
             DoLoadView();
         }
 
-        public void InitViewWith(Collaborator collaborator)
+        public void InitViewWith(Model.Collaborator collaborator)
         {
             View.ShowWaitingPanel("Carregando dados do colaborador...");
             try
@@ -142,7 +142,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSave()
         {
-            var task = new Task<Collaborator>(() =>
+            var task = new Task<Model.Collaborator>(() =>
             {
                 View.ShowWaitingPanel("Salvando dados do colaborador...");
                 var userRoleViewItem = View.GetUserRoleSelected();
@@ -181,7 +181,7 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 var observation = View.GetObservation();
                 var contributor = View.GetContributor();
-                var collaborator = new Collaborator()
+                var collaborator = new Model.Collaborator()
                 {
                     Id = id,
                     Name = name,

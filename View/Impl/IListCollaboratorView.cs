@@ -6,15 +6,15 @@ namespace TadManagementTool.View.Impl
 {
     public interface IListCollaboratorView : IControlView
     {
-        IList<CollaboratorViewItem> GetCollaboratorList();
+        IList<Items.CollaboratorViewItem> GetCollaboratorList();
         CollaboratorViewItem GetCollaboratorSelected();
         bool ShowBinaryQuestion(string message);
         string SelectFilePathToSaveExcelFile();
         bool IsActiveFilterChecked();
         bool IsNonCollaboratorFilterChecked();
-        void SetCollaboratorList(IList<CollaboratorViewItem> list, CollaboratorPreferences collaboratorPreferences);
+        void SetCollaboratorList(IList<Items.CollaboratorViewItem> list, CollaboratorPreferences collaboratorPreferences);
         void OpenCollaboratorView();
-        void OpenCollaboratorView(Collaborator collaborator);
+        void OpenCollaboratorView(Model.Collaborator collaborator);
         void SetActiveCollaboratorCount(int count);
         void ShowSuccessMessage(string message);
     }

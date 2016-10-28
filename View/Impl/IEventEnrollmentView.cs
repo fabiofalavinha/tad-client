@@ -29,6 +29,7 @@ namespace TadManagementTool.View.Impl
         void SetCategoryList(IList<EventCategoryViewItem> list);
         void SetCategoryVisible(bool visible);
         void SetEventCategory(EventCategoryViewItem viewItem);
-        void OpenConsecrationView(string eventId);
+        void OpenConsecrationView(Event currentEvent);
+        void SetConsecrationDetailsButtonVisible(bool visible);
     }
 }

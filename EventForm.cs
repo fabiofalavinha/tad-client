@@ -352,17 +352,32 @@ namespace TadManagementTool
             presenter.OnOpenConsecrationView();
         }
 
-        public void OpenConsecrationView(string eventId)
+        public void OpenConsecrationView(Event currentEvent)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<string>(OpenConsecrationView), eventId);
+                BeginInvoke(new Action<Event>(OpenConsecrationView), currentEvent);
                 return;
             }
-            using (var form = new ConsecrationEnrollmentForm(eventId))
+            using (var form = new ConsecrationEnrollmentForm(currentEvent))
             {
                 form.ShowDialog();
             }
+        }
+
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            presenter.OnCategorySelection();
+        }
+
+        public void SetConsecrationDetailsButtonVisible(bool visible)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action<bool>(SetConsecrationDetailsButtonVisible), visible);
+                return;
+            }
+            openConsecrationDetailsButton.Visible = visible;
         }
     }
 }

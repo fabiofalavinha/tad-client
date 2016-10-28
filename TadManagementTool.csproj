@@ -286,6 +286,7 @@
     <Compile Include="Model\Consecration.cs" />
     <Compile Include="Model\Element.cs" />
     <Compile Include="Model\ElementUnit.cs" />
+    <Compile Include="Model\ElementUnitExtensions.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\EventCategory.cs" />
     <Compile Include="Model\Financial\Balance.cs" />
@@ -450,6 +451,7 @@
     <Compile Include="View\Items\CollaboratorViewItem.cs" />
     <Compile Include="View\Items\ConsecrationViewItem.cs" />
     <Compile Include="View\Items\ContributorViewItem.cs" />
+    <Compile Include="View\Items\ElementUnitViewItem.cs" />
     <Compile Include="View\Items\ElementViewItem.cs" />
     <Compile Include="View\Items\EventCategoryViewItem.cs" />
     <Compile Include="View\Items\EventResult.cs" />
