@@ -32,8 +32,8 @@
             this.consecrationDataGridView = new System.Windows.Forms.DataGridView();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.modalWaitingPanel = new TadManagementTool.ModalWaitingPanel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.consecrationDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
@@ -50,6 +50,7 @@
             this.consecrationDataGridView.Location = new System.Drawing.Point(0, 0);
             this.consecrationDataGridView.Name = "consecrationDataGridView";
             this.consecrationDataGridView.ReadOnly = true;
+            this.consecrationDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.consecrationDataGridView.Size = new System.Drawing.Size(763, 468);
             this.consecrationDataGridView.TabIndex = 0;
             // 
@@ -79,6 +80,7 @@
             this.Controls.Add(this.consecrationDataGridView);
             this.Name = "ConsecrationHistoryListUserControl";
             this.Size = new System.Drawing.Size(763, 468);
+            this.Load += new System.EventHandler(this.ConsecrationHistoryListUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.consecrationDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);

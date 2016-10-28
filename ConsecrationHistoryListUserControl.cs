@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TadManagementTool.Model;
+using TadManagementTool.Presenter;
 using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
@@ -10,11 +10,19 @@ namespace TadManagementTool
     public partial class ConsecrationHistoryListUserControl : UserControl, IConsecrationHistoryListView
     {
         private readonly IMainView parentView;
+        private readonly IConsecrationHistoryListPresenter presenter;
 
         public ConsecrationHistoryListUserControl(IMainView parentView)
         {
             InitializeComponent();
+            consecrationDataGridView.AutoGenerateColumns = false;
             this.parentView = parentView;
+            presenter = new ConsecrationHistoryListPresenter(this);
+        }
+
+        private void ConsecrationHistoryListUserControl_Load(object sender, EventArgs e)
+        {
+            presenter.InitView();
         }
 
         public void HideWaitingPanel()
