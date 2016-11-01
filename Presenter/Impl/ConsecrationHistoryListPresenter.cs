@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TadManagementTool.Model;
@@ -24,7 +23,7 @@ namespace TadManagementTool.Presenter
         {
             var task = new Task<IList<Consecration>>(() =>
             {
-                View.ShowWaitingPanel("Carregando dados das consagrações");
+                View.ShowWaitingPanel("Carregando dados das consagrações...");
                 return eventService.FindAllConsecrations();
             });
             task.ContinueWith(t =>
@@ -39,7 +38,7 @@ namespace TadManagementTool.Presenter
             {
                 View.HideWaitingPanel();
                 var consecrations = t.Result;
-                
+
                 if (consecrations != null)
                 {
                     View.SetConsecrationList(consecrations.Select(c => new ConsecrationViewItem(c)).ToArray());
