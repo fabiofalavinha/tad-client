@@ -6,9 +6,11 @@ namespace TadManagementTool.View.Impl
 {
     public interface IConsecrationEnrollmentView : IDialogView
     {
-        void SetElementList(IList<Element> elements);
-        void SetComunicationMessage(CommunicationMessage message);
+        void SetElementList(IList<ElementViewItem> elements);
+        void SetCommunicationMessage(CommunicationMessage message);
         void SetCollaboratorList(IList<CollaboratorViewItem> list);
         void SetElementUnitList(IList<ElementUnitViewItem> list);
+        IList<ElementViewItem> GetElements();
+        string GetMailContent();
     }
 }

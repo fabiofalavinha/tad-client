@@ -51,6 +51,11 @@ namespace TadManagementTool.Model
         [JsonProperty("category")]
         public int Category { get; set; }
 
+        public Event()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
         public VisibilityType GetVisibilityType()
         {
             return VisibilityTypeExtensions.FromValue(Visibility);

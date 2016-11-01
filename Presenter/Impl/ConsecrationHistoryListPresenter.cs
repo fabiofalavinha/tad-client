@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TadManagementTool.Model;
+using TadManagementTool.Presenter.Impl;
 using TadManagementTool.Service;
 using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
@@ -45,6 +46,16 @@ namespace TadManagementTool.Presenter
                 }
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
+        }
+
+        public void OnSelectConsecrationHistoryView()
+        {
+            var selected = View.GetConsecrationSelected();
+            if (selected != null)
+            {
+                var result = View.OpenConsecrationHistoryDetails(new ConsecrationHistoryInitializationStrategy(selected.Wrapper));
+            }
+            
         }
     }
 }

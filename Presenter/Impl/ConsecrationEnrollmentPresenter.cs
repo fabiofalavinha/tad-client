@@ -12,12 +12,14 @@ namespace TadManagementTool.Presenter.Impl
     {
         private readonly EventService eventService;
         private readonly CollaboratorService collaboratorService;
-        private readonly Event currentEvent;
+        private readonly IConsecrationInitializationStrategy strategy;
+        private Consecration consecration;
+        
 
-        public ConsecrationEnrollmentPresenter(IConsecrationEnrollmentView view, Event currentEvent)
+        public ConsecrationEnrollmentPresenter(IConsecrationEnrollmentView view, IConsecrationInitializationStrategy strategy)
             : base(view)
         {
-            this.currentEvent = currentEvent;
+            this.strategy = strategy;
             eventService = new EventService();
             collaboratorService = new CollaboratorService();
         }
@@ -29,7 +31,8 @@ namespace TadManagementTool.Presenter.Impl
                 View.ShowWaitingPanel("Carregando dados da consagração...");
                 View.SetCollaboratorList(collaboratorService.FindAll().Where(c => c.Active).Select(c => new CollaboratorViewItem(c)).ToArray());
                 View.SetElementUnitList(CreateElementUnitList());
-                return eventService.FindConsecrationByEventId(currentEvent.Id);
+                consecration = strategy.GetConsecration();
+                return consecration;
             });
             task.ContinueWith(t =>
             {
@@ -45,8 +48,11 @@ namespace TadManagementTool.Presenter.Impl
                 var consecration = t.Result;
                 if (consecration != null)
                 {
-                    View.SetElementList(consecration.Elements);
-                    View.SetComunicationMessage(consecration.Message);
+                    View.SetElementList(consecration.Elements.Select(e => new ElementViewItem(e)).ToArray());
+                    if (consecration.Message != null)
+                    {
+                        View.SetCommunicationMessage(consecration.Message);
+                    }
                 }
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.Start();
@@ -66,7 +72,32 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnSaveConsecration()
         {
-            
+            var task = new Task(() =>
+            {
+                if (consecration == null)
+                {
+                    consecration = new Consecration();
+                }
+                var elements = View.GetElements();
+                var message = View.GetMailContent();
+
+                consecration.Elements = elements.Select(e => e.Wrapper).ToList();
+                consecration.Message = new CommunicationMessage(message);
+
+            });
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+                foreach (var innerException in t.Exception.InnerExceptions)
+                {
+                    View.ShowErrorMessage($"Ocorreu um erro ao salvar os dados da consagração. Tente repetir a operação. {innerException.Message}");
+                }
+            }, TaskContinuationOptions.OnlyOnFaulted);
+            task.ContinueWith(t =>
+            {
+                View.HideWaitingPanel();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+            task.Start();
         }
     }
 }

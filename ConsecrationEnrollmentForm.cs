@@ -17,12 +17,12 @@ namespace TadManagementTool
         private IList<CollaboratorViewItem> currentCollaborators;
         private IList<ElementUnitViewItem> currentElementUnits;
 
-        public ConsecrationEnrollmentForm(Event currentEvent)
+        public ConsecrationEnrollmentForm(IConsecrationInitializationStrategy strategy)
         {
             InitializeComponent();
             dataGridView.AutoGenerateColumns = false;
             dataGridView.CellValidating += DataGridView_CellValidating;
-            presenter = new ConsecrationEnrollmentPresenter(this, currentEvent);
+            presenter = new ConsecrationEnrollmentPresenter(this, strategy);
         }
 
         private void DataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -63,11 +63,11 @@ namespace TadManagementTool
             presenter.InitView();
         }
 
-        public void SetElementList(IList<Element> elements)
+        public void SetElementList(IList<ElementViewItem> elements)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<IList<Element>>(SetElementList), elements);
+                BeginInvoke(new Action<IList<ElementViewItem>>(SetElementList), elements);
                 return;
             }
             bindingSource.DataSource = elements;
@@ -77,11 +77,11 @@ namespace TadManagementTool
             dataGridView.AutoResizeColumns();
         }
 
-        public void SetComunicationMessage(CommunicationMessage message)
+        public void SetCommunicationMessage(CommunicationMessage message)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action<CommunicationMessage>(SetComunicationMessage), message);
+                BeginInvoke(new Action<CommunicationMessage>(SetCommunicationMessage), message);
                 return;
             }
             mailContentTextBox.Text = message.Content;
@@ -135,6 +135,24 @@ namespace TadManagementTool
                     }
                 }
             });
+        }
+
+        public IList<ElementViewItem> GetElements()
+        {
+            if (InvokeRequired)
+            {
+                return (IList<ElementViewItem>)Invoke(new Func<IList<ElementViewItem>>(GetElements));
+            }
+            return dataGridView.Rows.Cast<DataGridViewRow>().Select(r => (ElementViewItem)r.DataBoundItem).ToArray();
+        }
+
+        public string GetMailContent()
+        {
+            if (InvokeRequired)
+            {
+                return (string)Invoke(new Func<string>(GetMailContent));
+            }
+            return mailContentTextBox.ToString();
         }
     }
 }

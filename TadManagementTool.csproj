@@ -344,6 +344,8 @@
     </Compile>
     <Compile Include="Presenter\AbstractControlPresenter.cs" />
     <Compile Include="Presenter\AbstractDialogPresenter.cs" />
+    <Compile Include="Presenter\IConsecrationInitializationStrategy.cs" />
+    <Compile Include="Presenter\Impl\ConsecrationHistoryInitializationStrategy.cs" />
     <Compile Include="Presenter\Impl\ConsecrationHistoryListPresenter.cs" />
     <Compile Include="Presenter\ICalendarPresenter.cs" />
     <Compile Include="Presenter\ICollaboratorBirthDaysPresenter.cs" />
@@ -361,6 +363,7 @@
     <Compile Include="Presenter\IListCollaboratorPresenter.cs" />
     <Compile Include="Presenter\Impl\ConfirmCloseFinancialBalancePresenter.cs" />
     <Compile Include="Presenter\Impl\ConsecrationEnrollmentPresenter.cs" />
+    <Compile Include="Presenter\Impl\EventIniatilizationStrategy.cs" />
     <Compile Include="Presenter\Impl\FinancialEntryEnrollmentPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialEntryListPresenter.cs" />
     <Compile Include="Presenter\Impl\FinancialReferenceListPresenter.cs" />

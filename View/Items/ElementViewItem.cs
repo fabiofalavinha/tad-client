@@ -29,5 +29,10 @@ namespace TadManagementTool.View.Items
         public string Unit { get { return Wrapper.Unit; } set { Wrapper.Unit = value; } }
         public string PrimaryCollaboratorId { get { return Wrapper.PrimaryCollaborator.Id; } set { Wrapper.PrimaryCollaborator.Id = value; } }
         public string SecondaryCollaboratorId { get { return Wrapper.SecondaryCollaborator.Id; } set { Wrapper.SecondaryCollaborator.Id = value; } }
+
+        public ElementViewItem(Element element)
+        {
+            Wrapper = element;
+        }
     }
 }

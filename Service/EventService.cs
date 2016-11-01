@@ -30,5 +30,10 @@ namespace TadManagementTool.Service
         {
             return restTemplate.GetForObject<IList<Consecration>>("/event/consecrations");
         }
+
+        public void SaveConsecration(Consecration consecration)
+        {
+            restTemplate.PostForObject<Consecration>("/event/" + consecration.Event.Id + "/consecration", consecration);
+        }
     }
 }

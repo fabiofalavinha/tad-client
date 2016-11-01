@@ -13,32 +13,35 @@ namespace TadManagementTool.Presenter.Impl
     {
         private readonly EventService eventService;
 
-        private Event editedEvent;
+        private Event currentEvent;
+        private bool creating = false;
 
         public EventEnrollmentPresenter(IEventEnrollmentView view)
-            : this(view, null)
+            : this(view, new Event())
         {
+            creating = true;
         }
 
-        public EventEnrollmentPresenter(IEventEnrollmentView view, Event editedEvent)
+        public EventEnrollmentPresenter(IEventEnrollmentView view, Event currentEvent)
             : base(view)
         {
-            this.editedEvent = editedEvent;
+            creating = false;
+            this.currentEvent = currentEvent;
             eventService = new EventService();
         }
 
         public void InitView()
         {
             View.SetCategoryList(EventCategoryExtensions.GetEventCategoryList().Select(c => new EventCategoryViewItem(c)).ToArray());
-            if (editedEvent != null)
+            if (!creating)
             {
-                View.SetEventTitle(editedEvent.Title);
-                View.SetEventDate(editedEvent.Date);
-                View.SetEventNotes(editedEvent.Notes);
-                View.SetEventVisibility(VisibilityTypeExtensions.FromValue(editedEvent.Visibility));
-                View.SetEventCategory(new EventCategoryViewItem(editedEvent.GetEventCategory()));
-                View.SetEventFontColor(editedEvent.FontColor.FromHex(Color.White));
-                View.SetEventBackColor(editedEvent.BackColor.FromHex(Color.Red));
+                View.SetEventTitle(currentEvent.Title);
+                View.SetEventDate(currentEvent.Date);
+                View.SetEventNotes(currentEvent.Notes);
+                View.SetEventVisibility(VisibilityTypeExtensions.FromValue(currentEvent.Visibility));
+                View.SetEventCategory(new EventCategoryViewItem(currentEvent.GetEventCategory()));
+                View.SetEventFontColor(currentEvent.FontColor.FromHex(Color.White));
+                View.SetEventBackColor(currentEvent.BackColor.FromHex(Color.Red));
                 View.SetRemoveButtonVisible(true);
             }
             else
@@ -49,7 +52,7 @@ namespace TadManagementTool.Presenter.Impl
 
         public void OnCancel()
         {
-            editedEvent = null;
+            currentEvent = null;
             View.EventResult = null;
             View.SetDialogResult(DialogResult.Cancel);
         }
@@ -58,8 +61,7 @@ namespace TadManagementTool.Presenter.Impl
         {
             var task = new Task<Event>(() =>
             {
-                var updatingEvent = editedEvent != null;
-                if (updatingEvent)
+                if (!creating)
                 {
                     View.ShowWaitingPanel("Atualizando evento...");
                 }
@@ -89,6 +91,7 @@ namespace TadManagementTool.Presenter.Impl
                 }
                 var newEvent = new Event()
                 {
+                    Id = currentEvent.Id,
                     Title = title,
                     Date = date,
                     Notes = notes,
@@ -97,10 +100,6 @@ namespace TadManagementTool.Presenter.Impl
                     BackColor = View.GetEventBackColor().ToHex(),
                     FontColor = View.GetEventFontColor().ToHex()
                 };
-                if (updatingEvent)
-                {
-                    newEvent.Id = editedEvent.Id;
-                }
                 return eventService.AddEvent(newEvent);
             });
             task.ContinueWith(t =>
@@ -131,13 +130,13 @@ namespace TadManagementTool.Presenter.Impl
                 if (View.ShowBinaryQuestion("Deseja apagar este evento?"))
                 {
                     View.ShowWaitingPanel("Apagando evento...");
-                    eventService.RemoveEventById(editedEvent.Id);
+                    eventService.RemoveEventById(currentEvent.Id);
                 }
             });
             task.ContinueWith(t =>
             {
                 View.HideWaitingPanel();
-                View.EventResult = new EventResult(editedEvent, true);
+                View.EventResult = new EventResult(currentEvent, true);
                 View.SetDialogResult(DialogResult.OK);
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
             task.ContinueWith(t =>
@@ -183,7 +182,7 @@ namespace TadManagementTool.Presenter.Impl
         {
             if (View.GetEventCategory().Wrapper == EventCategory.Consecration)
             {
-                View.OpenConsecrationView(editedEvent);
+                View.OpenConsecrationView(new EventIniatilizationStrategy(currentEvent));
             }
             else
             {

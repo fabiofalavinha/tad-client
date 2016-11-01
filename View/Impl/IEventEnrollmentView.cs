@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using TadManagementTool.Model;
+using TadManagementTool.Presenter;
 using TadManagementTool.View.Items;
 
 namespace TadManagementTool.View.Impl
@@ -29,7 +30,7 @@ namespace TadManagementTool.View.Impl
         void SetCategoryList(IList<EventCategoryViewItem> list);
         void SetCategoryVisible(bool visible);
         void SetEventCategory(EventCategoryViewItem viewItem);
-        void OpenConsecrationView(Event currentEvent);
+        void OpenConsecrationView(IConsecrationInitializationStrategy strategy);
         void SetConsecrationDetailsButtonVisible(bool visible);
     }
 }

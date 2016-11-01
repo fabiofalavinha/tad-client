@@ -16,5 +16,11 @@ namespace TadManagementTool.Model
 
         [JsonProperty("message")]
         public CommunicationMessage Message { get; set; }
+
+        public Consecration()
+        {
+            Elements = new List<Element>();
+            Message = new CommunicationMessage();
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TadManagementTool.Model;
+using TadManagementTool.Presenter;
 using TadManagementTool.View.Impl;
 using TadManagementTool.View.Items;
 
@@ -10,11 +12,26 @@ namespace TadManagementTool
     public partial class ConsecrationHistoryListUserControl : UserControl, IConsecrationHistoryListView
     {
         private readonly IMainView parentView;
+        private readonly IConsecrationHistoryListPresenter presenter;
 
         public ConsecrationHistoryListUserControl(IMainView parentView)
         {
             InitializeComponent();
-            this.parentView = parentView;
+            presenter = new ConsecrationHistoryListPresenter(this);
+        }
+
+        public ConsecrationViewItem GetConsecrationSelected()
+        {
+            if (InvokeRequired)
+            {
+                return (ConsecrationViewItem)Invoke(new Func<ConsecrationViewItem>(GetConsecrationSelected));
+            }
+            var selectedRow = consecrationDataGridView.SelectedRows.Cast<DataGridViewRow>().FirstOrDefault();
+            if (selectedRow != null)
+            {
+                return (ConsecrationViewItem)selectedRow.DataBoundItem;
+            }
+            return null;
         }
 
         public void HideWaitingPanel()
@@ -25,6 +42,18 @@ namespace TadManagementTool
                 return;
             }
             modalWaitingPanel.Hide();
+        }
+
+        public DialogResult OpenConsecrationHistoryDetails(IConsecrationInitializationStrategy strategy)
+        {
+            if (InvokeRequired)
+            {
+                return (DialogResult)Invoke(new Func<IConsecrationInitializationStrategy, DialogResult>(OpenConsecrationHistoryDetails), strategy);
+            }
+            using (var form = new ConsecrationEnrollmentForm(strategy))
+            {
+                return form.ShowDialog();
+            }
         }
 
         public void SetConsecrationList(IList<ConsecrationViewItem> list)
@@ -74,5 +103,11 @@ namespace TadManagementTool
             }
             MessageBox.Show(message, "TAD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        private void consecrationDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            presenter.OnSelectConsecrationHistoryView();
+        }
+
     }
 }

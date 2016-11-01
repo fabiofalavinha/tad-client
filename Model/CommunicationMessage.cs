@@ -10,5 +10,15 @@ namespace TadManagementTool.Model
     {
         [JsonProperty("content")]
         public string Content { get; set; }
+
+        public CommunicationMessage()
+            : this(string.Empty)
+        {
+        }
+
+        public CommunicationMessage(string message)
+        {
+            Content = message;
+        }
     }
 }

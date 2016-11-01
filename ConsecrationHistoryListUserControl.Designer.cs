@@ -52,6 +52,7 @@
             this.consecrationDataGridView.ReadOnly = true;
             this.consecrationDataGridView.Size = new System.Drawing.Size(763, 468);
             this.consecrationDataGridView.TabIndex = 0;
+            this.consecrationDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.consecrationDataGridView_CellDoubleClick);
             // 
             // NameColumn
             // 
